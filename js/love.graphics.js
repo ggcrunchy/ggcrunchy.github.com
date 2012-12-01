@@ -369,7 +369,7 @@ function Love_Graphics_MakeQuadHandle (o) {
 	t._data = o;
 	
 	t.str['flip']				= function (t) { return NotImplemented(pre+'flip'); }	// Flips this quad horizontally, vertically, or both.
-	t.str['getViewport']		= function (t) { return NotImplemented(pre+'getViewport'); }	// Gets the current viewport of this Quad.
+	t.str['getViewport']		= function (t) { return [t._data.x, t._data.y, t._data.w, t._data.h]; }//NotImplemented(pre+'getViewport'); }	// Gets the current viewport of this Quad.
 	t.str['setViewport']		= function (t) { return NotImplemented(pre+'setViewport'); }	// Sets the texture coordinates according to a viewport.
 
 	t.str['type']				= function (t) { return NotImplemented(pre+'type'); }	// Gets the type of the object as a string.

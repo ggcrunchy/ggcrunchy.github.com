@@ -279,7 +279,7 @@ case 19:
     if ($$[$0-2].length == 1) {
       // avoid tmp entirely for certain situations
       if ($$[$0].exps.length == 1) {
-        tmp = "var " + $$[$0-2][0] + " = " + $$[$0].exps[0] + ";";
+          tmp = "var " + $$[$0-2][0] + " = " + $$[$0].exps[0] + ";";
       } else {
         tmp = "var " + $$[$0-2][0] + " = " + getTempDecl($$[$0]) + "[0];";
       }
@@ -1495,7 +1495,20 @@ function lua_mod(op1, op2) {
     }
   }
 }
+var kFUNCS = 0;
+function rawget_table(table, key)
+{
+  if (key == null) {
+	throw new Error("Table index is nil");
+  }
+  for (var i in table) {
+	if (table[i][0] == key) {
+	  return table[i][1];
+	}
+  }
+}
 function lua_rawget(table, key) {
+	if (key == null) return null;
   switch (typeof key) {
     case "string":
       return table.str[key];
@@ -1515,17 +1528,36 @@ function lua_rawget(table, key) {
     case "boolean":
       return table.bool[key];
     case "object":
-      if (key == null) {
-        throw new Error("Table index is nil");
-      }
-      for (var i in table.objs) {
-        if (table.objs[i][0] == key) {
-          return table.objs[i][1];
-        }
-      }
+	  return rawget_table(table.objs, key);
+	break;
+	case "function":
+	  if (table.bool[kFUNCS] != null) {
+	    return rawget_table(table.bool[kFUNCS], key);
+	  }
 	break;
     default:
       throw new Error("Unsupported key for table: " + (typeof key));
+  }
+}
+function rawset_table(table, key, value)
+{
+  if (key == null) {
+	throw new Error("Table index is nil");
+  }
+  var bFound = false;
+  for (var i in table) {
+	if (table[i][0] == key) {
+	  if (value == null) {
+		table.splice(i,1); // remove element [i]
+	  } else {
+		bFound = true;
+		table[i][1] = value; // modifiy/overwrite existing entry
+	  }
+	  break;
+	}
+  }
+  if (!bFound) {
+	table.push([key,value]); // add new entry
   }
 }
 function lua_rawset(table, key, value) {
@@ -1565,25 +1597,12 @@ function lua_rawset(table, key, value) {
       }
       break;
     case "object":
-      if (key == null) {
-        throw new Error("Table index is nil");
-      }
-      var bFound = false;
-      for (var i in table.objs) {
-        if (table.objs[i][0] == key) {
-          if (value == null) {
-            table.objs.splice(i,1); // remove element [i]
-          } else {
-            bFound = true;
-            table.objs[i][1] = value; // modifiy/overwrite existing entry
-          }
-          break;
-        }
-      }
-      if (!bFound) {
-        table.objs.push([key,value]); // add new entry
-      }
+	  rawset_table(table.objs, key, value);
       break;
+	case "function":
+	  table.bool[kFUNCS] = table.bool[kFUNCS] || [];
+	  rawset_table(table.bool[kFUNCS], key, value);
+	  break;
     default:
       throw new Error("Unsupported key for table: " + (typeof key));
   }
@@ -1669,13 +1688,19 @@ function _ipairs_next(table, index) {
   return [index + 1, entry];
 }
 var lua_libs = {};
+var tostring_id = 0;
+function get_id (e) {
+	e.id = e.id || tostring_id++;
+
+	return e.id;
+}
 var lua_core = {
   "assert": function (value, message) {
     if (arguments.length < 1) {
       message = "assertion failed!";
     }
     if (value != null && value !== false) {
-      return value;
+      return [value];
     } else {
       throw new Error(message);
     }
@@ -1741,12 +1766,17 @@ var lua_core = {
     for (i in table.floats) {
       props.push(parseFloat(i));
     }
-    for (i in table.bools) {
+    for (i in table.bool) {
+	  if (i == kFUNCS) continue;
       props.push(i === "true" ? true : false);
     }
     for (i in table.objs) {
       props.push(table.objs[i][0]);
     }
+	var funcs = table.bool[kFUNCS]
+    for (i in funcs) {
+	  props.push(funcs[i][0]);
+	}
 
     // okay, so I'm faking it here
     // regardless of what key is given, this function will return the next value
@@ -1773,10 +1803,10 @@ var lua_core = {
   },
   "print": lua_print,
   "rawequal": function (op1, op2) {
-    return (op1 == op2) || (op1 == null && op2 == null);
+    return [(op1 == op2) || (op1 == null && op2 == null)];
   },
   "rawget": function (table, key) {
-    if (typeof table == "object" && table != null && key != null) {
+    if (typeof table == "object" && table != null) {// && key != null) {
       return [lua_rawget(table, key)];
     }
     throw new Error("Unable to index key " + key + " from " + table);
@@ -1788,8 +1818,9 @@ var lua_core = {
     }
     throw new Error("Unable set key " + key + " in " + table);
   },
-  "select": function () {
-    not_supported();
+  "select": function (n) {
+	if (n === "#") return [arguments.length - 1];
+    return slice(arguments, n);
   },
   "setfenv": function (func, table) {
     not_supported();
@@ -1832,9 +1863,9 @@ var lua_core = {
         case "string":
           return [e];
         case "object":
-          return ["table"];
+          return ["table" + get_id(e)];
         case "function":
-          return ["function"];
+          return ["function" + get_id(e)];
         default:
           return ["nil"];
       }
@@ -1887,7 +1918,8 @@ var _lua_coroutine = lua_libs["coroutine"] = {};
 _lua_coroutine["resume"] = _lua_coroutine["running"] = _lua_coroutine["status"] = _lua_coroutine["wrap"] = _lua_coroutine["yield"] = _lua_coroutine["create"] = function () {
   not_supported();
 };
-
+function XX () {}
+function YY () {}
 // debug
 var _lua_debug = lua_libs["debug"] = {
   "getmetatable": function (obj) {
@@ -2278,6 +2310,7 @@ lua_libs["table"] = {
   },
   "remove": function (table, pos) {
     // TODO: This will probably mess up if pos is not valid
+    if (pos == null) pos = table.length;
     ensure_arraymode(table);
     var value = table.uints[pos - 1];
     table.uints.splice(pos - 1, 1);
@@ -2334,7 +2367,7 @@ lua_libs["bit"] = {
     return [result];
   },
   "band": function (x) {
-    var result = 0;
+    var result = ~0;
     for (var i = 0; i < arguments.length; i++) {
       result &= arguments[i];
     }
