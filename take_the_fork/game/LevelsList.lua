@@ -58,8 +58,12 @@ local Levels = {
 			back.yScale = h / back.contentHeight
 		end,
 
-		-- Player --
-		start_col = 2, start_row = 3,
+		-- Players --
+		players = {
+			{ { col = 2, row = 3 }, { col = 7, row = 4 }, { col = 10, row = 5 }, forks = { { col = 2, row = 8 }, { col = 6, row = 9 } } },
+			{ { col = 4, row = 9 }, forks = { { col = 5, row = 2 }, { col = 7, row = 5 } } },
+			{ { col = 11, row = 1 }, { col = 9, row = 3 }, forks = { { col = 9, row = 2 }, { col = 10, row = 1 } } }
+		},
 
 		-- Dots --
 		dots = {
@@ -76,18 +80,15 @@ local Levels = {
 		-- Layout --
 		ncols = 11,
 
-		__, __, __, __, __, __, __, __, __, __, __,
-		__, UL, _H, _H, UR, __, __, __, __, __, __,
-		__, _V,	__, __, LT,	_H,	UR, __, __, __, __,
-		__, LT,	_H,	TT,	LR,	__,	_V,	__,	__, __, __,
+		__, __, __, __, __, __, __, __, UL, _H, UR,
+		__, UL, _H, _H, UR, __, __, UL, LR, __, _V,
+		__, _V,	__, __, LT,	_H,	UR, LL, UR, __, _V,
+		__, LT,	_H,	TT,	LR,	__,	_V,	__,	LL, _H, LR,
 		__, __, __, __, __,	__,	_V,	__,	UL,	_H,	UR,
-		__, __, __, __, __,	__,	LT, _H, RT, __,	_V,
-		__, __, __, __, __,	__,	_V, __,	_V, __,	_V,
-		__, __, __, __, __,	__,	_V, __,	LL,	_H,	LR,
-		__, __, __, __, __,	UL,	BT, UR, __, __, __,
-		__, __, UL,	_H, _H, LR, __, _V, __, __, __,
-		__, __, _V,	__, __, __, __, _V, __, __, __,
-		__, __, LL, _H,	_H, _H, _H, LR, __, __, __,
+		__, __, __, UL, _H, UR,	LL, _H, RT, __,	_V,
+		__, UL, _H, LR, __,	_V,	__, __,	_V, __,	_V,
+		__, _V, __, __, __,	LL,	UR, __,	LL,	_H,	LR,
+		__, LL, _H, _H, _H,	_H,	LR, __, __, __, __
 	}
 }
 

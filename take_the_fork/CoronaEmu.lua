@@ -55,6 +55,19 @@ function M.Draw ()
 	end
 end
 
+-- --
+local KeyEvent = { name = "key" }
+
+--- DOCME
+-- @string key
+-- @string phase
+function M.KeyEvent (key, phase)
+	KeyEvent.keyName = key
+	KeyEvent.phase = phase
+
+	Runtime:dispatchEvent(KeyEvent)
+end
+
 --- DOCME
 -- @number x
 -- @number y

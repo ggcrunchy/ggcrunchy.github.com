@@ -62,14 +62,22 @@ function Player:Face (dir)
 		local hscale = dir == "right" and -1 or 1
 		local body = self.m_body
 
-		body.xScale = hscale
+--		body.xScale = hscale
 --		tail.xScale = hscale
 
 		-- Prepare the appropriate animation sequence for the body.
 		if dir == "left" or dir == "right" then
-			dir = "side"
+--			dir = "side"
 		end
-
+if dir == "right" then
+	body.rotation = 0
+elseif dir == "up" then
+	body.rotation = 270
+elseif dir == "left" then
+	body.rotation = 180
+else
+	body.rotation = 90
+end
 		body:setSequence("moving")--dir)
 		body:play()
 	end
@@ -97,7 +105,7 @@ end
 ]]
 -- Helper to put squirrel part at a position
 local function PutPart (part, x, y)
-	part.x, part.y = x, y
+	part.x, part.y = x + part.width / 2, y + part.height / 2
 end
 
 -- Places our squirrel somewhere.
@@ -126,10 +134,10 @@ end
 function Player:PutAtStart ()
 	self:Face("down")
 	self:Place(tile_maps.GetTilePos(self.m_start))
-
+self.m_t = self.m_start
 	self.m_frames_left = 0
 end
-
+local mm = require("game.Movement")
 --- Attempts to move the player in a given direction.
 -- @number dist
 -- @string dir Direction in which to move.
@@ -139,20 +147,33 @@ end
 -- @see game.Movement.NextDirection
 function Player:TryToMove (dist, dir, near_goal, path_funcs, update_on_move)
 	-- Try to walk a bit.
-	local moved, x2, y2, dir2 = ai.TryToMove(self.m_feet, dist, dir, near_goal, path_funcs, update_on_move)
+--	local moved, x2, y2, dir2 = ai.TryToMove(self.m_body--[[m_feet]], dist, dir, near_goal, path_funcs, update_on_move)
 
 	-- Face the direction we at least tried to move.
-	self:Face(dir2)
+	self:Face(dir)
 
 	-- If we did move, update the animation.
 	if moved then
-		self.m_frames_left = 2
+--		self.m_frames_left = 2
 
-		self.m_body:play()
+--		self.m_body:play()
 	end
 
 	-- Finally, put the body and tail relative to the feet.
-	self:Place(x2, y2)
+--	self:Place(x2, y2)
+if mm.CanGo(self.m_t, dir) then
+	local _, d = mm.NextDirection(dir, "forward", "tile_delta")
+
+	self.m_t = self.m_t + d
+	self:Place(tile_maps.GetTilePos(self.m_t))
+
+		self.m_frames_left = 2
+
+	self.m_body:setSequence("moving")
+	self.m_body:play()
+else
+	self.m_body:setSequence("idle")
+end
 end
 
 --- Winds down any body animation in progress.
@@ -161,8 +182,8 @@ function Player:WindDownAnimation ()
 		self.m_frames_left = self.m_frames_left - 1
 
 		if self.m_frames_left == 0 then
-			self.m_body:setSequence()
-			self.m_body:pause()
+			self.m_body:setSequence("idle")
+--			self.m_body:pause()
 		end
 	end
 end

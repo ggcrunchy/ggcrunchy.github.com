@@ -1,4 +1,4 @@
---- The main functionality behind our heroic player.
+--- The main functionality behind our heroic spaceman.
 
 --
 -- Permission is hereby granted, free of charge, to any person obtaining
@@ -27,6 +27,8 @@
 local abs = math.abs
 local min = math.min
 --local pairs = pairs
+local random = math.random
+local sin = math.sin
 
 -- Modules --
 local ai = require("game.AI")
@@ -35,10 +37,14 @@ local ai = require("game.AI")
 local dispatch_list = require("game.DispatchList")
 local frames = require("game.Frames")
 --local fx = require("game.FX")
-local movement = require("game.Movement")
+--local hud = require("game.HUD")
 local pathing = require("game.Pathing")
 local path_utils = require("game.PathUtils")
+--local persistence = require("game.Persistence")
+local player_sprites = require("game.PlayerSprites")
+--local scenes = require("game.Scenes")
 local scrolling = require("game.Scrolling")
+--local stars = require("effect.Stars")
 local tile_flags = require("game.TileFlags")
 local tile_maps = require("game.TileMaps")
 
@@ -49,6 +55,9 @@ timer.performWithDelay(0, function()
 	level_map = require("game.LevelMap")
 end)
 
+-- Classes --
+local TimerClass = require("class.Timer")
+
 -- Corona globals --
 --local display = display
 --local transition = transition
@@ -56,54 +65,43 @@ end)
 -- Exports --
 local M = {}
 
--- Helper to point our player in a given direction
-local function Face (player, dir)
-	if player.m_facing ~= dir then
-		player.m_facing = dir
-	end
-end
+-- Number of hit points --
+local HitPoints
 
--- Places our player somewhere
-local function Place (player, x, y)
-	player.m_body.x = x
-	player.m_body.y = y
-end
+-- How many lives remain? --
+local LivesLeft
 
 -- Puts the player fresh at the starting tile
 local function PutAtStart (player)
-	Face(player, "down")
-	Place(player, tile_maps.GetTilePos(player.m_start))
+	player:PutAtStart()
+
+	-- Set initial hit points.
+--	player.m_hp = HitPoints
+
+	-- Update the lives in the HUD.
+--	hud.SetLivesCounter(LivesLeft)
+
+	-- Provide fresh timers.
+	player.m_mercy = TimerClass()
+	player.m_stun = TimerClass()
 end
 
--- Collision radius of body --
-local Radius = 15
-
--- Collision body features --
---local Body = { filter = { categoryBits = collision.FilterBits("player"), maskBits = 0xFFFF }, radius = Radius }
+-- Sounds played during player actions --
+--local Sounds = audio.NewSoundGroup{ ko = "PlayerKO.mp3", nuts = "Nuts.ogg", ow = "Ow.ogg", uff = "Uff.ogg" }
 
 -- Player state --
 local Player
 
 --- Adds our heroic protagonist to a new level.
--- @pgroup group Display group that will hold the player parts.
+-- @pgroup group Display group that will hold the squirrel parts.
 -- @uint col Column of starting tile.
 -- @uint row Row of starting tile.
 function M.AddPlayer (group, col, row)
-	Player = { m_start = tile_maps.GetTileIndex(col, row), m_touching = {} }
+	Player = player_sprites.NewSprite(group, col, row)
 
-	-- Add the body "sprite"
-	Player.m_body = display.newCircle(group, 0, 0, Radius)
+	Player.m_touching = {}
 
-	Player.m_body:setStrokeColor(255, 0, 0)
-
-	Player.m_body.strokeWidth = 3
-
-	-- Put the player on the starting tile.
 	PutAtStart(Player)
-
-	-- Activate collision.
---	collision.MakeSensor(Player.m_body, "dynamic", Body)
---	collision.SetType(Player.m_body, "player")
 end
 
 -- Current segment used to build a path, if any --
@@ -117,39 +115,35 @@ local X1, X2
 
 --- If a path is in progress, cancels it; otherwise, this is a no-op.
 function M.CancelPath ()
+if true then return end
 	display.remove(X1)
 	display.remove(X2)
 
-	ai.WipePath(Player.m_body)
+	ai.WipePath(Player:GetFeet())
 
 	Cur, Goal, X1, X2 = nil
 end
 
 --- Acts on any objects that the player is touching.
 function M.DoActions ()
-	local facing = Player.m_facing
+	local facing = Player:GetFacing()
 
 	for object in pairs(Player.m_touching) do
 		dispatch_list.CallList("act_on_dot", object, facing)
 	end
 end
 
----@treturn number Player's x coordinate.
--- @treturn number Player's y coordinate.
+---@treturn number Player's x-coordinate...
+-- @treturn number ...and y-coordinate.
 function M.GetPos ()
-	local body = Player.m_body
+	local feet = Player:GetBody()--GetFeet()
 
-	return body.x, body.y
+	return feet.x, feet.y
 end
 
----@treturn boolean The player is following a path?
-function M.IsFollowingPath ()
-	return Goal ~= nil
-end
-
----@treturn number Goal's x coordinate, or **nil** if no goal exists...
--- @treturn number ...and y coordinate.
--- @treturn int Goal's tile, or **nil** if no goal exists (or tile has not been found).
+---@treturn number Goal's x-coordinate, or **nil** if no goal exists...
+-- @treturn number ...and y-coordinate.
+-- @treturn int Goal tile.
 function M.GoalPos ()
 	if Goal then
 		return Goal.x, Goal.y, Goal.tile
@@ -158,8 +152,18 @@ function M.GoalPos ()
 	end
 end
 
+---@treturn boolean The player is following a path?
+function M.IsFollowingPath ()
+	return Goal ~= nil
+end
+
+--- Kill the player on demand.
+function M.Kill ()
+	dispatch_list.CallList("player_killed", Player)
+end
+
 -- Distance that player can travel per second --
-local Speed = 95
+local Speed = 20--125
 
 -- Updates the player on tile movement
 local function UpdateOnMove (dir, tile)
@@ -167,39 +171,54 @@ local function UpdateOnMove (dir, tile)
 
 	Goal.tile = tile
 
-	return path_utils.CurrentDir(Cur) 
+	return path_utils.CurrentDir(Cur)
 end
 
 -- Near goal distance --
 local NearGoal
 
 --- Attempts to move the player in a given direction, at some average squirrel velocity.
+--
+-- The **"player\_tried\_to\_move"** list is then dispatched, with _dist_ and _dir_ as
+-- arguments, where _dist_ is the maximum distance Spaceman could travel on this frame.
 -- @string dir Direction in which to move.
 -- @see game.Movement.NextDirection
 function M.MovePlayer (dir)
-	-- Try to walk a bit.
-	local moved, x2, y2, dir2 = ai.TryToMove(Player.m_body, Speed * frames.DiffTime(), dir, NearGoal, M, UpdateOnMove)
+	local dist = Speed * frames.DiffTime()
 
-	-- Face the direction we at least tried to move.
-	Face(Player, dir2)
+	Player:TryToMove(dist, dir, NearGoal, M, UpdateOnMove)
 
-	-- If we did move, update the animation.
-	if moved then
-		FramesLeft = 2
+	dispatch_list.CallList("player_tried_to_move", dist, dir)
+end
 
---		Player.m_body:play()
+-- Helper to report object-specific deadliness
+local function IsDeadly (object, object_type)
+	if Player.m_mercy:GetDuration() then
+		return
+	elseif object_type == "enemy" then
+		return object.m_alive
+	else
+		return object.IsDeadly and object:IsDeadly()
 	end
+end
 
-	-- Finally, put the body and tail relative to the feet.
-	Place(Player, x2, y2)
+-- One of the groups used to hold stun stars --
+local StarsFront
+
+-- Helper to stop stun stars, if active
+local function CancelStars ()
+	display.remove(StarsFront)
+
+	StarsFront = nil
 end
 
 -- Per-frame setup / update
 local function OnEnterFrame ()
-	-- If on a path, progress along it.
-	-- TODO: Good way to get player onto X evenly (and reliably; right now it sort of depends on if there's already a node, probably, and how off-center the X is then)
+	-- If on a path, progress along it. Otherwise, try to wind down the animation.
 	if Cur then
 		M.MovePlayer(path_utils.CurrentDir(Cur))
+	else
+		Player:WindDownAnimation()
 	end
 end
 
@@ -213,7 +232,7 @@ local RefGroup
 local function Activate (active)
 	Player.m_is_busy = not active
 
-	collision.Activate(Player.m_body, active)
+	collision.Activate(Player:GetFeet(), active)
 end
 
 -- Helper to kick off reset
@@ -223,22 +242,50 @@ local function Reset ()
 	dispatch_list.CallList("post_reset")
 end
 
+-- Spinning death transition --
+local DeadParams = {
+	time = 3000, rotation = 360 * 15, transition = easing.outExpo,
+
+	onComplete = function(object)
+		object.rotation = 0
+
+		-- Kick off the reset after some part has stopped spinning.
+		if object == Player:GetBody() and object.parent then
+			if LivesLeft > 1 then
+				scenes.Send("message:show_overlay", "overlay.KO", Reset)
+			else
+				level_map.UnloadLevel("lost")
+			end
+		end
+	end
+}
+
+-- Mercy invincibility time, after being hurt --
+local MercyTime = 1.3
+
+-- Time left immobile when stunned --
+local StunTime = 2.5
+
 -- Listen to events.
 dispatch_list.AddToMultipleLists{
 	-- Enter Level --
 	enter_level = function(level)
 		MarkersLayer = level.markers_layer
-		FramesLeft = 0
 		NearGoal = min(level.w, level.h) / 3
+--[[
+		Sounds:Load()
 
---		Sounds:Load()
+		local config = persistence.GetConfig()
 
+		HitPoints = config.hit_points
+		LivesLeft = config.lives
+]]
 		Runtime:addEventListener("enterFrame", OnEnterFrame)
 	end,
 
 	-- Leave Level --
 	leave_level = function()
-		M.CancelPath()
+--		M.CancelPath()
 
 		Player, RefGroup = nil
 
@@ -249,25 +296,68 @@ dispatch_list.AddToMultipleLists{
 	move_done = function()
 		Activate(true)
 
-		scrolling.Follow(Player.m_body, "keep")
+		scrolling.Follow(Player:GetFeet(), "keep")
 	end,
 
 	-- Move Done Moving --
 	move_done_moving = function(_, to)
-		Place(Player, to.x, to.y)
+		Player:Place(to.x, to.y)
 	end,
 
 	-- Move Prepare --
 	move_prepare = function(from)
-		from:AddItem(Player.m_body)
+		from:AddItem(Player:GetBody())
 
 		Activate(false)
 
-		scrolling.Follow(Player.m_body, "keep")
+		M.CancelPath()
+
+		scrolling.Follow(Player:GetBody(), "keep")
+	end,
+
+	-- Player Hurt --
+	player_hurt = function()
+		Player.m_hp = Player.m_hp - 1
+
+		Player.m_mercy:Start(MercyTime)
+
+		Sounds:PlaySound(random(3) == 1 and "uff" or "ow")
+	end,
+
+	-- Player Killed --
+	player_killed = function()
+		transition.to(Player:GetBody(), DeadParams)
+
+		Sounds:PlaySound("ko")
+
+		if random(5) <= 2 then
+			Sounds:PlaySound("nuts", 1200)
+		end
+
+		collision.Activate(Player:GetFeet(), false)
+
+		CancelStars()
+
+		M.CancelPath()
+	end,
+
+	-- Player Stunned --
+	player_stunned = function()
+		Player.m_stun:Start(StunTime)
+
+		M.CancelPath()
+
+		CancelStars()
+-- TODO: Bonk sound
+		local body = Player:GetBody()
+
+		StarsFront = stars.RingOfStars(body.parent, 4, body.x, body.y - 20, 45, 9)
 	end,
 
 	-- Reset Level --
 	reset_level = function()
+		LivesLeft = LivesLeft - 1
+
 		PutAtStart(Player)
 		Activate(true)
 	end,
@@ -296,7 +386,7 @@ dispatch_list.AddToMultipleLists{
 					py = y
 				end
 
-				Cur = path_utils.ChooseBranch_Facing(paths, Player.m_facing)
+				Cur = path_utils.ChooseBranch_Facing(paths, Player:GetFacing())
 				Goal = { x = px, y = py, tile = ftile }
 
 				-- X marks the spot!
@@ -312,7 +402,7 @@ dispatch_list.AddToMultipleLists{
 
 		-- Otherwise, play some sparkles just to give some feedback on the tap.
 		else
---			fx.Sparkle(MarkersLayer, x, y)
+			fx.Sparkle(MarkersLayer, x, y)
 		end
 	end,
 
@@ -320,7 +410,7 @@ dispatch_list.AddToMultipleLists{
 	things_loaded = function(level)
 		RefGroup = level.game_group
 
-		scrolling.Follow(Player.m_body, RefGroup)
+--		scrolling.Follow(Player:GetBody()--[[GetFeet()]], RefGroup)
 	end,
 
 	-- Touching Dot --

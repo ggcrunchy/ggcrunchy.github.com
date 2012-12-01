@@ -41,7 +41,7 @@ local dispatch_list = require("game.DispatchList")
 local index_ops = require("index_ops")
 local iterators = require("iterators")
 local player = require("game.Player")
-local touch = require("ui.Touch")
+--local touch = require("ui.Touch")
 
 -- Corona globals --
 --local display = display
@@ -57,7 +57,7 @@ local Dir, Was
 -- Begins input in a given direction
 local function BeginDir (_, target)
 	Dir = Dir or target.m_dir
-	Was = Dir
+--	Was = Dir
 
 	player.CancelPath()
 end
@@ -70,7 +70,7 @@ local function EndDir (_, target)
 end
 
 -- Helper to attach begin-end input to buttons --
-local TouchFunc = touch.TouchHelperFunc(BeginDir, nil, EndDir)
+--local TouchFunc = touch.TouchHelperFunc(BeginDir, nil, EndDir)
 
 -- Controls are active? --
 local Active
@@ -92,7 +92,7 @@ local function UpdatePlayer ()
 		-- if we still have some residual motion, follow that instead. In any case, wind
 		-- down any leftover motion.
 		local dir = Dir or Was
-
+Dir = nil
 		if FramesLeft > 0 then
 			FramesLeft = FramesLeft - 1
 		else
@@ -150,7 +150,7 @@ local function ResetState ()
 	FramesLeft = 0
 	Dir, Was = nil
 end
-
+--[[
 -- Group for action button and related icons --
 local ActionGroup
 
@@ -397,13 +397,13 @@ local function TrapTaps (event)
 
 	return true
 end
-
+]]
 -- Listen to events.
 dispatch_list.AddToMultipleLists{
 	-- Enter Level --
 	enter_level = function(level)
 		local hg = level.hud_group
-
+--[[
 		-- Add an invisible full-screen rect beneath the rest of the HUD to trap taps
 		-- ("tap" events don't seem to play nice with the rest of the GUI).
 		local trap = display.newRect(hg, 0, 0, display.contentWidth, display.contentHeight)
@@ -435,7 +435,8 @@ dispatch_list.AddToMultipleLists{
 
 			button:addEventListener("touch", TouchFunc)
 		end
-
+]]
+--[[
 		-- Add a "do actions" button.
 		ActionGroup = display.newGroup()
 
@@ -454,14 +455,15 @@ dispatch_list.AddToMultipleLists{
 		action:addEventListener("touch", touch.TouchHelperFunc(DoActions))
 
 		ActionGroup.isVisible = false
-
+]]
 		-- Track events to maintain input.
 		Runtime:addEventListener("enterFrame", UpdatePlayer)
 		Runtime:addEventListener("key", KeyEvent)
-
+--[[
 		-- Create a fresh action sequence.
 		Images = setmetatable({}, ImagesMT)
 		Sequence = {}
+]]
 	end,
 
 	-- Leave Level --

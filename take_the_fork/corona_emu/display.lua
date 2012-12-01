@@ -53,6 +53,13 @@ M.newRect = display_rect.New
 --- DOCME
 M.newSprite = display_sprite.New
 
+--- DOCME
+function M.remove (object)
+	if object and object.parent then
+		object:removeSelf()
+	end
+end
+
 --
 utils.SetStage(M.newGroup())
 

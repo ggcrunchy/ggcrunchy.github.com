@@ -34,7 +34,7 @@ local wrap = coroutine.wrap
 local yield = coroutine.yield
 
 -- Modules --
---local controls = require("game.Controls")
+local controls = require("game.Controls")
 local dispatch_list = require("game.DispatchList")
 --local dots = require("game.Dots")
 --local event_blocks = require("game.EventBlocks")
@@ -150,6 +150,64 @@ function wrap (func)
 end
 function yield () end
 
+-- --
+local Players, Forks
+local ps = require("game.PlayerSprites")
+
+local function RandElem (arr)
+	local index = math.random(#arr)
+
+	return arr[index], index
+end
+
+local function GetFromStash (stash)
+	local player, index = RandElem(stash)
+
+	table.remove(stash, index)
+
+	return RandElem(player), player
+end
+
+local function LoadPlayers (layer, players)
+	Players, Forks = {}, {}
+
+	local stash = {}
+
+	for i, player in ipairs(players) do
+		stash[i] = player
+	end
+
+	local pdata = GetFromStash(stash)
+
+	player.AddPlayer(layer, pdata.col, pdata.row)
+
+	while #stash > 0 do
+		local opdata, clone = GetFromStash(stash)
+		local player = ps.NewSprite(layer, opdata.col, opdata.row)
+
+--		player.m_forks = clone.forks
+
+		Players[#Players + 1] = player
+		Forks[#Forks + 1] = clone.forks
+	end
+end
+local mm = require("game.Movement")
+local Fork, NForks
+
+local function AddFork (delay)
+--	NForks = NForks - 1
+
+	timer.performWithDelay(delay, function()
+--		local player = RandElem(Players)
+		local fork = RandElem(RandElem(Forks))--.m_forks)
+		local t = tile_maps.GetTileIndex(fork.col, fork.row)
+
+		Fork = display.newImage(CurrentLevel.things_layer, "media/Fork.png")
+
+		Fork.m_t, Fork.x, Fork.y = t, tile_maps.GetTilePos(t)
+	end)
+end
+
 --- Loads a level.
 --
 -- The level information is gathered into a table and the **enter_level** event list is
@@ -220,7 +278,8 @@ function M.LoadLevel (view, which)
 		end
 
 		-- ...and the player...
-		player.AddPlayer(CurrentLevel.things_layer, level.start_col, level.start_row)
+--		player.AddPlayer(CurrentLevel.things_layer, level.start_col, level.start_row)
+LoadPlayers(CurrentLevel.things_layer, level.players)
 
 		-- ...and the enemies.
 		for _, enemy in Ipairs(level.enemies) do
@@ -242,9 +301,23 @@ function M.LoadLevel (view, which)
 		dispatch_list.CallList("things_loaded", CurrentLevel)
 
 		CurrentLevel.is_loaded = true
+AddFork(1500)
 	end)
 
 	Runtime:addEventListener("enterFrame", LoadSome)
+	Runtime:addEventListener("enterFrame", function()
+		for _, player in ipairs(Players) do
+			if Fork and player.m_t == Fork.m_t then
+				Fork:removeSelf()
+
+				Fork = nil
+
+				AddFork(3000)
+
+				break
+			end
+		end
+	end)
 end
 
 -- Helper to leave level
@@ -291,9 +364,17 @@ dispatch_list.AddToMultipleLists{
 		for _, name in ipairs(Groups) do
 			display.remove(CurrentLevel and CurrentLevel[name])
 		end
-
+Players = nil
 		CurrentLevel = nil
+	end,
+
+player_tried_to_move = function(dist, dir)
+	local rdir = mm.NextDirection(dir, "backward")
+
+	for _, other in ipairs(Players) do
+		other:TryToMove(dist, rdir)
 	end
+end
 }
 
 -- Export the module.

@@ -62,7 +62,13 @@ end
 
 --
 function ObjectMethods:localToContent (x, y)
-	-- TODO?
+	repeat
+		x, y = x + self.x, y + self.y
+
+		self = self.parent
+	until not self
+
+	return x, y -- rotation, etc.
 end
 
 -- Possible display properties --

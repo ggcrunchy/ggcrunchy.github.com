@@ -102,11 +102,19 @@ local function CurrentSequence (sprite)
 end
 
 --
-function SpriteMethods:OnDraw (x, y, w, h, alpha)
-	local sheet = self._sheet
-	local quad, sx, sy = sheet:GetQuad(CurrentSequence(self)[self.frame])
+local function CurrentQuad (sprite)
+	local sheet = sprite._sheet
+	local quad, sx, sy = sheet:GetQuad(CurrentSequence(sprite)[sprite.frame])
+	local _, _, qw, qh = quad:getViewport()
 
-	lg.drawq(sheet:GetGraphic(), quad, x + sx, y + sy)
+	return quad, qw, qh, sheet, sx, sy
+end
+
+--
+function SpriteMethods:OnDraw (x, y, w, h, alpha)
+	local quad, qw, qh, sheet, sx, sy = CurrentQuad(self)
+
+	lg.drawq(sheet:GetGraphic(), quad, x + sx, y + sy, math.rad(self.rotation), 1, 1, qw / 2, qh / 2)
 	-- ^^??
 end
 
@@ -241,6 +249,15 @@ function SpriteProperties:frame (_, v)
 end
 
 --
+function SpriteProperties:height (_, v)
+	if v == nil then
+		local _, _, qh = CurrentQuad(self)
+
+		return qh
+	end
+end
+
+--
 function SpriteProperties:isPlaying (_, v)
 	if v == nil then
 		return not self._paused and HasFramesLeft()
@@ -269,6 +286,15 @@ function SpriteProperties:timeScale (_, v)
 		Sync(self)
 
 		self._time_scale = v
+	end
+end
+
+--
+function SpriteProperties:width (_, v)
+	if v == nil then
+		local _, qw, _ = CurrentQuad(self)
+
+		return qw
 	end
 end
 
