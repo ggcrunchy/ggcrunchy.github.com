@@ -1,5 +1,20 @@
 # Local testing #
 #################
-server.js
+node_modules
+
+run_jekyll.bat
 run_node.bat
-node_modules/*
+
+# Probably not so flexible...
+server.js
+
+# Other #
+#########
+*.log
+*.zip
+
+Thumbs.db
+
+.DS_Store
+
+_site
