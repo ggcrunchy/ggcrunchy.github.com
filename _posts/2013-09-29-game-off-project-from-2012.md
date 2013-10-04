@@ -7,7 +7,7 @@ title: Take The Fork
 
 A fumbling (and late-started) attempt at a game for [Github's Game Off 2012](https://github.com/ggcrunchy/game-off-2012):
 
-[Take The Fork](projects/TakeTheFork/take_the_fork/index.html)
+[Take The Fork]({{ site.url }}/projects/TakeTheFork/take_the_fork/index.html)
 
 (The cursor keys control the Spacemen: all three of them... but two of them move in reverse! The goal is to collect the fork.)
 

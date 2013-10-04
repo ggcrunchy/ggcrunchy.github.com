@@ -45,6 +45,27 @@ Options:
 
 ]]
 
+do
+	local f = io.open("ERROR.txt", "w")
+
+	if f then
+		f:write("NOTHING\n")
+		f:close()
+	end
+end
+
+local function ERROR (...)
+	local f = io.open("ERROR.txt", "a")
+
+	if f then
+		f:write(...)
+		f:write("\n")
+		f:close()
+	end
+
+	io.stderr:write(...)
+end
+
 --
 --
 -- TODO: Options to add
@@ -93,16 +114,16 @@ do
       local option = option_map[arg]
 
       if not option then
-        io.stderr:write("Error: Unknown option `", arg, "'\n\n", USAGE)
-        os.exit(1)
+        ERROR("Error: Unknown option `", arg, "'\n\n", USAGE)
+--        exit(1)
       end
 
       if options[option[1]] ~= nil then
-        io.stderr:write(
+        ERROR(
             "Error: option `", arg, "' conflicts with other options\n\n",
              USAGE
           )
-        os.exit(1)
+    --    exit(1)
       end
 
       options[option[1]] = option[2]
@@ -132,23 +153,23 @@ do
   end
 
   if not output_filename then
-    io.stderr:write("Error: missing `output-filename`\n\n", USAGE)
-    os.exit(1)
+    ERROR("Error: missing `output-filename`\n\n", USAGE)
+ --   exit(1)
   end
 
   if not js_base_path then
-    io.stderr:write("Error: missing `js-base-path`\n\n", USAGE)
-    os.exit(1)
+    ERROR("Error: missing `js-base-path`\n\n", USAGE)
+--    exit(1)
   end
 
   if not local_base_path then
-    io.stderr:write("Error: missing `local-base-path`\n\n", USAGE)
-    os.exit(1)
+    ERROR("Error: missing `local-base-path`\n\n", USAGE)
+--    exit(1)
   end
 
   if #input_filenames == 0 then
-    io.stderr:write("Error: `input-filenames` can't be empty\n\n", USAGE)
-    os.exit(1)
+    ERROR("Error: `input-filenames` can't be empty\n\n", USAGE)
+--    exit(1)
   end
 
   for _, option in pairs(option_map) do
@@ -203,8 +224,22 @@ end
 --       so we don't. Pull requests are welcome.
 local output = assert(io.open(output_filename, "w"))
 
+local clock = os.clock
+
+local itotal, ifile, last_time = 0, 0, clock()
+
 local function cat(s)
   output:write(tostring(s))
+
+  local time = clock()
+
+  if time - last_time > .05 then
+	io.stdout:write(("%i,%i"):format(itotal, ifile))
+	io.stdout:flush()
+
+	last_time = time
+  end
+
   return cat
 end
 
@@ -218,6 +253,7 @@ cat [[
 -- NOTE: Optimizable. Would probably be faster to read in chunks.
 for i = 1, #input_filenames do
   local packed_filename = input_filenames[i]
+  ifile = i - 1
   -- NOTE: This code would benefit from some path-handling dependencies.
   --       But we don't have them.
   if packed_filename:sub(1, #local_base_path) == local_base_path then
@@ -225,7 +261,6 @@ for i = 1, #input_filenames do
   end
 
   local path, filename = packed_filename:match("(.-)([^/]+)$")
-
   local input = assert(io.open(input_filenames[i], "r"))
 
   cat [[
@@ -239,6 +274,7 @@ Lua5_1.provide_file(]] (Q(js_base_path .. path)) [[, ]] (Q(filename)) [[,]]
     local w = 0
     local need_comma = false
     local c = input:read(1)
+	local old = 0
     while c do
       local b = tostring(c:byte())
       local l = (need_comma and 1 or 0) + #b
@@ -258,9 +294,13 @@ Lua5_1.provide_file(]] (Q(js_base_path .. path)) [[, ]] (Q(filename)) [[,]]
 
       need_comma = true
 
-      c = input:read(1)
-    end
+	  local new = input:seek("cur") -- Uff, this slowed it down quite a bit :( Better way?
 
+      c = input:read(1)
+
+	  itotal, old = itotal + new - old, new
+    end
+	
     input:close()
     input = nil
 

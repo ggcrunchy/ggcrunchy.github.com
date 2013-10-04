@@ -2,9 +2,6 @@
 #################
 node_modules
 
-run_jekyll.bat
-run_node.bat
-
 # Probably not so flexible...
 server.js
 
@@ -12,6 +9,9 @@ server.js
 #########
 *.log
 *.zip
+*.exe
+*.dll
+*.bat
 
 Thumbs.db
 
