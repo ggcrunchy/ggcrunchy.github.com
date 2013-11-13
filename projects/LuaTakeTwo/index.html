@@ -1,53 +1,74 @@
 <html>
 <head>
 
-<title>Hello from Lua!</title>
+<title>Change of plans!</title>
 
 <!Progress bars and such... add text, etc.>
 <style>
 
-#progress_cover {
-	background-color:white;
-	position:fixed;
-	top:0px;
-	left:0px;
-	height:100%;
-	width:100%;
-	z-index:10000000000;
-}
+	#progress_cover {
+		background-color:white;
+		position:fixed;
+		top:0px;
+		left:0px;
+		height:100%;
+		width:100%;
+		z-index:10000000000;
+		display:none
+	}
 
-#files_progress_container {
-	position:absolute;
-	top:45%;
-	height:5%;
-	left:30%;
-	width:50%;
-	border:2px groove;
-}
+	#blackbg {
+        z-index: 10000000002;
+        background-color: #000;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+        filter: alpha(opacity=25);
+        opacity: 0.25;
+		position: absolute;
+        left: 15%;
+        right: 15%;
+		top: 15%;
+        bottom: 15%;
+        padding: 4px;
+      }
+	
+	#files_progress_container {
+		border-radius: 15px;
+		position:absolute;
+		top:45%;
+		height:5%;
+		left:30%;
+		width:50%;
+		border:2px groove;
+	}
 
-#current_progress_container {
-	position:absolute;
-	top:55%;
-	height:5%;
-	left:30%;
-	width:50%;
-	border:2px groove;
-}
+	#current_progress_container {
+		border-radius: 15px;
+		position:absolute;
+		top:55%;
+		height:5%;
+		left:30%;
+		width:50%;
+		border:2px groove;
+	}
 
-#files_progress_bar {
-	background-color:blue;
-	width:0%;
-	height:100%;
-}
+	#files_progress_bar {
+		border-radius: 15px;
+		background-color:blue;
+		width:0%;
+		height:100%;
+	}
 
-#current_progress_bar {
-	background-color:purple;
-	width:0%;
-	height:100%;
-}
+	#current_progress_bar {
+		border-radius: 15px;
+		background-color:purple;
+		width:0%;
+		height:100%;
+	}
+	
 </style>
 
 <div id='progress_cover'>
+	<div id='blackbg'></div>
 	<h1 style='margin:10px;'>Loading...</h1>
 
 	<div id='files_progress_container'>
@@ -59,77 +80,344 @@
 	</div>
 </div>
 
-<script src="lua5.1.5.min.js"></script>
-<script src="update_lua.js"></script>
+<!TEST THIS>
+<script src="../build/lua5.1.5.min.js"></script>
+<script src="../build/three.min.js"></script>
 
-<script type="text/javascript">
+<!Three LIBS>
+<script src="js/Detector.js"></script>
+<script src="js/controls/TrackballControls.js"></script>
 
-var C = Lua5_1.C;
+<!Own>
+<script src="js/update_lua.js"></script>
 
-var L = C.lua_open();
-C.luaL_openlibs(L);
+<script>
 
-C.lua_pushcfunction(
-    L,
-    Lua5_1.Runtime.addFunction(
-        function(L)
-        {
-          var str = C.luaL_checkstring(L, 1);
+	if (!Detector.webgl) Detector.addGetWebGLMessage()
 
-		  alert("{Lua} " + str);
+	var SCREEN_WIDTH = window.innerWidth
+	var SCREEN_HEIGHT = window.innerHeight
 
-          return 0;
-        }
-      )
-  );
-C.lua_setglobal(L, "ALERT");
+	var container
+	var camera, controls, scene, loaded
+	var renderer
 
-if (C.luaL_dostring(L, "ALERT('Hello, world')") !== 0)
-{
-  var err = C.lua_tostring(L, -1);
-  C.lua_close(L);
-  L = 0;
-  throw new Error("Lua error: " + err);
-}
+//	var mouseX = 0, mouseY = 0
 
-//
-function ShowProgress (frac_file, frac_byte)
-{
-	var pbox1 = document.getElementById("files_progress_bar")
-	var pbox2 = document.getElementById("current_progress_bar")
+	var windowHalfX = window.innerWidth / 2
+	var windowHalfY = window.innerHeight / 2
 
-	pbox1.style.width = Math.floor(100 * frac_file) + "%"
-	pbox2.style.width = Math.floor(100 * frac_byte) + "%"
-}
+//	var rotatingObjects = [];
+//	var morphAnimatedObjects = [];
 
-//
-UpdateLua.BringUpToDate(function(how, arg) {
-	switch (how)
+	var clock = new THREE.Clock()
+
+	//
+	var C = Lua5_1.C
+	var L = C.lua_open()
+
+	C.luaL_openlibs(L)
+/*
+	C.lua_pushcfunction(
+		L,
+		Lua5_1.Runtime.addFunction(
+			function(L)
+			{
+			  var str = C.luaL_checkstring(L, 1)
+
+			  alert("{Lua} " + str)
+
+			  return 0
+			}
+		  )
+	  )
+	C.lua_setglobal(L, "ALERT")
+
+	if (C.luaL_dostring(L, "ALERT('Hello, world')") !== 0)
 	{
-	case "busy":
-		console.log("GETTING BUSY...")
-		return ShowProgress(0, 0)
-		// TODO: More subtle
-
-	case "busy_done":
-		console.log("OKAY, DONE")
-		return ShowProgress(1, 1)
-		// TODO: Hide bar (fade out?)
-		// document.getElementById("progress_cover").style.d isplay = "none"
-
-	case "busy_update":
-		return ShowProgress(arg.file_index / arg.file_count, arg.byte_index / arg.byte_count)
-
-	case "done":
-		// Proceed!
-		break
-
-	case "error":
-		console.log(arg)
-
-		break
+	  var err = C.lua_tostring(L, -1)
+	  C.lua_close(L)
+	  L = 0
+	  throw new Error("Lua error: " + err)
 	}
-})
+*/
+	//
+	function $(id) { return document.getElementById(id) }
+
+	//
+	function ShowProgress (frac_file, frac_byte)
+	{
+		var pbox1 = $("files_progress_bar")
+		var pbox2 = $("current_progress_bar")
+
+		pbox1.style.width = Math.floor(100 * frac_file) + "%"
+		pbox2.style.width = Math.floor(100 * frac_byte) + "%"
+	}
+
+	//
+	UpdateLua.BringUpToDate(function(how, arg) {
+		switch (how)
+		{
+		case "busy":
+			$("progress_cover").style.display = "block"
+
+			return ShowProgress(0, 0)
+			// TODO: More subtle
+
+		case "busy_done":
+		// wait_for_fade = true
+			return ShowProgress(1, 1)
+
+		case "busy_update":
+			return ShowProgress(arg.file_index / arg.file_count, arg.byte_index / arg.byte_count)
+
+		case "done":
+			// Hide bar. TODO: fade out?
+			// check for "wait for fade"
+			$("progress_cover").style.display = "none"
+
+			// Proceed!
+			init()
+			animate()
+
+			break
+
+		case "error":
+			console.log(arg)
+
+			break
+		}
+	})
+
+	//
+	function animate ()
+	{
+		requestAnimationFrame(animate)
+		render()
+	}
+
+	//
+	function init ()
+	{
+		container = document.createElement('div')
+		document.body.appendChild(container)
+/*
+		var loadScene = createLoadScene()
+
+		camera = loadScene.camera;
+		scene = loadScene.scene;
+*/
+		scene = new THREE.Scene()
+		camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 1, 1000)
+		controls = new THREE./*FirstPerson*/TrackballControls(camera)
+
+	//	controls.movementSpeed = 1000;
+	//	controls.lookSpeed = 0.1
+
+		camera.position.z = 100
+
+		scene.add(camera)
+
+		var object, geometry, material, light, count = 50, range = 200
+
+		material = new THREE.MeshLambertMaterial({ color: 0xffffff })
+		geometry = new THREE.CubeGeometry(5, 5, 5)
+//projector = new THREE.Projector();
+		for( var i = 0; i < count; i++ ) {
+
+			object = new THREE.Mesh( geometry, material );
+
+			object.position.x = ( Math.random() - 0.5 ) * range;
+			object.position.y = ( Math.random() - 0.5 ) * range;
+			object.position.z = ( Math.random() - 0.5 ) * range;
+
+			object.rotation.x = Math.random() * 6;
+			object.rotation.y = Math.random() * 6;
+			object.rotation.z = Math.random() * 6;
+
+			object.matrixAutoUpdate = false;
+			object.updateMatrix();
+
+			scene.add( object );
+
+		}
+
+		scene.matrixAutoUpdate = false;
+
+		light = new THREE.PointLight(0xffffff)
+
+		scene.add(light)
+
+		light = new THREE.DirectionalLight(0x111111)
+		
+		light.position.x = 1
+		
+		scene.add(light)
+
+		renderer = new THREE.WebGLRenderer({ antialias: true })
+
+		renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT)
+
+		renderer.domElement.style.position = "relative"
+
+		container.appendChild(renderer.domElement)
+
+		renderer.gammaInput = true
+		renderer.gammaOutput = true
+		renderer.physicallyBasedShading = true
+
+	//	document.addEventListener('mousemove', onDocumentMouseMove, false)
+		window.addEventListener('resize', onWindowResize, false)
+	}
+
+	//
+	function render ()
+	{
+		var dt = clock.getDelta()
+
+	//	camera.position.x += (mouseX - camera.position.x) * .001
+	//	camera.position.y += (-mouseY - camera.position.y) * .001
+		controls.update(dt)
+
+		/*
+		in say mouse down:
+						var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
+				projector.unprojectVector( vector, camera );
+
+		*/
+		
+	//	camera.lookAt(scene.position)
+
+		// update skinning
+	//	THREE.AnimationHandler.update( dt * 0.75 )
+/*
+		for ( var i = 0; i < rotatingObjects.length; i ++ ) {
+
+			var object = rotatingObjects[ i ];
+
+			if ( object.userData.rotateX ) object.rotation.x += 1 * dt;
+			if ( object.userData.rotateY ) object.rotation.y += 0.5 * dt;
+
+		}
+*/
+/*
+		for ( var i = 0; i < morphAnimatedObjects.length; i ++ ) {
+
+			var object = morphAnimatedObjects[ i ];
+
+			object.updateAnimation( 1000 * dt );
+
+		}
+*/
+		renderer.render(scene, camera)
+	}
+/*
+	function onDocumentMouseMove (event) 
+	{
+		mouseX = ( event.clientX - windowHalfX );
+		mouseY = ( event.clientY - windowHalfY );
+	}
+	*/
+	function onWindowResize ()
+	{
+		windowHalfX = window.innerWidth / 2
+		windowHalfY = window.innerHeight / 2
+
+		camera.aspect = window.innerWidth / window.innerHeight
+
+		camera.updateProjectionMatrix()
+		renderer.setSize(window.innerWidth, window.innerHeight)
+		controls.handleResize()
+	}
+
+	
+/*
+// set up the sphere vars
+var radius = 50,
+    segments = 16,
+    rings = 16;
+
+// create a new mesh with
+// sphere geometry - we will cover
+// the sphereMaterial next!
+var sphere = new THREE.Mesh(
+
+  new THREE.SphereGeometry(
+    radius,
+    segments,
+    rings),
+
+  sphereMaterial);
+
+// add the sphere to the scene
+scene.add(sphere);
+
+
+
+// create the sphere's material
+var sphereMaterial =
+  new THREE.MeshLambertMaterial(
+    {
+      color: 0xCC0000
+    });
+
+	
+	
+	
+	// so that it allow updates
+sphere.geometry.dynamic = true;
+
+// changes to the vertices
+sphere.geometry.verticesNeedUpdate = true;
+
+// changes to the normals
+sphere.geometry.normalsNeedUpdate = true;
+
+
+
+shim:
+
+http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+*/
+	//
+/*
+	Next steps:
+
+	Change of Plans! (starring Fickle ol' Chango) (Fick L. O'chango?)
+
+SUNDAY:
+	Get events, timers going
+	Decide on art style...
+MONDAY:
+	Scenes
+	Picking (supposedly that projector stuff...)
+	Scheduler
+TUESDAY:
+	Persistence
+	Unit summaries
+WEDNESDAY:
+	Win / Lose
+	UI stuff (health, restlessness, etc.)
+THURSDAY:
+	Sentiment system
+FRIDAY:
+	List of objectives...
+		- Deli...
+		- Choice of hat
+		- Storm the city
+		- "Dating sim"
+WEEKEND:
+	Music / sound FX...
+	Pathfinding
+	AI
+TUESDAY:
+	Working objective #1
+WEDNESDAY:
+	Betrayal mechanics
+THURSDAY:
+	Projectiles
+	Collision (e.g. are actors nearby?)
+*/
 
 </script>
 </body>

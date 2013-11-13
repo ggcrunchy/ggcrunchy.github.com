@@ -13,6 +13,12 @@ server.js
 *.dll
 *.bat
 
+# Auto-generated #
+##################
+projects/*/packed.js
+projects/*/build
+projects/*/ERROR.txt
+
 Thumbs.db
 
 .DS_Store
