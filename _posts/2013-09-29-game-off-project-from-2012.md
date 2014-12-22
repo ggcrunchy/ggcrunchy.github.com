@@ -30,5 +30,4 @@ mechanic into a different project, still in progress. Meanwhile, a friend did so
 
 [Abbigale and the Monster](http://gamejolt.com/games/puzzle/abbigale-and-the-monster/13374)
 
-&lowast; - My intent, however, is for future code to use submodules, which will see much of this migrated out: Corona-specific portions into
-[CrownJewels](https://github.com/ggcrunchy/CrownJewels) (pending), more general material into [Tektite](https://github.com/ggcrunchy/Tektite) (mostly done).
+&lowast; - My intent, however, is for future code to use submodules, which will see much of this migrated out. **UPDATE** This is mostly done.
