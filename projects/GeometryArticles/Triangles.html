@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial: Creating Android TV Apps | Corona Labs</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://coronalabs.com/xmlrpc.php">
+<link href="./Triangles_files/css" rel="stylesheet" type="text/css">  
+<script src="./Triangles_files/cb=gapi.loaded_1" async=""></script><script src="./Triangles_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Triangles_files/widgets.js"></script><script type="text/javascript" async="" src="./Triangles_files/plusone.js" gapi_processed="true"></script><script type="text/javascript" async="" src="./Triangles_files/inpage_linkid.js" id="undefined"></script><script type="text/javascript" async="" src="./Triangles_files/dc.js"></script><script src="./Triangles_files/remote_user_menu"></script>
+<!-- icons & favicons -->
+<!-- For iPhone 4 -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/h/apple-touch-icon.png">
+<!-- For iPad 1-->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/m/apple-touch-icon.png">
+<!-- For iPhone 3G, iPod Touch and Android -->
+<link rel="apple-touch-icon-precomposed" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/l/apple-touch-icon-precomposed.png">
+<!-- For Nokia -->
+<link rel="shortcut icon" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/l/apple-touch-icon.png">
+<!-- For everything else -->
+<link rel="shortcut icon" href="http://ddz4z2fxb232w.cloudfront.net/favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Feed" href="http://coronalabs.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Comments Feed" href="http://coronalabs.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Tutorial: Creating Android TV Apps Comments Feed" href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/feed/">
+<link rel="stylesheet" id="mediaelement-css" href="./Triangles_files/mediaelementplayer.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-mediaelement-css" href="./Triangles_files/wp-mediaelement.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-polls-css" href="./Triangles_files/polls-css.css" type="text/css" media="all">
+<link rel="stylesheet" id="corona-bootstrap-css" href="./Triangles_files/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="corona-style-css" href="./Triangles_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fancybox-fancybox-css" href="./Triangles_files/jquery.fancybox.css" type="text/css" media="all">
+<link rel="stylesheet" id="views-pagination-style-css" href="./Triangles_files/wpv-pagination.css" type="text/css" media="all">
+<link rel="stylesheet" id="prettify-css" href="./Triangles_files/custom.css" type="text/css" media="all">
+<link rel="stylesheet" id="taxonomy-image-plugin-public-css" href="./Triangles_files/style(1).css" type="text/css" media="screen">
+<script type="text/javascript" src="./Triangles_files/player.min.js"></script>
+<script type="text/javascript" src="./Triangles_files/jquery.js"></script>
+<script type="text/javascript" src="./Triangles_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Triangles_files/powerpress-mejs.js"></script>
+<script type="text/javascript" src="./Triangles_files/bootstrap.js"></script>
+<script type="text/javascript" src="./Triangles_files/bootstrap-wp.js"></script><style>body{display:none;}</style>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://coronalabs.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://coronalabs.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="From the Forum — Issue #54" href="http://coronalabs.com/blog/2015/01/09/from-the-forum-issue-54/">
+<meta name="generator" content="WordPress 4.0.1">
+<link rel="shortlink" href="http://coronalabs.com/?p=60833">
+<script type="text/javascript"><!--
+function powerpress_pinw(pinw){window.open('http://coronalabs.com/?powerpress_pinw='+pinw, 'PowerPressPlayer','toolbar=0,status=0,resizable=1,width=460,height=320');	return false;}
+powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
+//-->
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+	TeX: {
+		Macros: {
+			vcomps: ['( {#1}, {#2} )', 2],
+			dotp: ['#1_x #2_x + #1_y #2_y', 2],
+			dotvw: ['\\mathbf{#1} \\cdot \\mathbf{#2}', 2],
+			softerdotvw: ['#1 \\cdot \\mathbf{#2}', 2]
+		}
+	  }
+  });
+</script>
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+
+<style type="text/css">
+.wp-polls .pollbar {
+	margin: 1px;
+	font-size: 6px;
+	line-height: 8px;
+	height: 8px;
+	background-image: url('http://coronalabs.com/plugins/wp-polls/images/default/pollbg.gif');
+	border: 1px solid #c8c8c8;
+}
+</style>
+
+<!-- All in One SEO Pack 2.2.3.1 by Michael Torbert of Semper Fi Web Design[137,192] -->
+<link rel="author" href="https://plus.google.com/106405667962965815359/">
+<meta name="description" content="In this week&#39;s tutorial, guest contributor Greg Pugh illustrates the simple process involved in releasing your Corona-made project for Android TV.">
+
+<meta name="keywords" content="android tv,tutorial">
+
+<link rel="canonical" href="./Triangles_files/Coroutines.html">
+<!-- /all in one seo pack -->
+
+		<style media="print" type="text/css">
+			div.faq_answer {display: block!important;}
+			p.faq_nav {display: none;}
+		</style>
+
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-9574984-6']);
+  _gaq.push(['_setDomainName', 'coronalabs.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script src="./Triangles_files/secureAnonymousFramework"></script><style type="text/css">* html #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link{height:1% !important;}#li_ui_li_gen_1421432617759_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1421432617759_0 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:link, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:visited, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:hover, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -276px !important;background-repeat:no-repeat !important;background-size:initial !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-logo, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-logo{}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{}.IN-shadowed #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{}.IN-shadowed #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .IN-shadowed #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text *{color:#000 !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text *, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text *{color:#666 !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title #li_ui_li_gen_1421432617759_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{}.success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text *{color:#000 !important;}.success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text *, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .IN-shadowed .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{}#li_ui_li_gen_1421432617782_1-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:18px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1421432617782_1.IN-right {display:block !important;float:left !important;height:18px !important;margin-right:4px !important;padding-right:4px !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:right -100px !important;}#li_ui_li_gen_1421432617782_1-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:0px -60px !important;}#li_ui_li_gen_1421432617782_1-content.IN-right {display:inline !important;font-size:11px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:18px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1421432617782_1-container.IN-empty {display:none !important;}#li_ui_li_gen_1421432617782_1-container.IN-hidden #li_ui_li_gen_1421432617782_1 {display:none !important;}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+
+<body class="single single-post postid-60833 single-format-standard custom-background group-blog" style="display: block;">
+		<nav class="site-navigation">
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<p id="search-icon-link" class="pull-right visible-xs navbar-text">
+				    <a href="http://coronalabs.com/search"><span class="glyphicon glyphicon-search"></span></a>		
+				</p>
+				<!-- Your site title as branding in the menu -->
+				<a class="navbar-brand" href="http://coronalabs.com/" title="Corona Labs" rel="home"><span class="visible-xs">Corona Labs</span></a>
+		  	</div>
+
+			<div id="download-link" class="navbar-right hidden-xs hidden-sm">
+			    <a href="https://developer.coronalabs.com/downloads/coronasdk" class="btn btn-corona btn-sm navbar-btn">Download</a>
+			</div>
+			<div id="user-account-top-bar" class="navbar-right hidden-xs">
+			    <div id="user-account-container">
+			        <div id="top-download-signin"><a href="https://developer.coronalabs.com/user/login" id="" class="btn btn-primary btn-sm navbar-btn" target="_parent">Sign-in</a></div>
+			        <div id="top-user-account" class="hidden"></div>
+			    </div>
+			</div>
+			<div class="search-link pull-right hidden-xs">
+			    <button type="button" id="search-icon" class="btn btn-link navbar-btn"><span class="glyphicon glyphicon-search"></span></button>		
+			</div>
+            <form id="search_form" class="navbar-form navbar-right hidden" role="search" method="get" action="http://coronalabs.com/search/">
+                <a href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#" class="search-close btn btn-sm hidden-xs"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                <div class="input-group input-group-sm">
+		            <input name="q" id="s" type="search" class="search-query top-nav-search form-control" placeholder="Site Search">
+		            <span class="input-group-btn">
+		    			<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+		  			</span>
+                </div>
+            </form>
+			<!-- The WordPress Menu goes here -->
+			<div class="collapse navbar-collapse navbar-responsive-collapse"><ul id="main-menu" class="nav navbar-nav"><li id="menu-item-60549" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-60549 dropdown"><a href="http://coronalabs.com/start-building/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Start Building <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-60351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60351"><a href="http://coronalabs.com/start-building/games/">Games</a></li>
+	<li id="menu-item-60354" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60354"><a href="http://coronalabs.com/start-building/business-apps/">Business Apps</a></li>
+	<li id="menu-item-60355" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60355"><a href="http://coronalabs.com/start-building/education-kid-apps/">Educational Apps</a></li>
+</ul>
+</li>
+<li id="menu-item-59603" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-59603 dropdown"><a href="http://coronalabs.com/products/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Products <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-60356" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60356"><a href="http://coronalabs.com/products/corona-sdk/">Corona SDK</a></li>
+	<li id="menu-item-60361" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60361"><a href="http://coronalabs.com/products/enterprise/">Corona Enterprise</a></li>
+	<li id="menu-item-59626" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59626"><a target="_blank" href="http://coronacards.com/">CoronaCards</a></li>
+	<li id="menu-item-60360" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60360"><a href="http://coronalabs.com/products/support-training/">Support &amp; Training</a></li>
+</ul>
+</li>
+<li id="menu-item-60353" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60353"><a href="http://coronalabs.com/pricing/">Pricing</a></li>
+<li id="menu-item-60358" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-60358 dropdown"><a href="http://coronalabs.com/resources/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Resources <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-59624" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59624"><a href="http://forums.coronalabs.com/">Forum</a></li>
+	<li id="menu-item-59625" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59625"><a href="http://docs.coronalabs.com/">Documentation</a></li>
+	<li id="menu-item-59601" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-59601"><a href="http://coronalabs.com/resources/tutorials/">Corona University</a></li>
+	<li id="menu-item-60350" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60350"><a href="http://coronalabs.com/resources/plugins/">Corona Plugin Directory</a></li>
+	<li id="menu-item-60357" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60357"><a href="http://coronalabs.com/resources/">Other Resources</a></li>
+</ul>
+</li>
+<li id="menu-item-59619" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-59619"><a href="http://coronalabs.com/blog/">Blog</a></li>
+</ul></div>		</div><!-- .container -->
+	</div><!-- .navbar -->
+</nav><!-- .site-navigation -->
+
+<header id="masthead" class="site-header" role="banner">
+	<div class="container">
+		<div class="row">
+			<div class="site-header-inner col-sm-12">
+							</div>
+		</div>
+	</div><!-- .container -->
+</header><!-- #masthead -->
+<div class="container hidden-xs">
+  <div class="row">
+    <div class="col-md-12">
+    <div id="fuse-branding"><a href="http://fusepowered.com/" target="_blank"><img src="./Triangles_files/FusePowered_branding_sm.png" alt="A Fuse Powered Company"></a></div>
+    </div>
+  </div>
+</div><div class="main-content">
+    <div id="content-wrapper" class="container">
+
+				
+					
+	<div class="row">
+		<div class="col-md-12">
+			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
+
+				<h1 class="page-title h1">A 2D geometry primer, part 1: triangles</h1>
+				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./Triangles_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
+			</header><!-- .entry-header -->
+		</div>
+	</div>
+	
+    <div class="row">
+		<div class="main-content-inner col-xs-12 col-sm-8 col-md-8">
+			<article id="post-60833" class="post-60833 post type-post status-publish format-standard has-post-thumbnail hentry category-guest-bloggers category-tutorials-tips-demos tag-android-tv tag-tutorial">	
+				<div class="entry-content">
+					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
+<hr>
+
+<p>The moment we use one of Corona's display objects, we take a small step into the world of two-dimensional geometry.</p>
+
+<p>The basics are rather intuitive. Only rarely do we give statements like <code>circle.x = 10</code> or <code>image.rotation = 30</code> much thought, assuming
+our code works. These come quite naturally.</p>
+
+<p>We might find ourselves wanting to do more, however. A broader knowledge of geometry then becomes useful, often necessary. The aim of this article (and
+series) is to guide readers through some of the earliest steps.</p>
+
+<H3><a name="background"></a>Background</H3>
+
+<p>In what follows, a basic grasp of arithmetic is expected, on the part of the reader. Some familiarity with algebra will be helpful as well, though not
+necessary. On the other hand, no previous formal knowledge of geometry or trigonometry is assumed.</p>
+
+<p>Later sections do, however, build on earlier ones&mdash;quite heavily, in fact! The same will be true among articles, as we progress in the series. This
+ought to be gentler than diving straight into <a href="http://www.themathpage.com/abooki/plane-geometry.htm">the masters</a>, but some concepts might still
+require several rereads, as well as a bit of time, before they finally <a href="https://en.wikipedia.org/wiki/Eureka_(word)">sink in</a>, especially to someone
+for whom this is all new.</p>
+
+<p>Many links have been added, though all are strictly of a "further reading" nature. These offer alternative proofs, additional points of view, visualizations,
+and even some history.</p>
+
+<p>Various symbols and formulae are rendered using the <a href="https://docs.mathjax.org/en/v2.6-latest/start.html">MathJax</a> toolkit. This incurs a bit of
+startup cost, but offers us notation that would be equally at home in a mathematics paper or textbook, without the need for pre-generated images.</p>
+
+<p>Most of the figures in these articles were generated from a few <a href="https://github.com/ggcrunchy/samples/tree/master/geometry_kit">small programs</a>.
+Naturally, the ideas under discussion show up within this code.</p>
+
+<H3><a name="sides"></a>Discussing each side's terms</H3>
+
+<p><a href="https://en.wikipedia.org/wiki/Triangle">Triangles</a> are a fitting place to begin.</p>
+
+<p>As the name suggests, these are objects with three <b>angles</b>.</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/A1.png" width="179" height="128" alt="A triangle">
+		<div class="caption"><b>A-1</b></div>
+	</div>
+</div>
+
+<p>Yet this only tells us part of the story. It is equally true that a triangle is a three-<b>sided</b> object. A proper treatment must take both views into
+account. The triangle in figure <b>A-1</b>, for instance, has angles $A,$ $B,$ and $C,$ as well as sides $a,$ $b,$ and $c.$</p>
+
+<p>There are some noteworthy relationships between angles and sides.</p>
+
+<p>To begin, we might speak of a side being "across from" some angle. This relationship can be seen in figure <b>A-1</b>: each uppercase letter labels an angle,
+whereas its lowercase counterpart designates the side <b>opposite</b> that angle. Side $a$, for example, is opposite angle $A.$</p>
+
+<p>The remaining two sides, those "next to" the angle in question, are <b>adjacent</b>. The angle itself is <b>included</b> between these sides. Continuing with
+our example, these would be sides $b$ and $c.$</p>
+
+<p>The rather general triangle in figure <b>A-1</b> might seem difficult to approach, but notice what happens if we tilt our heads to the right just a bit: side
+$a$ appears to be horizontal, though none of the angles have changed and all sides remain just as long.</p>
+
+<p>From this perspective, certain obstacles simply go away. We suddenly have a notion of "up", for instance, suggesting avenues we might explore. This demonstrates
+a technique common in mathematics: we transform one thing into something simpler, perform some action on that, then reverse-transform the results.</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/A2.png" width="160" height="215" alt="Base and altitude">
+		<div class="caption"><b>A-2</b></div>
+	</div>
+</div>
+
+<p>Throughout this article, for instance, we will often use "nice" triangles, such as the one in figure <b>A-2</b>, but these can be understood as the middle step
+between two rotations that happen offscreen: align one side &rarr; do our analysis &rarr; restore original orientation.</p>
+
+<p>Given a horizontal side, we may draw a <a href="https://www.mathsisfun.com/definitions/line-segment.html">line segment</a> straight up from it toward the
+<a href="https://en.wikipedia.org/wiki/Vertex_(geometry)">corner</a> which it lies opposite, the dashed vertical segments in figures <b>A-2</b> and <b>A-4</b> being
+examples. Such a segment is known as an <a href="http://www.mathwords.com/a/altitude_triangle.htm">altitude</a>. Its length is called a <b>height</b> and the triangle
+side is a <a href="http://www.mathwords.com/b/base_triangle.htm">base</a>.</p>
+
+<p>Any side will do as a base, though in many problems one will stand out, for one reason or another. Each choice is paired up with a different altitude, of course.</p>
+
+<p>An altitude is said to be <a href="https://en.wikipedia.org/wiki/Perpendicular">perpendicular</a> to its base: we have the junction of a horizontal segment
+with a vertical one, resulting in a <a href="https://en.wikipedia.org/wiki/Right_angle">right angle</a>. Conventionally, such angles are depicted by squares.
+The altitude and base will often make a <b>T</b> when they meet, perhaps an upside-down one as in figure <b>A-2</b>. Naturally enough, the &perp; symbol has come
+to indicate perpendicularity.</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/A3.png" width="150" height="105" alt="Right triangle">
+		<div class="caption"><b>A-3</b></div>
+	</div>
+</div>
+
+<p>If the altitude and one of the sides overlap, we have a <a href="https://en.wikipedia.org/wiki/Right_triangle">right triangle</a>, as in <b>A-3</b>. In
+such a triangle, the side opposite the right angle is known as the <a href="https://en.wikipedia.org/wiki/Hypotenuse">hypotenuse</a>. The adjacent sides are
+called <b>leg</b>s.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/A4.png" width="160" height="215" alt="Outer altitude">
+		<div class="caption"><b>A-4</b></div>
+	</div>
+</div>
+
+<p>Angles wider than a right angle are said to be <a href="https://www.mathsisfun.com/obtuse.html">obtuse</a>. (Their narrower cousins are
+<a href="http://www.mathsisfun.com/acute.html">acute</a>.) When a base is adjacent to such an angle, both remaining sides lean either left or right, so that their
+corner is no longer above the base. As a result, the altitude will be outside the triangle. The base and altitude will not even meet, unless the former is extended
+artificially, as in <b>A-4</b>.</p>
+
+<H3><a name="angles"></a>Considering different angles</H3>
+
+<p>In real-world situations, we will nearly always want something more precise than "wider (or narrower) than a right angle". With this in mind, angles are
+assigned a <a href="https://www.mathsisfun.com/angles.html">measure</a> that increases in proportion to the separation between sides.</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/B1.png" width="135" height="210" alt="Some angle measurements">
+		<div class="caption"><b>B-1</b></div>
+	</div>
+</div>
+
+<p>Measurements are denominated in <a href="https://en.wikipedia.org/wiki/Degree_(angle)">degrees</a> in this article, though
+<a href="https://en.wikipedia.org/wiki/Angle#Units">other units</a> are available as well. In a triangle, the range of angles begins just after 0&deg; (sides
+together, thus no angle), runs through 90&deg; (right angles), and ends a bit shy of 180&deg; (sides fully apart, in a straight line).</p>
+
+<p>Many sources label corners rather than angles, adopting a different scheme for the latter. If a triangle had corners $A,$ $B,$ and $C,$ it would be typical under
+these circumstances to see angles such as $ \angle ABC. $ This particular choice would refer to the angle at corner $B$ or, more specifically, included between the
+segment from $A$ to $B$ and the segment from $B$ to $C.$ The measure to go along with it would be written as $ \measuredangle ABC. $ For simplicity, this article will
+continue to label angles directly. Additionally, we will use this notation interchangeably for both angles and their measures, according to context.</p>
+
+<p>By interspersing one or more lines, an angle can be divided up into two or more <a href="http://www.mathopenref.com/anglesadjacent.html">adjacent angles</a>.
+<b>B-2</b> shows such a situation. Conversely, neighboring angles may be coalesced. We can measure the full angle simply by adding up the lesser ones.</p>
+
+<p>Adjacent angles share a side and corner. Thus, a given angle may be adjacent to one or two other angles, or none at all.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/B2.png" width="210" height="150" alt="Adjacent angles">
+		<div class="caption"><b>B-2</b></div>
+	</div>
+</div>
+
+<p>Garden-variety angles are often denoted by one or more arcs, as in figures <b>B-2</b>, <b>B-3</b>, and <b>B-4</b>. When two or more angles are shown with the same
+number of arcs, these angles are understood to have equal measurements. Varying numbers are typically a cue that the angles need not be equal (but could be). They
+might instead mean the angles must in fact be different, but usually this stronger condition will be spelled out.</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/B3.png" width="135" height="210" alt="Supplementary angles">
+		<div class="caption"><b>B-3</b></div>
+	</div>
+</div>
+
+<p>When placed side by side, two right angles will form a straight line. More generally, any two angles that do so are said
+to be <a href="http://www.mathopenref.com/anglesupplementary.html">supplementary</a>. A pair that combine to form a right angle, on the other hand, are
+<a href="https://www.mathsisfun.com/geometry/complementary-angles.html">complementary</a>.</p>
+
+<p>Since an angle may be adjacent to an angle on each side, it might in fact be supplementary to both of them.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/B4.png" width="179" height="128" alt="Vertical angles">
+		<div class="caption"><b>B-4</b></div>
+	</div>
+</div>
+
+<p>Furthermore, we can say the same about the supplementary angles themselves. We already know about the original angle, of course, but each one might supplement
+another angle, equally wide.</p>
+
+<p>In fact, we would then have the situation of figure <b>B-4</b>, with the fourth and final angle being shared as well. In the end, we have a couple pairs of equal
+angles. These so-called <a href="https://www.mathsisfun.com/geometry/vertical-angles.html">vertical angles</a> arise whenever two lines cross.</p>
+
+<H3><a name="sticking-together"></a>Sticking together</H3>
+
+<p>A little thought experiment is now in order.</p>
+
+<p>Consider what would happen if, beginning with the triangle from figure <b>A-1</b>, we were to narrow or widen one of its angles, say $C.$ On top of this, suppose
+no other angle or side length was allowed to change.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/C1.png" width="179" height="128" alt="A narrower angle">
+		<div class="caption"><b>C-1</b></div>
+	</div>
+</div>
+		
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/C2.png" width="179" height="128" alt="A wider angle">
+		<div class="caption"><b>C-2</b></div>
+	</div>
+</div>
+
+<p>Figures <b>C-1</b> and <b>C-2</b> depict a couple possible outcomes, following only slight variations in $C.$</p>
+
+<p>A narrower angle results in the situation shown in figure <b>C-1</b>, where the adjacent sides, $a$ and $b$, arrive at the opposite side "early" and penetrate
+it&mdash;rather than meet up with its endpoints and form corners&mdash;then press on just a bit farther.</p>
+
+<p>With a wider angle, on the other hand, the sides stop short of $c$, if only barely, but also veer away from it. Figure <b>C-2</b> is an example of what we
+might see.</p>
+
+<p>In order to repair one of these objects, restoring its triangularity, we would need to slide side $c$ either forward or backward, until it was in line with
+the endpoints of both $a$ and $b$, then either shrink or extend it for a snug fit. Barring that, neither case deserves to be called a triangle.</p>
+
+<p>Small adjustments to a side length would produce similar breakage, assuming the remaining properties were held fixed.</p>
+
+<p>As our short investigation shows, triangles possess a very rigid structure. Angle measures and side lengths are
+<a href="http://www.mathopenref.com/trianglesideangle.html">closely related</a>, with only a bit of give-and-take being possible. Consequently, once a few of its angles
+and sides have been pinned down, so are the others. This works in our favor: knowing only some of a triangle's properties, we can deduce the rest!</p>
+
+<p>When dealing with multiple triangles, this is especially important. Angles and sides will accumulate quickly; the more of them we can ignore, the better off we are.</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/C3.png" width="147" height="80" alt="Side-angle-side">
+		<div class="caption"><b>C-3</b></div>
+	</div>
+</div>
+
+<p>Suppose we have two triangles, $T_1$ and $T_2,$ on hand. Taking $T_1,$ we measure one of its angles plus the adjacent sides, labeling them as $C,$ $a,$ and $b$ respectively.</p>
+
+<p>Say we then shifted our attention to $T_2.$ When measured, one of its angles turns out to be exactly as wide as $C.$ These things do happen, of course, so it goes unremarked.</p>
+
+<p>As we measure the angle's adjacent sides, further similarities emerge: one has the same length as $a,$ the other is as long as $b.$ $T_1$ and $T_2$ have a common
+<a href="http://www.mathopenref.com/congruentsas.html">side-angle-side</a> sequence. If matching parts were assigned the same labels, we have something like figure <b>C-3</b>.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/C4.png" width="170" height="120" alt="Unconstrained wider angle">
+		<div class="caption"><b>C-4</b></div>
+	</div>
+</div>
+
+<p>When we only knew an angle and one of its adjacent sides, $T_2$ was still quite malleable. One of its angles was still totally independent at this point. This scenario is depicted
+in figure <b>C-4</b>: the triangle may not assume <i>any</i> shape, since part of its structure is indeed locked down, but limitless possibilities exist nonetheless. (Slash marks serve
+the same purpose for sides that arcs do for angles, with matching counts indicating equal lengths.)</p>
+
+<p>Introducing the second adjacent side will bring us back to our earlier predicament, where any change would upset a delicate balance. This has an extremely important converse: a
+common side-angle-side sequence means that two triangles are the same.</p>
+
+<p>(NOTES: Is the first half of this clear? Realized it could be more intuitively demonstrated by overlap...)</p>
+
+<H3><a name="identical-twins"></a>Identical twins</H3>
+
+<p>Properly speaking, the two triangles are <a href="https://en.wikipedia.org/wiki/Congruence_(geometry)">congruent</a>. This has a few (equivalent) definitions.</a>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/D1.png" width="147" height="80" alt="Isometry">
+		<div class="caption"><b>D-1</b></div>
+	</div>
+</div>
+
+<p>Suppose we have a triangle and decide to traverse its boundary. Each step of the way, we compare our current location to every other one on the same triangle, finding the
+distance between them. (We will soon see how to perform such calculations.)</p>
+
+<p>At the same time, we examine corresponding points on a congruent triangle. In every instance, the results will be identical.</p>
+
+<p>Figure <b>D-1</b> is a snapshot of this process. On one triangle, we have chosen two points, $p_1$ and $p_2$, in the middle of one side and three-quarters of the way along
+another, respectively. On a second triangle, $q_1$ and $q_2$ are equally situated. (Corresponding sides have the same lengths, of course.) Whatever distance lies between $p_1$
+and $p_2$ also separates $q_1$ from $q_2$.</p>
+
+<p>When <i>all</i> lengths match, we have congruence. Comparing infinitely many pairs of points is <a href="http://www.chiark.greenend.org.uk/~sgtatham/infinity.html">impractical</a>,
+to say the least, but captures what is going on numerically.</p>
+
+<p>Alternatively, we may speak in terms of
+<a href="https://en.wikipedia.org/wiki/Euclidean_plane_isometry#Classification_of_Euclidean_plane_isometries">rigid motions</a>. These are geometric operations
+that preserve an object's size and shape: changing its position, rotating it, or taking its mirror image. If we start with one triangle and are able through some combination
+of these motions to make it perfectly overlap another, the two triangles are congruent. In figure <b>C-3</b>, as an example, we can rotate one of the triangles and move it atop
+its companion.</p>
+
+<p>The two approaches are not at odds. Overlap is the visual manifestation of all lengths being in agreement, and <i>vice versa</i>.</p>
+
+<p>(NOTES: Either move this before the last section (with appropriate edits) or use overlap to show side-angle-side in effect)</p>
+
+<H3><a name="a-look-in-the-mirror"></a>A look in the mirror</H3>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/E1.png" width="133" height="151" alt="Isosceles triangles">
+		<div class="caption"><b>E-1</b></div>
+	</div>
+</div>
+
+<p>An <a href="https://en.wikipedia.org/wiki/Isosceles_triangle">isosceles</a> triangle, where two sides have the same length, shares a side-angle-side sequence with one of its
+own mirror images. It will therefore be congruent to this "other" triangle.</p>
+
+<p>On account of common lengths, the triangle and mirror image already coincide. With some separation, they might look something like figure <b>E-1</b>. For the initial overlap to
+have been possible, angles $A$ and $B$ must be equal.</p>
+
+<p>In an <a href="https://en.wikipedia.org/wiki/Equilateral_triangle">equilateral</a> triangle, all sides have the same length.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/E2.png" width="133" height="151" alt="Equilateral triangle">
+		<div class="caption"><b>E-2</b></div>
+	</div>
+</div>
+
+<p>By restricting ourselves to a couple sides, we can approach this as an isosceles triangle. This will tell us that two angles are equal. Choosing another pair of sides, we can repeat
+the process, giving us another match. Only three angles are possible, so one of them must show up twice.</p>
+
+<p>For instance, say angles $A$ and $B$ are equal in the first case, $B$ and $C$ in the second. Since they have $B$ in common, $A$ and $C$ ought to
+<a href="http://www.mathwords.com/t/transitive_property.htm">match</a> as well. The third pair of sides will confirm this.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/E3.png" width="133" height="151" alt="Bisected isoscelese">
+		<div class="caption"><b>E-3</b></div>
+	</div>
+</div>
+
+<p><b>TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE</b></p>
+
+<p>In the less specific isosceles case, we can cut the third side in half, as in <b>E-3</b>. In doing so, we get two triangles with a
+side-angle-side relationship.</p>
+
+<p>Because this creates two new angles, these must be equal to one another. Since they came from what was originally a line, they must be
+supplementary, and thus right angles.</p>
+
+<p>The new common side splits the remaining angle, as well. Since these new angles must be equal, each must measure half the original.</p>
+
+<p>We call such sides perpendicular bisectors.</p>
+
+<p><b>TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE</b></p>
+
+<H3><a name="strikingly-similar"></a>Strikingly similar</H3>
+
+<p>Had congruence been the only way to relate two triangles, giving it a special name would be redundant. There is, in fact, another useful concept of "same".</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/F1.png" width="133" height="151" alt="Similar triangles">
+		<div class="caption"><b>F-1</b></div>
+	</div>
+</div>
+
+<p>Say we came across the two triangles in figure <b>F-1</b>.</p>
+
+<p>One triangle is visibly smaller than the other, so overlap is clearly not going to happen. That said, both triangles have the <a href="http://www.mathopenref.com/congruentaaa.html">same
+set of angles</a>. In spite of the size difference, the shapes match. (Once we know how to find lengths, we could show that one triangle is simply a
+<a href="https://en.wikipedia.org/wiki/Scaling_(geometry)">scaled</a> version of the other.)</p>
+
+<p>The two triangles are said to be <a href="http://www.mathopenref.com/similartriangles.html">similar</a>.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/F2.png" width="150" height="100" alt="Coincident similar triangles">
+		<div class="caption"><b>F-2</b></div>
+	</div>
+</div>
+
+<p>Similar triangles, like congruent ones, may have different positions and orientations. Two triangles might even share a corner&mdash;and thus an
+angle&mdash;so that the smaller triangle is "part of" the larger one, as seen in figure <b>F-2</b>. Naturally, the shared angle would be
+<a href="http://www.mathwords.com/r/reflexive_property.htm">the same as itself</a>!</p>
+
+<p>(NOTES: For F-3, use variant of F-1; two sides on one of them, one plus a "?" on the other; maybe rotate it for increased generality)</p>
+<p>(NOTES: In fact, could strengthen this by swapping with next section; motivate by overlap case and corresponding angles)</p>
+<p>(NOTES: Still needs a little finesse to tie in the uniform scaling; perhaps the better-elaborated rigidity section earlier?)</p>
+
+<H3><a name="drawing-parallels"></a>Drawing parallels</H3>
+
+<p>We have only been considering segments of lines, rather than the <a href="https://en.wikipedia.org/wiki/Line_(geometry)">real deal.</a> A segment
+begins in one location and ends in another, whereas lines continue in either direction indefinitely.</p>
+
+<p>Lines are unbounded, but still pass through points. Selecting any two of them will give us the endpoints of a segment within the line. Conversely,
+the presence of a segment suggests the broader line embedding it.</p>
+
+<p>Each of a triangle's three sides is a segment that can be understood as part of a line. This is rather precarious, of course: nearly any change in
+position will shift the side outside the line.</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/G1.png" width="150" height="100" alt="Parallel lines">
+		<div class="caption"><b>G-1</b></div>
+	</div>
+</div>
+
+<p><a href="https://en.wikipedia.org/wiki/Parallel_(geometry)">Parallel</a> movements, however, will keep this relationship intact. These follow the
+direction of the line in question; the side will simply slide backward or forward along the line. If we move the entire triangle at once, we get
+something like figure <b>G-1</b>.</p>
+
+<p>We can draw some useful inferences by considering the triangle before and after this movement as distinct.</p>
+
+<p>Because the triangle only underwent a straight-line motion, without being flipped or rotated, its sides retain their same directions as well: the
+segments are parallel. For instance, this describes the two sides with double slash marks in figure <b>G-1</b>.</p>
+
+<p>Naturally, since the sides never change direction, the angles between them are preserved as well. In fact, beyond motivating this insight, an
+underlying triangle is not even necessary. Whenever we have parallel segments sliced by a
+<a href="https://en.wikipedia.org/wiki/Transversal_(geometry)))">third one</a>, we end up with several
+<a href=" https://www.mathsisfun.com/geometry/corresponding-angles.html)">corresponding angles</a>. The arcs in figure <b>G-1</b> represent one of these
+equal pairs.</p>
+
+<p>Two of the triangle's corners belong to the side embedded in the line, with the remaining one outside. When we move the triangle, however, this
+point <a href="https://en.wikipedia.org/wiki/Locus_(mathematics)">traces</a> a second line, as shown in dashes in figure <b>G-1</b>. Since the two
+share the same direction, these lines are also parallel.</p>
+
+<p>Because parallel lines or segments follow the same direction, the distance between them will never change. In figure <b>G-1</b>, for instance, the
+triangles' heights&mdash;with the segments inside the line as bases, of course&mdash;will report the same distance separating the two lines. Parallel
+objects either never meet or completely coincide already.</p>
+
+<H3><a name="triangles-in-space"></a>Triangles in space!</H3>
+
+<p>Given a rectangle, we might try packing it full of smaller objects.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/H1.png" width="179" height="128" alt="Area">
+		<div class="caption"><b>H-1</b></div>
+	</div>
+</div>
+
+<p>In figure <b>H-1</b>, we have a rectangle four units wide by three units tall. (Our unit in this case is generic, but in practice could be feet, meters, any of
+their derivatives, and so on.) It contains several one-by-one rectangles, or <a href="https://en.wikipedia.org/wiki/Unit_square">unit squares</a>.
+
+<p>These squares form a grid, so we can easily count them. Each row consists of the same number of squares, so we need only multiply our column and row counts
+together. The rectangle in our example is able to fit twelve unit squares.</p>
+
+<p>We might instead say that it has an <a href="https://en.wikipedia.org/wiki/Area">area</a> of twelve square units, or 12 units&sup2;.</p>
+
+<p>Our counting strategy holds in general. A rectangle's area is given by its width times its height, often written $ wh. $</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/H2.png" width="179" height="128" alt="Bisected rectangle">
+		<div class="caption"><b>H-2</b></div>
+	</div>
+</div>
+
+<p>Now, if we slice a rectangle diagonally, from one corner to another, we end up with two triangles, as in figure <b>H-2</b>.</p>
+
+<p>A rectangle, by definition, has four right angles. If two sides both happen to be perpendicular to a third side, they will be parallel to one another.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/H3.png" width="120" height="96" alt="Parallel rectangle sides">
+		<div class="caption"><b>H-3</b></div>
+	</div>
+</div>
+
+<p> Figure <b>H-3</b> demonstrates why this is so. By supplementing one of the angles, we obtain another right angle. We then have corresponding angles, which arise in the
+presence of parallel lines. Since this transpires in all four cases, we can deduce that the rectangle has two pairs of parallel sides: left and right, bottom and top.</p>
+
+<p>Since distances remain fixed between parallel segments, it follows that a rectangle's parallel sides have equal lengths. In figure <b>H-2</b>, the left side is between
+the bottom and top sides, so it also has length $h,$ like the right side. The same holds true for the bottom and top sides with $w.$</p>
+
+<p>By side-angle-side, our divided rectangle has become congruent triangles. As we know, these can be moved and rotated to overlap. Each triangle therefore occupies
+the same amount of space.</p>
+
+<p>Area and space basically express the same idea. Each triangle has half the area of the original rectangle. An area formula for right triangles immediately
+follows: $ {wh \over 2}. $</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/H4.png" width="135" height="110" alt="Area of a scalene triangle">
+		<div class="caption"><b>H-4</b></div>
+	</div>
+</div>
+
+<p>Earlier, in figure <b>A-2</b>, we saw that an altitude decomposes a triangle into two right triangles with shorter bases. A base $w$ units wide divides into sub-bases with
+widths $L$ and $R,$ as in figure <b>H-4</b>.</p>
+
+<p>From our new formula, the areas of these child triangles are $ Lh \over 2 $ and $ {Rh \over 2}. $ Adding them together gives us a total area of $ {(L + R)h \over 2}. $
+Of course, $ L + R = w, $ so the area of the original triangle is in fact $ {wh \over 2}. $</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/H5.png" width="135" height="110" alt="Area with an obtuse angle">
+		<div class="caption"><b>H-5</b></div>
+	</div>
+</div>
+
+<p>When dealing with an obtuse angle, our approach is slightly different. Assuming $w$ is still the width of the enclosing rectangle, our triangle's base will be a shorter
+length, $R,$ as in figure <b>H-5</b>.</p>
+
+<p>As we saw earlier in figure <b>A-4</b>, the base in these cases can be extended to intercept the altitude. The augmented triangle this produces is a right triangle, with
+area $ {wh \over 2}. $ Furthermore, the added-on part is one as well, measuring $ { (w - R)h \over 2 } $.</p>
+
+<p>The area of our original triangle will be the augmented area minus that of the extension: $ {Rh \over 2}. $ Despite a slight change of circumstances, $R$ is also the width
+of the base, just as $w$ was in the previous two cases.</p>
+
+<p>In general, triangle area is given by $ {bh \over 2}, $ where $b$ is a base width and $h$ the corresponding height.</p>
+
+<p>As an aside, with our four-by-three rectangle, we end up with two triangles of area 6 units&sup2;. While this still happens to be an integer, the original packing of whole
+unit squares no longer corresponds to the shape: the area is now dispersed across the squares, with many of them only partially full, as a quick look at figure <b>H-2</b> will
+tell us. This ought to provide some insight into how the notion of area generalizes.</p>
+
+<H3><a name="it-all-adds-up"></a>It All Adds Up</H3>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/I1.png" width="90" height="70" alt="Triangle to rectangle">
+		<div class="caption"><b>I-1</b></div>
+	</div>
+</div>
+
+<p>We can also go the other way. Given a right triangle, we make a copy of it. A couple rigid motions will then bring the two together, forming a rectangle as in figure <b>I-1</b>.</p>
+
+<p>Notice the arcs, indicating a pair of <a href="https://www.mathsisfun.com/geometry/alternate-interior-angles.html">alternate angles</a>. When one line crosses two others,
+we will have a <b>Z</b>-like configuration, with this sort of arrangement of angles around the <a href="http://www.typographydeconstructed.com/stroke/">central segment</a>.
+In this example we began with congruent triangles, so the angles are equal as well.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/I2.png" width="120" height="100" alt="Alternate and corresponding angles">
+		<div class="caption"><b>I-2</b></div>
+	</div>
+</div>
+
+<p>Once again, this particular example introduces the idea, but any sort of triangle will do. In fact, the only real necessity is that we have three segments forming a
+<b>Z</b>, with two of them being parallel.</p>
+
+<p>We can see why this is so in figure <b>I-2</b>. Even if we have a rather generic triangle, knowing its altitude will let us carve out a right triangle, at which point we
+can build a rectangle as before.</p>
+
+<p>More importantly, some of our earlier concepts come together. Since we have parallel sides, we get corresponding angles as well, say $A$ and $B$. We also have a third angle
+that is both vertical to $A$ and alternate to $B$. We see this sort of relationship in figure <b>I-2</b>. We already know that corresponding and vertical angles are equal. The
+same must be true of alternate angles when we have parallel segments.</p>
+
+<p>If we began with a fairly typical triangle, such as the one in figure <b>H-4</b>, we would need to add two right triangles to work our way back to a rectangle.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/I3.png" width="130" height="110" alt="Sum of interior angles">
+		<div class="caption"><b>I-3</b></div>
+	</div>
+</div>
+
+<p>Doing so will tease out a pair of alternate angles from the triangle. Furthermore, these form a line with the remaining angle, as in figure <b>I-3</b>. Since their measures
+are the same as these three, the sum of the triangle's <a href="https://www.mathsisfun.com/geometry/interior-angles.html">interior angles</a> must be 180&deg;.</p>
+
+<p>This approach might seem to rule out triangles with either a right or an obtuse angle. Actually, if we turn such a triangle so that its longest side is on the bottom, we will
+have the previous scenario. Since the sum of angles is a feature of the whole triangle rather than a given side, we could stop here. The other possibilities are not too onerous,
+however, so we ought to go over them as well.</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/I4.png" width="130" height="110" alt="Sum of interior angles, with a right angle">
+		<div class="caption"><b>I-4</b></div>
+	</div>
+</div>
+
+<p>Right triangles are rather simple. Again, these are simply half rectangles, with parallel sides leading to equal alternate angles. Because it fills a corner, one of these
+angles will also complement the angle already found there. From figure <b>I-4</b>, for instance, we see that $ A + B = 90^{\circ}. $ As expected, $A,$ $B,$ and the right angle
+add up to 180&deg;.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/I5.png" width="130" height="110" alt="Sum of interior angles, with an obtuse angle">
+		<div class="caption"><b>I-5</b></div>
+	</div>
+</div>
+
+<p>An obtuse angle, say $O,$ decomposes into a right angle and smaller adjacent angle. On their own, we already know how to attack the two triangles this gives us; a hybrid approach will
+get us the rest of the way.</p>
+
+<p>We will have a situation like figure <b>I-5</b>. At the outset, we know that $ D + S = 90^{\circ} $ and $ C = O - 90^{\circ}. $ Because $S$ and $A$ form a line, the first of these
+can be rewritten as $ D + (180^{\circ} - A) = 90^{\circ}, $ or $ A = D + 90^{\circ}. $</p>
+
+<p>Now, $ A + B + C = 180^{\circ}. $ Plugging in our recent findings, the left-hand side becomes $ (D + 90^{\circ}) + B + (O - 90^{\circ}). $ This simplifies to $ B + D + O = 180^{\circ}.
+$ All is well.</p>
+
+<p>In figures <b>I-1</b> and <b>I-4</b>, we have two triangles combining to form a rectangle. Although we begin with six sides, two of these basically vanish inside the new shape. Since
+adjacent angles sum up, however, the rectangle (or any four-sided object) has two triangles' worth of interior angles: 360&deg;. This generalizes quite nicely: the interior angles of an
+object with $n$ sides sum to $ (n - 2)180^{\circ}. $</p>
+
+<H3><a name="pythagoras"></a>Enter Pythagoras</H3>
+
+<p>Squares are a special case of rectangles, where all sides have the same length.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/J1.png" width="179" height="128" alt="A square with sides x + y">
+		<div class="caption"><b>J-1</b></div>
+	</div>
+</div>
+
+<p>Borrowing an earlier idea, we can divide each of these sides into two lesser lengths, say $x$ and $y.$ If these alternate
+<a href="https://en.wikipedia.org/wiki/Perimeter">around the square</a>, we have something like figure <b>J-1</b>.</p>
+
+<p>From the rectangular formula, the total area of the square is $ (x + y) \times (x + y). $ We can <a href="https://en.wikipedia.org/wiki/FOIL_method">expand</a>
+this to get $ x^2 + 2xy + y^2. $</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/J2.png" width="179" height="128" alt="Embedded triangles">
+		<div class="caption"><b>J-2</b></div>
+	</div>
+</div>
+
+<p>Notice the small nodes in figure <b>J-1</b>, wherever the sides have been split. If we visit these in sequence, drawing segments from one to the next, we etch
+four right triangles out of the square.</p>
+
+<p>By side-angle-side, we know these triangles are congruent, each with area $ {xy \over 2}. $ The area of all four together is $ 4\left({xy \over 2} \right) = 2xy. $</p>
+
+<p>We can find the area of the middle region&mdash;what would remain, if we removed the triangles&mdash;by subtracting this sum from the total area of the square. The
+$ 2xy $ terms cancel, leaving us with $ x^2 + y^2. $</p>
+
+<p>One side of each triangle remains unknown. Owing to congruence, however, these sides all have the same length. We can give them a common label, say $z.$</p>
+
+<p>The middle object's angles each lie along a side of the square; when combined with their neighbors, they form straight lines. Thus, if $A$ and $B$ are the
+adjacent measurements, a given angle has measure $ 180^{\circ} - A - B $.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/J3.png" width="179" height="128" alt="An embedded square">
+		<div class="caption"><b>J-3</b></div>
+	</div>
+</div>
+
+<p>As the arcs in <b>J-3</b> indicate, $A$ and $B$ will be the same in all four cases. The interior angles must therefore be equal as well, measuring $ 360^{\circ}
+/ 4 = 90^{\circ}. $</p>
+
+<p>The middle region is an equal-sided object with four right angles. This is simply a <a href="https://en.wikipedia.org/wiki/Rhombus">rotated square</a>, with area
+$ z^2 $. A few paragraphs ago, we described this same area using another formula. We can combine the two, giving us $ x^2 + y^2 = z^2. $</p>
+
+<p>This is the celebrated <a href="https://en.wikipedia.org/wiki/Pythagorean_theorem">Pythagorean theorem</a>.</p>
+
+<H3><a name="too-short"></a>"This base is too short..."</H3>
+
+<p>Now, while the central square was key to arriving at this result, the equation actually describes a relationship among triangle sides.</p>
+
+<p>These happened to be right triangles during our derivation, but <a href="https://en.wikipedia.org/wiki/Pythagorean_theorem#Converse">is this necessary?</a>
+Might the formula extend to triangles in general, as with area and interior angle sums?</p>
+
+<p>We run into problems right out of the gate. Without a right angle, nothing seems to distinguish any one side. Which one gets to be $z$?</p>
+
+<p>Setting such practical concerns aside, consider the following candidate, depicted in figure <b>K-1</b>. If its base, $x,$ were somewhat wider, we would indeed have a
+right triangle. As is, it falls short.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+	<img src="./images_triangles/K1.png" width="151" height="123" alt="x falls short">
+		<div class="caption"><b>K-1</b></div>
+	</div>
+</div>
+
+<p>We ran across a similar predicament with areas involving obtuse angles. Once again, we can start with the "hypothetical" right triangle that a longer $x$ would
+give us. This has base $ x + R $ and height $h.$ Of course, it <i>does</i> adhere to the Pythagorean equation: $ (x + R)^2 + h^2 = z^2. $</p>
+
+<p>Also familiar: the added-on part is itself a right triangle. In figure <b>K-1</b>, its legs correspond to the dashed segments. Thus, $ h^2 = y^2 - R^2. $</p>
+
+<p>We can plug this into the previous equation. Following some expansion and cancellation, we have $ z^2 - x^2 - 2xR = y^2. $</p>
+
+<p>Now, if our non-right triangle does indeed satisfy Pythagoras's equation, $ x^2 + y^2 $ will be the same as $ z^2, $ so we can substitute one for the other in
+the last result. A short bout of cancellation ensues and leaves us with $ -2xR = 0. $</p>
+
+<p>This could mean $ R = 0 $: nothing needs to be added to $x$, so we have a right triangle after all!</p>
+
+<p>Otherwise, $ x = 0. $ This is indeed suspicious.</p>
+
+<H3><a name="too-long"></a>"...this base is too long..."</H3>
+
+<p>The base might instead be too wide to be a right triangle, as seen for instance in figure <b>L-1</b>.</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/L1.png" width="151" height="95" alt="x too long">
+		<div class="caption"><b>L-1</b></div>
+	</div>
+</div>
+
+<p>Delving once more into earlier techniques, we can draw an altitude to break this apart into two right triangles, with bases $L$ and $R$ and a common height $h.$
+Applying the Pythagorean theorem to these, we find $ L^2 + h^2 = z^2 $ and $ R^2 + h^2 = y^2. $</p>
+
+<p>Again, assuming the original triangle does satisfy the Pythagorean theorem, we can replace $ z^2 $ in the first equation with $ x^2 + y^2. $ Doing so, then
+combining the two equations on account of the common $ h^2 $, and finishing off with some cancellation, we end up with $ x^2 + R^2 = L^2. $</p>
+
+<p>Since $ x = L + R, $ this finally boils down to $ 2R(L + R) = 0. $ Either $ L = -R, $ which can only happen when $ x = 0, $ or $ R = 0. $ These are exactly the
+situations a too-short base gave us, with the same consequences.</p>
+
+<H3><a name="just-right"></a>"...this one is just right."</H3>
+
+<p>The same analysis applies to $y,$ with comparable results. In short, either the solution outright demands a right triangle, or one of $x$ or $y$ must be
+zero. What do these latter possibilities mean?</p>
+
+<p>When $x$ is zero, the equation reduces to $ y^2 = z^2, $ or $ y = \pm z. $ Similarly, with $y$ we arrive at $ x = \pm z. $ These are simply
+<a href="https://en.wikipedia.org/wiki/Linear_equation#One_variable">lines</a>.</p>
+
+<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+	<img src="./images_triangles/M1.png" width="256" height="40" alt="Diminishing triangles">
+	<div class="caption"><b>M-1</b></div>
+</div>
+
+<p>Figure <b>M-1</b> gives us some hint that lines are not a drastic break from the triangular mold. So long as we have a right angle, all is well, even as the
+height dwindles and our triangle becomes little more than a sliver. A line segment can be understood as going just a bit further, so the height (or width of the
+base) is zero. If both $x$ and $y$ are zero, the triangle degenerates to a single point, but this is merely the same phenomenon, occurring in both directions at
+once.</p>
+
+<p>So, given $x$, $y$, and $z$ satisfying the Pythagorean theorem, we know these do entail a right triangle, or might as well.</p>
+
+<H3><a name="going-the-distance"></a>Going the distance</H3>
+
+<p>All well and good, but what do we gain from the theorem?</p>
+
+<p>Basically, knowing how long two sides of a triangle are, we can find the third as well. The hypotenuse is the most obvious choice: $ z = \sqrt{x^2 + y^2}. $
+If we already know $z,$ we can find one of the leg lengths instead, say $ x = \sqrt{z^2 - y^2}. $ (Negative roots
+<a href="https://en.wikipedia.org/wiki/Metric_(mathematics)">are irrelevant</a>.)<p>
+
+<p>Consider the two points depicted in figure <b>N-1</b>.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/N1.png" width="135" height="96" alt="Two points">
+		<div class="caption"><b>N-1</b></div>
+	</div>
+</div>
+
+<p>Both can be described by a
+<a href="https://www.khanacademy.org/math/algebra-basics/core-algebra-graphing-lines-slope/core-algebra-graphing-coordinate-plan/v/plot-ordered-pairs">coordinate
+pair</a>: $ \vcomps{p_x}{p_y} $ for $ \mathbf{p} $ and $ \vcomps{q_x}{q_y} $ for $ \mathbf{q}. $ Given some
+<a href="https://en.wikipedia.org/wiki/Origin_(mathematics)">point of reference</a>, the $x$- and $y$-coordinates tell us how far to the right of and above it
+these points are found. For example, $ (1, -3) $ would be one unit to the right and three units below.</p>
+
+<p>Rather than travel in a straight line from one point to the other, we can start from $ \mathbf{p} $ and head right, eventually putting us directly beneath
+$ \mathbf{q}. $ From there, going straight up will get us the rest of the way.</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/N2.png" width="135" height="96" alt="Two points and their implicit triangle">
+		<div class="caption"><b>N-2</b></div>
+	</div>
+</div>
+
+<p>To perform these <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">intermediate steps</a>, we need to know "Relative to $ \mathbf{p}, $ how much
+farther to the right and above is $ \mathbf{q} $?". The coordinate differences express exactly this: $ dx = q_x - p_x $ and $ dy = q_y - p_y. $</p>
+
+<p>Taken together, these <a href="https://en.wikipedia.org/wiki/Triangle_inequality">shorter</a> paths are the legs of a right triangle, as seen for instance in
+figure <b>N-2</b>. Its hypotenuse is the segment from $ \mathbf{p} $ to $ \mathbf{q}. $ Finding the length of this side will give us the
+<a href="https://en.wikipedia.org/wiki/Euclidean_distance">straight-line distance</a> between the two points: $ \sqrt{dx^2 + dy^2}. $</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/N3.png" width="135" height="96" alt="Similar triangles and lerp">
+		<div class="caption"><b>N-3</b></div>
+	</div>
+</div>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/N4.png" width="135" height="96" alt="Similar non-right triangles">
+		<div class="caption"><b>N-4</b></div>
+	</div>
+</div>
+
+<p><b>TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE</b></p>
+
+<p>Returning to an earlier point, we mentioned that a similar triangle entailed uniformly scaling the sides of a triangle.</p>
+
+<p>In the case of a right triangle, this is pretty easy. We have two sides of length $dx$ and $dy,$ which we can scale by $s.$ Then the length of the third
+side would be $ \sqrt{(sdx)^2 + (sdy)^2} = \sqrt{s^2(dx^2 + dy^2)}. $ This simplifies to $ s\sqrt{dx^2 + dy^2}, $ which is exactly what we would expect.</p>
+
+<p>This applies to triangles in general, but a useful consequence follows when we apply it to distance. Basically, to find the position $s$ of the way along the
+path between two points, simply scale the two offsets $dx$ and $dy$ by $s,$ then add the results to the original point. This is called linear interpolation.</p>
+
+<p>Importantly, the construction $ a + s(b - a) $ can be rephrased as $ (1 - s)a + sb, $ which is sometimes more convenient.</p>
+
+<p>(NOTES: General triangle could use the implicit lerp triangles)</p>
+
+<p>In the more general case, we can choose two of the sides with a common first point and scale them. This is simply the right triangle situation. The third side
+will depend on the second point, with offsets $ dx_2 = r_x - q_x, dy_2 = r_y - q_y,$ and length $ \sqrt{dx_2^2 + dy_2^2}. $</p>
+
+<p>The second points on this scaled triangle will be at $ \vcomps{(1 - s)p_x + sq_x}{(1 - s)p_y + sq_y} $ and $ \vcomps{(1 - s)p_x + sr_x}{(1 - s)p_y + sr_y}. $ If we
+find the offsets between these points, the $ 1 - s $ terms cancel and we have $ dx_3 = s(r_x - q_x) $ and $ dy_3 = s(r_y - q_y). $ These are the scalar multiples of
+$dx_2$ and $dy_2,$ as expected.</p>
+
+<p><b>TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE</b></p>
+
+<p>(NOTES: Central dilation, fixed points; changing one point -> spiral similarity)</p>
+
+<H3><a name="summary"></a>Summary</H3>
+
+<p>There is <b>much</b> more to be said about triangles. Even so, what we have already is nothing to scoff at. Naturally, the most obvious results, such as which
+angles are the same and how to measure areas, are important. The assortment of techniques used along the way are also well worth remembering, as they tend to come
+up again and again.</p>
+
+<p>Future articles will build upon this foundation. Next up: circles!</p>
+
+									</div><!-- .entry-content -->
+					<div class="clearfix row" style="margin:4px 0;">
+						<div class="fade-out clearfix">
+							<!--Facebook Share Button-->
+							<div style="float:left;"><div><div class="fb-like fb_iframe_widget" data-width="90" data-send="true" data-layout="button_count" data-href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/" data-awesm-channel="facebook-like" data-awesm-tool="tCsvyd" data-height="20" data-ref="awesm:c1de8ed723c728ce036bd51b91310e76" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=129391740409903&amp;height=20&amp;href=http%3A%2F%2Fcoronalabs.com%2Fblog%2F2015%2F01%2F13%2Ftutorial-creating-android-tv-apps%2F&amp;layout=button_count&amp;locale=en_US&amp;ref=awesm%3Ac1de8ed723c728ce036bd51b91310e76&amp;sdk=joey&amp;send=true&amp;width=90"><span style="vertical-align: bottom; width: 124px; height: 20px;"><iframe name="f285f3d6b4" width="90px" height="20px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./Triangles_files/like.html" style="border: none; visibility: visible; width: 124px; height: 20px;" class=""></iframe></span></div></div></div>
+					        <!--Twitter Tweet Button-->
+					        <div style="float:left;margin:0 5px;width:86px;"><div><iframe src="./Triangles_files/tweet_button.html" width="110" height="20" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" class="twitter-share-button twitter-count-undefined"></iframe></div></div>
+					        <script src="./Triangles_files/in.js" type="text/javascript">lang: en_US</script>
+					        <span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1421432617759_0"><a id="li_ui_li_gen_1421432617759_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1421432617759_0-logo">in</span><span id="li_ui_li_gen_1421432617759_0-title"><span id="li_ui_li_gen_1421432617759_0-mark"></span><span id="li_ui_li_gen_1421432617759_0-title-text">Share</span></span></a></span></span><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1421432617782_1-container" class="IN-right IN-hidden"><span id="li_ui_li_gen_1421432617782_1" class="IN-right"><span id="li_ui_li_gen_1421432617782_1-inner" class="IN-right"><span id="li_ui_li_gen_1421432617782_1-content" class="IN-right">0</span></span></span></span></span></span><script type="IN/Share+init" data-counter="right"></script>
+					        <!-- Place this tag where you want the +1 button to render. -->
+					        <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1421432617538" name="I0_1421432617538" src="./Triangles_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+
+					        <!-- Place this tag after the last +1 button tag. -->
+					        <script type="text/javascript">
+					          (function() {
+					            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					            po.src = 'https://apis.google.com/js/plusone.js';
+					            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					          })();
+					        </script> 
+						</div> 
+					</div>
+				<footer class="entry-meta well well-sm small">
+					This entry was posted in <a href="http://coronalabs.com/blog/topics/guest-bloggers/" rel="category tag">Guest Bloggers</a>, <a href="http://coronalabs.com/blog/topics/tutorials-tips-demos/" rel="category tag">Tutorials, Tips and Demos</a> and tagged <a href="http://coronalabs.com/blog/tags/android-tv/" rel="tag">Android TV</a>, <a href="http://coronalabs.com/blog/tags/tutorial/" rel="tag">tutorial</a>. Bookmark the <a href="./Triangles_files/Coroutines.html" title="Permalink to Tutorial: Creating Android TV Apps" rel="bookmark">permalink</a>.
+					
+				</footer><!-- .entry-meta -->
+
+				
+				
+	<div id="comments" class="comments-area">
+
+	
+	
+	
+									<div id="respond" class="comment-respond well">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#respond" style="display:none;">Cancel Reply</a></small></h3>
+									<form action="http://coronalabs.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="Star Crunch" size="30" aria-required="true"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="steve@xibalbastudios.com" size="30" aria-required="true"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="http://www.xibalbastudios.com" size="30"></p>
+												<p><textarea placeholder="Start typing..." id="comment" class="form-control" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags small">You may use these HTML tags and attributes: &lt;a href="" title="" rel=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; 						</p><p class="form-submit">
+							<input name="submit" type="submit" id="commentsubmit" value="Post Comment" class="btn btn-primary btn-xs">
+							<input type="hidden" name="comment_post_ID" value="60833" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="7485a5e885"></p><p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1421432617297"></form>
+							</div><!-- #respond -->
+			
+</div><!-- #comments -->
+
+				
+			</article><!-- #post-## -->
+		</div>
+		<div class="hidden-xs hidden-sm col-md-1 col-lg-1"></div>
+		<div class="sidebar-content-inner col-sm-4 col-md-3 hidden-xs">
+			<div style="display:none;" class="well well-clear">
+				<img width="125" height="125" src="./Triangles_files/google-play-store1.png" class="aligncenter wp-post-image" alt="google-play-store">				
+			</div>
+
+			
+
+	<div class="sidebar clearfix well">
+				<div class="sidebar-padder">
+
+						<aside id="widget_tribe_widget_builder_46688-13" class="widget widget_tribe_widget_builder_46688"><div>
+<h4 class="ac">Looking for premium monetization options?</h4>
+<p><a class="btn btn-large btn-info btn-block" id="sidebar-buy-btn" href="http://coronalabs.com/store">BUY PRO</a></p>
+<h5>… or test out <a class="corona-orange" href="https://developer.coronalabs.com/downloads/corona-sdk">Corona SDK Starter for free</a>.</h5>
+</div>
+</aside><aside id="widget_tribe_widget_builder_16089-13" class="widget widget_tribe_widget_builder_16089"><h4 class="sidebar-title">Starting building a…</h4>
+<p>
+</p><ul style="font-size:1.12em;">
+<li><a href="http://coronalabs.com/i-want-to-build/games/">Game</a></li>
+<li><a href="http://coronalabs.com/i-want-to-build/business-apps/">Business app</a></li>
+<li><a href="http://coronalabs.com/i-want-to-build/education-kid-apps/">Educational app</a></li>
+</ul>
+<p>The possibilities are endless!</p>
+</aside><aside id="categories-5" class="widget widget_categories"><h4 class="widget-title lead">Categories</h4><select name="cat" id="cat" class="postform">
+	<option value="-1">Select Category</option>
+	<option class="level-0" value="80">Amazon Kindle</option>
+	<option class="level-0" value="11">Android</option>
+	<option class="level-0" value="1679">Composer</option>
+	<option class="level-0" value="1061">Corona Editor</option>
+	<option class="level-0" value="108">Corona Enterprise</option>
+	<option class="level-0" value="607">Corona Geek</option>
+	<option class="level-0" value="1109">Corona Professional Services</option>
+	<option class="level-0" value="4">Corona SDK</option>
+	<option class="level-0" value="1137">CoronaCards</option>
+	<option class="level-0" value="21">Daily Build</option>
+	<option class="level-0" value="74">eBooks</option>
+	<option class="level-0" value="17">Education</option>
+	<option class="level-0" value="22">Events and Listeners</option>
+	<option class="level-0" value="220">FAQ</option>
+	<option class="level-0" value="16">Flash</option>
+	<option class="level-0" value="389">Friday Night Forum</option>
+	<option class="level-0" value="1119">From the Forum</option>
+	<option class="level-0" value="5">Game Development</option>
+	<option class="level-0" value="620">Google+ Hangouts</option>
+	<option class="level-0" value="6">Guest Bloggers</option>
+	<option class="level-0" value="42">iOS</option>
+	<option class="level-0" value="19">iPad</option>
+	<option class="level-0" value="43">iPhone</option>
+	<option class="level-0" value="20">Lua</option>
+	<option class="level-0" value="3">Mobile App of the Week</option>
+	<option class="level-0" value="7">News &amp; Announcements</option>
+	<option class="level-0" value="10">NOOK</option>
+	<option class="level-0" value="18">Partners</option>
+	<option class="level-0" value="1122">Plugins</option>
+	<option class="level-0" value="31">Showcase</option>
+	<option class="level-0" value="9">Tech</option>
+	<option class="level-0" value="82">Training/Support</option>
+	<option class="level-0" value="12">Tutorials, Tips and Demos</option>
+	<option class="level-0" value="1">Uncategorized</option>
+	<option class="level-0" value="13">Videos</option>
+	<option class="level-0" value="1140">Windows Phone</option>
+</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+	var dropdown = document.getElementById("cat");
+	function onCatChange() {
+		if ( dropdown.options[dropdown.selectedIndex].value > 0 ) {
+			location.href = "http://coronalabs.com/?cat="+dropdown.options[dropdown.selectedIndex].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+/* ]]> */
+</script>
+
+</aside><aside id="widget_tribe_widget_builder_40523-2" class="widget widget_tribe_widget_builder_40523"><h4 class="sidebar-title">Case Study: Panda Math</h4>
+<div class="clearfix ac" style="margin:10px 0 0;"><a href="http://coronalabs.com/case-study/redbyes-creates-mobile-apps-for-early-childhood-education/"><img class="ac" alt="Panda  Math (Redbytes)" src="./Triangles_files/Panda-Math-Redbytes-148x150.png"></a><p></p>
+<p class="al">Learn how tinytapps built a portfolio of <a href="http://coronalabs.com/case-study/redbyes-creates-mobile-apps-for-early-childhood-education/">early education apps</a> using Corona SDK.</p>
+</div>
+</aside>
+		</div><!-- close .sidebar-padder -->
+	</div>		</div>
+	</div>
+
+
+				
+    </div><!-- close .container -->
+</div><!-- close .main-content -->
+
+
+<footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="container">
+        <div class="row">
+            <div id="inner-footer" class="clearfix full-ui hidden-xs">
+
+                        <nav id="menu-standard-footer-menu" class="clearfix">
+                        	
+                        	<div class="col-xs-12 col-sm-6 col-md-2">
+                            	<a href="http://coronalabs.com/products/corona-sdk/" class="footer-group-header">Products</a>
+                                <ul class="sub-footer-menu">
+                                	<li><a href="http://coronalabs.com/products/corona-sdk/">Corona SDK</a></li>
+                                	<li><a href="http://coronalabs.com/products/enterprise/">Enterprise</a></li>
+                                	<li><a href="http://coronacards.com/">CoronaCards</a></li>
+                                	<li><a href="http://coronalabs.com/products/support-training/">Support &amp; Training</a></li>
+                                </ul>
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/resources/" class="footer-group-header">Resources</a>
+                                <ul class="sub-footer-menu">
+                                    <li><a target="_blank" href="http://forums.coronalabs.com/">Forum</a></li>
+                                	<li><a target="_blank" href="http://docs.coronalabs.com/">Documentation</a></li>
+                                	<li><a href="http://coronalabs.com/resources/tutorials/getting-started-with-corona/">Corona University</a></li>
+                                	<li><a href="http://coronalabs.com/resources/plugins/">Corona Plugin Directory</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/pricing" class="footer-group-header">Get Corona</a>
+                                <ul class="sub-footer-menu">
+                                	<li><a href="https://developer.coronalabs.com/downloads/coronasdk">Starter: Publish Free</a></li>
+                                	<li><a href="http://coronalabs.com/pricing/">Buy Pro</a></li>
+                                    <li><a href="http://coronalabs.com/pricing/">Buy Enterprise</a></li>
+                                    <li><a href="http://coronacards.com/pricing">Buy CoronaCards</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/about/" class="footer-group-header">About</a>
+                                <ul class="sub-footer-menu">
+                                    <li><a href="http://coronalabs.com/about/jobs/">Jobs</a></li>
+                                	<li><a href="http://coronalabs.com/about/contact/">Contact</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                            	<a href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#" class="footer-group-header">Social</a>
+                                <ul>
+                                    <li>
+                                        <div id="followIcons">
+                                            <a href="https://twitter.com/coronalabs" class="followIcons" target="_blank">
+                                                <img src="./Triangles_files/twitter_32.png" width="35" height="36">
+                                            </a>
+                                            <a href="https://www.facebook.com/CoronaLabs" class="followIcons" target="_blank">
+                                                <img src="./Triangles_files/facebook_32.png" width="35" height="36">
+                                            </a>
+                                            <a href="https://www.youtube.com/user/CoronaLabs" class="followIcons" target="_blank">
+                                                <img src="./Triangles_files/youtube_32.png" width="35" height="36">
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </nav>
+
+            </div> <!-- end #inner-footer -->
+        </div>
+    </div>
+    <div class="container">
+	    <div class="row">
+			<div class="col-md-12 small vspace footer-footer">
+                <hr class="hidden-xs">
+	            Copyright © 2009-2014 Corona Labs. A <a href="http://fusepowered.com/" target="_blank">Fuse Powered</a> Company. All rights reserved.<br>
+	            <a class="footer-secondary-links" href="http://coronalabs.com/privacy-policy/">Privacy Policy</a> • <a class="footer-secondary-links" href="http://coronalabs.com/terms-and-conditions/">Terms and Conditions</a>
+	       	</div>
+		</div>
+    </div>
+</footer><!-- close #colophon -->
+
+<script type="text/javascript" src="./Triangles_files/form.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var mejsL10n = {"language":"en","strings":{"Close":"Close","Fullscreen":"Fullscreen","Download File":"Download File","Download Video":"Download Video","Play\/Pause":"Play\/Pause","Mute Toggle":"Mute Toggle","None":"None","Turn off Fullscreen":"Turn off Fullscreen","Go Fullscreen":"Go Fullscreen","Unmute":"Unmute","Mute":"Mute","Captions\/Subtitles":"Captions\/Subtitles"}};
+var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/"};
+var mejsL10n = {"language":"en","strings":{"Close":"Close","Fullscreen":"Fullscreen","Download File":"Download File","Download Video":"Download Video","Play\/Pause":"Play\/Pause","Mute Toggle":"Mute Toggle","None":"None","Turn off Fullscreen":"Turn off Fullscreen","Go Fullscreen":"Go Fullscreen","Unmute":"Unmute","Mute":"Mute","Captions\/Subtitles":"Captions\/Subtitles"}};
+var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Triangles_files/mediaelement-and-player.min.js"></script>
+<script type="text/javascript" src="./Triangles_files/prettify.js"></script>
+<script type="text/javascript" src="./Triangles_files/lang-css.js"></script>
+<script type="text/javascript" src="./Triangles_files/lang-vb.js"></script>
+<script type="text/javascript" src="./Triangles_files/lang-lua.js"></script>
+<script type="text/javascript" src="./Triangles_files/load.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var pollsL10n = {"ajax_url":"https:\/\/coronalabs.com\/wp-admin\/admin-ajax.php","text_wait":"Your last request is still being processed. Please wait a while ...","text_valid":"Please choose a valid poll answer.","text_multiple":"Maximum number of choices allowed: ","show_loading":"1","show_fading":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Triangles_files/polls-js.js"></script>
+<script type="text/javascript" src="./Triangles_files/skip-link-focus-fix.js"></script>
+<script type="text/javascript" src="./Triangles_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Triangles_files/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="./Triangles_files/wp-fancy-box.js"></script>
+<script type="text/javascript" src="./Triangles_files/jquery.fancybox-buttons.js"></script>
+<script type="text/javascript" src="./Triangles_files/jquery.fancybox-media.js"></script>
+<script type="text/javascript" src="./Triangles_files/jquery.fancybox-thumbs.js"></script>
+<script type="text/javascript" src="./Triangles_files/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="./Triangles_files/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpv_pagination_local = {"regional":"en","front_ajaxurl":"http:\/\/coronalabs.com\/wp-admin\/admin-ajax.php","calendar_image":"https:\/\/coronalabs.com\/plugins\/wp-views\/embedded\/res\/img\/calendar.gif","calendar_text":"Select date"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Triangles_files/wpv-pagination-embedded.js"></script>
+<script defer="" src="./Triangles_files/custom.js" type="text/javascript"></script>
+<script>  var AWESM = AWESM || {};  AWESM.api_key = 'fa22875a8884108a6244b659bc44e41d7342b0899a56ae9758f6c9965c9a34a0';  (function() {    var js = document.createElement('script'); js.type = 'text/javascript'; js.async = true;    js.src = '//widgets.awe.sm/v3/widgets.js?key=' + AWESM.api_key + '&async=true';    var s = document.getElementsByTagName('script')[0];    s.parentNode.insertBefore(js,s);  })();</script>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Minified using apc
+Database Caching using apc (Request-wide Cookie is rejected)
+
+ Served from: coronalabs.com @ 2015-01-16 10:23:03 by W3 Total Cache --><iframe name="oauth2relay627090594" id="oauth2relay627090594" src="./Triangles_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><div id="fb-root" class=" fb_reset"><script async="" src="./Triangles_files/all.js"></script><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Triangles_files/7r8gQb8MIqE.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Triangles_files/7r8gQb8MIqE(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fa05c7f24" frameborder="0" allowtransparency="true" scrolling="no" src="./Triangles_files/ping.html" style="display: none;"></iframe></div></div></div><script src="./Triangles_files/register"></script><script src="./Triangles_files/new"></script></body></html>

@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial: Creating Android TV Apps | Corona Labs</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://coronalabs.com/xmlrpc.php">
+<link href="./Circles_files/css" rel="stylesheet" type="text/css">  
+<script src="./Circles_files/cb=gapi.loaded_1" async=""></script><script src="./Circles_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Circles_files/widgets.js"></script><script type="text/javascript" async="" src="./Circles_files/plusone.js" gapi_processed="true"></script><script type="text/javascript" async="" src="./Circles_files/inpage_linkid.js" id="undefined"></script><script type="text/javascript" async="" src="./Circles_files/dc.js"></script><script src="./Circles_files/remote_user_menu"></script>
+<!-- icons & favicons -->
+<!-- For iPhone 4 -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/h/apple-touch-icon.png">
+<!-- For iPad 1-->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/m/apple-touch-icon.png">
+<!-- For iPhone 3G, iPod Touch and Android -->
+<link rel="apple-touch-icon-precomposed" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/l/apple-touch-icon-precomposed.png">
+<!-- For Nokia -->
+<link rel="shortcut icon" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/l/apple-touch-icon.png">
+<!-- For everything else -->
+<link rel="shortcut icon" href="http://ddz4z2fxb232w.cloudfront.net/favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Feed" href="http://coronalabs.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Comments Feed" href="http://coronalabs.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Tutorial: Creating Android TV Apps Comments Feed" href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/feed/">
+<link rel="stylesheet" id="mediaelement-css" href="./Circles_files/mediaelementplayer.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-mediaelement-css" href="./Circles_files/wp-mediaelement.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-polls-css" href="./Circles_files/polls-css.css" type="text/css" media="all">
+<link rel="stylesheet" id="corona-bootstrap-css" href="./Circles_files/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="corona-style-css" href="./Circles_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fancybox-fancybox-css" href="./Circles_files/jquery.fancybox.css" type="text/css" media="all">
+<link rel="stylesheet" id="views-pagination-style-css" href="./Circles_files/wpv-pagination.css" type="text/css" media="all">
+<link rel="stylesheet" id="prettify-css" href="./Circles_files/custom.css" type="text/css" media="all">
+<link rel="stylesheet" id="taxonomy-image-plugin-public-css" href="./Circles_files/style(1).css" type="text/css" media="screen">
+<script type="text/javascript" src="./Circles_files/player.min.js"></script>
+<script type="text/javascript" src="./Circles_files/jquery.js"></script>
+<script type="text/javascript" src="./Circles_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Circles_files/powerpress-mejs.js"></script>
+<script type="text/javascript" src="./Circles_files/bootstrap.js"></script>
+<script type="text/javascript" src="./Circles_files/bootstrap-wp.js"></script><style>body{display:none;}</style>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://coronalabs.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://coronalabs.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="From the Forum — Issue #54" href="http://coronalabs.com/blog/2015/01/09/from-the-forum-issue-54/">
+<meta name="generator" content="WordPress 4.0.1">
+<link rel="shortlink" href="http://coronalabs.com/?p=60833">
+<script type="text/javascript"><!--
+function powerpress_pinw(pinw){window.open('http://coronalabs.com/?powerpress_pinw='+pinw, 'PowerPressPlayer','toolbar=0,status=0,resizable=1,width=460,height=320');	return false;}
+powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
+//-->
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+	TeX: {
+		Macros: {
+			vcomps: ['( {#1}, {#2} )', 2],
+			vlen: ['\\|\\mathbf{#1}\\|', 1],
+			dotp: ['#1_x #2_x + #1_y #2_y', 2],
+			dotvw: ['\\mathbf{#1} \\cdot \\mathbf{#2}', 2],
+			softerdotvw: ['#1 \\cdot \\mathbf{#2}', 2],
+			fracalign: ['\\frac{\\vphantom{#3} #1}{#2}', 3]
+		}
+	  }
+  });
+</script>
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+
+<script type="text/javascript">
+	function TriURL (anchor)
+	{
+		window.location = "./Triangles.html#" + anchor;
+	}
+</script>
+
+<style type="text/css">
+.wp-polls .pollbar {
+	margin: 1px;
+	font-size: 6px;
+	line-height: 8px;
+	height: 8px;
+	background-image: url('http://coronalabs.com/plugins/wp-polls/images/default/pollbg.gif');
+	border: 1px solid #c8c8c8;
+}
+</style>
+
+<!-- All in One SEO Pack 2.2.3.1 by Michael Torbert of Semper Fi Web Design[137,192] -->
+<link rel="author" href="https://plus.google.com/106405667962965815359/">
+<meta name="description" content="In this week&#39;s tutorial, guest contributor Greg Pugh illustrates the simple process involved in releasing your Corona-made project for Android TV.">
+
+<meta name="keywords" content="android tv,tutorial">
+
+<link rel="canonical" href="./Circles_files/Coroutines.html">
+<!-- /all in one seo pack -->
+
+		<style media="print" type="text/css">
+			div.faq_answer {display: block!important;}
+			p.faq_nav {display: none;}
+		</style>
+
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-9574984-6']);
+  _gaq.push(['_setDomainName', 'coronalabs.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script src="./Circles_files/secureAnonymousFramework"></script><style type="text/css">* html #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link{height:1% !important;}#li_ui_li_gen_1421432617759_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1421432617759_0 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:link, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:visited, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:hover, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -276px !important;background-repeat:no-repeat !important;background-size:initial !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-logo, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-logo{}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{}.IN-shadowed #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{}.IN-shadowed #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .IN-shadowed #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text *{color:#000 !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text *, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text *{color:#666 !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title #li_ui_li_gen_1421432617759_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{}.success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text *{color:#000 !important;}.success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text *, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .IN-shadowed .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{}#li_ui_li_gen_1421432617782_1-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:18px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1421432617782_1.IN-right {display:block !important;float:left !important;height:18px !important;margin-right:4px !important;padding-right:4px !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:right -100px !important;}#li_ui_li_gen_1421432617782_1-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:0px -60px !important;}#li_ui_li_gen_1421432617782_1-content.IN-right {display:inline !important;font-size:11px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:18px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1421432617782_1-container.IN-empty {display:none !important;}#li_ui_li_gen_1421432617782_1-container.IN-hidden #li_ui_li_gen_1421432617782_1 {display:none !important;}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+
+<body class="single single-post postid-60833 single-format-standard custom-background group-blog" style="display: block;">
+		<nav class="site-navigation">
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<p id="search-icon-link" class="pull-right visible-xs navbar-text">
+				    <a href="http://coronalabs.com/search"><span class="glyphicon glyphicon-search"></span></a>		
+				</p>
+				<!-- Your site title as branding in the menu -->
+				<a class="navbar-brand" href="http://coronalabs.com/" title="Corona Labs" rel="home"><span class="visible-xs">Corona Labs</span></a>
+		  	</div>
+
+			<div id="download-link" class="navbar-right hidden-xs hidden-sm">
+			    <a href="https://developer.coronalabs.com/downloads/coronasdk" class="btn btn-corona btn-sm navbar-btn">Download</a>
+			</div>
+			<div id="user-account-top-bar" class="navbar-right hidden-xs">
+			    <div id="user-account-container">
+			        <div id="top-download-signin"><a href="https://developer.coronalabs.com/user/login" id="" class="btn btn-primary btn-sm navbar-btn" target="_parent">Sign-in</a></div>
+			        <div id="top-user-account" class="hidden"></div>
+			    </div>
+			</div>
+			<div class="search-link pull-right hidden-xs">
+			    <button type="button" id="search-icon" class="btn btn-link navbar-btn"><span class="glyphicon glyphicon-search"></span></button>		
+			</div>
+            <form id="search_form" class="navbar-form navbar-right hidden" role="search" method="get" action="http://coronalabs.com/search/">
+                <a href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#" class="search-close btn btn-sm hidden-xs"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                <div class="input-group input-group-sm">
+		            <input name="q" id="s" type="search" class="search-query top-nav-search form-control" placeholder="Site Search">
+		            <span class="input-group-btn">
+		    			<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+		  			</span>
+                </div>
+            </form>
+			<!-- The WordPress Menu goes here -->
+			<div class="collapse navbar-collapse navbar-responsive-collapse"><ul id="main-menu" class="nav navbar-nav"><li id="menu-item-60549" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-60549 dropdown"><a href="http://coronalabs.com/start-building/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Start Building <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-60351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60351"><a href="http://coronalabs.com/start-building/games/">Games</a></li>
+	<li id="menu-item-60354" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60354"><a href="http://coronalabs.com/start-building/business-apps/">Business Apps</a></li>
+	<li id="menu-item-60355" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60355"><a href="http://coronalabs.com/start-building/education-kid-apps/">Educational Apps</a></li>
+</ul>
+</li>
+<li id="menu-item-59603" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-59603 dropdown"><a href="http://coronalabs.com/products/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Products <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-60356" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60356"><a href="http://coronalabs.com/products/corona-sdk/">Corona SDK</a></li>
+	<li id="menu-item-60361" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60361"><a href="http://coronalabs.com/products/enterprise/">Corona Enterprise</a></li>
+	<li id="menu-item-59626" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59626"><a target="_blank" href="http://coronacards.com/">CoronaCards</a></li>
+	<li id="menu-item-60360" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60360"><a href="http://coronalabs.com/products/support-training/">Support &amp; Training</a></li>
+</ul>
+</li>
+<li id="menu-item-60353" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60353"><a href="http://coronalabs.com/pricing/">Pricing</a></li>
+<li id="menu-item-60358" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-60358 dropdown"><a href="http://coronalabs.com/resources/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Resources <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-59624" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59624"><a href="http://forums.coronalabs.com/">Forum</a></li>
+	<li id="menu-item-59625" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59625"><a href="http://docs.coronalabs.com/">Documentation</a></li>
+	<li id="menu-item-59601" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-59601"><a href="http://coronalabs.com/resources/tutorials/">Corona University</a></li>
+	<li id="menu-item-60350" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60350"><a href="http://coronalabs.com/resources/plugins/">Corona Plugin Directory</a></li>
+	<li id="menu-item-60357" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60357"><a href="http://coronalabs.com/resources/">Other Resources</a></li>
+</ul>
+</li>
+<li id="menu-item-59619" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-59619"><a href="http://coronalabs.com/blog/">Blog</a></li>
+</ul></div>		</div><!-- .container -->
+	</div><!-- .navbar -->
+</nav><!-- .site-navigation -->
+
+<header id="masthead" class="site-header" role="banner">
+	<div class="container">
+		<div class="row">
+			<div class="site-header-inner col-sm-12">
+							</div>
+		</div>
+	</div><!-- .container -->
+</header><!-- #masthead -->
+<div class="container hidden-xs">
+  <div class="row">
+    <div class="col-md-12">
+    <div id="fuse-branding"><a href="http://fusepowered.com/" target="_blank"><img src="./Circles_files/FusePowered_branding_sm.png" alt="A Fuse Powered Company"></a></div>
+    </div>
+  </div>
+</div><div class="main-content">
+    <div id="content-wrapper" class="container">
+
+				
+					
+	<div class="row">
+		<div class="col-md-12">
+			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
+
+				<h1 class="page-title h1">A 2D geometry primer, part 2: circles and angles</h1>
+				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./Circles_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
+			</header><!-- .entry-header -->
+		</div>
+	</div>
+	
+    <div class="row">
+		<div class="main-content-inner col-xs-12 col-sm-8 col-md-8">
+			<article id="post-60833" class="post-60833 post type-post status-publish format-standard has-post-thumbnail hentry category-guest-bloggers category-tutorials-tips-demos tag-android-tv tag-tutorial">	
+				<div class="entry-content">
+					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
+<hr>
+
+<p>We pick up where <a href="./Triangles.html">our treatment</a> on triangles left off, venturing now into the territory of circles.</p>
+
+<p>Rather than cover old ground, the reader is assumed to be familiar with various concepts already discussed. Those who have not done so are <b>strongly</b>
+advised to begin with the previous article.</p>
+
+<H3><a name="circles"></a>Some points on circles (A)</H3>
+
+<p>Now, what is a circle? We all have some intuition, but we are after something of its nature.</p>
+
+<p>We get some sense of it in a tool used to draw them, the <a href="https://en.wikipedia.org/wiki/Compass_(drawing_tool)">compass</a>. One of its legs, typically
+with a sharp end, is fixed on a point. Via hinge, the other leg is separated from the first by a certain distance, then locked into place. Along with a bit of
+pressure to keep it from slipping, we can then turn this second, pencil-equipped leg to draw an arc.</p>
+
+<p>The definition is simply the essence of this mechanism expressed in geometrical language: a <a href="https://en.wikipedia.org/wiki/Circle">circle</a> comprises
+all points that are a given distance, the so-called <b>radius</b>, from a point called the <b>center</b>. In other words, it is the path traced by one revolution
+of the compass.</p>
+
+</p><div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/A1.png" width="200" height="150" alt="Tracing a circle">
+		<div style="caption"><b>A-1</b></div>
+	</div>
+</div>
+
+<p>We ended part one by considering <a href="./Triangles.html#length-and-distance">lengths</a> of the form $ \sqrt{dx^2 + dy^2} $. The radius, $r$ for short, is just
+such a length. From the definition, then, $ \sqrt{\left(x - center_x \right)^2 + \left(y - center_y \right)^2} = r. $ This is often written as $ (x - center_x)^2 +
+(y - center_y)^2 = r^2, $ both sides having been squared. Quite frequently, we need not even deal with the center explicitly, allowing for the simpler $ dx^2 + dy^2
+= r^2. $</p>
+
+<p>We can divide both sides of the equation by $ r^2 $. Doing so, we get $ \left(\fracalign{dx}{r}{dy} \right)^2 + \left(\frac{dy}{r} \right)^2 = 1. $ This is once again the
+equation of a circle, this time with a radius of one, known as the <a href="https://en.wikipedia.org/wiki/Unit_circle">unit circle</a>.</p>
+
+</p><div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/A2.png" width="200" height="150" alt="A chord">
+		<div style="caption"><b>A-2</b></div>
+	</div>
+</div>
+
+</p><div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/A3.png" width="200" height="150" alt="An arc">
+		<div style="caption"><b>A-3</b></div>
+	</div>
+</div>
+
+</p><div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/A4.png" width="200" height="150" alt="Diametrically opposite points">
+		<div style="caption"><b>A-4</b></div>
+	</div>
+</div>
+
+<p>(NOTES: Something about arcs belongs here too)</p>
+<p>(NOTES: Circle with radius zero, otherwise SDF stuff)</p>
+
+</p><div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/A5.png" width="200" height="150" alt="Off-circle points">
+		<div style="caption"><b>A-5</b></div>
+	</div>
+</div>
+
+<p><b>REWRITE REWRITE REWRITE REWRITE REWRITE REWRITE</b></p>
+
+<p>Say we began with a pin, a pencil, and a string. With the string pinned and held taut, we trace out the path defined for us, sketching as we go. Such a
+device is known as a compass, and the shape we trace out will be a circle.</p>
+
+<p>The nature of a circle is captured in this device. One of them comprises all points a specific distance from a special point, the center. The center
+corresponds to the pin and the distance, the radius, the length of the string. The circle is the traced path itself.</p>
+
+<p>We can make a weaker statement about segments of this circle, say where we started tracing at one part and ended at another, without making the full
+traversal. We call these arcs.</p>
+
+<p>This definition lets us speak in terms of SDFs, too.</p>
+
+<p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>
+
+<H3><a name="cosine-and-sine"></a>Cosine and sine (B)</H3>
+
+<p>Now, the circle itself is special enough to get its own name. Might there be anything interesting about $ \fracalign{dx}{r}{dy} $ and $ \frac{dy}{r} $?</p>
+
+<p>These are just numbers, of course, so we could arrive at the same values starting from any other radius. In doing so, we would begin with different $dx$ and $dy$
+values, too.</p>
+
+<p>Both components have a common scale factor, namely $ \frac{1}{r}. $ If we sketch a few $dx$-$dy$ pairs answering to different values of $r$, it quickly becomes clear
+that we have <a href="./Triangles.html#strikingly-similar">similar triangles</a>.</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/B1.png" width="179" height="128" alt="Circle angles">
+		<div style="caption"><b>B-1</b></div>
+	</div>
+</div>
+
+<p>We will see the same phenomenon when we look elsewhere on the circle, although the $ \fracalign{dx}{r}{dy}, \frac{dy}{r} $ pair is unique from place to place.</p>
+
+<p>So, although $dx,$ $dy,$ and $r$ vary, the ratios of $dx$ and $dy$ to $r$ remain fixed, for a given angle opening out from the center. It might be useful if we
+could work with the angle directly and somehow harness these properties.</p>
+
+<p>Answering this call are two <a href="https://en.wikipedia.org/wiki/Trigonometric_functions">trigonometric functions</a> known as
+<a href="http://mathworld.wolfram.com/Cosine.html">cosine</a> and <a href="http://mathworld.wolfram.com/Sine.html">sine</a>. In terms of an angle called $\theta$,
+these are defined as $ \cos\theta = \fracalign{dx}{r}{dy} $ and $ \sin\theta = \frac{dy}{r}. $ From the equation of the unit circle we also have the
+<a href="https://en.wikipedia.org/wiki/List_of_trigonometric_identities">identity</a> (which is to say a relation that is always true, so that two things are
+"identified" with one another): $ \cos^2\theta + \sin^2\theta = 1. $ These are each of immense importance, foundational to the entire discipline of trigonometry
+("the measure of triangles"), to say nothing of mathematics and physics in general.</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/B2.png" width="179" height="128" alt="Obvious points">
+		<div style="caption"><b>B-2</b></div>
+	</div>
+</div>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/B3.png" width="179" height="128" alt="30-60-90 triangle">
+		<div style="caption"><b>B-3</b></div>
+	</div>
+</div>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/B4.png" width="179" height="128" alt="30-60-90, close up">
+		<div style="caption"><b>B-4</b></div>
+	</div>
+</div>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/B5.png" width="179" height="128" alt="45-45-90 triangle">
+		<div style="caption"><b>B-5</b></div>
+	</div>
+</div>
+
+<p>Actually coming up with values for each possible angle would seem like a major hassle, probably requiring many more geometric insights than we have besides.
+Thankfully, triangles have been objects of fascination since time immemorial; this very antiquity means that other minds have long been doing this painstaking
+work and <a href="https://en.wikipedia.org/wiki/Trigonometric_tables">tabulating the results</a>, which have steadily improved along the way. These same efforts
+have also given us solid algorithms to compute these values, so that today in Corona we need only call
+<a href="https://docs.coronalabs.com/api/library/math/cos.html">math.cos</a> or
+<a href="https://docs.coronalabs.com/api/library/math/sin.html">math.sin</a>.</p>
+
+<p>We saw in part one, with the <a href="./Triangles.html#pythagoras">Pythagorean theorem</a>, how we might not have both $x$ and $y,$ but rather one of them
+together with $z.$ By rearranging the equation, we were able to solve for something other than $z.$ Likewise, we might already have, say, $ \cos\theta. $ If we
+also knew our radius, we could find $ dx = r\cos\theta. $</p>
+
+<p>(NOTES: Could use a lead-up demonstrating length with similar triangles)</p>
+
+<p><b>REWRITE REWRITE REWRITE REWRITE REWRITE REWRITE</b></p>
+
+<p>We saw in part one how to do lengths and also visited the idea of similar triangles. A little demonstration will tie these together.</p>
+
+<p>The triangle comes from how we defined length.</p>
+
+<p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>
+
+<H3><a name="adjacent-and-opposite"></a>Adjacent and opposite (C)</H3>
+
+<p>Cosine = adjacent, sine = opposite stuff</p>
+
+<p>At any given angle $\theta$ in a circle of radius $r,$ we would have a right triangle where $ dx = r\cos\theta $ and $ dy = r\sin\theta. $ We have two of the
+ingredients: right triangle and angle. Interpreting the hypotenuse, $ \vlen{v}, $ as a radius, completes the picture. Reading things back into our triangle, then,
+it has base $ \vlen{v}\cos\theta $ and height $ \vlen{v}\sin\theta. $</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/C1.png" width="179" height="128" alt="Polar coordinates">
+		<div style="caption"><b>C-1</b></div>
+	</div>
+</div>
+
+<p>(NOTES: Earlier idea, i.e. from triangles article, about assuming nice orientation)</p>
+<p>(NOTES: Polar coordinates)</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/C2.png" width="200" height="150" alt="Adjacent and opposite">
+		<div style="caption"><b>C-2</b></div>
+	</div>
+</div>
+
+<p>So far, we have been treating the triangles as rooted at the right-hand side. As we covered in the first article, often we will begin with an idealized triangle
+to make our points and then abstract from there.</p>
+
+<p>To this end, rather than the $dx$ and $dy$ we have used thus far, these sides tend to be designated as adjacent and opposite, respectively. These have the same meanings
+as before, describing their relationship to the angle. This has some interesting outcomes: for instance, the adjacent side might in fact be behind us.</p>
+
+<p>That said, for the moment we will remain with this nice triangle.</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/C3.png" width="200" height="150" alt="Cosine ratio to unit circle">
+		<div style="caption"><b>C-3</b></div>
+	</div>
+</div>
+
+<p>For the majority of angles, the cosine and sine will both be inside of the unit circle. To reach the circle itself, we need to scale these lengths. The unit radius and
+cosine are in a $1 : \cos\theta$ ratio, of course.</p>
+
+<p>We now have one length. As mentioned earlier, this gives us all we need to produce a similar triangle, since the scaling is uniform. So we can apply it to our cosine-sine
+triangle.</p>
+
+<p>The other leg of the triangle will have length $\sin\theta\left({1 \over \cos\theta}\right),$ or ${\sin\theta \over \cos\theta}.$ This is typically called the tangent, or
+$\tan\theta,$ since it only "touches" the circle.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/C4.png" width="200" height="150" alt="Tangent and secant">
+		<div style="caption"><b>C-4</b></div>
+	</div>
+</div>
+
+<p>Given an angle and its adjacent side, the tangent lets us calculate the opposite side. This can be convenient, say when the hypotenuse is unknown.</p>
+
+<p>We have the two legs, and can now find the length of the hypotenuse. This is $\sqrt{1 + {\sin^2\theta \over \cos^2\theta}}.$ We can change the inner part to
+$\sqrt{{\cos^2\theta + \sin^2\theta} \over \cos^2\theta}.$ This becomes the ratio we started with, ${1 \over \cos\theta}.$ This also has a name, the secant, or
+$\sec\theta,$ since it "cuts" the circle.</p>
+
+<p>Worth noting is that we discovered an identity along the way: $\tan^2\theta + 1 = \sec^2\theta,$ which is occasionally handy.</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/C5.png" width="200" height="150" alt="Cosine to sine via the tangent">
+		<div style="caption"><b>C-5</b></div>
+	</div>
+</div>
+
+<p>In the same way, we can find the cotangent and cosecant functions starting from sine.</p>
+
+<p>Historically, several other relationships have been given special names, but have fallen out of favor for whatever reason.</p>
+
+<p>Beyond the motivation, of course, we made little use of the circles. In fact, we can simply pretend one is there, allowing us to generalize these to any
+situation with a right triangle.</p>
+
+<H3><a name="angle-addition"></a>Angle addition (D)</H3>
+
+<p>Continuing on the angle theme, recall how adjacent angles summed together.</p>
+
+<p>We begin with the triangle for one of these, as normal.</p>
+
+<p>One for a second rests on top of the original triangle. This is where our opposite-adjacent abstraction comes to the fore, as it no longer aligns with the x-axis.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/D1.png" width="200" height="150" alt="Two angles">
+		<div style="caption"><b>D-1</b></div>
+	</div>
+</div>
+
+<p>The right angle's corner on the second triangle rests on the hypotenuse of the first triangle, which has length 1 on the unit circle. The distance to this point is
+$ \cos\beta, $ the length of that side.</p>
+
+<p>We can create a similar triangle from the first triangle, using this length as the common scale factor. Then by scaling the sides of the first triangle, the position of
+this corner is $ \vcomps{\cos\beta\cos\alpha}{\cos\beta\sin\alpha}. $</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/D2.png" width="200" height="150" alt="Point on triangle">
+		<div style="caption"><b>D-2</b></div>
+	</div>
+</div>
+
+<p>Of course, as with our two triangles, we can tease out the triangle for the combined angle, $ \alpha + \beta, $ which will have corner $ \vcomps{\cos(\alpha + \beta)}
+{\sin(\alpha + \beta)}. $</p>
+
+</p><div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/D3.png" width="200" height="150" alt="Discovering some angles">
+		<div style="caption"><b>D-3</b></div>
+	</div>
+</div>
+
+<p>In doing so, we flush out several smaller triangles. On the bottom, we have one similar to the first triangle. As we saw in the previous article, vertical angles are
+equal, so that carries over to the triangle above. Furthermore, angles sum to 180&deg;, so the angle up top is $\alpha.$</p>
+
+<p>We can further split the above triangle into two smaller right triangles by cutting it horizontally. Up top, we again fill in the missing angle from the sum to 180&deg;
+(As an aside, note that these both happen to be similar to the first triangle.)</p>
+
+</p><div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/D4.png" width="150" height="120" alt="One point to another">
+		<div style="caption"><b>D-4</b></div>
+	</div>
+</div>
+
+<p>This new top triangle has hypotenuse $ \sin\beta. $ Thus, it has horizontal length of $ \sin\alpha\sin\beta $ and vertical length $ \cos\alpha\sin\beta. $</p>
+
+<p>The corner coincides with that of the second triangle, whereas the upper one is the position of the new angle. So we have</p>
+
+<p>
+\begin{align}
+\cos(\alpha + \beta) & = \cos\beta\cos\alpha - \sin\alpha\sin\beta \\
+\sin(\alpha + \beta) & = \cos\beta\sin\alpha + \cos\alpha\sin\beta
+\end{align}
+<p>
+
+<p>These formulae are invaluable.<p>
+
+<p>Although the circumstances were a bit particular, this actually generalizes to angles in any quadrant or magnitude.</p>
+
+<p>(NOTES: Image to back up last statement?)</p>
+<p>(NOTES: Tangent?)</p>
+
+<H3><a name="multiple-identities"></a>Multiple identities (E)</H3>
+
+<p>We can derive some useful results immediately from them, too.</p>
+
+<p>$\sin(\theta + \theta) = \cos\theta\sin\theta + \cos\theta\sin\theta, $ or
+
+<p>
+\begin{align}
+\sin 2\theta & = 2\cos\theta\sin\theta
+\end{align}
+<p>
+
+<p>In (FIGURE), notice that the right triangle would have area $ \frac{r^2\cos\theta\sin\theta}{2}. $ Given an angle and hypotenuse, then, the area of the
+triangle is given by $ \frac{r^2}{2}\frac{\sin 2\theta}{2}, $ or $ \frac{r^2\sin 2\theta}{4}. $ The connection between sine and area goes deeper, as we will
+see in the next article.</p>
+
+<p>We can see how this looks. Here we have the two triangles stacked as before, forming two halves of an isosceles triangle (TODO: should point out this
+property in article 1). The two opposite sides sum up, so the full triangle has side of $ 2\sin\theta. $</p>
+
+<p>We can draw an altitude down through this triangle, which will have height $ \sin 2\theta. $ In doing so, we will have a case of vertical angles that in
+turn will bring the angle $ \theta $ up into the other new triangle.</p>
+
+<p>The altitude is its adjacent side, of course, and the hypotenuse $ 2\sin\theta. $ This confirms our identity; in fact, it would have been another way to
+derive it.</p>
+
+<p>$\cos(\theta + \theta) = \cos\theta\cos\theta - \sin\theta\sin\theta, $ or
+
+<p>
+\begin{align}
+\cos 2\theta = \cos^2\theta - \sin^2\theta
+\end{align}
+<p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/E1.png" width="200" height="150" alt="Doubled angle">
+		<div style="caption"><b>E-1</b></div>
+	</div>
+</div>
+
+<p>This last one obviously resembles our previous identity. In fact, we can add 1 to both sides to introduce it: $ 1 + \cos 2\theta = \cos^2\theta + (1 - \sin^2\theta), $
+or $ \cos 2\theta = 2\cos^2\theta - 1. $ We can use the identity to go back to sine, too, for a right-hand side of $ 1 - 2\sin^2\theta. $ (We can also get this
+result from the figure.)</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/E2.png" width="200" height="150" alt="Geometry of double angle identities">
+		<div style="caption"><b>E-2</b></div>
+	</div>
+</div>
+
+<p>If we plug a half-angle into this last result, we get $ \cos(\frac{\theta}{2} + \frac{\theta}{2}) = 1 - 2\sin^2\frac{\theta}{2}. $</p>
+
+<p>This is already useful, as $ 1 - \cos\theta $ is known to be unstable numerically, so $ 2\sin^2\frac{\theta}{2} $ is often used in its stead.</p>
+
+<p>Furthermore, we can arrange this and solve as $ \sin\frac{\theta}{2} = \pm\sqrt{\frac{1 - \cos\theta}{2}}. $ From the identity, of course, it follows that
+$ 1 - \cos^2\frac{\theta}{2} = \frac{1 - \cos\theta}{2}. $ After some rearrangement and solving again for a root, we have $ \cos\frac{\theta}{2} =
+\pm\sqrt{\frac{1 + \cos\theta}{2}}. $ Context will clue us in on which side is appropriate.</p>
+
+<p>(NOTES: Chord length)</p>
+<p>(NOTES: Power-lowering)</p>
+<p>(NOTES: Probably can make this a legitimate double- and half-angle section, rather than generic identities one)</p>
+<p>(NOTES: Tangent)</p>
+
+<H3><a name="settling-differences"></a>Settling differences (F)</H3>
+
+<p>We would also like to split angles up, which entails differences of angles, $ \alpha - \beta. $</p>
+
+<p>Since this difference will be an angle itself, we can express it in terms of what we just found, with $ \alpha $ as the complete angle and $ \beta $ as
+the second angle being added.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/F1.png" width="200" height="150" alt="Difference of angles">
+		<div style="caption"><b>F-1</b></div>
+	</div>
+</div>
+
+<p>Thus we can plug in $ \alpha = (\alpha - \beta) + \beta $ into our previous equations, giving us</p>
+
+<p>
+\begin{align}
+\cos\alpha & = \cos(\alpha - \beta)\cos\beta - \sin(\alpha - \beta)\sin\beta \\
+\sin\alpha & = \sin(\alpha - \beta)\cos\beta + \cos(\alpha - \beta)\sin\beta
+\end{align}
+<p>
+
+<p>Now, this undoubtedly looks a bit unwieldy, with both cosine and sine in each equation. As with addition, we want them on their own.</p>
+
+<p>We can get some hint of things if we add the two equations together: $ \cos\alpha + \sin\alpha = \cos(\alpha - \beta)(\cos\beta + \sin\beta) +
+\sin(\alpha - \beta)(\cos\beta - \sin\beta). $</p>
+
+<p>If $ \cos\beta + \sin\beta $ was zero, the cosine would go away and we would have the sine on its own. Likewise, with $ \cos\beta - \sin\beta $ being
+zero, we isolate the cosine.</p>
+
+<p>Now, these are the terms the equations gave us, so there is not much we can do. However, we can backtrack a bit and start with slightly modified
+equations.</p>
+
+<p>If the second term were slightly different, $ \cos\beta\sin\beta - \cos\beta\sin\beta, $ the sine would indeed go away. The original $ \sin\beta $
+comes from the first equation and $ \cos\beta $ from the second. This suggests scaling the first equation by $ \cos\beta $ and the second by
+$ \sin\beta. $</p>
+
+<p>In so doing, of course, we must apply the scale factor to all the terms.</p>
+
+<p>After summing the two scaled equations, we have $ \cos\alpha\cos\beta + \sin\alpha\sin\beta = \cos(\alpha - \beta)(\cos^2\beta + \sin^2\beta).$ This
+simplifies to</p>
+
+<p>
+\begin{align}
+\cos(\alpha - \beta) & = \cos\alpha\cos\beta + \sin\alpha\sin\beta
+\end{align}
+<p>
+
+<p>The same idea applies to sine, although here we must subtract one equation from the other. This finally boils down to</p>
+
+<p>
+\begin{align}
+\sin(\alpha - \beta) & = \sin\alpha\cos\beta - \sin\beta\cos\alpha
+\end{align}
+<p>
+
+<p>(NOTES: product-to-sum, sum-to-product identities)</p>
+
+<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
+
+<p>When discussing double angles we split a triangle up into two right triangles and made some analysis of the results,
+with the assumption that the points were either on the unit circle or its center.</p>
+
+<p>This sort of triangle will also arise in more general circumstances, where some of the details will remain intact.
+The base of the left-hand triangle, for instance, can usefully be subtracted from the combined base to give the right-hand
+side.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/G1.png" width="200" height="150" alt="Law of cosines">
+		<div style="caption"><b>G-1</b></div>
+	</div>
+</div>
+
+<p>Then we can apply the Pythagorean theorem on the right-hand side, tying all three sides together in one equation: $ (A\sin\theta)^2
++ (C - A\cos\theta)^2 = B^2. $<p>
+
+<p>After expansion, this gives us the so-called Law of Cosines:</p>
+
+<p>
+\begin{align}
+A^2 + C^2 - 2AC\cos\theta & = B^2
+\end{align}
+<p>
+
+<p>This gives us a means of using the cosine with non-right triangles. In particular, when we know a couple of sides and one of the
+angles, we can find the (squared) length of the third side.</p>
+
+<p>Although we generalized away from circle-based triangles, in that case two of the sides will be $r,$ giving us
+
+<p>
+\begin{align}
+r^2(2 - 2\cos\theta) & = B^2
+\end{align}
+<p>
+
+<p>This gives us a second chord formula, in this case for the squared length.</p>
+
+<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
+
+<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
+letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/G2.png" width="200" height="150" alt="Law of sines">
+		<div style="caption"><b>G-2</b></div>
+	</div>
+</div>
+
+<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
+the same result. Thus</p>
+
+<p>
+\begin{align}
+\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
+\end{align}
+<p>
+
+<p>The common $ 1 \over 2 $ factor will cancel out. If we divide "both" sides by $ABC,$ this will come out to</p>
+
+<p>
+\begin{align}
+\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
+\end{align}
+<p>
+
+<p>This is the Law of Sines, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
+used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
+
+<p>There is also a Law of Tangents, which builds upon the Law of Sines.</p>
+
+<p>(NOTES: Fill this in... $ D\sin b = B, $ etc. then do $ a + b $ and $ a - b, $ grind out, use sum-to-product, etc.)</p>
+
+<H3><a name="angles"></a>Angles (H)</H3>
+
+<p>(NOTES: Needs a bit of repair, and stealing from H, but I think it would be better motivated here)</p>
+
+<p>We explored angles a bit when we spoke of triangles, much of which carries over to circles.</p>
+
+<p>An angle describes the space between two intersecting sides. Since triangles are closed, we also have the idea of interior angles and sums to 180&deg;.</p>
+
+<p>Moreover, since two of a triangle's points form a line, and the third point is on one side or another, an angle is always less than a straight line.</p>
+
+<p>Circles continue the idea of an opening between sides, though extending it as it continues all around, to the point where the triangle construction falls apart.</p>
+
+<p>Now, on its own this does little for us. A circle is one full revolution, which is not much use as far as angles go.</p>
+
+<p>However, angles let us specify points on the circle boundary. In fact, if we rotate the boundary and allow the circle to grow and shrink, we can cover all space, giving us
+the so-called polar coordinates.</p>
+
+<p>We also now have a useful concept of arc. Starting from the "home" position, the arc goes from there to this position. Generalizing further, with two positions, the arc between
+them is the longer minus the shorter, which simplifies to their common interval.</p>
+
+<p>These are still points on the circle, so they inherit the distance property.</p>
+
+<p>Now, we run into something if we try to find the arc crossing the "home" position again. We are at a position we have already crossed, but clearly have traveled more distance.</p>
+
+<p>The circle exhibits periodicity. While we can traverse the 360&deg;, we will look as though we had only traversed some. We can decompose the full length. Often we will only care
+about the remainder.</p>
+
+<p>Further, similar things happen if we go the other way, with negative arcs. We can interpret these as being subtracted from 360&deg; to fix them up. The periodicity will also occur here.</p>
+
+<p>(NOTES: This should be earlier, probably as the second section)</p>
+<p>(NOTES: Rough!!!!)</p>
+<p>(NOTES: Opportune place to describe similar triangles technique? Or augment the Triangles article section?)</p>
+<p>(IMAGES - varieties of angles; triangle)</p>
+
+<H3><a name="transform"></a>Transformation (I)</H3>
+
+<p>Notice how closely the addition and subtraction formulae match. It almost appears consistent with feeding $ \alpha - \beta $ to the addition formula as
+$ \alpha + (-\beta). $</p>
+
+<p>To shore up the gap, it must be so that $ \cos(-\beta) = \cos\beta $ and $ \sin(-\beta) = -\sin\beta.$</p>
+
+<p>In fact, this is the case. Recurring to our earlier analysis about angles and definitions of the cosine and sine. At a given angle, we have two possible values of $y$,
+one on the upper and the other on the lower semicircle, corresponding to the positive and negative angle. On the other hand, $x$ remains the same.</p>
+
+<p>We can account for this by reviewing the original definition of cosine and sine. On the right half, both values have the same $dx,$ but $dy$ differ in sign;
+likewise on the left. So our guess checks out.</p>
+
+<p>This gives us an easy way to flip a value vertically, given an angle.</p>
+
+<p>What about horizontally?</p>
+
+<p>In this case we will be a certain angular distance from the center, $ 90^{\circ} - \beta. $ But we want to flip, which requires going twice that distance,
+for $ 180^{\circ} - 2\beta. $ If we add this to our current angle, we get $ 180^{\circ} - \beta. $</p>
+
+<p>We can plug this into our angle difference equations to confirm the result.</p>
+
+<p>Another way we might have gotten this is to figure that we were $\beta$ from the start, so subtract as much from the end.</p>
+
+<p>This is fairly obvious up top, but this result also holds in the bottom half and with negative angles.</p>
+
+<p>We might also want to flip more generally. We can use either of the previous results to do so. If our axis is at $\theta,$ unrotate by that much to bring it in
+line with the x-axis, do a vertical flip, then rotate back. Alternatively, unrotate by $ \theta - 90^{\circ}, $ perform a horizontal flip, then rotate back.</p>
+
+<p>The first tactic is simple enough. If the axis to flip around makes an angle of $\beta,$ we need to subtract by that to bring all points in the arc into range,
+so $ \alpha - \beta. $ At this point, negating the angle will do the flip, so $ \beta - \alpha. $ We then need to undo the rotation, so we add back $ \beta, $
+giving us a final angle of $ 2\beta - \alpha. $ Note that when the axis is already aligned, with $ \beta = 0, $ we get $ -\alpha, $ as expected.</p>
+
+<p>In the second, $\gamma$ is the difference from the vertical axis. However, we begin as before. We then plug our angle into the horizontal flip formula, for
+$ 180^{\circ} - \alpha + \gamma, $ then finally add $\gamma$ back. Now, recall that $\gamma$ is only the divergence from the vertical axis, so we have to add 90&deg.
+In other words, $ \gamma = \beta - 90^{\circ}. $ Then we have $ 180^{\circ} - \alpha + 2(\beta - 90^{\circ}), $ which reduces to the previous equation.</p>
+
+<p>(TODO: Reflections)</p>
+<p>(TODO: Similarity transformation)</p>
+
+<H3><a name="computation"></a>Computation (J)</H3>
+
+<p>With all of these identities under our belts, along with a few known values, we have what we need to calculate fairly arbitrary cosine and sine results.</p>
+
+<p>First off we can bring angles outside the range back, via the modulus. This simplifies things quite a bit.</p>
+
+<p>Now if our identities hold, we can both start and end at the start angle, under the separate guise of 0&deg; and 360&deg;. Further, we know 90&deg;, 180&deg;,
+and 270&deg;. We also know some of the intermediate angles, though these would quickly follow from some identity magic.</p>
+
+<p>Our idea is to break a number down by halving it, possibly many times, and adding or subtracting such numbers together. This is exactly what our identities
+let us do.</p>
+
+<p>So for example (some contrived but demonstrative value).</p>
+
+<p>As we can see, this already works. Historically, many of these values were tabulated for easy lookup (indeed, this was even a common procedure in stock
+programming, when the trigonometric operations were expensive). This would have been, roughly, the process behind them.</p>
+
+<p>Much has improved, but the ideas at root are the same.</p>
+
+<H3><a name="closer-look"></a>A closer look</H3>
+
+<p>(NOTES: NEVER MIND... anyhow, we'll be removing all this)</p>
+
+<p>We ought to do a little unpacking of our formulae.</p>
+
+<p>First up, $ \cos^2\theta + \sin^2\theta = 1. $ Owing to the squares, neither of the left-hand terms will be negative. This being so, it must also be the
+case that $ \cos^2\theta\le 1 $ and $ \sin^2\theta\le 1. $ Of course, if either term is exactly one, the other will be zero.</p>
+
+<p>Pressing further, this means $ {\mid\cos\theta\mid}\le 1 $ and $ {\mid\sin\theta\mid}\le 1. $
+
+<p>Since $ \cos\theta = \fracalign{dx}{r}{dy} $ and $ \sin\theta = \frac{dy}{r}, $ the <a href="https://en.wikipedia.org/wiki/Maxima_and_minima">minimum and maximum values</a>
+of cosine and sine occur at $ dx = \pm r $ and $ dy = \pm r, $ respectively.</p>
+
+<p>Without delving too deeply into their properties, it should be evident that cosine and sine are nice smooth functions, since as we take small steps through $\theta$,
+the corresponding $dx$ and $dy$ values vary only slightly as well.</p>
+
+<p>When $ dx = +r, $ we have $ \cos\theta = 1. $ As mentioned, this must mean that $ \sin\theta = 0 $, corresponding to $ dy = 0. $ By convention, the angle begins
+counting from here&mdash;that is to say, $ \theta = 0^{\circ} $ at $ \vcomps{+r}{0} $&mdash;then proceeds counterclockwise.</p>
+
+<p>When $ dx = 0, $ on the other hand, $ \cos\theta = 0. $ In this case, $ \sin\theta = \pm 1, $ and $\theta$ is either 90&deg; or 270&deg;.</p>
+
+<p>With $ dx = -r, $ we end up with $ \cos\theta = -1. $ Again $dy$ and $ \sin\theta $ are both zero, but here $ \theta = 180^{\circ}. $</p>
+
+<p>Sine lends itself to the same sort of analysis. The results, while differing in a few particulars, will more or less rhyme.</p>
+
+<p>We saw that sine could give the same result for different values of $\theta$. At first this might seem a little mysterious, since cosine only takes on one value as
+we go from right to left. The key is that cosine depends only on $dx$. However, except on the very left or right, there <b>are</b> two points with $dx$ on the unit
+circle: $ \vcomps{dx}{dy} $ and $ \vcomps{dx}{-dy}: $ one on the top half of the circle and other directly below it, along the bottom.</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/cosine_symmetry.png" width="100" height="75" alt="Cosine symmetry">
+		<div style="caption">Figure 6</div>
+	</div>
+</div>
+
+<p>Cosine is an example of an <a href="http://www.mathwords.com/e/even_function.htm">even function</a>, in that $ \cos\theta = \cos(-\theta). $ We do not find this same
+symmetry with sine, but rather that $ \sin\theta = -\sin(-\theta). $ The sine is said to be <a href="http://www.mathwords.com/o/odd_function.htm">odd</a>.</p>
+
+<p>The takeaway is that cosine is always positive when the angle is small, only going negative once it spills over into the left side of the circle. Sine, meanwhile, is
+positive so long as the angle remains in the top half of the circle, even when also on the left, and negative once in the bottom half; however, an angle can go directly
+from zero to negative, so small angles provide no guarantees.</p>
+
+<p>This is quite a lot to take in all at once! These are key details when it comes to developing a geometrical intuition, though, so they are well worth learning.</p>
+
+<p>(NOTES: Carve up, redistribute?)</p>
+
+<H3><a name="round-and-round"></a>Round and round we go (K)</H3>
+
+<p>Consider something like thread, wound around a spool.</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/K1.png" width="200" height="125" alt="Unraveling a circle">
+		<div style="caption"><b>K-1</b></div>
+	</div>
+</div>
+
+<p>Now, suppose we have enough thread to wrap around once, so the two ends <i>just</i> meet. No stretching allowed!</p>
+
+<p>Obviously, this thread has a length. As this thought experiment demonstrates, this length applies in some sense to the spool, as well, more specifically its circular
+cross-section. This distance around a circle is called its <a href="https://en.wikipedia.org/wiki/Circumference">circumference</a>.</p>
+
+<p><a href="http://quatr.us/math/geometry/circumferenceproof.htm">LINK</a></p>
+
+<p>The thread is easily measured, of course. Once unrolled, its length is just the straight-line distance from one end to the other.</p> 
+
+<p>Thread was one example, but we could come up with many more, in all shapes and sizes. Soon enough, a relationship seems to emerge: one revolution of the "thread" always
+shows a circumference just shy of 6.3 times the radius of the "spool".</p>
+
+<p>Traditionally, rather than relate the circumference to the radius, which reaches only halfway across the circle&mdash;that is, from any given point on the boundary to its
+center&mdash;the <a href="https://en.wikipedia.org/wiki/Diameter">diameter</a> is preferred instead. Nothing fancy here; the diameter is simply twice the radius. The ratio
+of the circumference to the diameter, then, comes out to approximately 3.14159...</p>
+
+<p>This is the <a href="https://en.wikipedia.org/wiki/Pi">famous constant</a>, $ \pi! $</p>
+
+<p>As expressed in mathematical symbols, then, circumference is given by $ 2 \pi r. $</p>
+
+<p>Continuing with the wraparound approach, we can wrap "threads" one-fourth, half, and three-quarters of the original length around our circle. It should come as little
+surprise that these appear to span the same fraction of the circumference. The facts bear this out for arcs in general, giving us
+<a href="https://en.wikipedia.org/wiki/Arc_(geometry)#Length_of_an_arc_of_a_circle">arc lengths</a> of $ (2\pi r)t $, with $ 0 \le t \le 1 $ being the ratio of arc to
+circumference.</p>
+
+<p>Working with $t$ is a bit awkward, since we then basically already know our arc length. We can streamline this by using angles between 0 and $2\pi$ to traverse the
+circle. Then arc length is simply $ L = r\theta. $ In the unit circle, for that matter, angle and arc length are one and the same.</p>
+
+<p>Such angles are known as <a href="https://en.wikipedia.org/wiki/Radian">radians</a>. Frequently, in geometry, and almost exclusively in trigonometry, these will be the
+preferred unit of angular measure. Rather than 90&deg;, 180&deg;, 270&deg;, and 360&deg;, it is quite common to see $ {\pi\over 2}, $ $\pi,$ $ {3\pi\over 2}, $ and $ 2\pi $ in mathematical texts.</p>
+
+<p>Thankfully, the ranges $ [0, 2\pi] $ and $ [0, 360] $ differ only by a constant scale factor. A measurement denominated in degrees can be multiplied by $ \pi \over 180 $
+to convert it to radians, while $ 180 \over \pi $ will achieve the reverse. In fact, Lua&mdash;and thus Corona&mdash;even provides a couple helper functions, so we need not
+even remember these values: <a href="https://docs.coronalabs.com/api/library/math/deg.html">math.deg</a> and
+<a href="https://docs.coronalabs.com/api/library/math/rad.html">math.rad</a>.</p>
+
+<pre class="prettyprint"><code class="language-lua">local rad = math.rad
+local sin = math.sin
+
+function PI ( n )
+  -- At the outset, we have three 60-degree triangles, or 3 * (2 * sin(30 degrees)). At each
+  -- iteration, we halve all the angles and double the triangle count.
+  local count = 2^(n + 1)
+
+  return 3 * count * sin( rad( 60 / count ) )
+end
+
+print( PI( 15 ) ) -- on my machine, prints 3.1415926534561...
+print( math.pi ) -- ...and 3.1415926535898</code></pre>
+
+<p>This sample is a little circular, as it converts to radians in the process. We can use our earlier half-angle identities, however.</p>
+
+<pre class="prettyprint"><code class="language-lua">local sqrt = math.sqrt
+
+local function Sin ( steps )
+  local cosa = sqrt( 3 ) / 2 -- start with cos(60 degrees)
+
+  for i = 1, steps - 1 do
+    cosa = sqrt( (1 + cosa) / 2 ) -- get cos(angle / 2)
+  end
+
+  return sqrt( 1 - cosa^2 ) -- sin(angle)
+end
+
+function PI2 ( n )
+  local steps = n + 1  
+  local count = 2^steps
+
+  return 3 * count * Sin( steps )
+end
+
+print( PI2( 13 ) ) -- prints 3.1415926453212</code></pre>
+
+<p>Unfortunately, numerical precision issues begin to accumulate as more steps are taken. But it demonstrates the principle.</p>
+
+<p><b>REWRITE REWRITE REWRITE REWRITE REWRITE REWRITE</b></p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/K2.png" width="200" height="150" alt="Circumference by method of exhaustion, step 1">
+		<div style="caption"><b>K-2</b></div>
+	</div>
+</div>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/K3.png" width="200" height="150" alt="Step 2">
+		<div style="caption"><b>K-3</b></div>
+	</div>
+</div>
+
+<p>On account of the symmetry of the circle we can deal with just half of that, then later double it.</p>
+<p>We can then divvy this up into three arcs, which we can approximate by triangles.</p>
+<p>In particular, each has 60 degrees. Since two of the sides will be radii, we know the other angles are equal, that is these are equilateral triangles.</p>
+<p>Thus the side near the circle boundary also has the radius as length.</p>
+<p>So a decent approximation for the boundary is 3 times the radius.</p>
+<p>We can divide these in half in turn, which give us our earlier 30-60-90 triangles, which better approximate the circle. (TODO: Not correct, fix)</p>
+<p>Gradually, we get nearer and nearer to 3.14159...</p>
+
+<p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>
+
+<H3><a name="circle-area"></a>Wheels within wheels (L)</H3>
+
+<p>For completeness, we can also look at the <a href="https://en.wikipedia.org/wiki/Area_of_a_disk">area of a circle</a>.</p>
+
+<p>Within a circle, we can highlight any number of <a href="http://mathworld.wolfram.com/ConcentricCircles.html">concentric circles</a>, which is to say smaller ones that
+share the same center. In the image on the left, for instance, circles of radius $r_1$ and $r_2$ are nested inside a larger circle of radius $r_3$.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/L1.png" width="175" height="150" alt="Nested circles">
+		<div style="caption"><b>L-1</b></div>
+	</div>
+</div>
+
+<p>When we consider two consecutive circles, we see that they form a ring. As mentioned, every point on a given circle is equally far from its center, so if we draw a line
+through two concentric circles, the thickness of this ring will be given by subtracting the lesser radius from the greater one, e.g. $ r_2 - r_1 $.</p>
+
+<p>Now, earlier we saw the connection between circumference and straight line distance. With that in mind, we can draw some conclusions about our pair of circles.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/L2.png" width="200" height="150" alt="Circle strips">
+		<div style="caption"><b>L-2</b></div>
+	</div>
+</div>
+
+<p>The thickness $ r_2 - r_1 $ was the distance between the two circles, so it makes sense as a height. However, $r_2$ is wider than $r_1$, so we have something that is not
+quite a rectangle.</p>
+
+<p>This is what is known as a <a href="https://en.wikipedia.org/wiki/Trapezoid">trapezoid</a>, a geometrical object with two parallel sides, usually of different lengths,
+and a common height.</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/L3.png" width="200" height="150" alt="Trapezoid">
+		<div style="caption"><b>L-3</b></div>
+	</div>
+</div>
+
+<p>As seen in the image, a trapezoid comprises a rectangle and two right triangles. The longer base has length $ w_2 = w_1 + b_1 + b_2, $ the rectangle has area $ w_1 h $,
+and the triangles have areas $ b_1 h \over 2 $ and $ b_2 h \over 2 $.</p>
+
+<p>Together, the triangles have area $ (b_1 + b_2)h \over 2 $. We can replace the sum of the triangle bases, using what we know from the length of the longer trapezoid base:
+$ (w_2 - w_1)h \over 2 $.</p>
+
+<p>Adding the rectangle area to this, our trapezoid has a total area of $ w_1 h + {(w_2 - w_1)h \over 2} $.</p>
+
+<p>Simplifying a little further: $ (w_1 + w_2)h \over 2 $.</p>
+
+<p>Worth noting is that, if the shorter length is zero, this becomes the <a href="./Triangles.html#area">triangle area</a> formula. (If both sides are equal, on the other
+hand, we have a rectangle.)</p>
+
+<p>This may be applied to our unrolled rings. The two sides are their respective circumferences, with the thickness as the height. This is $ (2\pi r_1 + 2\pi r_2)(r_2 - r_1)
+\over 2 $.</p>
+
+<p>This reduces to $ \pi(r_1 + r_2)(r_2 - r_1) $ and in turn $ \pi(r_2^2 - r_1^2) $.</p>
+
+<p>The point about lengths of zero is worth revisiting quickly. Since the side lengths are circumferences in this model, for one to be zero would mean a radius of zero. For
+consistency, we can call this radius $r_0$. This might seem a little strange, yet it fits snugly into the definition of a circle: all points a distance of zero from the center,
+the only such candidate being the center itself!</p>
+
+<p>The upshot of this last bit is that the innermost circle can also be streamlined into the ring formulation.</p>
+
+<p>Now, something interesting happens when we start adding these trapezoids together. Here are our three areas lined up:</p>
+
+<p>
+\begin{align}
+area_1 & = \pi(r_1^2 - r_0^2) \\
+area_2 & = \pi(r_2^2 - r_1^2) \\
+area_3 & = \pi(r_3^2 - r_2^2)
+\end{align}
+<p>
+
+<p>Comparing subsequent lines, we see $ r_1^2 $, followed by $ -r_1^2 $, and likewise for $r_2$. Thus, after summing all these areas together, what remains is $ \pi r_3^2 $.
+Since $r_3$ was the outermost radius, we can write the more familiar area formula, $ \pi r^2 $.</p>
+
+<p>Since all these intermediate terms cancel, we could have found the area with more and more circles, even pushing it to the limit where the distance between consecutive
+circles is infinitesimally small. This might ring a bell to those acquainted with calculus&mdash;indeed, the circle area turns out to be the
+<a href="https://en.wikipedia.org/wiki/Integral">integral</a> of the circumference.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/L4.png" width="175" height="125" alt="Trapezoid stack">
+		<div style="caption"><b>L-4</b></div>
+	</div>
+</div>
+
+<p>(NOTES: sectors)</p>
+<p>(NOTES: Trapezoids slightly more general, e.g. triangle on each side)</p>
+
+<p>The area formula offers us another insight. $ \pi r^2 $ is exactly <a href="http://www.ams.org/samplings/feature-column/fc-2012-02">the area of a triangle</a> with base
+$ 2\pi r $ and height $r$. And indeed, if we stack all our trapezoids (including the "trapezoid" with one side 0), they coalesce into that very triangle!</p>
+
+<H3><a name="personal-space-invasion"></a>Personal space invasion (M)</H3>
+
+<p>Recall the definition of the circle: all points a given distance from a common center. Now imagine the situation where we have two circles, not necessarily with the
+same radius. What would have to be true for them to <i>just</i> touch?</p>
+
+<p>When circles do touch, this means that a point on one circle also belongs to the second circle. We are probably not talking about the trivial case where two circles of
+equal radius overlap, in which cases this is so for <b>all</b> points. Typically, what we do mean is that the circles interpenetrate&mdash;there are two
+<a href="http://mathworld.wolfram.com/Circle-CircleIntersection.html">intersections</a> then, in fact, the first when one circle crosses the other going in, the second on
+the way out. This is true from the point of view of either circle.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/M1.png" width="200" height="150" alt="Circle intersection">
+		<div style="caption"><b>M-1</b></div>
+	</div>
+</div>
+
+<p>The arcs themselves are interesting, but we can do some other things too. For one, we can draw a line segment between the two intersection points. Furthermore, we
+can draw line segments from each point to the circle centers, giving us two triangles. Now, those intersection points are, of course, on the circles, so the distance to
+each respective circle is the radius. In other words, in each triangle, the two lines emerging from the center are equal: this is an isosceles triangle. The angle between
+them is obviously equal to itself. By side-angle-side, such a triangle is equal to itself. This seems a little silly, but it tells us that we could take the mirror image
+of the triangle. It follows from this that the other two angles are equal.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/M2.png" width="200" height="150" alt="Intersection quadrilateral">
+		<div style="caption"><b>M-2</b></div>
+	</div>
+</div>
+
+<p>Now, consider what happens when we split this triangle down the middle. We then have side-angle-side again! One side is the radius, we just saw that these angles are
+equal, and the other side is half of the original length. The angle formed by the dividing line must therefore be the same, which makes these right triangles.</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/M3.png" width="200" height="150" alt="Radical line">
+		<div style="caption"><b>M-3</b></div>
+	</div>
+</div>
+
+<p>The same thing will happen on both sides. The line between the points of intersection is called a <a href="http://mathworld.wolfram.com/RadicalLine.html">radical
+line</a>, and as we see it happens to be perpendicular to the line between the circles' centers.</p>
+
+<p>As the circles draw apart, these "in and out" arcs shrink. In other words, their arc lengths diminish, though obviously the circles (to which the arcs belong) are not
+changing size. Rather, the arc angles are narrowing. When they hit zero, the arcs "enter" and "leave" at the same point. Naturally, the triangles collapse as well, and
+thus so does the radical line, in fact to this point.</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/M4.png" width="200" height="150" alt="Tangent circles">
+		<div style="caption"><b>M-4</b></div>
+	</div>
+</div>
+
+<p>Indeed, this happens to be the point where the circles "just touch". The distance between the centers when this occurs is exactly the sum of the circles' radii:
+$ \sqrt{(center_{1,x} - center_{2,x})^2 + (center_{1,y} - center_{2,y})^2} = r_1 + r_2. $ (If we will not directly use this distance, but need only compare against it,
+we may square both sides.)</p>
+
+<p>Now, when the circles were mashed up against one another, this distance was somewhat less. Going the other way, we know when they exceed this distance, the circles
+are separated and do not touch.</p>
+
+<p>It is worth considering the first case a little more. In particular, when one circle is smaller than the other, it might actually be completely inside the other,
+without touching its boundary.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/M5.png" width="200" height="150" alt="Circle inside circle">
+		<div style="caption"><b>M-5</b></div>
+	</div>
+</div>
+
+<p>As we saw, we know that it is one or the other when the distance between centers is less than the sum of the radii. That distance is key. We already know how far
+the smaller circle is from the center, so in a sense we have "used up" that much radius, and there is some amount left. If the smaller circle's radius is not enough
+to make up the difference, it is completely contained. Otherwise, it touches the boundary.</p>
+
+<p>(NOTES: Intersecting chord midpoints)</p>
+
+<H3><a name="tangent-lines"></a>Tangent lines (N)</H3>
+
+<p>To get back to points on the circle, for any angle we can of course just find the cosine and sine.</p>
+
+<p>By construction, this is the difference between that point and the center. If we follow the same direction one unit out, we would also have a direction pointing
+away from the circle, a so-called surface normal.</p>
+
+<p>Now, locally, this direction would be pointing straight up from the circle. If we went straight to the left or right in either direction, we would miss any more
+of the edge: since points are a radius away, and they have to spend some of that in the curve itself, the space will be empty there.</p>
+
+<p>To go straight left and right implies going 90&deg; away from straight up.</p>
+
+<p>Since the normal's equation is that of the position, we can find one of these candidates by taking the respective measurements: $ x = \cos(\theta + 90^{\circ}) $
+and $ y = \sin(\theta + 90^{\circ}). $ We find that $ \cos(\theta + 90^{\circ}) = -\sin\theta $ and $\sin(\theta + 90^{\circ}) = \cos\theta. $</p>
+
+<p>These are useful identities in their own right (as are the variants where we subtract 90&deg;, which will have signs flipped).</p>
+
+<p>These components describe a tangent line, which only touches the circle at this point. (Although the reasons behind the name are the same and they sometimes arise
+in the same situation, this is different from the trigonometric function described above.)</p>
+
+<p>Together with the normal, these two describe a sort of local coordinate frame above the circle. The next article will explore this idea in more depth.</p>
+
+<p>(NOTES: Can use to "swim" along the surface when combined with re-projection, as in boids)</p>
+
+<p>One example of how to apply this is to string circular arcs together nicely. Given two arcs, we can of course just line up one point from each. This can be a bit
+jarring, though.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/N3.png" width="200" height="150" alt="Discontinuous tangents">
+		<div style="caption"><b>N-3</b></div>
+	</div>
+</div>
+
+<p>If the tangents are pointing in the same (or opposite) directions, however, we have a perfect fit. This is the distinction between C0 and C1 continuity.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/N4.png" width="200" height="150" alt="Smooth join">
+		<div style="caption"><b>N-4</b></div>
+	</div>
+</div>
+
+<p>Certain functions lend themselves to nice approximations via circular blending curves, so this is a useful part of our toolkit.</p>
+
+<p>In fact, curves assume this behavior locally. In addition to the tangent, the notion of curvature asks what the circle looks like locally, namely its radius.</p>
+
+<p>We can also interpret a segment under this idea. One endpoint is taken as the center, while the offset of the second is converted to polar form. We then take
+its tangent. This will apply with any length.</p>
+
+<p>A line is its own tangent. Naturally we might suspect it has no curvature. This would comport with it being an infinitely wide circle.</p>
+
+<H3><a name="making-waves"></a>Making waves (O)</H3>
+
+<p>We have been treating cosine and sine as means of locating points on the circle, but it can be interesting to consider them in the context of coordinates.</p>
+
+<p>This is fairly straightforward in terms of $y.$ From 0 to $\pi,$ we have $y$ matching the upper semicircle. From there to $2\pi,$ it matches the lower one. We can plot this
+by stitching the two halves together, as pictured.</p>
+
+<p>(NOTES: image)</p>
+
+<p>This is slightly awkward. The bottom axis of the graph has a certain split definition to accommodate the turnaround, with $x$ changing in different directions. Plotting $x$
+would proceed similarly, but we must take the right and left semicircles instead, performing a right angle rotation along the way. In that case, it would be in terms of $y.$</p>
+
+<p>Rather than use $x$ and $y$ as the inputs, the angle would be more natural. This streamlines the input, allowing as well for it to extend indefinitely in either direction,
+taking in the periodic nature of the functions.</p>
+
+<p>In this case, our graph switches from $ y = \sqrt{1 - x^2} $ to $ y = \sin\theta, $ which changes the shape slightly, giving us a sine wave.</p>
+
+<p>(NOTES: Various properties, use cases)</p>
+<p>(NOTES: Other functions)</p>
+
+<H3><a name="getting-angle-on-things"></a>Getting an angle on things (P)</H3>
+
+<p>It was mentioned above that something like $ \cos\theta = {dx \over r} $ could be rearranged, say to find $dx$. This is all well and good, but what if our goal is to
+recover $\theta$?</p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">inverse trigonometric functions</a> answer this need. In particular, inverse cosine and
+sine&mdash;available in Corona as <a href="https://docs.coronalabs.com/api/library/math/acos.html">math.acos</a> and
+<a href="https://docs.coronalabs.com/api/library/math/asin.html">math.asin</a>, respectively&mdash;when given some value between -1 and 1, will return an angle that would
+have produced that value via the original function. With the example in the previous paragraph, we can extract an angle like so: $ \theta = \cos^{-1}{dx \over r}. $ The
+$ \cos^{-1} $ and $ \sin^{-1} $ style is often used to denote "inverse", though we will sometimes see <b>arccos</b> and <b>arcsin</b> used as well. The latter form follows
+upon the insight above that angles and arc lengths are equivalenton the unit circle: "arccos" translates to "the arc length leading to this value of cosine"; likewise for
+"arcsin".</p>
+
+<p>We noted above that various angles, in fact infinitely many, would produce the same value when fed to cosine and sine. This obviously presents a problem when it comes time
+to invert! To address this, <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions#Principal_values">some canonical range</a>, generally understood to be the
+best all-around fit, is assigned to each function. In the case of inverse cosine, this is $ [0, \pi] $; for inverse sine, it is $ [-{\pi \over 2}, +{\pi \over 2}] $.</p>
+
+<p>Often enough, these ranges will suit us fine. Otherwise, we will need to rely on additional context to fix the result. If we knew the angle was in the lower half of
+the circle, for instance, the inverse cosine would need to be corrected to be its reflection instead. Obviously, the more automatic this was, the better.</p>
+
+<p>(NOTES: Identities, another image for that)</p>
+<p>(NOTES: chord formulas -> angle)</p>
+<p>(IMAGE - 12)</p>
+
+<p><b>REWRITE REWRITE REWRITE REWRITE REWRITE REWRITE</b></p>
+<p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>
+
+<H3><a name="a-tangent"></a>Off on a tangent</H3>
+
+<p>Now for a little digression.</p>
+
+<p>Another trigonometric function is the <a href="http://mathworld.wolfram.com/Tangent.html">tangent</a>, an admixture of the two we have worked with up to this point:
+$ \tan\theta = {\sin\theta\over\cos\theta}. $</p>
+
+<p>Now, we know that cosine goes to zero at angles like $ -{\pi\over 2} $ and $ \pi\over 2 $, so not only is the tangent undefined there, but it will take on values <b>much</b>
+larger than one as it draws close. In between, on the other hand, it achieves something of a compromise between cosine and sine.</p>
+
+<p>As with cosine and sine, there is an inverse tangent (see <a href="https://docs.coronalabs.com/api/library/math/atan.html">math.atan</a>). Tangent is no exception when
+it comes to ambiguity, so it too must be constrained. The angles we mentioned as troublesome for our cosine denominator also bound the range of inverse sine; naturally
+enough, inverse tangent's range is $ (-{\pi \over 2}, +{\pi \over 2}) $. Note the parentheses, rather than brackets: it will not actually give back $ -{\pi \over 2 } $ or
+$ \pi \over 2 $, since the tangent breaks down there.</p> 
+
+<p>In practice, the inverse tangent is not often all that useful. The zero denominators are a hassle. The cosine gets shoehorned into sine's territory. Cosine or sine might
+be negative, but after division we have only one number, so the details get lost, together with what they might tell us about the angle: when the tangent we wish to solve is
+negative, we cannot tell whether this came from cosine or sine; when positive, were both cosine and sine themselves positive, or did two negatives cancel out?</p>
+
+<p>The solution, of course, is to do some analysis on $ \cos\theta $ and $ \sin\theta $ beforehand, then use our findings to fix up the results. If $ \cos\theta = 0, $ we
+know that $ \sin\theta = \pm 1. $ Then, depending on the sign, we have either $ \theta = {\pi \over 2} $ or $ \theta = -{\pi \over 2}. $ Similarly, in the other situations,
+we can consult the signs to apply the proper corrections.</p>
+
+<p>This is such a common need that a <a href="https://en.wikipedia.org/wiki/Atan2">two-argument inverse tangent</a> has become a staple of programming languages. Lua is
+no exception, offering us <a href="https://docs.coronalabs.com/api/library/math/atan2.html">math.atan2</a>. These go further and recognize that requiring the inputs to be
+bonafide cosine and sine values is too limiting&mdash;in the real world, for instance, it might be hard to ensure that both perfectly satisfy a common $\theta$. Rather,
+as long as both are not zero, they accept $x$ and $y$ arguments and do the heavy lifting behind the scenes, inferring the common radius and then $\theta$.</p>
+
+<p>(NOTES: Carve up, redistribute)</p>
+
+<p><b>REWRITE REWRITE REWRITE REWRITE REWRITE REWRITE</b></p>
+<p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>
+
+<H3><a name="summary"></a>Summary</H3>
+
+<p>Thus far, our investigations have covered triangles and circles. We have examined many of their properties, such as angles, lengths, and areas, and various facts that
+follow from them.</p>
+
+<p>The next article will bring vectors into the fold. We will explore new ground, of course, but also build on our many discoveries thus far.</p>
+
+									</div><!-- .entry-content -->
+					<div class="clearfix row" style="margin:4px 0;">
+						<div class="fade-out clearfix">
+							<!--Facebook Share Button-->
+							<div style="float:left;"><div><div class="fb-like fb_iframe_widget" data-width="90" data-send="true" data-layout="button_count" data-href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/" data-awesm-channel="facebook-like" data-awesm-tool="tCsvyd" data-height="20" data-ref="awesm:c1de8ed723c728ce036bd51b91310e76" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=129391740409903&amp;height=20&amp;href=http%3A%2F%2Fcoronalabs.com%2Fblog%2F2015%2F01%2F13%2Ftutorial-creating-android-tv-apps%2F&amp;layout=button_count&amp;locale=en_US&amp;ref=awesm%3Ac1de8ed723c728ce036bd51b91310e76&amp;sdk=joey&amp;send=true&amp;width=90"><span style="vertical-align: bottom; width: 124px; height: 20px;"><iframe name="f285f3d6b4" width="90px" height="20px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./Circles_files/like.html" style="border: none; visibility: visible; width: 124px; height: 20px;" class=""></iframe></span></div></div></div>
+					        <!--Twitter Tweet Button-->
+					        <div style="float:left;margin:0 5px;width:86px;"><div><iframe src="./Circles_files/tweet_button.html" width="110" height="20" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" class="twitter-share-button twitter-count-undefined"></iframe></div></div>
+					        <script src="./Circles_files/in.js" type="text/javascript">lang: en_US</script>
+					        <span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1421432617759_0"><a id="li_ui_li_gen_1421432617759_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1421432617759_0-logo">in</span><span id="li_ui_li_gen_1421432617759_0-title"><span id="li_ui_li_gen_1421432617759_0-mark"></span><span id="li_ui_li_gen_1421432617759_0-title-text">Share</span></span></a></span></span><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1421432617782_1-container" class="IN-right IN-hidden"><span id="li_ui_li_gen_1421432617782_1" class="IN-right"><span id="li_ui_li_gen_1421432617782_1-inner" class="IN-right"><span id="li_ui_li_gen_1421432617782_1-content" class="IN-right">0</span></span></span></span></span></span><script type="IN/Share+init" data-counter="right"></script>
+					        <!-- Place this tag where you want the +1 button to render. -->
+					        <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1421432617538" name="I0_1421432617538" src="./Circles_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+
+					        <!-- Place this tag after the last +1 button tag. -->
+					        <script type="text/javascript">
+					          (function() {
+					            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					            po.src = 'https://apis.google.com/js/plusone.js';
+					            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					          })();
+					        </script> 
+						</div> 
+					</div>
+				<footer class="entry-meta well well-sm small">
+					This entry was posted in <a href="http://coronalabs.com/blog/topics/guest-bloggers/" rel="category tag">Guest Bloggers</a>, <a href="http://coronalabs.com/blog/topics/tutorials-tips-demos/" rel="category tag">Tutorials, Tips and Demos</a> and tagged <a href="http://coronalabs.com/blog/tags/android-tv/" rel="tag">Android TV</a>, <a href="http://coronalabs.com/blog/tags/tutorial/" rel="tag">tutorial</a>. Bookmark the <a href="./Circles_files/Coroutines.html" title="Permalink to Tutorial: Creating Android TV Apps" rel="bookmark">permalink</a>.
+					
+				</footer><!-- .entry-meta -->
+
+				
+				
+	<div id="comments" class="comments-area">
+
+	
+	
+	
+									<div id="respond" class="comment-respond well">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#respond" style="display:none;">Cancel Reply</a></small></h3>
+									<form action="http://coronalabs.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="Star Crunch" size="30" aria-required="true"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="steve@xibalbastudios.com" size="30" aria-required="true"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="http://www.xibalbastudios.com" size="30"></p>
+												<p><textarea placeholder="Start typing..." id="comment" class="form-control" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags small">You may use these HTML tags and attributes: &lt;a href="" title="" rel=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; 						</p><p class="form-submit">
+							<input name="submit" type="submit" id="commentsubmit" value="Post Comment" class="btn btn-primary btn-xs">
+							<input type="hidden" name="comment_post_ID" value="60833" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="7485a5e885"></p><p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1421432617297"></form>
+							</div><!-- #respond -->
+			
+</div><!-- #comments -->
+
+				
+			</article><!-- #post-## -->
+		</div>
+		<div class="hidden-xs hidden-sm col-md-1 col-lg-1"></div>
+		<div class="sidebar-content-inner col-sm-4 col-md-3 hidden-xs">
+			<div style="display:none;" class="well well-clear">
+				<img width="125" height="125" src="./Circles_files/google-play-store1.png" class="aligncenter wp-post-image" alt="google-play-store">				
+			</div>
+
+			
+
+	<div class="sidebar clearfix well">
+				<div class="sidebar-padder">
+
+						<aside id="widget_tribe_widget_builder_46688-13" class="widget widget_tribe_widget_builder_46688"><div>
+<h4 class="ac">Looking for premium monetization options?</h4>
+<p><a class="btn btn-large btn-info btn-block" id="sidebar-buy-btn" href="http://coronalabs.com/store">BUY PRO</a></p>
+<h5>… or test out <a class="corona-orange" href="https://developer.coronalabs.com/downloads/corona-sdk">Corona SDK Starter for free</a>.</h5>
+</div>
+</aside><aside id="widget_tribe_widget_builder_16089-13" class="widget widget_tribe_widget_builder_16089"><h4 class="sidebar-title">Starting building a…</h4>
+<p>
+</p><ul style="font-size:1.12em;">
+<li><a href="http://coronalabs.com/i-want-to-build/games/">Game</a></li>
+<li><a href="http://coronalabs.com/i-want-to-build/business-apps/">Business app</a></li>
+<li><a href="http://coronalabs.com/i-want-to-build/education-kid-apps/">Educational app</a></li>
+</ul>
+<p>The possibilities are endless!</p>
+</aside><aside id="categories-5" class="widget widget_categories"><h4 class="widget-title lead">Categories</h4><select name="cat" id="cat" class="postform">
+	<option value="-1">Select Category</option>
+	<option class="level-0" value="80">Amazon Kindle</option>
+	<option class="level-0" value="11">Android</option>
+	<option class="level-0" value="1679">Composer</option>
+	<option class="level-0" value="1061">Corona Editor</option>
+	<option class="level-0" value="108">Corona Enterprise</option>
+	<option class="level-0" value="607">Corona Geek</option>
+	<option class="level-0" value="1109">Corona Professional Services</option>
+	<option class="level-0" value="4">Corona SDK</option>
+	<option class="level-0" value="1137">CoronaCards</option>
+	<option class="level-0" value="21">Daily Build</option>
+	<option class="level-0" value="74">eBooks</option>
+	<option class="level-0" value="17">Education</option>
+	<option class="level-0" value="22">Events and Listeners</option>
+	<option class="level-0" value="220">FAQ</option>
+	<option class="level-0" value="16">Flash</option>
+	<option class="level-0" value="389">Friday Night Forum</option>
+	<option class="level-0" value="1119">From the Forum</option>
+	<option class="level-0" value="5">Game Development</option>
+	<option class="level-0" value="620">Google+ Hangouts</option>
+	<option class="level-0" value="6">Guest Bloggers</option>
+	<option class="level-0" value="42">iOS</option>
+	<option class="level-0" value="19">iPad</option>
+	<option class="level-0" value="43">iPhone</option>
+	<option class="level-0" value="20">Lua</option>
+	<option class="level-0" value="3">Mobile App of the Week</option>
+	<option class="level-0" value="7">News &amp; Announcements</option>
+	<option class="level-0" value="10">NOOK</option>
+	<option class="level-0" value="18">Partners</option>
+	<option class="level-0" value="1122">Plugins</option>
+	<option class="level-0" value="31">Showcase</option>
+	<option class="level-0" value="9">Tech</option>
+	<option class="level-0" value="82">Training/Support</option>
+	<option class="level-0" value="12">Tutorials, Tips and Demos</option>
+	<option class="level-0" value="1">Uncategorized</option>
+	<option class="level-0" value="13">Videos</option>
+	<option class="level-0" value="1140">Windows Phone</option>
+</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+	var dropdown = document.getElementById("cat");
+	function onCatChange() {
+		if ( dropdown.options[dropdown.selectedIndex].value > 0 ) {
+			location.href = "http://coronalabs.com/?cat="+dropdown.options[dropdown.selectedIndex].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+/* ]]> */
+</script>
+
+</aside><aside id="widget_tribe_widget_builder_40523-2" class="widget widget_tribe_widget_builder_40523"><h4 class="sidebar-title">Case Study: Panda Math</h4>
+<div class="clearfix ac" style="margin:10px 0 0;"><a href="http://coronalabs.com/case-study/redbyes-creates-mobile-apps-for-early-childhood-education/"><img class="ac" alt="Panda  Math (Redbytes)" src="./Circles_files/Panda-Math-Redbytes-148x150.png"></a><p></p>
+<p class="al">Learn how tinytapps built a portfolio of <a href="http://coronalabs.com/case-study/redbyes-creates-mobile-apps-for-early-childhood-education/">early education apps</a> using Corona SDK.</p>
+</div>
+</aside>
+		</div><!-- close .sidebar-padder -->
+	</div>		</div>
+	</div>
+
+
+				
+    </div><!-- close .container -->
+</div><!-- close .main-content -->
+
+
+<footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="container">
+        <div class="row">
+            <div id="inner-footer" class="clearfix full-ui hidden-xs">
+
+                        <nav id="menu-standard-footer-menu" class="clearfix">
+                        	
+                        	<div class="col-xs-12 col-sm-6 col-md-2">
+                            	<a href="http://coronalabs.com/products/corona-sdk/" class="footer-group-header">Products</a>
+                                <ul class="sub-footer-menu">
+                                	<li><a href="http://coronalabs.com/products/corona-sdk/">Corona SDK</a></li>
+                                	<li><a href="http://coronalabs.com/products/enterprise/">Enterprise</a></li>
+                                	<li><a href="http://coronacards.com/">CoronaCards</a></li>
+                                	<li><a href="http://coronalabs.com/products/support-training/">Support &amp; Training</a></li>
+                                </ul>
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/resources/" class="footer-group-header">Resources</a>
+                                <ul class="sub-footer-menu">
+                                    <li><a target="_blank" href="http://forums.coronalabs.com/">Forum</a></li>
+                                	<li><a target="_blank" href="http://docs.coronalabs.com/">Documentation</a></li>
+                                	<li><a href="http://coronalabs.com/resources/tutorials/getting-started-with-corona/">Corona University</a></li>
+                                	<li><a href="http://coronalabs.com/resources/plugins/">Corona Plugin Directory</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/pricing" class="footer-group-header">Get Corona</a>
+                                <ul class="sub-footer-menu">
+                                	<li><a href="https://developer.coronalabs.com/downloads/coronasdk">Starter: Publish Free</a></li>
+                                	<li><a href="http://coronalabs.com/pricing/">Buy Pro</a></li>
+                                    <li><a href="http://coronalabs.com/pricing/">Buy Enterprise</a></li>
+                                    <li><a href="http://coronacards.com/pricing">Buy CoronaCards</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/about/" class="footer-group-header">About</a>
+                                <ul class="sub-footer-menu">
+                                    <li><a href="http://coronalabs.com/about/jobs/">Jobs</a></li>
+                                	<li><a href="http://coronalabs.com/about/contact/">Contact</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                            	<a href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#" class="footer-group-header">Social</a>
+                                <ul>
+                                    <li>
+                                        <div id="followIcons">
+                                            <a href="https://twitter.com/coronalabs" class="followIcons" target="_blank">
+                                                <img src="./Circles_files/twitter_32.png" width="35" height="36">
+                                            </a>
+                                            <a href="https://www.facebook.com/CoronaLabs" class="followIcons" target="_blank">
+                                                <img src="./Circles_files/facebook_32.png" width="35" height="36">
+                                            </a>
+                                            <a href="https://www.youtube.com/user/CoronaLabs" class="followIcons" target="_blank">
+                                                <img src="./Circles_files/youtube_32.png" width="35" height="36">
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </nav>
+
+            </div> <!-- end #inner-footer -->
+        </div>
+    </div>
+    <div class="container">
+	    <div class="row">
+			<div class="col-md-12 small vspace footer-footer">
+                <hr class="hidden-xs">
+	            Copyright © 2009-2014 Corona Labs. A <a href="http://fusepowered.com/" target="_blank">Fuse Powered</a> Company. All rights reserved.<br>
+	            <a class="footer-secondary-links" href="http://coronalabs.com/privacy-policy/">Privacy Policy</a> • <a class="footer-secondary-links" href="http://coronalabs.com/terms-and-conditions/">Terms and Conditions</a>
+	       	</div>
+		</div>
+    </div>
+</footer><!-- close #colophon -->
+
+<script type="text/javascript" src="./Circles_files/form.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var mejsL10n = {"language":"en","strings":{"Close":"Close","Fullscreen":"Fullscreen","Download File":"Download File","Download Video":"Download Video","Play\/Pause":"Play\/Pause","Mute Toggle":"Mute Toggle","None":"None","Turn off Fullscreen":"Turn off Fullscreen","Go Fullscreen":"Go Fullscreen","Unmute":"Unmute","Mute":"Mute","Captions\/Subtitles":"Captions\/Subtitles"}};
+var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/"};
+var mejsL10n = {"language":"en","strings":{"Close":"Close","Fullscreen":"Fullscreen","Download File":"Download File","Download Video":"Download Video","Play\/Pause":"Play\/Pause","Mute Toggle":"Mute Toggle","None":"None","Turn off Fullscreen":"Turn off Fullscreen","Go Fullscreen":"Go Fullscreen","Unmute":"Unmute","Mute":"Mute","Captions\/Subtitles":"Captions\/Subtitles"}};
+var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Circles_files/mediaelement-and-player.min.js"></script>
+<script type="text/javascript" src="./Circles_files/prettify.js"></script>
+<script type="text/javascript" src="./Circles_files/lang-css.js"></script>
+<script type="text/javascript" src="./Circles_files/lang-vb.js"></script>
+<script type="text/javascript" src="./Circles_files/lang-lua.js"></script>
+<script type="text/javascript" src="./Circles_files/load.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var pollsL10n = {"ajax_url":"https:\/\/coronalabs.com\/wp-admin\/admin-ajax.php","text_wait":"Your last request is still being processed. Please wait a while ...","text_valid":"Please choose a valid poll answer.","text_multiple":"Maximum number of choices allowed: ","show_loading":"1","show_fading":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Circles_files/polls-js.js"></script>
+<script type="text/javascript" src="./Circles_files/skip-link-focus-fix.js"></script>
+<script type="text/javascript" src="./Circles_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Circles_files/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="./Circles_files/wp-fancy-box.js"></script>
+<script type="text/javascript" src="./Circles_files/jquery.fancybox-buttons.js"></script>
+<script type="text/javascript" src="./Circles_files/jquery.fancybox-media.js"></script>
+<script type="text/javascript" src="./Circles_files/jquery.fancybox-thumbs.js"></script>
+<script type="text/javascript" src="./Circles_files/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="./Circles_files/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpv_pagination_local = {"regional":"en","front_ajaxurl":"http:\/\/coronalabs.com\/wp-admin\/admin-ajax.php","calendar_image":"https:\/\/coronalabs.com\/plugins\/wp-views\/embedded\/res\/img\/calendar.gif","calendar_text":"Select date"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Circles_files/wpv-pagination-embedded.js"></script>
+<script defer="" src="./Circles_files/custom.js" type="text/javascript"></script>
+<script>  var AWESM = AWESM || {};  AWESM.api_key = 'fa22875a8884108a6244b659bc44e41d7342b0899a56ae9758f6c9965c9a34a0';  (function() {    var js = document.createElement('script'); js.type = 'text/javascript'; js.async = true;    js.src = '//widgets.awe.sm/v3/widgets.js?key=' + AWESM.api_key + '&async=true';    var s = document.getElementsByTagName('script')[0];    s.parentNode.insertBefore(js,s);  })();</script>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Minified using apc
+Database Caching using apc (Request-wide Cookie is rejected)
+
+ Served from: coronalabs.com @ 2015-01-16 10:23:03 by W3 Total Cache --><iframe name="oauth2relay627090594" id="oauth2relay627090594" src="./Circles_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><div id="fb-root" class=" fb_reset"><script async="" src="./Circles_files/all.js"></script><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Circles_files/7r8gQb8MIqE.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Circles_files/7r8gQb8MIqE(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fa05c7f24" frameborder="0" allowtransparency="true" scrolling="no" src="./Circles_files/ping.html" style="display: none;"></iframe></div></div></div><script src="./Circles_files/register"></script><script src="./Circles_files/new"></script></body></html>
