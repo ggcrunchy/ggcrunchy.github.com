@@ -230,6 +230,84 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 
 <p>TODO!</p>
 
+
+
+<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
+
+<p>When discussing double angles we split a triangle up into two right triangles and made some analysis of the results,
+with the assumption that the points were either on the unit circle or its center.</p>
+
+<p>This sort of triangle will also arise in more general circumstances, where some of the details will remain intact.
+The base of the left-hand triangle, for instance, can usefully be subtracted from the combined base to give the right-hand
+side.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/G1.png" width="200" height="150" alt="Law of cosines">
+		<div style="caption"><b>G-1</b></div>
+	</div>
+</div>
+
+<p>Then we can apply the Pythagorean theorem on the right-hand side, tying all three sides together in one equation: $ (A\sin\theta)^2
++ (C - A\cos\theta)^2 = B^2. $<p>
+
+<p>After expansion, this gives us the so-called Law of Cosines:</p>
+
+<p>
+\begin{align}
+A^2 + C^2 - 2AC\cos\theta & = B^2
+\end{align}
+<p>
+
+<p>This gives us a means of using the cosine with non-right triangles. In particular, when we know a couple of sides and one of the
+angles, we can find the (squared) length of the third side.</p>
+
+<p>Although we generalized away from circle-based triangles, in that case two of the sides will be $r,$ giving us
+
+<p>
+\begin{align}
+r^2(2 - 2\cos\theta) & = B^2
+\end{align}
+<p>
+
+<p>This gives us a second chord formula, in this case for the squared length.</p>
+
+<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
+
+<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
+letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/G2.png" width="200" height="150" alt="Law of sines">
+		<div style="caption"><b>G-2</b></div>
+	</div>
+</div>
+
+<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
+the same result. Thus</p>
+
+<p>
+\begin{align}
+\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
+\end{align}
+<p>
+
+<p>If we divide "both" sides by ${1 \over 2}ABC,$ this all comes out to</p>
+
+<p>
+\begin{align}
+\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
+\end{align}
+<p>
+
+<p>This is the Law of Sines, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
+used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
+
+<p>There is also a Law of Tangents, which builds upon the Law of Sines.</p>
+
+<p><b>(NOTES:</b> Fill this in... $ D\sin b = B, $ etc. then do $ a + b $ and $ a - b, $ grind out, use sum-to-product, etc.<b>)</b></p>
+
 <H3><a href="orthocenter"></a>Orthocenter (A)</H3>
 
 <div style="float:left;">
@@ -371,7 +449,7 @@ radical axes and corresponding perpendicular bisectors.</p>
 
 <p>As the figure suggests, this immediately constraints a center. (In fact, two arcs are enough to do so, on the unit circle.) For that matter, the bisectors all intersect there.</p>
 
-<p>(TODO: there is good material in these last three, but needs some consistency)</p>
+<p><b>(TODO:</b> there is good material in these last three, but needs some consistency<b>)</b></p>
 
 <p>We have a trio of bisected radial isosceles triangles. These will have outer sides of $ 2r \sin\alpha, 2r \sin\beta, $ and $ 2r \sin\gamma $ with those half-angles, respectively.</p>
 
@@ -380,7 +458,7 @@ radical axes and corresponding perpendicular bisectors.</p>
 <p>We saw earlier how to break down the structure of a double-angle triangle. So we can express the radius as $ r = r\cos 2\alpha + A\sin\alpha. $ But we know that $ \frac{A}{2r} = \sin\alpha. $
 After substitution and some rearrangement, this becomes $ \cos 2\alpha = 1 - \frac{A^2}{2r^2}. $</p>
 
-<p>(TODO: We CAN just pull this from the formula, but might provide more insight)</p>
+<p><b>(TODO:</b> We CAN just pull this from the formula, but might provide more insight<b>)</b></p>
 
 <p>We can apply this same analysis to the other two triangles.</p>
 
@@ -427,7 +505,7 @@ This will give us another line as $ Gc_x + Hc_y = I. $</p>
 <p>We can arrange this to put $c_y$ totally in terms of $c_x,$ for instance $ c_y = \frac{F - Dc_x}{E}. $ We can then feed it into the second equation, for $ Gc_x +
 \frac{H(F - Dc_x)}{E} = I, $ or $ \left(G - \frac{HD}{E} \right)c_x = I - \frac{HF}{E}. $ Multiplying by $E$ and rearranging, this is $ c_x = \frac{EI - HF}{EG - HD}. $</p>
 
-<p>(TODO: EG - HD = 0)</p>
+<p><b>(TODO:</b> EG - HD = 0<b>)</b></p>
 
 <p>Now that we have $c_x,$ we can feed it back in to get the equation for $c_y.$ In the event that $E$ is 0, we can use the second line equation to get it.</p>
 
@@ -467,7 +545,7 @@ end</code></pre>
 
 <p>Triangles have other circles, such as the incircle, and <i>vice versa</i>. Also, many types of centers.</p>
 
-<p>(IMAGES - one showing variety of arcs; other of a working circle)</p>
+<p><b>(IMAGES:</b> one showing variety of arcs; other of a working circle<b>)</b></p>
 
 <H3><a name="inner-circle"></a>The inner circle... (C)</H3>
 
@@ -682,7 +760,7 @@ the end we have $ \tan\alpha = \frac{h}{C + R}. $ Finding $ \tan\beta $ proceeds
 
 <p>From there we can scale the middle segment and go up to find the remaining contact points.</p>
 
-<p>(NOTES: ROUGH! Need to find best way to work in all the angles and points... but already better)</p>
+<p><b>(NOTES:</b> ROUGH! Need to find best way to work in all the angles and points... but already better<b>)</b></p>
 
 <p>In code, it will go something like:</p>
 
@@ -753,6 +831,11 @@ function Excircles ( px, py, qx, qy, rx, ry, want_contact_triangles, want_extouc
   return circles, contacts, extouch
 end</code></pre>
 
+<p><b>(NOTES:</b> We get r too early here... multiplying by B there seems to be the only reason we need separate variables for dx and
+dy--just to undo the B!--rather than using bx and by directly... then can just multiply by r when assigning to table<b>)</b></p>
+<p><b>(NOTES:</b> In that same bit of code, the stuff in comments is following the material in the section, whereas the code itself
+is jumping the gun... or rather using the tangent logic from the circles section... make this clear<b>)</b></p>
+
 <H3><a name="circles-all-the-way-down"></a>Circles all the way down (E)</H3>
 
 <p>By allowing the sides of the original triangle to extend indefinitely, we could also find <a href="https://en.wikipedia.org/wiki/Incircle_and_excircles_of_a_triangle">
@@ -765,12 +848,12 @@ circle</a> touches them all as well as the incircle; <a href="http://mathworld.w
 it. Such special points fall under the heading of <a href="https://en.wikipedia.org/wiki/Triangle_center">triangle center</a>. <a href="http://faculty.evansville.edu/ck6/encyclopedia/">Many
 </a> of these have interesting properties, as the circumcenter and incenter show. While literally impossible to know all of them, it is good to be aware of them.</p>
 
-<p>(NOTES: Trilinear coordinates)</p>
-<p>(NOTES: Mention Apollonius circle)</p>
+<p><b>(NOTES:</b> Trilinear coordinates<b>)</b></p>
+<p><b>(NOTES:</b> Mention Apollonius circle<b>)</b></p>
 
 <H3><a name="inside-out"></a>Inside out (O)</H3>
 
-<p>(NOTES: Inversion)</p>
+<p><b>(NOTES:</b> Inversion... probably overkill; need to flesh out my own understanding too<b>)</b></p>
 
 <H3><a name="summary"></a>Summary</H3>
 

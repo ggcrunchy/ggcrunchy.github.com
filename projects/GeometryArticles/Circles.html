@@ -281,8 +281,8 @@ equation of a circle, this time with a radius of one, known as the <a href="http
 	</div>
 </div>
 
-<p>(NOTES: Something about arcs belongs here too)</p>
-<p>(NOTES: Circle with radius zero, otherwise SDF stuff)</p>
+<p><b>(NOTES:</b> Something about arcs belongs here too<b>)</b></p>
+<p><b>(NOTES:</b> Circle with radius zero, otherwise SDF stuff<b>)</b></p>
 
 </p><div style="float:left;">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
@@ -374,7 +374,7 @@ have also given us solid algorithms to compute these values, so that today in Co
 together with $z.$ By rearranging the equation, we were able to solve for something other than $z.$ Likewise, we might already have, say, $ \cos\theta. $ If we
 also knew our radius, we could find $ dx = r\cos\theta. $</p>
 
-<p>(NOTES: Could use a lead-up demonstrating length with similar triangles)</p>
+<p><b>(NOTES:</b> Could use a lead-up demonstrating length with similar triangles<b>)</b></p>
 
 <p><b>REWRITE REWRITE REWRITE REWRITE REWRITE REWRITE</b></p>
 
@@ -399,8 +399,8 @@ it has base $ \vlen{v}\cos\theta $ and height $ \vlen{v}\sin\theta. $</p>
 	</div>
 </div>
 
-<p>(NOTES: Earlier idea, i.e. from triangles article, about assuming nice orientation)</p>
-<p>(NOTES: Polar coordinates)</p>
+<p><b>(NOTES:</b> Earlier idea, i.e. from triangles article, about assuming nice orientation<b>)</b></p>
+<p><b>(NOTES:</b> Polar coordinates<b>)</b></p>
 
 <div style="float:right;">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
@@ -528,8 +528,8 @@ equal, so that carries over to the triangle above. Furthermore, angles sum to 18
 
 <p>Although the circumstances were a bit particular, this actually generalizes to angles in any quadrant or magnitude.</p>
 
-<p>(NOTES: Image to back up last statement?)</p>
-<p>(NOTES: Tangent?)</p>
+<p><b>(NOTES:</b> Image to back up last statement?<b>)</b></p>
+<p><b>(NOTES:</b> Tangent?<b>)</b></p>
 
 <H3><a name="multiple-identities"></a>Multiple identities (E)</H3>
 
@@ -547,8 +547,8 @@ equal, so that carries over to the triangle above. Furthermore, angles sum to 18
 triangle is given by $ \frac{r^2}{2}\frac{\sin 2\theta}{2}, $ or $ \frac{r^2\sin 2\theta}{4}. $ The connection between sine and area goes deeper, as we will
 see in the next article.</p>
 
-<p>We can see how this looks. Here we have the two triangles stacked as before, forming two halves of an isosceles triangle (TODO: should point out this
-property in article 1). The two opposite sides sum up, so the full triangle has side of $ 2\sin\theta. $</p>
+<p>We can see how this looks. Here we have the two triangles stacked as before, forming two halves of an isosceles triangle <b>(TODO:</b> redundant, since
+this was how we closed article 1<b>)</b>. The two opposite sides sum up, so the full triangle has side of $ 2\sin\theta. $</p>
 
 <p>We can draw an altitude down through this triangle, which will have height $ \sin 2\theta. $ In doing so, we will have a case of vertical angles that in
 turn will bring the angle $ \theta $ up into the other new triangle.</p>
@@ -590,10 +590,10 @@ result from the figure.)</p>
 $ 1 - \cos^2\frac{\theta}{2} = \frac{1 - \cos\theta}{2}. $ After some rearrangement and solving again for a root, we have $ \cos\frac{\theta}{2} =
 \pm\sqrt{\frac{1 + \cos\theta}{2}}. $ Context will clue us in on which side is appropriate.</p>
 
-<p>(NOTES: Chord length)</p>
-<p>(NOTES: Power-lowering)</p>
-<p>(NOTES: Probably can make this a legitimate double- and half-angle section, rather than generic identities one)</p>
-<p>(NOTES: Tangent)</p>
+<p><b>(NOTES:</b> Chord length<b>)</b></p>
+<p><b>(NOTES:</b> Power-lowering<b>)</b></p>
+<p><b>(NOTES:</b> Probably can make this a legitimate double- and half-angle section, rather than generic identities one<b>)</b></p>
+<p><b>(NOTES:</b> Tangent<b>)</b></p>
 
 <H3><a name="settling-differences"></a>Settling differences (F)</H3>
 
@@ -652,87 +652,17 @@ simplifies to</p>
 \end{align}
 <p>
 
-<p>(NOTES: product-to-sum, sum-to-product identities)</p>
-
-<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
-
-<p>When discussing double angles we split a triangle up into two right triangles and made some analysis of the results,
-with the assumption that the points were either on the unit circle or its center.</p>
-
-<p>This sort of triangle will also arise in more general circumstances, where some of the details will remain intact.
-The base of the left-hand triangle, for instance, can usefully be subtracted from the combined base to give the right-hand
-side.</p>
-
-<div style="float:left;">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_circles/G1.png" width="200" height="150" alt="Law of cosines">
-		<div style="caption"><b>G-1</b></div>
-	</div>
-</div>
-
-<p>Then we can apply the Pythagorean theorem on the right-hand side, tying all three sides together in one equation: $ (A\sin\theta)^2
-+ (C - A\cos\theta)^2 = B^2. $<p>
-
-<p>After expansion, this gives us the so-called Law of Cosines:</p>
-
-<p>
-\begin{align}
-A^2 + C^2 - 2AC\cos\theta & = B^2
-\end{align}
-<p>
-
-<p>This gives us a means of using the cosine with non-right triangles. In particular, when we know a couple of sides and one of the
-angles, we can find the (squared) length of the third side.</p>
-
-<p>Although we generalized away from circle-based triangles, in that case two of the sides will be $r,$ giving us
-
-<p>
-\begin{align}
-r^2(2 - 2\cos\theta) & = B^2
-\end{align}
-<p>
-
-<p>This gives us a second chord formula, in this case for the squared length.</p>
-
-<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
-
-<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
-letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
-
-<div style="float:right;">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_circles/G2.png" width="200" height="150" alt="Law of sines">
-		<div style="caption"><b>G-2</b></div>
-	</div>
-</div>
-
-<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
-the same result. Thus</p>
-
-<p>
-\begin{align}
-\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
-\end{align}
-<p>
-
-<p>The common $ 1 \over 2 $ factor will cancel out. If we divide "both" sides by $ABC,$ this will come out to</p>
-
-<p>
-\begin{align}
-\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
-\end{align}
-<p>
-
-<p>This is the Law of Sines, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
-used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
-
-<p>There is also a Law of Tangents, which builds upon the Law of Sines.</p>
-
-<p>(NOTES: Fill this in... $ D\sin b = B, $ etc. then do $ a + b $ and $ a - b, $ grind out, use sum-to-product, etc.)</p>
+<p><b>(NOTES:</b> product-to-sum, sum-to-product identities<b>)</b></p>
 
 <H3><a name="angles"></a>Angles (H)</H3>
 
-<p>(NOTES: Needs a bit of repair, and stealing from H, but I think it would be better motivated here)</p>
+<p><b>(NOTES:</b> Can make a point about using angle subtraction to reorient angles, then do addition, etc. Maybe develop from here?<b>)</b></p>
+<p><b>(NOTES:</b> Needs a bit of repair, and stealing from H, but I think it would be better motivated here<b>)</b></p>
+<p><b>(NOTES:</b> Furthermore, at 90 degrees and 180 degrees, because circles look the same locally wherever we are--since the distances are the
+same all around--we can do local analyses as if going from 0 to 90 degrees, then simply apply the appropriate rotations... this gives us
+the key to take angle addition, and likewise subtraction, past the 90 degree framework in which we derived the equations... I think this
+would provide a more elegant way to unveil the points about angles that follow, though it will still be a lot of work! Likewise once these
+points are spelled out the transformation section should have a lot more to refer back to... and perhaps even the computation section.<b>)</b></p>
 
 <p>We explored angles a bit when we spoke of triangles, much of which carries over to circles.</p>
 
@@ -759,10 +689,9 @@ about the remainder.</p>
 
 <p>Further, similar things happen if we go the other way, with negative arcs. We can interpret these as being subtracted from 360&deg; to fix them up. The periodicity will also occur here.</p>
 
-<p>(NOTES: This should be earlier, probably as the second section)</p>
-<p>(NOTES: Rough!!!!)</p>
-<p>(NOTES: Opportune place to describe similar triangles technique? Or augment the Triangles article section?)</p>
-<p>(IMAGES - varieties of angles; triangle)</p>
+<p><b>(NOTES:</b> This should be earlier, probably as the second section<b>)</b></p>
+<p><b>(NOTES:</b> Rough!!!!<b>)</b></p>
+<p><b>(IMAGES:</b> varieties of angles; triangle<b>)</b></p>
 
 <H3><a name="transform"></a>Transformation (I)</H3>
 
@@ -801,10 +730,12 @@ giving us a final angle of $ 2\beta - \alpha. $ Note that when the axis is alrea
 $ 180^{\circ} - \alpha + \gamma, $ then finally add $\gamma$ back. Now, recall that $\gamma$ is only the divergence from the vertical axis, so we have to add 90&deg.
 In other words, $ \gamma = \beta - 90^{\circ}. $ Then we have $ 180^{\circ} - \alpha + 2(\beta - 90^{\circ}), $ which reduces to the previous equation.</p>
 
-<p>(TODO: Reflections)</p>
-<p>(TODO: Similarity transformation)</p>
+<p><b>(TODO:</b> Reflections<b>)</b></p>
+<p><b>(TODO:</b> Similarity transformation<b>)</b></p>
 
 <H3><a name="computation"></a>Computation (J)</H3>
+
+<p><b>(NOTES:</b> Is it maybe possible to move the sine wave and arccos / sin / tan stuff in here?<b>)</b></p>
 
 <p>With all of these identities under our belts, along with a few known values, we have what we need to calculate fairly arbitrary cosine and sine results.</p>
 
@@ -825,7 +756,7 @@ programming, when the trigonometric operations were expensive). This would have 
 
 <H3><a name="closer-look"></a>A closer look</H3>
 
-<p>(NOTES: NEVER MIND... anyhow, we'll be removing all this)</p>
+<p><b>(NOTES:</b> NEVER MIND... anyhow, we'll be removing all this<b>)</b></p>
 
 <p>We ought to do a little unpacking of our formulae.</p>
 
@@ -869,7 +800,7 @@ from zero to negative, so small angles provide no guarantees.</p>
 
 <p>This is quite a lot to take in all at once! These are key details when it comes to developing a geometrical intuition, though, so they are well worth learning.</p>
 
-<p>(NOTES: Carve up, redistribute?)</p>
+<p><b>(NOTES:</b> Carve up, redistribute?<b>)</b></p>
 
 <H3><a name="round-and-round"></a>Round and round we go (K)</H3>
 
@@ -978,7 +909,7 @@ print( PI2( 13 ) ) -- prints 3.1415926453212</code></pre>
 <p>In particular, each has 60 degrees. Since two of the sides will be radii, we know the other angles are equal, that is these are equilateral triangles.</p>
 <p>Thus the side near the circle boundary also has the radius as length.</p>
 <p>So a decent approximation for the boundary is 3 times the radius.</p>
-<p>We can divide these in half in turn, which give us our earlier 30-60-90 triangles, which better approximate the circle. (TODO: Not correct, fix)</p>
+<p>We can divide these in half in turn, which give us our earlier 30-60-90 triangles, which better approximate the circle. <b>(TODO:</b> Not correct, fix<b>)</b></p>
 <p>Gradually, we get nearer and nearer to 3.14159...</p>
 
 <p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>
@@ -1070,8 +1001,8 @@ circles is infinitesimally small. This might ring a bell to those acquainted wit
 	</div>
 </div>
 
-<p>(NOTES: sectors)</p>
-<p>(NOTES: Trapezoids slightly more general, e.g. triangle on each side)</p>
+<p><b>(NOTES:</b> sectors<b>)</b></p>
+<p><b>(NOTES:</b> Trapezoids slightly more general, e.g. triangle on each side<b>)</b></p>
 
 <p>The area formula offers us another insight. $ \pi r^2 $ is exactly <a href="http://www.ams.org/samplings/feature-column/fc-2012-02">the area of a triangle</a> with base
 $ 2\pi r $ and height $r$. And indeed, if we stack all our trapezoids (including the "trapezoid" with one side 0), they coalesce into that very triangle!</p>
@@ -1151,7 +1082,7 @@ without touching its boundary.</p>
 the smaller circle is from the center, so in a sense we have "used up" that much radius, and there is some amount left. If the smaller circle's radius is not enough
 to make up the difference, it is completely contained. Otherwise, it touches the boundary.</p>
 
-<p>(NOTES: Intersecting chord midpoints)</p>
+<p><b>(NOTES:</b> Intersecting chord midpoints<b>)</b></p>
 
 <H3><a name="tangent-lines"></a>Tangent lines (N)</H3>
 
@@ -1175,7 +1106,7 @@ in the same situation, this is different from the trigonometric function describ
 
 <p>Together with the normal, these two describe a sort of local coordinate frame above the circle. The next article will explore this idea in more depth.</p>
 
-<p>(NOTES: Can use to "swim" along the surface when combined with re-projection, as in boids)</p>
+<p><b>(NOTES:</b> Can use to "swim" along the surface when combined with re-projection, as in boids<b>)</b></p>
 
 <p>One example of how to apply this is to string circular arcs together nicely. Given two arcs, we can of course just line up one point from each. This can be a bit
 jarring, though.</p>
@@ -1212,7 +1143,7 @@ its tangent. This will apply with any length.</p>
 <p>This is fairly straightforward in terms of $y.$ From 0 to $\pi,$ we have $y$ matching the upper semicircle. From there to $2\pi,$ it matches the lower one. We can plot this
 by stitching the two halves together, as pictured.</p>
 
-<p>(NOTES: image)</p>
+<p><b>(NOTES:</b> image<b>)</b></p>
 
 <p>This is slightly awkward. The bottom axis of the graph has a certain split definition to accommodate the turnaround, with $x$ changing in different directions. Plotting $x$
 would proceed similarly, but we must take the right and left semicircles instead, performing a right angle rotation along the way. In that case, it would be in terms of $y.$</p>
@@ -1222,8 +1153,8 @@ taking in the periodic nature of the functions.</p>
 
 <p>In this case, our graph switches from $ y = \sqrt{1 - x^2} $ to $ y = \sin\theta, $ which changes the shape slightly, giving us a sine wave.</p>
 
-<p>(NOTES: Various properties, use cases)</p>
-<p>(NOTES: Other functions)</p>
+<p><b>(NOTES:</b> Various properties, use cases<b>)</b></p>
+<p><b>(NOTES:</b> Other functions<b>)</b></p>
 
 <H3><a name="getting-angle-on-things"></a>Getting an angle on things (P)</H3>
 
@@ -1245,9 +1176,9 @@ best all-around fit, is assigned to each function. In the case of inverse cosine
 <p>Often enough, these ranges will suit us fine. Otherwise, we will need to rely on additional context to fix the result. If we knew the angle was in the lower half of
 the circle, for instance, the inverse cosine would need to be corrected to be its reflection instead. Obviously, the more automatic this was, the better.</p>
 
-<p>(NOTES: Identities, another image for that)</p>
-<p>(NOTES: chord formulas -> angle)</p>
-<p>(IMAGE - 12)</p>
+<p><b>(NOTES:</b> Identities, another image for that<b>)</b></p>
+<p><b>(NOTES:</b> chord formulas -> angle<b>)</b></p>
+<p><b>(IMAGE:</b> 12<b>)</b></p>
 
 <p><b>REWRITE REWRITE REWRITE REWRITE REWRITE REWRITE</b></p>
 <p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>
@@ -1280,7 +1211,7 @@ no exception, offering us <a href="https://docs.coronalabs.com/api/library/math/
 bonafide cosine and sine values is too limiting&mdash;in the real world, for instance, it might be hard to ensure that both perfectly satisfy a common $\theta$. Rather,
 as long as both are not zero, they accept $x$ and $y$ arguments and do the heavy lifting behind the scenes, inferring the common radius and then $\theta$.</p>
 
-<p>(NOTES: Carve up, redistribute)</p>
+<p><b>(NOTES:</b> Carve up, redistribute<b>)</b></p>
 
 <p><b>REWRITE REWRITE REWRITE REWRITE REWRITE REWRITE</b></p>
 <p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>

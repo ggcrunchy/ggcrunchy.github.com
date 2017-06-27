@@ -247,7 +247,7 @@ $ \mathbf{v} $ seems to be another sort of object, namely a <a href="https://en.
 <div style="float:right">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
 		<img src="./images_vectors/A1.png" width="150" height="100" alt="Difference between two points as a vector">
-		<div style="caption">A-1</div>
+		<div style="caption"><b>A-1</b></div>
 	</div>
 </div>
 
@@ -317,6 +317,8 @@ obvious when, as in the previous section, the vector is shown between two points
 apart from a fixed position. We denote this magnitude&mdash;from here on out, we will say <a href="http://roaminggamer.com/math2d/#length">vector length</a>&mdash;by
 double bars around the name, say as $ \vlen{v} $.</p>
 
+<p><b>(NOTES:</b> Some of this is redundant in light of the lerp material at the end of triangles<b>)</b></p>
+
 <p>Knowing how long a vector is, a natural next step is to shorten or extend it. This is achieved easily enough: a vector $s$ times as long has length $ {\mid s
 \mid}\sqrt{v_x^2 + v_y^2} $. This may be rolled back a bit, to $ \sqrt{s^2}\sqrt{v_x^2 + v_y^2} $ and then $ \sqrt{\left(s v_x \right)^2 + \left(s v_y \right)^2} $.
 In words, the scale factor simply distributes across components, so $ s\mathbf{v} = \vcomps{sv_x}{sv_y}. $ This vector has the same direction as $ \mathbf{v} $, but
@@ -340,7 +342,7 @@ In a program this will manifest as a vector with huge or infinite components (an
 we should include checks that they have at least some minimum length (or <a href="http://roaminggamer.com/math2d/#length2">squared length</a>), and only in that event
 proceed with the code in question.</p>
 
-<p>(IMAGES - 4, 5)</p>
+<p><b>(IMAGES:</b> 4, 5<b>)</b></p>
 
 <H3><a name="dot"></a>The dot product (C)</H3>
 
@@ -362,7 +364,7 @@ b_x}{a_y + b_y}}{w} = \dotp{a}{w} + \dotp{b}{w}. $ The dot product distributes! 
 <p>To those familiar with <a href="https://en.wikipedia.org/wiki/Slope">slopes</a>, this ought to seem familiar. When two lines are perpendicular, the slope of one is
 the negative reciprocal of the other; this is the same phenomenon. (The vector form is robust against horizontal and vertical lines, though, where slopes run aground.)</p>
 
-<p>(NOTES: join)</p>
+<p><b>(NOTES:</b> join<b>)</b></p>
 
 <p>Consider a non-right triangle. As we saw in <a href="./Triangles.html#triangles">part 1</a>, any altitude will separate this into two right triangles. The altitude gives
 these two triangles a common height, $h$.</p>
@@ -419,7 +421,8 @@ both resolve to the left-hand side.</p>
 <p>Notice what this is saying. Given a vector $ \mathbf{v} = \vcomps{v_x}{v_y}, $ we have all we need to obtain another vector, $ \mathbf{v^{\perp}} $, perpendicular to it:
 just swap the components and flip one of their signs. Some sources call this the <a href="http://geomalgorithms.com/vector_products.html#2D-Perp-Operator">perp operator</a>.</p>
 
-<p>(Something about fixed relative orientation; CW/CCW as per rejection)</p>
+<p><b>(NOTES:</b> Something about fixed relative orientation; CW/CCW as per rejection<b>)</b></p>
+<p><b>(NOTES:</b> Successive application of operator... could bring up in last few sections about intersection<b>)</b></p>
 
 <H3><a name="projection"></a>Projection (E)</H3>
 
@@ -440,9 +443,9 @@ scale the result to the base length. Taken together, we have a scale factor of $
 $ \dotvw{v}{w} \over \dotvw{w}{w} $, although the two forms are interchangeable.</p>
 
 <p>The vector $ \left(\dotvw{v}{w} \over \dotvw{w}{w} \right)\mathbf{w} $ is known as the <a href="https://en.wikipedia.org/wiki/Vector_projection">projection</a> of
-$ \mathbf{v} $ onto $ \mathbf{w} $, or $ \mathbf{proj_w v} $. It gives us the vector "below" $ \mathbf{v} $ on $ \mathbf{w} $, its shadow as it were. [image]</p>
+$ \mathbf{v} $ onto $ \mathbf{w} $, or $ \mathbf{proj_w v} $. It gives us the vector "below" $ \mathbf{v} $ on $ \mathbf{w} $, its shadow as it were. <b>(TODO:</b> image<b>)</b></p>
 
-<p>(IMAGE - 9)</p>
+<p><b>(IMAGE:</b> 9<b>)</b></p>
 
 <p>The projection coincides with the base of the triangle. Were we to follow the neighboring side upwards, we would get back to $ \mathbf{v} $. We can easily find this
 vector, the so-called <a href="https://en.wikipedia.org/wiki/Vector_projection#Vector_rejection_2">rejection</a> of $ \mathbf{v} $ from $ \mathbf{w}, $ by subtraction,
@@ -450,7 +453,7 @@ following the examples in earlier images: $ \mathbf{v} - \mathbf{proj_w v} $.</p
 
 <p>As an aside, while we can go from $ \mathbf{w} $ to $ \mathbf{v} $ via addition, if we instead subtract the rejection from $ \mathbf{w}, $ we end up
 <a href="http://mathworld.wolfram.com/Reflection.html">reflecting</a> $ \mathbf{v} $ across $ \mathbf{w} $: $ \mathbf{v'} = \mathbf{proj_w v} - (\mathbf{v} -
-\mathbf{proj_w v}), $ or more simply $ \mathbf{v'} = 2 \mathbf{proj_w v} - \mathbf{v}. $ [image]</p>
+\mathbf{proj_w v}), $ or more simply $ \mathbf{v'} = 2 \mathbf{proj_w v} - \mathbf{v}. $ <b>(TODO:</b> image<b>)</b></p>
 
 <div style="float:right">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
@@ -463,7 +466,7 @@ following the examples in earlier images: $ \mathbf{v} - \mathbf{proj_w v} $.</p
 lockwise with respect to $ \mathbf{w} $, depending upon which definition of perp was chosen. The rejection, on the other hand, always points toward $ \mathbf{v} $. We
 now have the whole triangle expressed in terms of vectors.</p>
 
-<p>(Move the clockwise/CCW stuff up into perp)</p>
+<p><b>(NOTES:</b> Move the clockwise/CCW stuff up into perp<b>)</b></p>
 
 <H3><a name="similarity"></a>Similarity (F)</H3>
 
@@ -484,7 +487,7 @@ directions, completely so for negative one&mdash;they <i>are</i> related, but in
 	</div>
 </div>
 
-<p>(Component for non-unit vectors)</p>
+<p><b>(NOTES:</b> Component for non-unit vectors<b>)</b></p>
 
 <p>This is a key component of many <a href="https://en.wikipedia.org/wiki/Blinn–Phong_shading_model">lighting models</a>, for instance. Every point on an object's
 surface has a unit vector, the <a href="https://en.wikipedia.org/wiki/Normal_(geometry)">normal</a>, perpendicular to it. In addition, each point looks toward the light
@@ -492,14 +495,14 @@ source (rather, the light arrives from it, but we use the reverse of this direct
 light hits, the more alike these are, and consequently the brighter that spot. The object gets steadily darker as the similarity tapers toward zero, negative values
 being rejected outright. For examples in Corona, see the
 <a href="https://docs.coronalabs.com/daily/guide/graphics/effects.html#composite.normalmapwith1dirlight">directional</a> or
-<a href="https://docs.coronalabs.com/daily/guide/graphics/effects.html#composite.normalmapwith1pointlight">point</a> light-based normal map effects. [image]</p>
+<a href="https://docs.coronalabs.com/daily/guide/graphics/effects.html#composite.normalmapwith1pointlight">point</a> light-based normal map effects. <b>(TODO:</b> image<b>)</b></p>
 
 <p>It was hinted earlier that we are only dealing with a fairly specific sort of vector, namely those belonging to
 <a href="http://www.mathopenref.com/planegeometry.html">plane geometry</a>. Similarity hints at <a href="https://en.wikipedia.org/wiki/Vector_space_model">other uses</a>
 we might explore, as well as how cosine might be applied outside a strictly geometric context. Identifying properties like similarity and teasing out their useful
 implications is also key to generalizing geometric operations, the <a href="http://mathworld.wolfram.com/InnerProduct.html">dot product</a> among them.</p>
 
-<p>(IMAGE - 12)</p>
+<p><b>(IMAGE:</b> 12<b>)</b></p>
 
 <H3><a name="determined-take-side"></a>Determined to take a side (G)</H3>
 
@@ -513,7 +516,7 @@ vector&mdash;yes, the rejection gets rejected&mdash;but the perp operator gives 
 <p>The question thus boils down to "How similar is this vector to the result of the perp operator?". $ \dotvw{v}{w^{\perp}} $ yields one sign on one side of
  $ \mathbf{w} $, the reverse on the other, or zero should the vectors align. (Which sign is which, of course, is subject to our choice of perp operator.)</p>
 
-<p>(NOTES: join)</p>
+<p><b>(NOTES:</b> join<b>)</b></p>
 
 <p>Both the projection and the result of the perp operator are perpendicular to $ \mathbf{w} $. Either they have the same or opposite directions; they are
 perfectly similar or dissimilar, pending normalization. If we call the angle between them $\phi$, we can say $ \cos\phi = \pm 1. $</p>
@@ -531,9 +534,9 @@ or $ v_x w_y - v_y w_x $.</p>
 <p>This is the <a href="http://roaminggamer.com/math2d/#cross">determinant</a>. As noted, this is equal to the earlier similarity, whose sign tells us what side
 $ \mathbf{v} $ lies on with respect to $ \mathbf{w} $.</p>
 
-<p>(IMAGE - 13)</p>
+<p><b>(IMAGE:</b> 13<b>)</b></p>
 
-<p>(NOTES: join)</p>
+<p><b>(NOTES:</b> join<b>)</b></p>
 
 <p>Now, $ \mathbf{w^{\perp}} $ simply swaps the components $ \mathbf{w} $ and changes one of their signs. All of this comes out in the wash when we take its length,
 meaning $ \vlen{w^{\perp}} = \vlen{w}. $</p>
@@ -544,16 +547,16 @@ vector lengths. So what is $ \vlen{v - proj_w v} $?</p>
 <p>Of course, we could just grind it out, although the results will not be terribly enlightening. Instead, review the image of the rejection above, then recall the
 aforementioned dot product-cosine derivation, in particular where the right triangle's height was found. The rejection is exactly the side in question, so it follows
 that it has length $ \vlen{v}{\mid\sin\theta\mid} $. Note the absolute value; sine will go negative if the angle does, whereas lengths are positive. (In a right
-triangle, the non-right angles cannot get very wide, so negative cosines are a non-issue.) [image?]</p>
+triangle, the non-right angles cannot get very wide, so negative cosines are a non-issue.) <b>(TODO:</b> image?<b>)</b></p>
 
 <p>Assembling all of this: $ \pm\vlen{w}\vlen{v}{\mid\sin\theta\mid} = v_x w_y - v_y w_x. $</p>
 
 <p>The &pm; out front renders this somewhat unwieldy. Thankfully, $ \pm{\mid\sin\theta\mid} $ simplifies to $ \sin\theta $; sine has the aforementioned ability to
 go negative, so all is well. In the end, we have a sort of companion to the dot product-cosine equation: $ v_x w_y - v_y w_x = \lenvw{v}{w}\sin\theta. $</p>
 
-<p>(IMAGE - 14)</p>
+<p><b>(IMAGE:</b> 14<b>)</b></p>
 
-<p>(NOTES: join)</p>
+<p><b>(NOTES:</b> join<b>)</b></p>
 
 <p>Our analysis thus far has considered vectors overlain on the sides of a right triangle. But several times, we came up with this triangle by decomposing a more
 general triangle. We can work backward from this insight, interpreting the side with sine-based length as an altitude. The other leg was already a projection in
@@ -564,13 +567,13 @@ in the last few sections; with that in mind we can just call the full base $ \ma
 
 <p>This is almost exactly the determinant, of course. It tells us that the determinant is equal to twice the area of the triangle described by two vectors, say
 $ \mathbf{v} $ and $ \mathbf{w} $. A doubled area is rather awkward, but we can introduce a second triangle to account for it. If we then rotate this clone and
-affix it to the original, we end up with a <a href="https://en.wikipedia.org/wiki/Parallelogram">parallelogram</a>, an object with two pairs of parallel sides. [image]</p>
+affix it to the original, we end up with a <a href="https://en.wikipedia.org/wiki/Parallelogram">parallelogram</a>, an object with two pairs of parallel sides. <b>(TODO:</b> image<b>)</b></p>
 
 <p>Quite often, the determinant is phrased in these terms instead, as the area of such a parallelogram. For instance, in the case of
 <a href="http://mathinsight.org/matrices_linear_transformations">matrices and linear transformations</a>, this more naturally mirrors the underlying coordinate
 systems.</p>
 
-<p>(IMAGES - 15, 16)</p>
+<p><b>(IMAGES:</b> 15, 16<b>)</b></p>
 
 <H3><a name="point-in-triangle"></a>Point in triangle (H)</H3>
 
@@ -586,10 +589,10 @@ this side information. This is a bit of an odd pairing: area and side. Where mig
 <p>In formulating the determinant above, we used the choice of perp operator that says one vector, say $ \mathbf{v} $, is on the positive side of the other, say
 $ \mathbf{w} $, when oriented counterclockwise to it. This is the so-called <a href="https://en.wikipedia.org/wiki/Right-hand_rule">right-hand rule</a>: starting
 with our fingers aligned to one vector, we rotate them to align with the other, all the while keeping our thumb pointing up; a positive angle proceeds from
-$ \mathbf{w} $ to $ \mathbf{v} $ is described by the right hand, otherwise the left. [images]</p>
+$ \mathbf{w} $ to $ \mathbf{v} $ is described by the right hand, otherwise the left. <b>(TODO:</b> images<b>)</b></p>
 
-<p>(Breaks up the flow? Put the rule part in the perp operator section, maybe.)</p>
-<p>(Arggh, at any rate, this is proving hard to organize...)</p>
+<p><b>(NOTES:</b> Breaks up the flow? Put the rule part in the perp operator section, maybe.<b>)</b></p>
+<p><b>(NOTES:</b> Arggh, at any rate, this is proving hard to organize...<b>)</b></p>
 
 <p>Now, imagine a triangle, with vectors along its sides, oriented so they traverse a loop around its sides. Furthermore, this triangle contains a point. From each
 side, we can trace another vector toward this point, starting from the tails of these side vectors.</p>
@@ -603,11 +606,11 @@ side, we can trace another vector toward this point, starting from the tails of 
 
 <p>Each of the tail-to-point vectors are obviously above their respective sides, according to our right-handed convention. This will not be so, however, for a point
 outside the triangle, as seen on the right: on some sides the determinant is positive, on others negative, or zero when the point is <i>on</i> the side. Thus, we can
-establish containment for a point by checking that all three are positive. [image]</p>
+establish containment for a point by checking that all three are positive. <b>(TODO:</b> image<b>)</b></p>
 
 <p>Together, a side and its tail-to-point vector describe a triangle, nested inside the larger one. For that matter, the implicit third side coincides with the
 tail-to-point vector of the next side in the sequence, so these constitute the full triangle. It seems only natural that these individual areas should sum to the total
-amount. [image]</p>
+amount. <b>(TODO:</b> image<b>)</b></p>
 
 <p>These same circumstances prevail when the point lies outside the larger triangle, however, so we find ourselves in a bit of a quandary. As the picture shows, the
 pieces make up a larger object: the sum is not greater than its parts! Must we restrict ourselves to the inside case?</p>
@@ -616,7 +619,7 @@ pieces make up a larger object: the sum is not greater than its parts! Must we r
 whenever one of the triangles is "too positive"&mdash;the point is "above" its base, but so much it spills out of the larger triangle&mdash;another one makes up for
 it by having negative area&mdash;here, the point is "below" the base. In the end, the signed areas do indeed sum to the (positive) area of the full triangle.</p>
 
-<p>(IMAGE - 18, 19)<p>
+<p><b>(IMAGES:</b> 18, 19<b>)</b><p>
 
 <H3><a name="throwing-ones-weight-around"></a>Throwing one's weight around (I)</H3>
 
@@ -632,7 +635,7 @@ prevailing at the corners, it seems reasonable that the nearer this point comes 
 these seem to be a sort of weight, describing relative proximity to each corner. In the interior, all $b_i$ are between zero and one, but the idea still holds.
 Outside the triangle it does as well, though some $b_i$ will not be positive, and "on the side" might mean rather being on its infinite line.</p>
 
-<p>These are <a href="https://en.wikipedia.org/wiki/Barycentric_coordinate_system">barycentric</a> ("center of gravity") coordinates. [image]</p>
+<p>These are <a href="https://en.wikipedia.org/wiki/Barycentric_coordinate_system">barycentric</a> ("center of weight") coordinates. <b>(TODO:</b> image<b>)</b></p>
 
 <p>These coordinates, where values of one select a corner and reject the others, suggest that a point can be described by a formula such as $ b_1\mathbf{p}
 + b_2\mathbf{q} + b_3\mathbf{r} $. In doing so, though, we find ourselves adding points, seemingly at odds with our earlier "arithmetic of types" guidelines.</p>
@@ -644,7 +647,7 @@ scale factors, this restructures as $ (b_1 + b_2 + b_3)\mathbf{p} + b_2\mathbf{v
 <p>The parenthesized values sum to one, so the "scaling" leaves the point as is. The remaining terms are scaled vectors, which add to points just fine.
 Barycentric combinations are point-vector sums in disguise. (For that matter, if scaling a point also scales its "type"&mdash;making it equal to the scale
 factor&mdash;then although this intermediate result is some alien object, so long as the "types" all sum to one we will again have a point after adding all our
-pseudo-points together.) [TODO: as footnote?]</p>
+pseudo-points together.) <b>(TODO:</b> as footnote?<b>)</b></p>
 
 <p>Barycentric coordinates are useful in that they allow us to operate in relative terms&mdash;near this corner, between these points, somewhere in the
 center&mdash;without needing to know the specifics of the triangle, such as point locations and distance.
@@ -656,7 +659,7 @@ as well.</p>
 <a href="https://en.wikipedia.org/wiki/Finite_element_method">simpler parts</a>. More complex problems are a subject of
 <a href="http://www.inf.usi.ch/hormann/barycentric/">ongoing research</a>.</p>
 
-<p>(IMAGE - 20)</p>
+<p><b>(IMAGE:</b> 20<b>)</b></p>
 
 <H3><a name="meet-the-locals"></a>Meet the locals (J)</H3>
 
@@ -686,7 +689,7 @@ length, then moving backward over $ \mathbf{w} $ two lengths: $ \mathbf{p} + {1 
 <p>In a very real way, we can think of this as being the position $ \vcomps{1 \over 2}{-2} $, with $ \mathbf{p} $ as the origin, $ \mathbf{v} $ being the x-axis,
 and $ \mathbf{w} $ the y-axis.</p>
 
-<p>(Comment about transformation?)</p>
+<p><b>(NOTES:</b> Comment about transformation?<b>)</b></p>
 
 <p>What we have is a <b>local coordinate system</b>, often abbreviated <a href="https://en.wikipedia.org/wiki/Coordinate_system">LCS</a>. This is, of course, a
 familiar from everyday experience. We tend to speak of things from our <a href="https://en.wikipedia.org/wiki/Frame_of_reference">point of view</a>, or in terms
@@ -695,18 +698,19 @@ People would talk.</p>
 
 <p>Points <i>do</i> have a proper location, of course. Often enough this is the more natural way to express them, as well. Static elements in a game scene, for
 instance, already being where they belong, stand to gain less from another point of view. Characters who run across such an element, on the other hand, might
-prefer them from their own perspective: in front, behind, to the right, and so on. They need to take the <b>global coordinates</b> and put them into local form. [image?]</p>
+prefer them from their own perspective: in front, behind, to the right, and so on. They need to take the <b>global coordinates</b> and put them into local form.
+<b>(TODO:</b> image?<b>)</b></p>
 
 <p>The system's local origin, $ \mathbf{p} $ in the above example, would be given by something like the character's position. We want our global point, say
-$ \mathbf{q} $, relative to this "landmark": we are now dealing with the vector $ \mathbf{q - p} $. [image]</p>
+$ \mathbf{q} $, relative to this "landmark": we are now dealing with the vector $ \mathbf{q - p} $. <b>(TODO:</b> image<b>)</b></p>
 
 <p>The parameters told us how much $ \mathbf{v} $ and $ \mathbf{w} $ were scaled, or considered differently, how far we moved along each direction. Coming at this
 from the other direction, we are basically wondering how similar $ \mathbf{q - p} $ is to our two vectors.</p>
 
 <p>$ \mathbf{v} $ and $ \mathbf{w} $ will not always be unit vectors, so these are just the components: $ s = {\dotvwparen{v}{q - p}\over\vlen{v}} $ and $ t =
-{\dotvwparen{w}{q - p}\over\vlen{w}} .$ [image]</p>
+{\dotvwparen{w}{q - p}\over\vlen{w}} .$ <b>(TODO:</b> image<b>)</b></p>
 
-<p>(IMAGE - 23, 24)</p>
+<p><b>(IMAGES:</b> 23, 24<b>)</b></p>
 
 <H3><a name="right-frame"></a>Right frame of mind (K)</H3>
 
@@ -717,12 +721,12 @@ Furthermore, the distinction blurs between $s$ and $x$, $t$ and $y$&mdash;the si
 <p>If we do want such a coordinate system, we can often get by with one vector: thanks to the rejection and perp operator, we have ways to produce another one!</p>
 
 <p>If we have three points, for instance, we might normalize the vector between two of them. Treating one of those points as the origin, we find the vector toward
-the third point, and then the rejection from the "line" vector to it. After normalizing this, we have what we want. [image?]</p>
+the third point, and then the rejection from the "line" vector to it. After normalizing this, we have what we want. <b>(TODO:</b> image?<b>)</b></p>
 
 <p>The same idea would in fact allow us to "<a href="https://en.wikipedia.org/wiki/Orthogonalization">fix</a>" a non-perpendicular configuration: project one of
-the vectors onto the other, then reject from that. Normalize, <i>et voilà</i>! [image?]</p>
+the vectors onto the other, then reject from that. Normalize, <i>et voilà</i>! <b>(TODO:</b> image?<b>)</b></p>
 
-<p>(IMAGES - 25, 26)</p>
+<p><b>(IMAGES:</b> 25, 26<b>)</b></p>
 
 <div style="float:right">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
@@ -735,9 +739,11 @@ the vectors onto the other, then reject from that. Normalize, <i>et voilà</i>! 
 $ \vcomps{\cos\theta}{\sin\theta} $. The perp operator then supplies its twin: $ \vcomps{\sin\theta}{-\cos\theta} $. In fact, this actually describes a
 <a href="https://en.wikipedia.org/wiki/Rotation_matrix">rotating coordinate system</a>.</p>
 
-<p>(Not the conventional form... square away determinants and such)</p>
+<p><b>(NOTES:</b> Not the conventional form... square away determinants and such<b>)</b></p>
 
 <H3><a name="point-normal-form"></a>Point-normal form (L)</H3>
+
+<p><b>(NOTES:</b> Seems to be called the Hesse normal form<b>)</b></p>
 
 <p>In an earlier section we encountered the idea of a normal, a vector whose purpose is to be perpendicular to something else, typically some kind of object.</p>
 
@@ -751,7 +757,7 @@ direction, and thereby remain perpendicular.</p>
 a difference of two points, or at the very least a <a href="https://en.wikipedia.org/wiki/Line_(geometry)#Ray">displacement from one</a>.</p>
 
 <p>Vectors themselves are just free-floating, having no notion of position. They acquire this once a point is brought in, as in the aforementioned cases. Adding
-open-ended scaling to the mix turns them into infinite lines. [image]</p>
+open-ended scaling to the mix turns them into infinite lines. <b>(TODO:</b> image<b>)</b></p>
 
 <p>Considered as a displacement, this may be expressed as $ \mathbf{p} + t\mathbf{v} $. Here, $ \mathbf{p} $ and $ \mathbf{v} $ are a point and direction,
 respectively, and $t$ can be any number, ranging from zero all the way to infinity, positive or negative. This is a point-vector sum, so the result is a point.
@@ -776,7 +782,7 @@ a point and the normal equals $c$, that point is on the line. (Note that $ \math
 formula, taking position into account. When dealing with basic vectors, which have no such notion, zero ("on the line") was a perfectly valid answer, allowing us
 to simply check signs. Now, we must subtract out $c$ first.</p>
 
-<p>(IMAGE - 28)</p>
+<p><b>(IMAGE:</b> 28<b>)</b></p>
 
 <H3><a name="intersection-ray-line"></a>Intersection: ray and line... (M)</H3>
 
@@ -811,7 +817,7 @@ projections, distance checks, and the like become our tools of choice.</p>
 
 <H3><a name="intersection-ray-ray"></a>...ray and ray... (N)</H3>
 
-<p>Speaking of rays, imagine how two of them, say $ \mathbf{p} + s\mathbf{v} $ and $ \mathbf{q} + t\mathbf{w} $, might intersect. [image]</p>
+<p>Speaking of rays, imagine how two of them, say $ \mathbf{p} + s\mathbf{v} $ and $ \mathbf{q} + t\mathbf{w} $, might intersect. <b>(TODO:</b> image<b>)</b></p>
 
 <p>Since they do so at a point, we can set the two point formulae equal: $ \mathbf{p} + s\mathbf{v} = \mathbf{q} + t\mathbf{w}. $ It then comes down to finding
 $s$ and $t$.</p>
@@ -876,7 +882,7 @@ the ray grazing the circle's edge.</p>
 is a zero vector, where our "ray" is really a point. If $ \mathbf{w} $ were a velocity, for instance, this would be an immobile object, who will obviously not
 be the culprit in the event of a collision. (Zero vectors can crop up in the ray-line and ray-ray cases as well, of course.)
 
-<p>(Ways to simplify equation&mdash;when vector is normalized, the coefficient of 2 in $b$&mdash;, maybe mention David Eberly's stability improvements)</p>
+<p><b>(NOTES:</b> Ways to simplify equation&mdash;when vector is normalized, the coefficient of 2 in $b$&mdash;, maybe mention David Eberly's stability improvements<b>)</b></p>
 
 <H3><a name="summary"></a>Summary</H3>
 

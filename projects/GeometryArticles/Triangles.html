@@ -219,32 +219,53 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
 <hr>
 
-<p>The moment we use one of Corona's display objects, we take a small step into the world of two-dimensional geometry.</p>
+<p>Two-dimensional geometry comes into play whenever we use Corona's display objects.</p>
 
-<p>The basics are rather intuitive. Only rarely do we give statements like <code>circle.x = 10</code> or <code>image.rotation = 30</code> much thought, assuming
-our code works. These come quite naturally.</p>
+<p>This is largely done at a high level and comes quite naturally. Assuming our code works, we rarely give statements like <code>circle.x = 10</code> or
+<code>image.rotation = 30</code> more than a passing thought.</p>
 
-<p>We might find ourselves wanting to do more, however. A broader knowledge of geometry then becomes useful, often necessary. The aim of this article (and
-series) is to guide readers through some of the earliest steps.</p>
+<p>We might find ourselves wanting to do more, however. A broader knowledge of geometry then becomes useful, even necessary. This series aims to explore
+several of the fundamental ideas: how to come up with them in the first place, and then put them to work.</p>
 
-<H3><a name="background"></a>Background</H3>
+<H3><a name="some-quick-notes"></a>Some quick notes</H3>
 
-<p>In what follows, a basic grasp of arithmetic is expected, on the part of the reader. Some familiarity with algebra will be helpful as well, though not
-necessary. On the other hand, no previous formal knowledge of geometry or trigonometry is assumed.</p>
+<p>The target audience is a reader with at least a basic grasp of arithmetic (distributive law, powers, roots). Some familiarity with algebra might also be helpful.</p>
 
-<p>Later sections do, however, build on earlier ones&mdash;quite heavily, in fact! The same will be true among articles, as we progress in the series. This
-ought to be gentler than diving straight into <a href="http://www.themathpage.com/abooki/plane-geometry.htm">the masters</a>, but some concepts might still
-require several rereads, as well as a bit of time, before they finally <a href="https://en.wikipedia.org/wiki/Eureka_(word)">sink in</a>, especially to someone
-for whom this is all new.</p>
+<p>The material is arranged so that later sections build upon earlier ones. This will also be true from one article to the next, as the series progresses.
+Naturally, there is going to be a lot to absorb! Many concepts might require several rereads, as well as a bit of time&mdash;and perhaps some experimentation
+in Corona?&mdash;before finally <a href="https://en.wikipedia.org/wiki/Eureka_(word)">sinking in</a>, especially for someone new to it all.</p>
 
-<p>Many links have been added, though all are strictly of a "further reading" nature. These offer alternative proofs, additional points of view, visualizations,
-and even some history.</p>
+<p>Plenty of links have been added throughout the text. These are strictly "further reading": alternative proofs, additional points of view, visualizations,
+even some history.</p>
 
-<p>Various symbols and formulae are rendered using the <a href="https://docs.mathjax.org/en/v2.6-latest/start.html">MathJax</a> toolkit. This incurs a bit of
-startup cost, but offers us notation that would be equally at home in a mathematics paper or textbook, without the need for pre-generated images.</p>
+<p>Mathematical expressions are rendered using the <a href="https://docs.mathjax.org/en/v2.6-latest/start.html">MathJax</a> toolkit. (Punctuation characters such
+as periods and commas are rolled into such expressions whenever they immediately follow them; this probably makes the characters stand out more than they should,
+especially when their unadorned counterparts are nearby, but eliminates some occasional formatting weirdness.)</p>
 
-<p>Most of the figures in these articles were generated from a few <a href="https://github.com/ggcrunchy/samples/tree/master/geometry_kit">small programs</a>.
-Naturally, the ideas under discussion show up within this code.</p>
+<p><a href="https://github.com/ggcrunchy/samples/tree/master/geometry_kit">This repository</a> contains the various small programs, along with a few support modules,
+used to generate most of the figures in these articles. The mathematical ideas under discussion naturally tend to show up in the corresponding code, so it might be
+worth an occasional look. Be aware, however, that more advanced concepts sometimes show up as well.</p>
+
+<H3><a name="opening-lines"></a>Opening lines</H3>
+
+<p>Our first order of business is to say a little about lines.</p>
+
+<p>Lines are one-dimensional objects, meaning if we want to travel along one, we only have one direction available
+to follow, either forward or backward. If we veer to the side, we leave the line.</p>
+
+<p>Many times, we want to consider lines in connection with their surroundings, perhaps as part of another object.
+By doing so, we embed them in space (or "in the plane", in two dimensions). This introduces position and orientation.</p>
+
+<p><b>(NOTES:</b> Expand on that last bit; some of what's in "Going the distance" would be better off here<b>)</b></p> 
+
+<p>Curves are another sort of one-dimensional object, where the local direction changes from position to position.
+They look like line segments up close. Lines are particular in that by going from point to point our relative
+positions are the same in the space itself.</p>
+
+<p>Lines will go on forever. But little bits of it are important. We can bound in one direction and we get rays. Or
+from both sides and then we have segments.</p>
+
+<p><b>(NOTES:</b> The last couple paragraphs are probably the ideas we want, but written quickly and need polish.<b>)</b></p>
 
 <H3><a name="sides"></a>Discussing each side's terms</H3>
 
@@ -384,6 +405,11 @@ another angle, equally wide.</p>
 <p>In fact, we would then have the situation of figure <b>B-4</b>, with the fourth and final angle being shared as well. In the end, we have a couple pairs of equal
 angles. These so-called <a href="https://www.mathsisfun.com/geometry/vertical-angles.html">vertical angles</a> arise whenever two lines cross.</p>
 
+<p><b>(NOTES:</b> Loosen up a bit: describe and show a supplementary angle... then mention that we had to extend one of the sides to get the line we were
+completing... since an angle corresponds to two sides, we have another line, so supplementary to that as well... but the measure will be the same...
+we still have a fourth angle, but notice it's also flush with these lines, so has the original measure... then describe vertical, and tie it to
+crossing lines<b>)</b></p>
+
 <H3><a name="sticking-together"></a>Sticking together</H3>
 
 <p>A little thought experiment is now in order.</p>
@@ -452,7 +478,7 @@ the same purpose for sides that arcs do for angles, with matching counts indicat
 <p>Introducing the second adjacent side will bring us back to our earlier predicament, where any change would upset a delicate balance. This has an extremely important converse: a
 common side-angle-side sequence means that two triangles are the same.</p>
 
-<p>(NOTES: Is the first half of this clear? Realized it could be more intuitively demonstrated by overlap...)</p>
+<p><b>(NOTES:</b> Is the first half of this clear? Realized it could be more intuitively demonstrated by overlap...<b>)</b></p>
 
 <H3><a name="identical-twins"></a>Identical twins</H3>
 
@@ -485,7 +511,7 @@ its companion.</p>
 
 <p>The two approaches are not at odds. Overlap is the visual manifestation of all lengths being in agreement, and <i>vice versa</i>.</p>
 
-<p>(NOTES: Either move this before the last section (with appropriate edits) or use overlap to show side-angle-side in effect)</p>
+<p><b>(NOTES:</b> Either move this before the last section (with appropriate edits) or use overlap to show side-angle-side in effect<b>)</b></p>
 
 <H3><a name="a-look-in-the-mirror"></a>A look in the mirror</H3>
 
@@ -538,41 +564,13 @@ supplementary, and thus right angles.</p>
 
 <p><b>TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE</b></p>
 
-<H3><a name="strikingly-similar"></a>Strikingly similar</H3>
-
-<p>Had congruence been the only way to relate two triangles, giving it a special name would be redundant. There is, in fact, another useful concept of "same".</p>
-
-<div style="float:right">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_triangles/F1.png" width="133" height="151" alt="Similar triangles">
-		<div class="caption"><b>F-1</b></div>
-	</div>
-</div>
-
-<p>Say we came across the two triangles in figure <b>F-1</b>.</p>
-
-<p>One triangle is visibly smaller than the other, so overlap is clearly not going to happen. That said, both triangles have the <a href="http://www.mathopenref.com/congruentaaa.html">same
-set of angles</a>. In spite of the size difference, the shapes match. (Once we know how to find lengths, we could show that one triangle is simply a
-<a href="https://en.wikipedia.org/wiki/Scaling_(geometry)">scaled</a> version of the other.)</p>
-
-<p>The two triangles are said to be <a href="http://www.mathopenref.com/similartriangles.html">similar</a>.</p>
-
-<div style="float:left">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_triangles/F2.png" width="150" height="100" alt="Coincident similar triangles">
-		<div class="caption"><b>F-2</b></div>
-	</div>
-</div>
-
-<p>Similar triangles, like congruent ones, may have different positions and orientations. Two triangles might even share a corner&mdash;and thus an
-angle&mdash;so that the smaller triangle is "part of" the larger one, as seen in figure <b>F-2</b>. Naturally, the shared angle would be
-<a href="http://www.mathwords.com/r/reflexive_property.htm">the same as itself</a>!</p>
-
-<p>(NOTES: For F-3, use variant of F-1; two sides on one of them, one plus a "?" on the other; maybe rotate it for increased generality)</p>
-<p>(NOTES: In fact, could strengthen this by swapping with next section; motivate by overlap case and corresponding angles)</p>
-<p>(NOTES: Still needs a little finesse to tie in the uniform scaling; perhaps the better-elaborated rigidity section earlier?)</p>
-
 <H3><a name="drawing-parallels"></a>Drawing parallels</H3>
+
+<p><b>(NOTES:</b> If we go the overlap route, which is likely, it seems much better to approach this using <b>I-1</b> and <b>I-2</b>, along with the
+material for the same... we can still use some of what follows here... this might also let us cut some of the awkward "rectangles have
+parallel sides" bit in the next section<b>)</b></p>
+<p><b>(NOTES:</b> The main thrust is that, because two sides already coincide as the transversal, the alternate angles situation means that the other two
+sides must be oriented the same way... "we call this parallel", etc.<b>)</b></p>
 
 <p>We have only been considering segments of lines, rather than the <a href="https://en.wikipedia.org/wiki/Line_(geometry)">real deal.</a> A segment
 begins in one location and ends in another, whereas lines continue in either direction indefinitely.</p>
@@ -878,7 +876,7 @@ the last result. A short bout of cancellation ensues and leaves us with $ -2xR =
 Applying the Pythagorean theorem to these, we find $ L^2 + h^2 = z^2 $ and $ R^2 + h^2 = y^2. $</p>
 
 <p>Again, assuming the original triangle does satisfy the Pythagorean theorem, we can replace $ z^2 $ in the first equation with $ x^2 + y^2. $ Doing so, then
-combining the two equations on account of the common $ h^2 $, and finishing off with some cancellation, we end up with $ x^2 + R^2 = L^2. $</p>
+combining the two equations on account of the common $ h^2, $ and finishing off with some cancellation, we end up with $ x^2 + R^2 = L^2. $</p>
 
 <p>Since $ x = L + R, $ this finally boils down to $ 2R(L + R) = 0. $ Either $ L = -R, $ which can only happen when $ x = 0, $ or $ R = 0. $ These are exactly the
 situations a too-short base gave us, with the same consequences.</p>
@@ -900,6 +898,9 @@ zero. What do these latter possibilities mean?</p>
 height dwindles and our triangle becomes little more than a sliver. A line segment can be understood as going just a bit further, so the height (or width of the
 base) is zero. If both $x$ and $y$ are zero, the triangle degenerates to a single point, but this is merely the same phenomenon, occurring in both directions at
 once.</p>
+
+<p><b>(NOTES:</b> Perhaps a little numerical note, e.g. when $x$ is 1/1000, $x^2$ is 1/1000000, etc. so graceful transition<b>)</b></p>
+<p><b>(NOTES:</b> The point corner case, of course, just says that it doesn't break in that case<b>)</b></p>
 
 <p>So, given $x$, $y$, and $z$ satisfying the Pythagorean theorem, we know these do entail a right triangle, or might as well.</p>
 
@@ -961,15 +962,19 @@ figure <b>N-2</b>. Its hypotenuse is the segment from $ \mathbf{p} $ to $ \mathb
 
 <p>Returning to an earlier point, we mentioned that a similar triangle entailed uniformly scaling the sides of a triangle.</p>
 
+<p><b>(NOTES:</b> similar triangles moved after this, so revise<b>)</b></p>
+
 <p>In the case of a right triangle, this is pretty easy. We have two sides of length $dx$ and $dy,$ which we can scale by $s.$ Then the length of the third
 side would be $ \sqrt{(sdx)^2 + (sdy)^2} = \sqrt{s^2(dx^2 + dy^2)}. $ This simplifies to $ s\sqrt{dx^2 + dy^2}, $ which is exactly what we would expect.</p>
+
+<p><b>(NOTES:</b> A little too "lucky"; turn the steps around instead<b>)</b></p>
 
 <p>This applies to triangles in general, but a useful consequence follows when we apply it to distance. Basically, to find the position $s$ of the way along the
 path between two points, simply scale the two offsets $dx$ and $dy$ by $s,$ then add the results to the original point. This is called linear interpolation.</p>
 
 <p>Importantly, the construction $ a + s(b - a) $ can be rephrased as $ (1 - s)a + sb, $ which is sometimes more convenient.</p>
 
-<p>(NOTES: General triangle could use the implicit lerp triangles)</p>
+<p><b>(NOTES:</b> General triangle could use the implicit lerp triangles<b>)</b></p>
 
 <p>In the more general case, we can choose two of the sides with a common first point and scale them. This is simply the right triangle situation. The third side
 will depend on the second point, with offsets $ dx_2 = r_x - q_x, dy_2 = r_y - q_y,$ and length $ \sqrt{dx_2^2 + dy_2^2}. $</p>
@@ -978,9 +983,48 @@ will depend on the second point, with offsets $ dx_2 = r_x - q_x, dy_2 = r_y - q
 find the offsets between these points, the $ 1 - s $ terms cancel and we have $ dx_3 = s(r_x - q_x) $ and $ dy_3 = s(r_y - q_y). $ These are the scalar multiples of
 $dx_2$ and $dy_2,$ as expected.</p>
 
+<p><b>(NOTES:</b> More complex than necessary... just split a generic triangle into two right triangles, aligned along the altitude for visual
+clarity... then to get the two "hypotenuse" sides we scale the legs... since this altitude is a leg of both, we use the same scaling factor,
+and since s(x + y) = sx + sy, the bases are the same too, so all checks out<b>)</b></p>
+
+<H3><a name="strikingly-similar"></a>Strikingly similar</H3>
+
+<p>Had congruence been the only way to relate two triangles, giving it a special name would be redundant. There is, in fact, another useful concept of "same".</p>
+
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/F1.png" width="133" height="151" alt="Similar triangles">
+		<div class="caption"><b>F-1</b></div>
+	</div>
+</div>
+
+<p>Say we came across the two triangles in figure <b>F-1</b>.</p>
+
+<p>One triangle is visibly smaller than the other, so overlap is clearly not going to happen. That said, both triangles have the <a href="http://www.mathopenref.com/congruentaaa.html">same
+set of angles</a>. In spite of the size difference, the shapes match. (Once we know how to find lengths, we could show that one triangle is simply a
+<a href="https://en.wikipedia.org/wiki/Scaling_(geometry)">scaled</a> version of the other.)</p>
+
+<p>The two triangles are said to be <a href="http://www.mathopenref.com/similartriangles.html">similar</a>.</p>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/F2.png" width="150" height="100" alt="Coincident similar triangles">
+		<div class="caption"><b>F-2</b></div>
+	</div>
+</div>
+
+<p>Similar triangles, like congruent ones, may have different positions and orientations. Two triangles might even share a corner&mdash;and thus an
+angle&mdash;so that the smaller triangle is "part of" the larger one, as seen in figure <b>F-2</b>. Naturally, the shared angle would be
+<a href="http://www.mathwords.com/r/reflexive_property.htm">the same as itself</a>!</p>
+
+<p><b>(NOTES:</b> For F-3, use variant of F-1; two sides on one of them, one plus a "?" on the other; maybe rotate it for increased generality<b>)</b></p>
+<p><b>(NOTES:</b> In fact, could strengthen this by swapping with next section; motivate by overlap case and corresponding angles<b>)</b></p>
+<p><b>(NOTES:</b> Still needs a little finesse to tie in the uniform scaling; perhaps the better-elaborated rigidity section earlier?<b>)</b></p>
+
 <p><b>TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE</b></p>
 
-<p>(NOTES: Central dilation, fixed points; changing one point -> spiral similarity)</p>
+<p><b>(NOTES:</b> Central dilation, fixed points; changing one point -> spiral similarity<b>)</b></p>
+<p><b>(NOTES:</b> Could do recursive midpoint theorem too, no?<b>)</b></p>
 
 <H3><a name="summary"></a>Summary</H3>
 
