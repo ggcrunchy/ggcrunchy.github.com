@@ -235,15 +235,17 @@ several of the fundamental ideas: how to come up with them in the first place, a
 Naturally, there is going to be a lot to absorb! Many concepts might require several rereads, as well as a bit of time&mdash;and perhaps some experimentation
 in Corona?&mdash;before finally <a href="https://en.wikipedia.org/wiki/Eureka_(word)">sinking in</a>, especially for someone new to it all.</p>
 
-<p>Plenty of links have been added throughout the text. These are strictly "further reading": alternative proofs, additional points of view, visualizations,
-even some history.</p>
+<p>For the most part, the various links are simply "further reading": alternative proofs, additional points of view, visualizations, even some history.</p>
+
+<p>Similarly, some sections end with exercises, marked as <b>YOUR TURN</b>. These are optional as well, but working them out might offer interesting insights. While
+digressionary, these more closely follow the material in the text.</p>
 
 <p>Mathematical expressions are rendered using the <a href="https://docs.mathjax.org/en/v2.6-latest/start.html">MathJax</a> toolkit. (Punctuation characters such
-as periods and commas are rolled into such expressions whenever they immediately follow them; this probably makes the characters stand out more than they should,
-especially when their unadorned counterparts are nearby, but eliminates some occasional formatting weirdness.)</p>
+as periods and commas are rolled into such expressions whenever they immediately follow them; this makes the characters stand out a bit, especially when their
+unadorned counterparts are nearby, but eliminates some occasional formatting weirdness.)</p>
 
 <p><a href="https://github.com/ggcrunchy/samples/tree/master/geometry_kit">This repository</a> contains the various small programs, along with a few support modules,
-used to generate most of the figures in these articles. The mathematical ideas under discussion naturally tend to show up in the corresponding code, so it might be
+used to generate most of the figures in these articles. The mathematical ideas under discussion naturally tend to appear in the corresponding code, so it might be
 worth an occasional look. Be aware, however, that more advanced concepts sometimes show up as well.</p>
 
 <H3><a name="opening-lines"></a>Opening lines</H3>
@@ -480,6 +482,11 @@ common side-angle-side sequence means that two triangles are the same.</p>
 
 <p><b>(NOTES:</b> Is the first half of this clear? Realized it could be more intuitively demonstrated by overlap...<b>)</b></p>
 
+<H4><b>EXERCISES</b></H4>
+
+<p><b>1.</b> What other theorems can we use to compare triangles, based on angles and sides?</p>
+<p><b>2.</b> Do these theorems have the same guarantees as side-angle-side?</p>
+
 <H3><a name="identical-twins"></a>Identical twins</H3>
 
 <p>Properly speaking, the two triangles are <a href="https://en.wikipedia.org/wiki/Congruence_(geometry)">congruent</a>. This has a few (equivalent) definitions.</a>
@@ -611,6 +618,11 @@ share the same direction, these lines are also parallel.</p>
 triangles' heights&mdash;with the segments inside the line as bases, of course&mdash;will report the same distance separating the two lines. Parallel
 objects either never meet or completely coincide already.</p>
 
+<H4><b>EXERCISES</b></H4>
+
+<p><b>1.</b> Demonstrate the midpoint theorem: if we connect the midpoint of one side with the midpoint of another, the segment between them will be
+half as long and parallel to the remaining side.</p>
+
 <H3><a name="triangles-in-space"></a>Triangles in space!</H3>
 
 <p>Given a rectangle, we might try packing it full of smaller objects.</p>
@@ -697,6 +709,12 @@ of the base, just as $w$ was in the previous two cases.</p>
 unit squares no longer corresponds to the shape: the area is now dispersed across the squares, with many of them only partially full, as a quick look at figure <b>H-2</b> will
 tell us. This ought to provide some insight into how the notion of area generalizes.</p>
 
+<H4><b>EXERCISES</b></H4>
+
+<p><b>1.</b> Use smaller squares to represent a triangular half rectangle, making sure these almost add up to the proper area. Doing this, can we
+ever get a perfect fit?</p>
+<p><b>2.</b> Demonstrate some examples of the distributive law geometrically.</p>
+
 <H3><a name="it-all-adds-up"></a>It All Adds Up</H3>
 
 <div style="float:right">
@@ -772,9 +790,10 @@ can be rewritten as $ D + (180^{\circ} - A) = 90^{\circ}, $ or $ A = D + 90^{\ci
 <p>Now, $ A + B + C = 180^{\circ}. $ Plugging in our recent findings, the left-hand side becomes $ (D + 90^{\circ}) + B + (O - 90^{\circ}). $ This simplifies to $ B + D + O = 180^{\circ}.
 $ All is well.</p>
 
-<p>In figures <b>I-1</b> and <b>I-4</b>, we have two triangles combining to form a rectangle. Although we begin with six sides, two of these basically vanish inside the new shape. Since
-adjacent angles sum up, however, the rectangle (or any four-sided object) has two triangles' worth of interior angles: 360&deg;. This generalizes quite nicely: the interior angles of an
-object with $n$ sides sum to $ (n - 2)180^{\circ}. $</p>
+<H4><b>EXERCISES</b></H4>
+
+<p><b>1.</b> What happens with four sides? Do we need to account for special cases?</p>
+<p><b>2.</b> What about the general case of $n$ sides ($n >= 3$)?</p>
 
 <H3><a name="pythagoras"></a>Enter Pythagoras</H3>
 
@@ -896,13 +915,16 @@ zero. What do these latter possibilities mean?</p>
 
 <p>Figure <b>M-1</b> gives us some hint that lines are not a drastic break from the triangular mold. So long as we have a right angle, all is well, even as the
 height dwindles and our triangle becomes little more than a sliver. A line segment can be understood as going just a bit further, so the height (or width of the
-base) is zero. If both $x$ and $y$ are zero, the triangle degenerates to a single point, but this is merely the same phenomenon, occurring in both directions at
-once.</p>
+base) is zero.</p>
 
 <p><b>(NOTES:</b> Perhaps a little numerical note, e.g. when $x$ is 1/1000, $x^2$ is 1/1000000, etc. so graceful transition<b>)</b></p>
-<p><b>(NOTES:</b> The point corner case, of course, just says that it doesn't break in that case<b>)</b></p>
 
 <p>So, given $x$, $y$, and $z$ satisfying the Pythagorean theorem, we know these do entail a right triangle, or might as well.</p>
+
+<H4><b>EXERCISES</b></H4>
+
+<p><b>1.</b> What if $x$ and $y$ both go to zero?</p>
+<p><b>2.</b> How long can the hypotenuse be, compared to its legs?</p>
 
 <H3><a name="going-the-distance"></a>Going the distance</H3>
 
@@ -1023,8 +1045,11 @@ angle&mdash;so that the smaller triangle is "part of" the larger one, as seen in
 
 <p><b>TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE</b></p>
 
-<p><b>(NOTES:</b> Central dilation, fixed points; changing one point -> spiral similarity<b>)</b></p>
-<p><b>(NOTES:</b> Could do recursive midpoint theorem too, no?<b>)</b></p>
+<H4><b>EXERCISES</b></H4>
+
+<p><b>1.</b> Make an argument for similarity from the midpoint theorem, mentioned in an earlier exercise.</p>
+<p><b>2.</b> If we know two triangles are similar, how can we take of advantage of this by scaling one or both of them? What about rotating?
+Scaling and rotating? As far as rotation goes, consider that the triangles might be doing so around different centers.</p>
 
 <H3><a name="summary"></a>Summary</H3>
 

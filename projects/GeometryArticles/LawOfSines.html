@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial: Creating Android TV Apps | Corona Labs</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://coronalabs.com/xmlrpc.php">
+<link href="./LawOfSines_files/css" rel="stylesheet" type="text/css">  
+<script src="./LawOfSines_files/cb=gapi.loaded_1" async=""></script><script src="./LawOfSines_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./LawOfSines_files/widgets.js"></script><script type="text/javascript" async="" src="./LawOfSines_files/plusone.js" gapi_processed="true"></script><script type="text/javascript" async="" src="./LawOfSines_files/inpage_linkid.js" id="undefined"></script><script type="text/javascript" async="" src="./LawOfSines_files/dc.js"></script><script src="./LawOfSines_files/remote_user_menu"></script>
+<!-- icons & favicons -->
+<!-- For iPhone 4 -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/h/apple-touch-icon.png">
+<!-- For iPad 1-->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/m/apple-touch-icon.png">
+<!-- For iPhone 3G, iPod Touch and Android -->
+<link rel="apple-touch-icon-precomposed" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/l/apple-touch-icon-precomposed.png">
+<!-- For Nokia -->
+<link rel="shortcut icon" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/l/apple-touch-icon.png">
+<!-- For everything else -->
+<link rel="shortcut icon" href="http://ddz4z2fxb232w.cloudfront.net/favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Feed" href="http://coronalabs.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Comments Feed" href="http://coronalabs.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Tutorial: Creating Android TV Apps Comments Feed" href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/feed/">
+<link rel="stylesheet" id="mediaelement-css" href="./LawOfSines_files/mediaelementplayer.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-mediaelement-css" href="./LawOfSines_files/wp-mediaelement.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-polls-css" href="./LawOfSines_files/polls-css.css" type="text/css" media="all">
+<link rel="stylesheet" id="corona-bootstrap-css" href="./LawOfSines_files/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="corona-style-css" href="./LawOfSines_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fancybox-fancybox-css" href="./LawOfSines_files/jquery.fancybox.css" type="text/css" media="all">
+<link rel="stylesheet" id="views-pagination-style-css" href="./LawOfSines_files/wpv-pagination.css" type="text/css" media="all">
+<link rel="stylesheet" id="prettify-css" href="./LawOfSines_files/custom.css" type="text/css" media="all">
+<link rel="stylesheet" id="taxonomy-image-plugin-public-css" href="./LawOfSines_files/style(1).css" type="text/css" media="screen">
+<script type="text/javascript" src="./LawOfSines_files/player.min.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/jquery.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/powerpress-mejs.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/bootstrap.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/bootstrap-wp.js"></script><style>body{display:none;}</style>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://coronalabs.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://coronalabs.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="From the Forum — Issue #54" href="http://coronalabs.com/blog/2015/01/09/from-the-forum-issue-54/">
+<meta name="generator" content="WordPress 4.0.1">
+<link rel="shortlink" href="http://coronalabs.com/?p=60833">
+<script type="text/javascript"><!--
+function powerpress_pinw(pinw){window.open('http://coronalabs.com/?powerpress_pinw='+pinw, 'PowerPressPlayer','toolbar=0,status=0,resizable=1,width=460,height=320');	return false;}
+powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
+//-->
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+	TeX: {
+		Macros: {
+			vcomps: ['( {#1}, {#2} )', 2],
+			vlen: ['\\|\\mathbf{#1}\\|', 1],
+			dotp: ['#1_x #2_x + #1_y #2_y', 2],
+			dotvw: ['\\mathbf{#1} \\cdot \\mathbf{#2}', 2],
+			softerdotvw: ['#1 \\cdot \\mathbf{#2}', 2],
+			fracalign: ['\\frac{\\vphantom{#3} #1}{#2}', 3]
+		}
+	  }
+  });
+</script>
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+
+<script type="text/javascript">
+	function TriURL (anchor)
+	{
+		window.location = "./Triangles.html#" + anchor;
+	}
+</script>
+
+<style type="text/css">
+.wp-polls .pollbar {
+	margin: 1px;
+	font-size: 6px;
+	line-height: 8px;
+	height: 8px;
+	background-image: url('http://coronalabs.com/plugins/wp-polls/images/default/pollbg.gif');
+	border: 1px solid #c8c8c8;
+}
+</style>
+
+<!-- All in One SEO Pack 2.2.3.1 by Michael Torbert of Semper Fi Web Design[137,192] -->
+<link rel="author" href="https://plus.google.com/106405667962965815359/">
+<meta name="description" content="In this week&#39;s tutorial, guest contributor Greg Pugh illustrates the simple process involved in releasing your Corona-made project for Android TV.">
+
+<meta name="keywords" content="android tv,tutorial">
+
+<link rel="canonical" href="./LawOfSines_files/Coroutines.html">
+<!-- /all in one seo pack -->
+
+		<style media="print" type="text/css">
+			div.faq_answer {display: block!important;}
+			p.faq_nav {display: none;}
+		</style>
+
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-9574984-6']);
+  _gaq.push(['_setDomainName', 'coronalabs.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script src="./LawOfSines_files/secureAnonymousFramework"></script><style type="text/css">* html #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link{height:1% !important;}#li_ui_li_gen_1421432617759_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1421432617759_0 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:link, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:visited, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:hover, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -276px !important;background-repeat:no-repeat !important;background-size:initial !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-logo, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-logo{}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{}.IN-shadowed #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{}.IN-shadowed #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .IN-shadowed #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text *{color:#000 !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text *, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text *{color:#666 !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title #li_ui_li_gen_1421432617759_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{}.success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text *{color:#000 !important;}.success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text *, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .IN-shadowed .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{}#li_ui_li_gen_1421432617782_1-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:18px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1421432617782_1.IN-right {display:block !important;float:left !important;height:18px !important;margin-right:4px !important;padding-right:4px !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:right -100px !important;}#li_ui_li_gen_1421432617782_1-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:0px -60px !important;}#li_ui_li_gen_1421432617782_1-content.IN-right {display:inline !important;font-size:11px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:18px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1421432617782_1-container.IN-empty {display:none !important;}#li_ui_li_gen_1421432617782_1-container.IN-hidden #li_ui_li_gen_1421432617782_1 {display:none !important;}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+
+<body class="single single-post postid-60833 single-format-standard custom-background group-blog" style="display: block;">
+		<nav class="site-navigation">
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<p id="search-icon-link" class="pull-right visible-xs navbar-text">
+				    <a href="http://coronalabs.com/search"><span class="glyphicon glyphicon-search"></span></a>		
+				</p>
+				<!-- Your site title as branding in the menu -->
+				<a class="navbar-brand" href="http://coronalabs.com/" title="Corona Labs" rel="home"><span class="visible-xs">Corona Labs</span></a>
+		  	</div>
+
+			<div id="download-link" class="navbar-right hidden-xs hidden-sm">
+			    <a href="https://developer.coronalabs.com/downloads/coronasdk" class="btn btn-corona btn-sm navbar-btn">Download</a>
+			</div>
+			<div id="user-account-top-bar" class="navbar-right hidden-xs">
+			    <div id="user-account-container">
+			        <div id="top-download-signin"><a href="https://developer.coronalabs.com/user/login" id="" class="btn btn-primary btn-sm navbar-btn" target="_parent">Sign-in</a></div>
+			        <div id="top-user-account" class="hidden"></div>
+			    </div>
+			</div>
+			<div class="search-link pull-right hidden-xs">
+			    <button type="button" id="search-icon" class="btn btn-link navbar-btn"><span class="glyphicon glyphicon-search"></span></button>		
+			</div>
+            <form id="search_form" class="navbar-form navbar-right hidden" role="search" method="get" action="http://coronalabs.com/search/">
+                <a href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#" class="search-close btn btn-sm hidden-xs"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                <div class="input-group input-group-sm">
+		            <input name="q" id="s" type="search" class="search-query top-nav-search form-control" placeholder="Site Search">
+		            <span class="input-group-btn">
+		    			<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+		  			</span>
+                </div>
+            </form>
+			<!-- The WordPress Menu goes here -->
+			<div class="collapse navbar-collapse navbar-responsive-collapse"><ul id="main-menu" class="nav navbar-nav"><li id="menu-item-60549" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-60549 dropdown"><a href="http://coronalabs.com/start-building/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Start Building <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-60351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60351"><a href="http://coronalabs.com/start-building/games/">Games</a></li>
+	<li id="menu-item-60354" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60354"><a href="http://coronalabs.com/start-building/business-apps/">Business Apps</a></li>
+	<li id="menu-item-60355" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60355"><a href="http://coronalabs.com/start-building/education-kid-apps/">Educational Apps</a></li>
+</ul>
+</li>
+<li id="menu-item-59603" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-59603 dropdown"><a href="http://coronalabs.com/products/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Products <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-60356" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60356"><a href="http://coronalabs.com/products/corona-sdk/">Corona SDK</a></li>
+	<li id="menu-item-60361" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60361"><a href="http://coronalabs.com/products/enterprise/">Corona Enterprise</a></li>
+	<li id="menu-item-59626" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59626"><a target="_blank" href="http://coronacards.com/">CoronaCards</a></li>
+	<li id="menu-item-60360" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60360"><a href="http://coronalabs.com/products/support-training/">Support &amp; Training</a></li>
+</ul>
+</li>
+<li id="menu-item-60353" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60353"><a href="http://coronalabs.com/pricing/">Pricing</a></li>
+<li id="menu-item-60358" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-60358 dropdown"><a href="http://coronalabs.com/resources/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Resources <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-59624" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59624"><a href="http://forums.coronalabs.com/">Forum</a></li>
+	<li id="menu-item-59625" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59625"><a href="http://docs.coronalabs.com/">Documentation</a></li>
+	<li id="menu-item-59601" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-59601"><a href="http://coronalabs.com/resources/tutorials/">Corona University</a></li>
+	<li id="menu-item-60350" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60350"><a href="http://coronalabs.com/resources/plugins/">Corona Plugin Directory</a></li>
+	<li id="menu-item-60357" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60357"><a href="http://coronalabs.com/resources/">Other Resources</a></li>
+</ul>
+</li>
+<li id="menu-item-59619" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-59619"><a href="http://coronalabs.com/blog/">Blog</a></li>
+</ul></div>		</div><!-- .container -->
+	</div><!-- .navbar -->
+</nav><!-- .site-navigation -->
+
+<header id="masthead" class="site-header" role="banner">
+	<div class="container">
+		<div class="row">
+			<div class="site-header-inner col-sm-12">
+							</div>
+		</div>
+	</div><!-- .container -->
+</header><!-- #masthead -->
+<div class="container hidden-xs">
+  <div class="row">
+    <div class="col-md-12">
+    <div id="fuse-branding"><a href="http://fusepowered.com/" target="_blank"><img src="./LawOfSines_files/FusePowered_branding_sm.png" alt="A Fuse Powered Company"></a></div>
+    </div>
+  </div>
+</div><div class="main-content">
+    <div id="content-wrapper" class="container">
+
+				
+					
+	<div class="row">
+		<div class="col-md-12">
+			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
+
+				<h1 class="page-title h1">A 2D geometry primer, part 4: the Law of Sines</h1>
+				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./LawOfSines_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
+			</header><!-- .entry-header -->
+		</div>
+	</div>
+	
+    <div class="row">
+		<div class="main-content-inner col-xs-12 col-sm-8 col-md-8">
+			<article id="post-60833" class="post-60833 post type-post status-publish format-standard has-post-thumbnail hentry category-guest-bloggers category-tutorials-tips-demos tag-android-tv tag-tutorial">	
+				<div class="entry-content">
+					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
+<hr>
+
+<p>TODO!</p>
+
+<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
+
+<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
+
+<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
+letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_los/G2.png" width="200" height="150" alt="Law of sines">
+		<div style="caption"><b>G-2</b></div>
+	</div>
+</div>
+
+<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
+the same result. Thus</p>
+
+<p>
+\begin{align}
+\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
+\end{align}
+<p>
+
+<p>If we divide "both" sides by ${1 \over 2}ABC,$ this all comes out to</p>
+
+<p>
+\begin{align}
+\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
+\end{align}
+<p>
+
+<p>This is the Law of Sines, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
+used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
+
+<p>There is also a Law of Tangents, which builds upon the Law of Sines.</p>
+
+<p><b>(NOTES:</b> Fill this in... $ D\sin b = B, $ etc. then do $ a + b $ and $ a - b, $ grind out, use sum-to-product, etc.<b>)</b></p>
+
+<H3><a href="centroid"></a>Centroid</H3>
+
+<p>If we start at one corner and cut the opposite side at the midpoint, we have two triangles with base ${B \over 2}$ and height $h$,
+which is to say they have equal area, half that of the full triangle. Such lines are called medians.</p>
+
+<p><b>(NOTES:</b>Figure<b>)</b></p>
+
+<p>If we do the same with another corner, the same area situation will happen. Furthermore, of course, the medians will intersect
+somewhere. This will produce a number of triangles.</p>
+
+<p><b>(NOTES:</b>Refer to figure<b>)</b></p>
+
+<p>With the Law of Sines we can investigate the relationships among their sides, tabulated in what follows. Note that, as we saw in
+the previous article, $\sin(180^\circ - \theta) = \sin\theta.$</p>
+
+<p>First off, we have the triangles produced when the two medians cross. These correspond to the upper-left, upper-right, and lower-left
+triangles in (FIGURE):
+
+\begin{align}
+T_{ul}: \frac{\sin x}{A} = \frac{\sin b_1}{D} = \frac{\sin c_1}{F}
+\end{align}
+
+\begin{align}
+T_{ur}: \frac{\sin x}{B / 2} = \frac{\sin (x + c_2)}{D} = \frac{\sin c_2}{G}
+\end{align}
+
+\begin{align}
+T_{ll}: \frac{\sin x}{C / 2} = \frac{\sin b_2}{E} = \frac{\sin (x + b_2)}{F}
+\end{align}
+
+The median bisecting $B$ gave us a left and right triangle:
+
+\begin{align}
+Left: \frac{\sin c}{F + G} = \frac{\sin b_1}{B / 2} = \frac{\sin (x + c_2)}{A}
+\end{align}
+
+\begin{align}
+Right: \frac{\sin b_2}{B / 2} = \frac{\sin a}{F + G} = \frac{\sin (x + c_2)}{C}
+\end{align}
+
+Likewise, from cutting side $C$ we have top and bottom triangles:
+
+\begin{align}
+Top: \frac{\sin c_1}{C / 2} = \frac{\sin b}{D + E} = \frac{\sin (x + b_2)}{A}
+\end{align}
+
+\begin{align}
+Bottom: \frac{\sin c_2}{C / 2} = \frac{\sin (x + b_2)}{B} = \frac{\sin a}{D + E}
+\end{align}
+
+Many of these results above are dead ends; some trial and error will flush them out. Among the useful bits, after
+some rearrangement:
+
+\begin{align}
+\sin(x + b_2) = \frac{2A\sin c_1}{C} = \frac{2B\sin c_2}{C}
+\end{align}
+
+\begin{align}
+\sin(x + c_2) = \frac{2A\sin b_1}{B} = \frac{2C\sin b_2}{B}
+\end{align}
+
+We see that $A\sin b_1 = C\sin b_2$ and $A\sin c_1 = B\sin c_2,$ respectively. This next equality, also derived
+from the list above, will let us apply these insights:
+
+\begin{align}
+\sin x = \frac{A\sin b_1}{D} = \frac{C\sin b_2}{2E} = \frac{A\sin c_1}{F} = \frac{B\sin c_2}{2G}
+\end{align}
+
+<p>After substituting a couple of numerators, it quickly follows that $D = 2E$ and $F = 2G.$</p>
+
+<p>Thus, our intersection is ${2 \over 3}$ of the way from either corner to the midpoint of its opposite side.</p>
+
+<p>We can intersect either of the first two medians with the remaining one. Once again this happens ${2 \over 3}$
+along; the three medians have a common meeting point.</p>
+
+<p>This is known as the <b>centroid</b>. To find its position, we linearly interpolate from any corner to the opposite midpoint:
+
+\begin{align}
+x = {1 \over 3}x_1 + {2 \over 3}\frac{x_2 + x_3}{2}
+\end{align}
+
+The $y$-coordinate is similar. After simplifying:
+
+\begin{align}
+\mathbf{c} = \left(\frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3}\right)
+\end{align}
+
+Using the altitudes from the centroid onto the three sides, we can find the areas of the three triangles it forms:
+$\frac{AD\sin c_1}{2}, \frac{CF\sin b_2}{2}, $ and $\frac{BD\sin c_2}{2}.$</p>
+
+<p>We can reuse one of our earlier substitutions here, telling us the first and third are equal.</p>
+
+<p>Another relationship we can pull out of the earlier list is $C\sin b_2 = \frac{2AE\sin c_1}{F}.$ Given this, the
+second area reduces to $AE\sin c_1.$ Since $E = {D \over 2},$ this is equal to the others.</p>
+
+<p>Each sub-triangle thus occupies ${1 \over 3}$ of the total area. A triangle may be interpreted as an object of uniform
+density&mdash;in Corona, for instance, this describes a triangular polygon with a physics body&mdash;so the centroid
+sometimes goes by the name of <b>barycenter</b>, or "center of weight".</p>
+
+<p><b>(NOTES:</b> This might be a far more ideal place for the section on barycentric coordinates!<b>)</b></p>
+
+<H3><a name="summary"></a>Summary</H3>
+
+<p>Revise!</p>
+
+									</div><!-- .entry-content -->
+					<div class="clearfix row" style="margin:4px 0;">
+						<div class="fade-out clearfix">
+							<!--Facebook Share Button-->
+							<div style="float:left;"><div><div class="fb-like fb_iframe_widget" data-width="90" data-send="true" data-layout="button_count" data-href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/" data-awesm-channel="facebook-like" data-awesm-tool="tCsvyd" data-height="20" data-ref="awesm:c1de8ed723c728ce036bd51b91310e76" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=129391740409903&amp;height=20&amp;href=http%3A%2F%2Fcoronalabs.com%2Fblog%2F2015%2F01%2F13%2Ftutorial-creating-android-tv-apps%2F&amp;layout=button_count&amp;locale=en_US&amp;ref=awesm%3Ac1de8ed723c728ce036bd51b91310e76&amp;sdk=joey&amp;send=true&amp;width=90"><span style="vertical-align: bottom; width: 124px; height: 20px;"><iframe name="f285f3d6b4" width="90px" height="20px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./LawOfSines_files/like.html" style="border: none; visibility: visible; width: 124px; height: 20px;" class=""></iframe></span></div></div></div>
+					        <!--Twitter Tweet Button-->
+					        <div style="float:left;margin:0 5px;width:86px;"><div><iframe src="./LawOfSines_files/tweet_button.html" width="110" height="20" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" class="twitter-share-button twitter-count-undefined"></iframe></div></div>
+					        <script src="./LawOfSines_files/in.js" type="text/javascript">lang: en_US</script>
+					        <span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1421432617759_0"><a id="li_ui_li_gen_1421432617759_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1421432617759_0-logo">in</span><span id="li_ui_li_gen_1421432617759_0-title"><span id="li_ui_li_gen_1421432617759_0-mark"></span><span id="li_ui_li_gen_1421432617759_0-title-text">Share</span></span></a></span></span><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1421432617782_1-container" class="IN-right IN-hidden"><span id="li_ui_li_gen_1421432617782_1" class="IN-right"><span id="li_ui_li_gen_1421432617782_1-inner" class="IN-right"><span id="li_ui_li_gen_1421432617782_1-content" class="IN-right">0</span></span></span></span></span></span><script type="IN/Share+init" data-counter="right"></script>
+					        <!-- Place this tag where you want the +1 button to render. -->
+					        <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1421432617538" name="I0_1421432617538" src="./LawOfSines_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+
+					        <!-- Place this tag after the last +1 button tag. -->
+					        <script type="text/javascript">
+					          (function() {
+					            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					            po.src = 'https://apis.google.com/js/plusone.js';
+					            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					          })();
+					        </script> 
+						</div> 
+					</div>
+				<footer class="entry-meta well well-sm small">
+					This entry was posted in <a href="http://coronalabs.com/blog/topics/guest-bloggers/" rel="category tag">Guest Bloggers</a>, <a href="http://coronalabs.com/blog/topics/tutorials-tips-demos/" rel="category tag">Tutorials, Tips and Demos</a> and tagged <a href="http://coronalabs.com/blog/tags/android-tv/" rel="tag">Android TV</a>, <a href="http://coronalabs.com/blog/tags/tutorial/" rel="tag">tutorial</a>. Bookmark the <a href="./LawOfSines_files/Coroutines.html" title="Permalink to Tutorial: Creating Android TV Apps" rel="bookmark">permalink</a>.
+					
+				</footer><!-- .entry-meta -->
+
+				
+				
+	<div id="comments" class="comments-area">
+
+	
+	
+	
+									<div id="respond" class="comment-respond well">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#respond" style="display:none;">Cancel Reply</a></small></h3>
+									<form action="http://coronalabs.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="Star Crunch" size="30" aria-required="true"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="steve@xibalbastudios.com" size="30" aria-required="true"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="http://www.xibalbastudios.com" size="30"></p>
+												<p><textarea placeholder="Start typing..." id="comment" class="form-control" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags small">You may use these HTML tags and attributes: &lt;a href="" title="" rel=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; 						</p><p class="form-submit">
+							<input name="submit" type="submit" id="commentsubmit" value="Post Comment" class="btn btn-primary btn-xs">
+							<input type="hidden" name="comment_post_ID" value="60833" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="7485a5e885"></p><p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1421432617297"></form>
+							</div><!-- #respond -->
+			
+</div><!-- #comments -->
+
+				
+			</article><!-- #post-## -->
+		</div>
+		<div class="hidden-xs hidden-sm col-md-1 col-lg-1"></div>
+		<div class="sidebar-content-inner col-sm-4 col-md-3 hidden-xs">
+			<div style="display:none;" class="well well-clear">
+				<img width="125" height="125" src="./LawOfSines_files/google-play-store1.png" class="aligncenter wp-post-image" alt="google-play-store">				
+			</div>
+
+			
+
+	<div class="sidebar clearfix well">
+				<div class="sidebar-padder">
+
+						<aside id="widget_tribe_widget_builder_46688-13" class="widget widget_tribe_widget_builder_46688"><div>
+<h4 class="ac">Looking for premium monetization options?</h4>
+<p><a class="btn btn-large btn-info btn-block" id="sidebar-buy-btn" href="http://coronalabs.com/store">BUY PRO</a></p>
+<h5>… or test out <a class="corona-orange" href="https://developer.coronalabs.com/downloads/corona-sdk">Corona SDK Starter for free</a>.</h5>
+</div>
+</aside><aside id="widget_tribe_widget_builder_16089-13" class="widget widget_tribe_widget_builder_16089"><h4 class="sidebar-title">Starting building a…</h4>
+<p>
+</p><ul style="font-size:1.12em;">
+<li><a href="http://coronalabs.com/i-want-to-build/games/">Game</a></li>
+<li><a href="http://coronalabs.com/i-want-to-build/business-apps/">Business app</a></li>
+<li><a href="http://coronalabs.com/i-want-to-build/education-kid-apps/">Educational app</a></li>
+</ul>
+<p>The possibilities are endless!</p>
+</aside><aside id="categories-5" class="widget widget_categories"><h4 class="widget-title lead">Categories</h4><select name="cat" id="cat" class="postform">
+	<option value="-1">Select Category</option>
+	<option class="level-0" value="80">Amazon Kindle</option>
+	<option class="level-0" value="11">Android</option>
+	<option class="level-0" value="1679">Composer</option>
+	<option class="level-0" value="1061">Corona Editor</option>
+	<option class="level-0" value="108">Corona Enterprise</option>
+	<option class="level-0" value="607">Corona Geek</option>
+	<option class="level-0" value="1109">Corona Professional Services</option>
+	<option class="level-0" value="4">Corona SDK</option>
+	<option class="level-0" value="1137">CoronaCards</option>
+	<option class="level-0" value="21">Daily Build</option>
+	<option class="level-0" value="74">eBooks</option>
+	<option class="level-0" value="17">Education</option>
+	<option class="level-0" value="22">Events and Listeners</option>
+	<option class="level-0" value="220">FAQ</option>
+	<option class="level-0" value="16">Flash</option>
+	<option class="level-0" value="389">Friday Night Forum</option>
+	<option class="level-0" value="1119">From the Forum</option>
+	<option class="level-0" value="5">Game Development</option>
+	<option class="level-0" value="620">Google+ Hangouts</option>
+	<option class="level-0" value="6">Guest Bloggers</option>
+	<option class="level-0" value="42">iOS</option>
+	<option class="level-0" value="19">iPad</option>
+	<option class="level-0" value="43">iPhone</option>
+	<option class="level-0" value="20">Lua</option>
+	<option class="level-0" value="3">Mobile App of the Week</option>
+	<option class="level-0" value="7">News &amp; Announcements</option>
+	<option class="level-0" value="10">NOOK</option>
+	<option class="level-0" value="18">Partners</option>
+	<option class="level-0" value="1122">Plugins</option>
+	<option class="level-0" value="31">Showcase</option>
+	<option class="level-0" value="9">Tech</option>
+	<option class="level-0" value="82">Training/Support</option>
+	<option class="level-0" value="12">Tutorials, Tips and Demos</option>
+	<option class="level-0" value="1">Uncategorized</option>
+	<option class="level-0" value="13">Videos</option>
+	<option class="level-0" value="1140">Windows Phone</option>
+</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+	var dropdown = document.getElementById("cat");
+	function onCatChange() {
+		if ( dropdown.options[dropdown.selectedIndex].value > 0 ) {
+			location.href = "http://coronalabs.com/?cat="+dropdown.options[dropdown.selectedIndex].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+/* ]]> */
+</script>
+
+</aside><aside id="widget_tribe_widget_builder_40523-2" class="widget widget_tribe_widget_builder_40523"><h4 class="sidebar-title">Case Study: Panda Math</h4>
+<div class="clearfix ac" style="margin:10px 0 0;"><a href="http://coronalabs.com/case-study/redbyes-creates-mobile-apps-for-early-childhood-education/"><img class="ac" alt="Panda  Math (Redbytes)" src="./LawOfSines_files/Panda-Math-Redbytes-148x150.png"></a><p></p>
+<p class="al">Learn how tinytapps built a portfolio of <a href="http://coronalabs.com/case-study/redbyes-creates-mobile-apps-for-early-childhood-education/">early education apps</a> using Corona SDK.</p>
+</div>
+</aside>
+		</div><!-- close .sidebar-padder -->
+	</div>		</div>
+	</div>
+
+
+				
+    </div><!-- close .container -->
+</div><!-- close .main-content -->
+
+
+<footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="container">
+        <div class="row">
+            <div id="inner-footer" class="clearfix full-ui hidden-xs">
+
+                        <nav id="menu-standard-footer-menu" class="clearfix">
+                        	
+                        	<div class="col-xs-12 col-sm-6 col-md-2">
+                            	<a href="http://coronalabs.com/products/corona-sdk/" class="footer-group-header">Products</a>
+                                <ul class="sub-footer-menu">
+                                	<li><a href="http://coronalabs.com/products/corona-sdk/">Corona SDK</a></li>
+                                	<li><a href="http://coronalabs.com/products/enterprise/">Enterprise</a></li>
+                                	<li><a href="http://coronacards.com/">CoronaCards</a></li>
+                                	<li><a href="http://coronalabs.com/products/support-training/">Support &amp; Training</a></li>
+                                </ul>
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/resources/" class="footer-group-header">Resources</a>
+                                <ul class="sub-footer-menu">
+                                    <li><a target="_blank" href="http://forums.coronalabs.com/">Forum</a></li>
+                                	<li><a target="_blank" href="http://docs.coronalabs.com/">Documentation</a></li>
+                                	<li><a href="http://coronalabs.com/resources/tutorials/getting-started-with-corona/">Corona University</a></li>
+                                	<li><a href="http://coronalabs.com/resources/plugins/">Corona Plugin Directory</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/pricing" class="footer-group-header">Get Corona</a>
+                                <ul class="sub-footer-menu">
+                                	<li><a href="https://developer.coronalabs.com/downloads/coronasdk">Starter: Publish Free</a></li>
+                                	<li><a href="http://coronalabs.com/pricing/">Buy Pro</a></li>
+                                    <li><a href="http://coronalabs.com/pricing/">Buy Enterprise</a></li>
+                                    <li><a href="http://coronacards.com/pricing">Buy CoronaCards</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/about/" class="footer-group-header">About</a>
+                                <ul class="sub-footer-menu">
+                                    <li><a href="http://coronalabs.com/about/jobs/">Jobs</a></li>
+                                	<li><a href="http://coronalabs.com/about/contact/">Contact</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                            	<a href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#" class="footer-group-header">Social</a>
+                                <ul>
+                                    <li>
+                                        <div id="followIcons">
+                                            <a href="https://twitter.com/coronalabs" class="followIcons" target="_blank">
+                                                <img src="./LawOfSines_files/twitter_32.png" width="35" height="36">
+                                            </a>
+                                            <a href="https://www.facebook.com/CoronaLabs" class="followIcons" target="_blank">
+                                                <img src="./LawOfSines_files/facebook_32.png" width="35" height="36">
+                                            </a>
+                                            <a href="https://www.youtube.com/user/CoronaLabs" class="followIcons" target="_blank">
+                                                <img src="./LawOfSines_files/youtube_32.png" width="35" height="36">
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </nav>
+
+            </div> <!-- end #inner-footer -->
+        </div>
+    </div>
+    <div class="container">
+	    <div class="row">
+			<div class="col-md-12 small vspace footer-footer">
+                <hr class="hidden-xs">
+	            Copyright © 2009-2014 Corona Labs. A <a href="http://fusepowered.com/" target="_blank">Fuse Powered</a> Company. All rights reserved.<br>
+	            <a class="footer-secondary-links" href="http://coronalabs.com/privacy-policy/">Privacy Policy</a> • <a class="footer-secondary-links" href="http://coronalabs.com/terms-and-conditions/">Terms and Conditions</a>
+	       	</div>
+		</div>
+    </div>
+</footer><!-- close #colophon -->
+
+<script type="text/javascript" src="./LawOfSines_files/form.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var mejsL10n = {"language":"en","strings":{"Close":"Close","Fullscreen":"Fullscreen","Download File":"Download File","Download Video":"Download Video","Play\/Pause":"Play\/Pause","Mute Toggle":"Mute Toggle","None":"None","Turn off Fullscreen":"Turn off Fullscreen","Go Fullscreen":"Go Fullscreen","Unmute":"Unmute","Mute":"Mute","Captions\/Subtitles":"Captions\/Subtitles"}};
+var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/"};
+var mejsL10n = {"language":"en","strings":{"Close":"Close","Fullscreen":"Fullscreen","Download File":"Download File","Download Video":"Download Video","Play\/Pause":"Play\/Pause","Mute Toggle":"Mute Toggle","None":"None","Turn off Fullscreen":"Turn off Fullscreen","Go Fullscreen":"Go Fullscreen","Unmute":"Unmute","Mute":"Mute","Captions\/Subtitles":"Captions\/Subtitles"}};
+var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./LawOfSines_files/mediaelement-and-player.min.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/prettify.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/lang-css.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/lang-vb.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/lang-lua.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/load.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var pollsL10n = {"ajax_url":"https:\/\/coronalabs.com\/wp-admin\/admin-ajax.php","text_wait":"Your last request is still being processed. Please wait a while ...","text_valid":"Please choose a valid poll answer.","text_multiple":"Maximum number of choices allowed: ","show_loading":"1","show_fading":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./LawOfSines_files/polls-js.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/skip-link-focus-fix.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/wp-fancy-box.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/jquery.fancybox-buttons.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/jquery.fancybox-media.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/jquery.fancybox-thumbs.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="./LawOfSines_files/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpv_pagination_local = {"regional":"en","front_ajaxurl":"http:\/\/coronalabs.com\/wp-admin\/admin-ajax.php","calendar_image":"https:\/\/coronalabs.com\/plugins\/wp-views\/embedded\/res\/img\/calendar.gif","calendar_text":"Select date"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./LawOfSines_files/wpv-pagination-embedded.js"></script>
+<script defer="" src="./LawOfSines_files/custom.js" type="text/javascript"></script>
+<script>  var AWESM = AWESM || {};  AWESM.api_key = 'fa22875a8884108a6244b659bc44e41d7342b0899a56ae9758f6c9965c9a34a0';  (function() {    var js = document.createElement('script'); js.type = 'text/javascript'; js.async = true;    js.src = '//widgets.awe.sm/v3/widgets.js?key=' + AWESM.api_key + '&async=true';    var s = document.getElementsByTagName('script')[0];    s.parentNode.insertBefore(js,s);  })();</script>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Minified using apc
+Database Caching using apc (Request-wide Cookie is rejected)
+
+ Served from: coronalabs.com @ 2015-01-16 10:23:03 by W3 Total Cache --><iframe name="oauth2relay627090594" id="oauth2relay627090594" src="./LawOfSines_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><div id="fb-root" class=" fb_reset"><script async="" src="./LawOfSines_files/all.js"></script><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./LawOfSines_files/7r8gQb8MIqE.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./LawOfSines_files/7r8gQb8MIqE(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fa05c7f24" frameborder="0" allowtransparency="true" scrolling="no" src="./LawOfSines_files/ping.html" style="display: none;"></iframe></div></div></div><script src="./LawOfSines_files/register"></script><script src="./LawOfSines_files/new"></script></body></html>

@@ -215,7 +215,7 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		<div class="col-md-12">
 			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
 
-				<h1 class="page-title h1">A 2D geometry primer, part 3: special circle centers</h1>
+				<h1 class="page-title h1">A 2D geometry primer, part 5: special circles</h1>
 				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./Circles_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
 			</header><!-- .entry-header -->
 		</div>
@@ -229,196 +229,6 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 <hr>
 
 <p>TODO!</p>
-
-
-
-<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
-
-<p>When discussing double angles we split a triangle up into two right triangles and made some analysis of the results,
-with the assumption that the points were either on the unit circle or its center.</p>
-
-<p>This sort of triangle will also arise in more general circumstances, where some of the details will remain intact.
-The base of the left-hand triangle, for instance, can usefully be subtracted from the combined base to give the right-hand
-side.</p>
-
-<div style="float:left;">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_circles/G1.png" width="200" height="150" alt="Law of cosines">
-		<div style="caption"><b>G-1</b></div>
-	</div>
-</div>
-
-<p>Then we can apply the Pythagorean theorem on the right-hand side, tying all three sides together in one equation: $ (A\sin\theta)^2
-+ (C - A\cos\theta)^2 = B^2. $<p>
-
-<p>After expansion, this gives us the so-called Law of Cosines:</p>
-
-<p>
-\begin{align}
-A^2 + C^2 - 2AC\cos\theta & = B^2
-\end{align}
-<p>
-
-<p>This gives us a means of using the cosine with non-right triangles. In particular, when we know a couple of sides and one of the
-angles, we can find the (squared) length of the third side.</p>
-
-<p>Although we generalized away from circle-based triangles, in that case two of the sides will be $r,$ giving us
-
-<p>
-\begin{align}
-r^2(2 - 2\cos\theta) & = B^2
-\end{align}
-<p>
-
-<p>This gives us a second chord formula, in this case for the squared length.</p>
-
-<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
-
-<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
-letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
-
-<div style="float:right;">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_circles/G2.png" width="200" height="150" alt="Law of sines">
-		<div style="caption"><b>G-2</b></div>
-	</div>
-</div>
-
-<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
-the same result. Thus</p>
-
-<p>
-\begin{align}
-\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
-\end{align}
-<p>
-
-<p>If we divide "both" sides by ${1 \over 2}ABC,$ this all comes out to</p>
-
-<p>
-\begin{align}
-\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
-\end{align}
-<p>
-
-<p>This is the Law of Sines, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
-used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
-
-<p>There is also a Law of Tangents, which builds upon the Law of Sines.</p>
-
-<p><b>(NOTES:</b> Fill this in... $ D\sin b = B, $ etc. then do $ a + b $ and $ a - b, $ grind out, use sum-to-product, etc.<b>)</b></p>
-
-<H3><a href="orthocenter"></a>Orthocenter (A)</H3>
-
-<div style="float:left;">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_centers/A1.png" width="200" height="150" alt="Analyzing one side...">
-		<div style="caption"><b>A-1</b></div>
-	</div>
-</div>
-
-<div style="float:right;">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_centers/A2.png" width="200" height="150" alt="...and the other">
-		<div style="caption"><b>A-2</b></div>
-	</div>
-</div>
-
-<p>Now, we see that two altitudes will cross, forming new triangles. When we align one of the sides horizontally, one altitude will
-come down the middle and the other along the side. This is the sort of geometry we encountered during angle addition, causing the
-angle of the cut to propagate up top. Depending on our choice of second altitude, we will have the left- or right-hand situation.</p>
-
-<p>Now, both cases have the same altitude in common, so $ B = A\sin\beta + C\sin\alpha, $ and also $ A\cos\beta = C\cos\alpha. $</p>
-
-<p>From what we saw earlier, we can find the height of the intersection in each case. On the left, $ A\sin\beta\tan\alpha, $ and on
-the right, $ C\sin\alpha\tan\beta. $</p>
-
-<p>Now, of course, because of the duplicated angles, we have $ \tan\alpha. $ From the definition, this is $ \frac{C\sin\alpha}{C\cos\alpha}, $
-the legs of the right-hand triangle in the left image.</p>
-
-<p>Furthermore, because of the common altitude, we can substitute $ A\cos\beta $ into the denominator. We then have
-$ A\sin\beta\left(\frac{C\sin\alpha}{A\cos\beta}\right), $ which regroups as $ C\sin\alpha\tan\beta. $</p>
-
-<div style="float:left;">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_centers/A3.png" width="200" height="150" alt="Orthocenter">
-		<div style="caption"><b>A-3</b></div>
-	</div>
-</div>
-
-<p>But this is exactly the height of the other intersection! In the end, the altitudes all meet in a single point, called the orthocenter.</p>
-
-<p>Of occasional interest, we can connect the feet to get the orthic triangle.</p>
-
-<div style="float:right;">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_centers/A4.png" width="200" height="150" alt="Orthic triangle">
-		<div style="caption"><b>A-4</b></div>
-	</div>
-</div>
-
-<p>We can see how to interpolate to the various feet. Along the bottom, one base is $ A\sin\beta, $ so the fraction is $ \frac{A\sin\beta}{B}. $
-Similarly, along the other sides we have $ \frac{B\sin\beta}{A} $ and $ \frac{B\sin\alpha}{C}. $</p>
-
-<p>Now, from the law of cosines, $ B^2 = A^2 + C^2 - 2AC\cos(\alpha + \beta). $ We may group the evaluated cosine as $ (A\cos\beta)(C\cos\alpha)
-- (C\sin\alpha)(A\sin\beta). $ Some substitutions turn this into  $ A^2\cos^2\beta - (B - A\sin\beta)(A\sin\beta), $ further reducing to $ A^2 -
-AB\sin\beta. $ Plugging this back in and performing some further rearrangement, we have<p>
-
-<p>
-\begin{align}
-A^2 + B^2 - C^2 = 2AB\sin\beta
-\end{align}
-<p>
-
-<p>We have $ \sin\beta $ expressed completely in terms of our side lengths! These are hard numbers we can quickly solve, then plug into several
-of the equations above.</p>
-
-<p>The value of $ \sin\alpha $ quickly follows from the substitution $ \frac{B - A\sin\beta}{C}. $</p>
-
-<p>From here, we can find each of the feet. Given this, we can find the length of our central altitude, giving us the cosines in turn. From
-these we can evaluate one of the tangents and use it to solve for the orthocenter height.</p>
-
-<p>In code, this would be:</p>
-
-<pre class="prettyprint"><code class="language-lua">function Orthocenter ( px, py, qx, qy, rx, ry, want_orthic_triangle )
-  -- Deltas for sides A, B, C.
-  local ax, ay = qx - px, qy - py
-  local bx, by = rx - px, ry - py
-  local cx, cy = qx - rx, qy - ry
-
-  -- Squared side lengths.
-  local A2 = ax^2 + ay^2
-  local B2 = bx^2 + by^2
-  local C2 = cx^2 + cy^2
-
-  -- Find the foot of the altitude on side B. From there, walk up the altitude (we will be
-  -- moving toward point q) until we reach the orthocenter.
-  -- sin(beta) = (A2 + B2 - C2) / (2 * A * B)
-  local bt = .5 * (A2 + B2 - C2) / B2 -- (A * sin(beta)) / B
-  local fx, fy = px + bt * bx, py + bt * by
-  local ABSinB, ASinB_2 = B2 * bt, B2 * bt^2 -- A * B * sin(beta); (A * sin(beta))^2
-  local h2 = A2 - ASinB_2 -- height = A * cos(beta), which equals C * cos(alpha)
-  local ht = (ABSinB - ASinB_2) / h2 -- (A * sin(beta) * tan(alpha)) / (A * cos(beta))
-  local ox, oy = fx + ht * (qx - fx), fy + ht * (qy - fy)
-
-  -- If requested, get the orthic triangle's corners too.
-  if want_orthic_triangle then
-    local at = ABSinB / A2 -- (B * sin(beta)) / A
-    local ct = (B2 - ABSinB) / C2 -- (B * sin(alpha)) / C
-
-    return ox, oy, {
-      a = { x = px + at * ax, y = py + at * ay },
-      b = { x = fx, y = fy },
-      c = { x = rx + ct * cx, y = ry + ct * cy }
-    }
-  end
-
-  return ox, oy
-end</code></pre>
-
-<p>Curiously, the three original points and the orthocenter together form an orthocentric tetrad. If we take the orthocenter of three of
-them, we will get the odd one out in return. For instance, $ \mathbf{p}, $ the orthocenter, and $ \mathbf{r} $ will yield $ \mathbf{q} $
-back as new orthocenter.</p>
 
 <H3><a name="circumcircles"></a>Circumcircle (B)</H3>
 
@@ -543,9 +353,10 @@ end</code></pre>
 
 <p>Frequently it will be the case that a lot of work leads to a nice formula. With some of the ideas in the next article we can make this even more concise.</p>
 
-<p>Triangles have other circles, such as the incircle, and <i>vice versa</i>. Also, many types of centers.</p>
+<H4><b>EXERCISES</b></H4>
 
-<p><b>(IMAGES:</b> one showing variety of arcs; other of a working circle<b>)</b></p>
+<p><b>1.</b> Find trilinear coordinates for the circumcenter.</p>
+<p><b>2.</b> Find the circumcircles of both a triangle and its orthic triangle. What can we say about the radii of these two circles?
 
 <H3><a name="inner-circle"></a>The inner circle... (C)</H3>
 
@@ -667,6 +478,10 @@ function Incircle ( px, py, qx, qy, rx, ry, want_contact_triangle )
 
   return cx, cy, r
 end</code></pre>
+
+<H4><b>EXERCISES</b></H4>
+
+<p><b>1.</b> What are the incenter's trilinear coordinates?.</p>
 
 <H3><a name="the-fringe"></a>...and the fringe (D)</H3>
 
@@ -791,19 +606,20 @@ local function DoExcircle ( px, py, qx, qy, rx, ry, circles, contacts, extouch, 
   -- information shared by the excircle. This will give us the radius.
   local L, R = bt * B, (1 - bt) * B 
   local TanA, TanB = h / (C + R), h / (A + L)
-  local r = B / (TanA + TanB)
+  local kr = 1 / (TanA + TanB)
 
   -- From the radius we can find the foot of the center onto the triangle side. Reaching the
   -- center is then simply a matter of walking up the altitude.
-  local Bp, dx, dy = r * TanB, bx / B, by / B
-  local Fx, Fy = px + Bp * dx, py + Bp * dy
+  local Bp = kr * TanB
+  local Fx, Fy = px + Bp * bx, py + Bp * by
 
-  circles[side] = { x = Fx - r * dy, y = Fy + r * dx, r = r }
--- x = (px + L * dx - qx) / h, y = (py + L * dy - qy) / h
--- x = px / h + L * dx / h - qx / h = -dy
--- x = (L * dx - ax) / h
+  -- Given the foot and radius, similar triangles will put us at the center.
+  circles[side] = { x = Fx - kr * by, y = Fy + kr * bx, r = B * kr }
+
   -- If requested, supply the contact triangle and / or one side of the extouch triangle.
   if contacts or extouch then
+    Bp = Bp * B
+
     local at, ct = Bp / A, (B - Bp) / C
 
     if contacts then
@@ -831,10 +647,12 @@ function Excircles ( px, py, qx, qy, rx, ry, want_contact_triangles, want_extouc
   return circles, contacts, extouch
 end</code></pre>
 
-<p><b>(NOTES:</b> We get r too early here... multiplying by B there seems to be the only reason we need separate variables for dx and
-dy--just to undo the B!--rather than using bx and by directly... then can just multiply by r when assigning to table<b>)</b></p>
 <p><b>(NOTES:</b> In that same bit of code, the stuff in comments is following the material in the section, whereas the code itself
 is jumping the gun... or rather using the tangent logic from the circles section... make this clear<b>)</b></p>
+
+<H4><b>EXERCISES</b></H4>
+
+<p><b>1.</b> Find trilinear coordinates for each excenter.</p>
 
 <H3><a name="circles-all-the-way-down"></a>Circles all the way down (E)</H3>
 
@@ -842,18 +660,15 @@ is jumping the gun... or rather using the tangent logic from the circles section
 three circles</a> around on its outside that also happen to be tangent on each side. For that matter, <a href="https://en.wikipedia.org/wiki/Nine-point_circle">another
 circle</a> touches them all as well as the incircle; <a href="http://mathworld.wolfram.com/ApolloniusCircle.html">yet another</a> surrounds them all.</p>
 
+<p><b>(NOTES:</b> Revise since we cover excircles<b>)</b></p>
+
 <p>We can keep going with this. The contact triangle, for instance, will have its own inscribed circle, which will introduce an infinite sequence.</p>
 
 <p>As far as a circle is concerned, these centers and radii are nothing special. However, since they arise on account of a triangle, in a sense they belong to
 it. Such special points fall under the heading of <a href="https://en.wikipedia.org/wiki/Triangle_center">triangle center</a>. <a href="http://faculty.evansville.edu/ck6/encyclopedia/">Many
 </a> of these have interesting properties, as the circumcenter and incenter show. While literally impossible to know all of them, it is good to be aware of them.</p>
 
-<p><b>(NOTES:</b> Trilinear coordinates<b>)</b></p>
 <p><b>(NOTES:</b> Mention Apollonius circle<b>)</b></p>
-
-<H3><a name="inside-out"></a>Inside out (O)</H3>
-
-<p><b>(NOTES:</b> Inversion... probably overkill; need to flesh out my own understanding too<b>)</b></p>
 
 <H3><a name="summary"></a>Summary</H3>
 
