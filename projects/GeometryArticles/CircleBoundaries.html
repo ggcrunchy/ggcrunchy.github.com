@@ -215,7 +215,7 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		<div class="col-md-12">
 			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
 
-				<h1 class="page-title h1">A 2D geometry primer, part 11: the Law of Sines</h1>
+				<h1 class="page-title h1">A 2D geometry primer, part 12: circle boundaries</h1>
 				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./SpoofCoronaPage_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
 			</header><!-- .entry-header -->
 		</div>
@@ -228,153 +228,134 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
 <hr>
 
-<p>TODO!</p>
+<H3><a name="personal-space-invasion"></a>Personal space invasion (M)</H3>
 
-<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
+<p>Recall the definition of the circle: all points a given distance from a common center. Now imagine the situation where we have two circles, not necessarily with the
+same radius. What would have to be true for them to <i>just</i> touch?</p>
 
-<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
+<p>When circles do touch, this means that a point on one circle also belongs to the second circle. We are probably not talking about the trivial case where two circles of
+equal radius overlap, in which cases this is so for <b>all</b> points. Typically, what we do mean is that the circles interpenetrate&mdash;there are two
+<a href="http://mathworld.wolfram.com/Circle-CircleIntersection.html">intersections</a> then, in fact, the first when one circle crosses the other going in, the second on
+the way out. This is true from the point of view of either circle.</p>
 
-<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
-letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
-
-<div style="float:right;">
+<div style="float:left;">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_los/G2.png" width="200" height="150" alt="Law of sines">
-		<div style="caption"><b>G-2</b></div>
+		<img src="./images_circles/M1.png" width="200" height="150" alt="Circle intersection">
+		<div style="caption"><b>M-1</b></div>
 	</div>
 </div>
 
-<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
-the same result. Thus</p>
+<p>The arcs themselves are interesting, but we can do some other things too. For one, we can draw a line segment between the two intersection points. Furthermore, we
+can draw line segments from each point to the circle centers, giving us two triangles. Now, those intersection points are, of course, on the circles, so the distance to
+each respective circle is the radius. In other words, in each triangle, the two lines emerging from the center are equal: this is an isosceles triangle. The angle between
+them is obviously equal to itself. By side-angle-side, such a triangle is equal to itself. This seems a little silly, but it tells us that we could take the mirror image
+of the triangle. It follows from this that the other two angles are equal.</p>
 
-<p>
-\begin{align}
-\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
-\end{align}
-<p>
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/M2.png" width="200" height="150" alt="Intersection quadrilateral">
+		<div style="caption"><b>M-2</b></div>
+	</div>
+</div>
 
-<p>If we divide "both" sides by ${1 \over 2}ABC,$ this all comes out to</p>
+<p>Now, consider what happens when we split this triangle down the middle. We then have side-angle-side again! One side is the radius, we just saw that these angles are
+equal, and the other side is half of the original length. The angle formed by the dividing line must therefore be the same, which makes these right triangles.</p>
 
-<p>
-\begin{align}
-\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
-\end{align}
-<p>
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/M3.png" width="200" height="150" alt="Radical line">
+		<div style="caption"><b>M-3</b></div>
+	</div>
+</div>
 
-<p>This is the <b>Law of Sines</b>, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
-used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
+<p>The same thing will happen on both sides. The line between the points of intersection is called a <a href="http://mathworld.wolfram.com/RadicalLine.html">radical
+line</a>, and as we see it happens to be perpendicular to the line between the circles' centers.</p>
 
-<H3><a href="law-of-tangents"></a>Law of Tangents</H3>
+<p>As the circles draw apart, these "in and out" arcs shrink. In other words, their arc lengths diminish, though obviously the circles (to which the arcs belong) are not
+changing size. Rather, the arc angles are narrowing. When they hit zero, the arcs "enter" and "leave" at the same point. Naturally, the triangles collapse as well, and
+thus so does the radical line, in fact to this point.</p>
 
-<p>We may calculate any altitude in terms of two different side-angle pairs. In <b>G-2</b>, for example, $A\sin b = B\sin a = H,$
-where $H$ is the common height.</p>
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/M4.png" width="200" height="150" alt="Tangent circles">
+		<div style="caption"><b>M-4</b></div>
+	</div>
+</div>
 
-<p>Some simple restructuring gives us $\sin a = AH$ and $\sin b = BH.$</p>
+<p>Indeed, this happens to be the point where the circles "just touch". The distance between the centers when this occurs is exactly the sum of the circles' radii:
+$ \sqrt{(center_{1,x} - center_{2,x})^2 + (center_{1,y} - center_{2,y})^2} = r_1 + r_2. $ (If we will not directly use this distance, but need only compare against it,
+we may square both sides.)</p>
 
-<p>We can bring the sum-to-product identities to bear on these:
+<p>Now, when the circles were mashed up against one another, this distance was somewhat less. Going the other way, we know when they exceed this distance, the circles
+are separated and do not touch.</p>
 
-\begin{align}
-H(A - B) = 2\cos\left(\frac{a + b}{2}\right)\sin\left(\frac{a - b}{2}\right) \\
-H(A + B) = 2\sin\left(\frac{a + b}{2}\right)\cos\left(\frac{a - b}{2}\right)
-\end{align}
+<p>It is worth considering the first case a little more. In particular, when one circle is smaller than the other, it might actually be completely inside the other,
+without touching its boundary.</p>
 
-Dividing one by the other, the $H$ goes away, and we obtain the <b>Law of Tangents</b>:
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/M5.png" width="200" height="150" alt="Circle inside circle">
+		<div style="caption"><b>M-5</b></div>
+	</div>
+</div>
 
-\begin{align}
-\frac{A - B}{A + B} = \frac{\tan\frac{a - b}{2}}{\tan\frac{a + b}{2}}
-\end{align}
+<p>As we saw, we know that it is one or the other when the distance between centers is less than the sum of the radii. That distance is key. We already know how far
+the smaller circle is from the center, so in a sense we have "used up" that much radius, and there is some amount left. If the smaller circle's radius is not enough
+to make up the difference, it is completely contained. Otherwise, it touches the boundary.</p>
 
-<b>(NOTES:</b> Can probably merge these two into one "Laws" section; a bit of tightening and rewording is also in order<b>)</b></p>
+<p><b>(NOTES:</b> Intersecting chord midpoints<b>)</b></p>
 
-<H3><a href="centroid"></a>Centroid</H3>
+<H3><a name="tangent-lines"></a>Tangent lines (N)</H3>
 
-<p>If we start at one corner and cut the opposite side at the midpoint, we have two triangles with base ${B \over 2}$ and height $h$,
-which is to say they have equal area, half that of the full triangle. Such lines are called medians.</p>
+<p>To get back to points on the circle, for any angle we can of course just find the cosine and sine.</p>
 
-<p><b>(NOTES:</b>Figure<b>)</b></p>
+<p>By construction, this is the difference between that point and the center. If we follow the same direction one unit out, we would also have a direction pointing
+away from the circle, a so-called surface normal.</p>
 
-<p>If we do the same with another corner, the same area situation will happen. Furthermore, of course, the medians will intersect
-somewhere. This will produce a number of triangles.</p>
+<p>Now, locally, this direction would be pointing straight up from the circle. If we went straight to the left or right in either direction, we would miss any more
+of the edge: since points are a radius away, and they have to spend some of that in the curve itself, the space will be empty there.</p>
 
-<p><b>(NOTES:</b>Refer to figure<b>)</b></p>
+<p>To go straight left and right implies going 90&deg; away from straight up.</p>
 
-<p>With the Law of Sines we can investigate the relationships among their sides, tabulated in what follows. Note that, as we saw in
-the previous article, $\sin(180^\circ - \theta) = \sin\theta.$</p>
+<p>Since the normal's equation is that of the position, we can find one of these candidates by taking the respective measurements: $ x = \cos(\theta + 90^{\circ}) $
+and $ y = \sin(\theta + 90^{\circ}). $ We find that $ \cos(\theta + 90^{\circ}) = -\sin\theta $ and $\sin(\theta + 90^{\circ}) = \cos\theta. $</p>
 
-<p>First off, we have the triangles produced when the two medians cross. These correspond to the upper-left, upper-right, and lower-left
-triangles in (FIGURE):
+<p>These are useful identities in their own right (as are the variants where we subtract 90&deg;, which will have signs flipped).</p>
 
-\begin{align}
-T_{ul}: \frac{\sin x}{A} & = \frac{\sin b_1}{D} = \frac{\sin c_1}{F} \\
-T_{ur}: \frac{\sin x}{B / 2} & = \frac{\sin (x + c_2)}{D} = \frac{\sin c_2}{G} \\
-T_{ll}: \frac{\sin x}{C / 2} & = \frac{\sin b_2}{E} = \frac{\sin (x + b_2)}{F}
-\end{align}
+<p>These components describe a tangent line, which only touches the circle at this point. (Although the reasons behind the name are the same and they sometimes arise
+in the same situation, this is different from the trigonometric function described above.)</p>
 
-The median bisecting $B$ gave us a left and right triangle:
+<p>Together with the normal, these two describe a sort of local coordinate frame above the circle. The next article will explore this idea in more depth.</p>
 
-\begin{align}
-Left: \frac{\sin c}{F + G} & = \frac{\sin b_1}{B / 2} = \frac{\sin (x + c_2)}{A} \\
-Right: \frac{\sin b_2}{B / 2} & = \frac{\sin a}{F + G} = \frac{\sin (x + c_2)}{C}
-\end{align}
+<p><b>(NOTES:</b> Can use to "swim" along the surface when combined with re-projection, as in boids<b>)</b></p>
 
-Likewise, from cutting side $C$ we have top and bottom triangles:
+<p>One example of how to apply this is to string circular arcs together nicely. Given two arcs, we can of course just line up one point from each. This can be a bit
+jarring, though.</p>
 
-\begin{align}
-Top: \frac{\sin c_1}{C / 2} & = \frac{\sin b}{D + E} = \frac{\sin (x + b_2)}{A} \\
-Bottom: \frac{\sin c_2}{C / 2} & = \frac{\sin (x + b_2)}{B} = \frac{\sin a}{D + E}
-\end{align}
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/N3.png" width="200" height="150" alt="Discontinuous tangents">
+		<div style="caption"><b>N-3</b></div>
+	</div>
+</div>
 
-Many of these results above are dead ends; some trial and error will flush them out. Among the useful bits, after
-some rearrangement:
+<p>If the tangents are pointing in the same (or opposite) directions, however, we have a perfect fit. This is the distinction between C0 and C1 continuity.</p>
 
-\begin{align}
-\sin(x + b_2) & = \frac{2A\sin c_1}{C} = \frac{2B\sin c_2}{C} \\
-\sin(x + c_2) & = \frac{2A\sin b_1}{B} = \frac{2C\sin b_2}{B}
-\end{align}
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/N4.png" width="200" height="150" alt="Smooth join">
+		<div style="caption"><b>N-4</b></div>
+	</div>
+</div>
 
-We see that $A\sin b_1 = C\sin b_2$ and $A\sin c_1 = B\sin c_2,$ respectively. This next equality, also derived
-from the list above, will let us apply these insights:
+<p>Certain functions lend themselves to nice approximations via circular blending curves, so this is a useful part of our toolkit.</p>
 
-\begin{align}
-\sin x = \frac{A\sin b_1}{D} = \frac{C\sin b_2}{2E} = \frac{A\sin c_1}{F} = \frac{B\sin c_2}{2G}
-\end{align}
+<p>In fact, curves assume this behavior locally. In addition to the tangent, the notion of curvature asks what the circle looks like locally, namely its radius.</p>
 
-<p>After substituting a couple of numerators, it quickly follows that $D = 2E$ and $F = 2G.$</p>
+<p>We can also interpret a segment under this idea. One endpoint is taken as the center, while the offset of the second is converted to polar form. We then take
+its tangent. This will apply with any length.</p>
 
-<p>Thus, our intersection is ${2 \over 3}$ of the way from either corner to the midpoint of its opposite side.</p>
-
-<p>We can intersect either of the first two medians with the remaining one. Once again this happens ${2 \over 3}$
-along; the three medians have a common meeting point.</p>
-
-<p>This is known as the <b>centroid</b>. To find its position, we linearly interpolate from any corner to the opposite midpoint:
-
-\begin{align}
-x = {1 \over 3}x_1 + {2 \over 3}\frac{x_2 + x_3}{2}
-\end{align}
-
-The $y$-coordinate is similar. After simplifying:
-
-\begin{align}
-\mathbf{c} = \left(\frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3}\right)
-\end{align}
-
-Using the altitudes from the centroid onto the three sides, we can find the areas of the three triangles it forms:
-$\frac{AD\sin c_1}{2}, \frac{CF\sin b_2}{2}, $ and $\frac{BD\sin c_2}{2}.$</p>
-
-<p>We can reuse one of our earlier substitutions here, telling us the first and third are equal.</p>
-
-<p>Another relationship we can pull out of the earlier list is $C\sin b_2 = \frac{2AE\sin c_1}{F}.$ Given this, the
-second area reduces to $AE\sin c_1.$ Since $E = {D \over 2},$ this is equal to the others.</p>
-
-<p>Each sub-triangle thus occupies ${1 \over 3}$ of the total area. A triangle may be interpreted as an object of uniform
-density&mdash;in Corona, for instance, this describes a triangular polygon with a physics body&mdash;so the centroid
-sometimes goes by the name of <b>barycenter</b>, or "center of weight".</p>
-
-<p><b>(NOTES:</b> This might be a far more ideal place for the section on barycentric coordinates!<b>)</b></p>
-
-<H3><a name="summary"></a>Summary</H3>
-
-<p>Revise!</p>
+<p>A line is its own tangent. Naturally we might suspect it has no curvature. This would comport with it being an infinitely wide circle.</p>
 
 									</div><!-- .entry-content -->
 					<div class="clearfix row" style="margin:4px 0;">

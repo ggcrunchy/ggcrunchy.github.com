@@ -215,7 +215,7 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		<div class="col-md-12">
 			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
 
-				<h1 class="page-title h1">A 2D geometry primer, part 11: the Law of Sines</h1>
+				<h1 class="page-title h1">A 2D geometry primer, part 2: triangle basics</h1>
 				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./SpoofCoronaPage_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
 			</header><!-- .entry-header -->
 		</div>
@@ -228,153 +228,225 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
 <hr>
 
-<p>TODO!</p>
+<H3><a name="sides"></a>Discussing each side's terms</H3>
 
-<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
+<p><a href="https://en.wikipedia.org/wiki/Triangle">Triangles</a> are a fitting place to begin.</p>
 
-<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
+<p>As the name suggests, these are objects with three <b>angles</b>.</p>
 
-<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
-letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
-
-<div style="float:right;">
+<div style="float:right">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_los/G2.png" width="200" height="150" alt="Law of sines">
-		<div style="caption"><b>G-2</b></div>
+		<img src="./images_triangles/A1.png" width="179" height="128" alt="A triangle">
+		<div class="caption"><b>A-1</b></div>
 	</div>
 </div>
 
-<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
-the same result. Thus</p>
+<p>Yet this only tells us part of the story. It is equally true that a triangle is a three-<b>sided</b> object. A proper treatment must take both views into
+account. The triangle in figure <b>A-1</b>, for instance, has angles $A,$ $B,$ and $C,$ as well as sides $a,$ $b,$ and $c.$</p>
 
-<p>
-\begin{align}
-\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
-\end{align}
-<p>
+<p>There are some noteworthy relationships between angles and sides.</p>
 
-<p>If we divide "both" sides by ${1 \over 2}ABC,$ this all comes out to</p>
+<p>To begin, we might speak of a side being "across from" some angle. This relationship can be seen in figure <b>A-1</b>: each uppercase letter labels an angle,
+whereas its lowercase counterpart designates the side <b>opposite</b> that angle. Side $a$, for example, is opposite angle $A.$</p>
 
-<p>
-\begin{align}
-\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
-\end{align}
-<p>
+<p>The remaining two sides, those "next to" the angle in question, are <b>adjacent</b>. The angle itself is <b>included</b> between these sides. Continuing with
+our example, these would be sides $b$ and $c.$</p>
 
-<p>This is the <b>Law of Sines</b>, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
-used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
+<p>The rather general triangle in figure <b>A-1</b> might seem difficult to approach, but notice what happens if we tilt our heads to the right just a bit: side
+$a$ appears to be horizontal, though none of the angles have changed and all sides remain just as long.</p>
 
-<H3><a href="law-of-tangents"></a>Law of Tangents</H3>
+<p>From this perspective, certain obstacles simply go away. We suddenly have a notion of "up", for instance, suggesting avenues we might explore. This demonstrates
+a technique common in mathematics: we transform one thing into something simpler, perform some action on that, then reverse-transform the results.</p>
 
-<p>We may calculate any altitude in terms of two different side-angle pairs. In <b>G-2</b>, for example, $A\sin b = B\sin a = H,$
-where $H$ is the common height.</p>
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/A2.png" width="160" height="215" alt="Base and altitude">
+		<div class="caption"><b>A-2</b></div>
+	</div>
+</div>
 
-<p>Some simple restructuring gives us $\sin a = AH$ and $\sin b = BH.$</p>
+<p>Throughout this article, for instance, we will often use "nice" triangles, such as the one in figure <b>A-2</b>, but these can be understood as the middle step
+between two rotations that happen offscreen: align one side &rarr; do our analysis &rarr; restore original orientation.</p>
 
-<p>We can bring the sum-to-product identities to bear on these:
+<p>Given a horizontal side, we may draw a <a href="https://www.mathsisfun.com/definitions/line-segment.html">line segment</a> straight up from it toward the
+<a href="https://en.wikipedia.org/wiki/Vertex_(geometry)">corner</a> which it lies opposite, the dashed vertical segments in figures <b>A-2</b> and <b>A-4</b> being
+examples. Such a segment is known as an <a href="http://www.mathwords.com/a/altitude_triangle.htm">altitude</a>. Its length is called a <b>height</b> and the triangle
+side is a <a href="http://www.mathwords.com/b/base_triangle.htm">base</a>.</p>
 
-\begin{align}
-H(A - B) = 2\cos\left(\frac{a + b}{2}\right)\sin\left(\frac{a - b}{2}\right) \\
-H(A + B) = 2\sin\left(\frac{a + b}{2}\right)\cos\left(\frac{a - b}{2}\right)
-\end{align}
+<p>Any side will do as a base, though in many problems one will stand out, for one reason or another. Each choice is paired up with a different altitude, of course.</p>
 
-Dividing one by the other, the $H$ goes away, and we obtain the <b>Law of Tangents</b>:
+<p>An altitude is said to be <a href="https://en.wikipedia.org/wiki/Perpendicular">perpendicular</a> to its base: we have the junction of a horizontal segment
+with a vertical one, resulting in a <a href="https://en.wikipedia.org/wiki/Right_angle">right angle</a>. Conventionally, such angles are depicted by squares.
+The altitude and base will often make a <b>T</b> when they meet, perhaps an upside-down one as in figure <b>A-2</b>. Naturally enough, the &perp; symbol has come
+to indicate perpendicularity.</p>
 
-\begin{align}
-\frac{A - B}{A + B} = \frac{\tan\frac{a - b}{2}}{\tan\frac{a + b}{2}}
-\end{align}
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/A3.png" width="150" height="105" alt="Right triangle">
+		<div class="caption"><b>A-3</b></div>
+	</div>
+</div>
 
-<b>(NOTES:</b> Can probably merge these two into one "Laws" section; a bit of tightening and rewording is also in order<b>)</b></p>
+<p>If the altitude and one of the sides overlap, we have a <a href="https://en.wikipedia.org/wiki/Right_triangle">right triangle</a>, as in <b>A-3</b>. In
+such a triangle, the side opposite the right angle is known as the <a href="https://en.wikipedia.org/wiki/Hypotenuse">hypotenuse</a>. The adjacent sides are
+called <b>leg</b>s.</p>
 
-<H3><a href="centroid"></a>Centroid</H3>
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/A4.png" width="160" height="215" alt="Outer altitude">
+		<div class="caption"><b>A-4</b></div>
+	</div>
+</div>
 
-<p>If we start at one corner and cut the opposite side at the midpoint, we have two triangles with base ${B \over 2}$ and height $h$,
-which is to say they have equal area, half that of the full triangle. Such lines are called medians.</p>
+<p>Angles wider than a right angle are said to be <a href="https://www.mathsisfun.com/obtuse.html">obtuse</a>. (Their narrower cousins are
+<a href="http://www.mathsisfun.com/acute.html">acute</a>.) When a base is adjacent to such an angle, both remaining sides lean either left or right, so that their
+corner is no longer above the base. As a result, the altitude will be outside the triangle. The base and altitude will not even meet, unless the former is extended
+artificially, as in <b>A-4</b>.</p>
 
-<p><b>(NOTES:</b>Figure<b>)</b></p>
+<H3><a name="angles"></a>Considering different angles</H3>
 
-<p>If we do the same with another corner, the same area situation will happen. Furthermore, of course, the medians will intersect
-somewhere. This will produce a number of triangles.</p>
+<p>In real-world situations, we will nearly always want something more precise than "wider (or narrower) than a right angle". With this in mind, angles are
+assigned a <a href="https://www.mathsisfun.com/angles.html">measure</a> that increases in proportion to the separation between sides.</p>
 
-<p><b>(NOTES:</b>Refer to figure<b>)</b></p>
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/B1.png" width="135" height="210" alt="Some angle measurements">
+		<div class="caption"><b>B-1</b></div>
+	</div>
+</div>
 
-<p>With the Law of Sines we can investigate the relationships among their sides, tabulated in what follows. Note that, as we saw in
-the previous article, $\sin(180^\circ - \theta) = \sin\theta.$</p>
+<p>Measurements are denominated in <a href="https://en.wikipedia.org/wiki/Degree_(angle)">degrees</a> in this article, though
+<a href="https://en.wikipedia.org/wiki/Angle#Units">other units</a> are available as well. In a triangle, the range of angles begins just after 0&deg; (sides
+together, thus no angle), runs through 90&deg; (right angles), and ends a bit shy of 180&deg; (sides fully apart, in a straight line).</p>
 
-<p>First off, we have the triangles produced when the two medians cross. These correspond to the upper-left, upper-right, and lower-left
-triangles in (FIGURE):
+<p>Many sources label corners rather than angles, adopting a different scheme for the latter. If a triangle had corners $A,$ $B,$ and $C,$ it would be typical under
+these circumstances to see angles such as $ \angle ABC. $ This particular choice would refer to the angle at corner $B$ or, more specifically, included between the
+segment from $A$ to $B$ and the segment from $B$ to $C.$ The measure to go along with it would be written as $ \measuredangle ABC. $ For simplicity, this article will
+continue to label angles directly. Additionally, we will use this notation interchangeably for both angles and their measures, according to context.</p>
 
-\begin{align}
-T_{ul}: \frac{\sin x}{A} & = \frac{\sin b_1}{D} = \frac{\sin c_1}{F} \\
-T_{ur}: \frac{\sin x}{B / 2} & = \frac{\sin (x + c_2)}{D} = \frac{\sin c_2}{G} \\
-T_{ll}: \frac{\sin x}{C / 2} & = \frac{\sin b_2}{E} = \frac{\sin (x + b_2)}{F}
-\end{align}
+<p>By interspersing one or more lines, an angle can be divided up into two or more <a href="http://www.mathopenref.com/anglesadjacent.html">adjacent angles</a>.
+<b>B-2</b> shows such a situation. Conversely, neighboring angles may be coalesced. We can measure the full angle simply by adding up the lesser ones.</p>
 
-The median bisecting $B$ gave us a left and right triangle:
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/B2.png" width="210" height="150" alt="Adjacent angles">
+		<div class="caption"><b>B-2</b></div>
+	</div>
+</div>
 
-\begin{align}
-Left: \frac{\sin c}{F + G} & = \frac{\sin b_1}{B / 2} = \frac{\sin (x + c_2)}{A} \\
-Right: \frac{\sin b_2}{B / 2} & = \frac{\sin a}{F + G} = \frac{\sin (x + c_2)}{C}
-\end{align}
+<p>Adjacent angles share a side and corner. Thus, a given angle may be adjacent to one or two other angles, or none at all.</p>
 
-Likewise, from cutting side $C$ we have top and bottom triangles:
+<p>Garden-variety angles are often denoted by one or more arcs, as in figures <b>B-2</b>, <b>B-3</b>, and <b>B-4</b>. When two or more angles are shown with the same
+number of arcs, these angles are understood to have equal measurements. Varying numbers are typically a cue that the angles need not be equal (but could be). They
+might instead mean the angles must in fact be different, but usually this stronger condition will be spelled out.</p>
 
-\begin{align}
-Top: \frac{\sin c_1}{C / 2} & = \frac{\sin b}{D + E} = \frac{\sin (x + b_2)}{A} \\
-Bottom: \frac{\sin c_2}{C / 2} & = \frac{\sin (x + b_2)}{B} = \frac{\sin a}{D + E}
-\end{align}
+<H3><a name="sticking-together"></a>Sticking together</H3>
 
-Many of these results above are dead ends; some trial and error will flush them out. Among the useful bits, after
-some rearrangement:
+<p>A little thought experiment is now in order.</p>
 
-\begin{align}
-\sin(x + b_2) & = \frac{2A\sin c_1}{C} = \frac{2B\sin c_2}{C} \\
-\sin(x + c_2) & = \frac{2A\sin b_1}{B} = \frac{2C\sin b_2}{B}
-\end{align}
+<p>Consider what would happen if, beginning with the triangle from figure <b>A-1</b>, we were to narrow or widen one of its angles, say $C.$ On top of this, suppose
+no other angle or side length was allowed to change.</p>
 
-We see that $A\sin b_1 = C\sin b_2$ and $A\sin c_1 = B\sin c_2,$ respectively. This next equality, also derived
-from the list above, will let us apply these insights:
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/C1.png" width="179" height="128" alt="A narrower angle">
+		<div class="caption"><b>C-1</b></div>
+	</div>
+</div>
+		
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/C2.png" width="179" height="128" alt="A wider angle">
+		<div class="caption"><b>C-2</b></div>
+	</div>
+</div>
 
-\begin{align}
-\sin x = \frac{A\sin b_1}{D} = \frac{C\sin b_2}{2E} = \frac{A\sin c_1}{F} = \frac{B\sin c_2}{2G}
-\end{align}
+<p>Figures <b>C-1</b> and <b>C-2</b> depict a couple possible outcomes, following only slight variations in $C.$</p>
 
-<p>After substituting a couple of numerators, it quickly follows that $D = 2E$ and $F = 2G.$</p>
+<p>A narrower angle results in the situation shown in figure <b>C-1</b>, where the adjacent sides, $a$ and $b$, arrive at the opposite side "early" and penetrate
+it&mdash;rather than meet up with its endpoints and form corners&mdash;then press on just a bit farther.</p>
 
-<p>Thus, our intersection is ${2 \over 3}$ of the way from either corner to the midpoint of its opposite side.</p>
+<p>With a wider angle, on the other hand, the sides stop short of $c$, if only barely, but also veer away from it. Figure <b>C-2</b> is an example of what we
+might see.</p>
 
-<p>We can intersect either of the first two medians with the remaining one. Once again this happens ${2 \over 3}$
-along; the three medians have a common meeting point.</p>
+<p>In order to repair one of these objects, restoring its triangularity, we would need to slide side $c$ either forward or backward, until it was in line with
+the endpoints of both $a$ and $b$, then either shrink or extend it for a snug fit. Barring that, neither case deserves to be called a triangle.</p>
 
-<p>This is known as the <b>centroid</b>. To find its position, we linearly interpolate from any corner to the opposite midpoint:
+<p>Small adjustments to a side length would produce similar breakage, assuming the remaining properties were held fixed.</p>
 
-\begin{align}
-x = {1 \over 3}x_1 + {2 \over 3}\frac{x_2 + x_3}{2}
-\end{align}
+<p>As our short investigation shows, triangles possess a very rigid structure. Angle measures and side lengths are
+<a href="http://www.mathopenref.com/trianglesideangle.html">closely related</a>, with only a bit of give-and-take being possible. Consequently, once a few of its angles
+and sides have been pinned down, so are the others. This works in our favor: knowing only some of a triangle's properties, we can deduce the rest!</p>
 
-The $y$-coordinate is similar. After simplifying:
+<p>When dealing with multiple triangles, this is especially important. Angles and sides will accumulate quickly; the more of them we can ignore, the better off we are.</p>
 
-\begin{align}
-\mathbf{c} = \left(\frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3}\right)
-\end{align}
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/C3.png" width="147" height="80" alt="Side-angle-side">
+		<div class="caption"><b>C-3</b></div>
+	</div>
+</div>
 
-Using the altitudes from the centroid onto the three sides, we can find the areas of the three triangles it forms:
-$\frac{AD\sin c_1}{2}, \frac{CF\sin b_2}{2}, $ and $\frac{BD\sin c_2}{2}.$</p>
+<p>Suppose we have two triangles, $T_1$ and $T_2,$ on hand. Taking $T_1,$ we measure one of its angles plus the adjacent sides, labeling them as $C,$ $a,$ and $b$ respectively.</p>
 
-<p>We can reuse one of our earlier substitutions here, telling us the first and third are equal.</p>
+<p>Say we then shifted our attention to $T_2.$ When measured, one of its angles turns out to be exactly as wide as $C.$ These things do happen, of course, so it goes unremarked.</p>
 
-<p>Another relationship we can pull out of the earlier list is $C\sin b_2 = \frac{2AE\sin c_1}{F}.$ Given this, the
-second area reduces to $AE\sin c_1.$ Since $E = {D \over 2},$ this is equal to the others.</p>
+<p>As we measure the angle's adjacent sides, further similarities emerge: one has the same length as $a,$ the other is as long as $b.$ $T_1$ and $T_2$ have a common
+<a href="http://www.mathopenref.com/congruentsas.html">side-angle-side</a> sequence. If matching parts were assigned the same labels, we have something like figure <b>C-3</b>.</p>
 
-<p>Each sub-triangle thus occupies ${1 \over 3}$ of the total area. A triangle may be interpreted as an object of uniform
-density&mdash;in Corona, for instance, this describes a triangular polygon with a physics body&mdash;so the centroid
-sometimes goes by the name of <b>barycenter</b>, or "center of weight".</p>
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/C4.png" width="170" height="120" alt="Unconstrained wider angle">
+		<div class="caption"><b>C-4</b></div>
+	</div>
+</div>
 
-<p><b>(NOTES:</b> This might be a far more ideal place for the section on barycentric coordinates!<b>)</b></p>
+<p>When we only knew an angle and one of its adjacent sides, $T_2$ was still quite malleable. One of its angles was still totally independent at this point. This scenario is depicted
+in figure <b>C-4</b>: the triangle may not assume <i>any</i> shape, since part of its structure is indeed locked down, but limitless possibilities exist nonetheless. (Slash marks serve
+the same purpose for sides that arcs do for angles, with matching counts indicating equal lengths.)</p>
 
-<H3><a name="summary"></a>Summary</H3>
+<p>Introducing the second adjacent side will bring us back to our earlier predicament, where any change would upset a delicate balance. This has an extremely important converse: a
+common side-angle-side sequence means that two triangles are the same.</p>
 
-<p>Revise!</p>
+<p><b>(NOTES:</b> Is the first half of this clear? Realized it could be more intuitively demonstrated by overlap...<b>)</b></p>
+
+<H4><b>EXERCISES</b></H4>
+
+<p><b>1.</b> What other theorems can we use to compare triangles, based on angles and sides?</p>
+<p><b>2.</b> Do these theorems have the same guarantees as side-angle-side?</p>
+
+<H3><a name="identical-twins"></a>Identical twins</H3>
+
+<p>Properly speaking, the two triangles are <a href="https://en.wikipedia.org/wiki/Congruence_(geometry)">congruent</a>. This has a few (equivalent) definitions.</a>
+
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/D1.png" width="147" height="80" alt="Isometry">
+		<div class="caption"><b>D-1</b></div>
+	</div>
+</div>
+
+<p>Suppose we have a triangle and decide to traverse its boundary. Each step of the way, we compare our current location to every other one on the same triangle, finding the
+distance between them. (We will soon see how to perform such calculations.)</p>
+
+<p>At the same time, we examine corresponding points on a congruent triangle. In every instance, the results will be identical.</p>
+
+<p>Figure <b>D-1</b> is a snapshot of this process. On one triangle, we have chosen two points, $p_1$ and $p_2$, in the middle of one side and three-quarters of the way along
+another, respectively. On a second triangle, $q_1$ and $q_2$ are equally situated. (Corresponding sides have the same lengths, of course.) Whatever distance lies between $p_1$
+and $p_2$ also separates $q_1$ from $q_2$.</p>
+
+<p>When <i>all</i> lengths match, we have congruence. Comparing infinitely many pairs of points is <a href="http://www.chiark.greenend.org.uk/~sgtatham/infinity.html">impractical</a>,
+to say the least, but captures what is going on numerically.</p>
+
+<p>Alternatively, we may speak in terms of
+<a href="https://en.wikipedia.org/wiki/Euclidean_plane_isometry#Classification_of_Euclidean_plane_isometries">rigid motions</a>. These are geometric operations
+that preserve an object's size and shape: changing its position, rotating it, or taking its mirror image. If we start with one triangle and are able through some combination
+of these motions to make it perfectly overlap another, the two triangles are congruent. In figure <b>C-3</b>, as an example, we can rotate one of the triangles and move it atop
+its companion.</p>
+
+<p>The two approaches are not at odds. Overlap is the visual manifestation of all lengths being in agreement, and <i>vice versa</i>.</p>
+
+<p><b>(NOTES:</b> Either move this before the last section (with appropriate edits) or use overlap to show side-angle-side in effect<b>)</b></p>
 
 									</div><!-- .entry-content -->
 					<div class="clearfix row" style="margin:4px 0;">

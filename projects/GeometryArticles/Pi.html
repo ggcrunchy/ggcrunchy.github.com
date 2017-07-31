@@ -215,7 +215,7 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		<div class="col-md-12">
 			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
 
-				<h1 class="page-title h1">A 2D geometry primer, part 6: pi</h1>
+				<h1 class="page-title h1">A 2D geometry primer, part 8: pi</h1>
 				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./SpoofCoronaPage_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
 			</header><!-- .entry-header -->
 		</div>
@@ -336,7 +336,25 @@ print( PI2( 13 ) ) -- prints 3.1415926453212</code></pre>
 <p>Thus the side near the circle boundary also has the radius as length.</p>
 <p>So a decent approximation for the boundary is 3 times the radius.</p>
 <p>We can divide these in half in turn, which give us our earlier 30-60-90 triangles, which better approximate the circle. <b>(TODO:</b> Not correct, fix<b>)</b></p>
-<p>Gradually, we get nearer and nearer to 3.14159...</p>
+
+<p>We can split one of these equilateral triangles into two 30&deg;-60&deg;-90&deg; triangles. We can then move the shared corner at
+the right angle up onto the circle.</p>
+
+<p>This side will then be the radius in length, so we have two isosceles triangles, each with a 30&deg; central angle.</p>
+
+<p>Each time, we take up more of the space between the chords and arcs, more fully approximating the complete disk.</p>
+
+<p>With six chords:
+
+\begin{align}
+6\,\rm{crd}\,30^\circ & = 6\left(2\sin \frac{30^\circ}{2}\right) \\
+					  & = 12\sqrt{\frac{1 - \cos 30^{\circ}}{2}} \\
+					  & \approx 12\sqrt{.06699} \\
+					  & \approx 3.10583
+\end{align}
+
+<p>A second pass, with twelve chords and 15&deg; central angles, gives us $\approx 3.13935.$ Further iterations narrow this down
+to $\approx 3.14159.$ (In fact, this refinement process <a href="https://en.wikipedia.org/wiki/Proof_that_π_is_irrational">never does end</a>.)</p>
 
 <p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>
 
@@ -403,17 +421,15 @@ the only such candidate being the center itself!</p>
 
 <p>The upshot of this last bit is that the innermost circle can also be streamlined into the ring formulation.</p>
 
-<p>Now, something interesting happens when we start adding these trapezoids together. Here are our three areas lined up:</p>
+<p>Now, something interesting happens when we start adding these trapezoids together. Here are our three areas lined up:
 
-<p>
 \begin{align}
 area_1 & = \pi(r_1^2 - r_0^2) \\
 area_2 & = \pi(r_2^2 - r_1^2) \\
 area_3 & = \pi(r_3^2 - r_2^2)
 \end{align}
-<p>
 
-<p>Comparing subsequent lines, we see $ r_1^2 $, followed by $ -r_1^2 $, and likewise for $r_2$. Thus, after summing all these areas together, what remains is $ \pi r_3^2 $.
+Comparing subsequent lines, we see $ r_1^2 $, followed by $ -r_1^2 $, and likewise for $r_2$. Thus, after summing all these areas together, what remains is $ \pi r_3^2 $.
 Since $r_3$ was the outermost radius, we can write the more familiar area formula, $ \pi r^2 $.</p>
 
 <p>Since all these intermediate terms cancel, we could have found the area with more and more circles, even pushing it to the limit where the distance between consecutive

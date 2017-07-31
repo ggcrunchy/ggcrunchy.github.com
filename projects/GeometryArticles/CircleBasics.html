@@ -215,7 +215,7 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		<div class="col-md-12">
 			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
 
-				<h1 class="page-title h1">A 2D geometry primer, part 11: the Law of Sines</h1>
+				<h1 class="page-title h1">A 2D geometry primer, part 6: circle basics</h1>
 				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./SpoofCoronaPage_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
 			</header><!-- .entry-header -->
 		</div>
@@ -228,153 +228,376 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
 <hr>
 
-<p>TODO!</p>
+<p>We pick up where <a href="./Triangles.html">our treatment</a> on triangles left off, venturing now into the territory of circles.</p>
 
-<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
+<p>Rather than cover old ground, the reader is assumed to be familiar with various concepts already discussed. Those who have not done so are <b>strongly</b>
+advised to begin with the previous article.</p>
 
-<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
+<H3><a name="circles"></a>Some points on circles (A)</H3>
 
-<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
-letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
+<p>Say we had a pencil, plus a sheet of paper held in place by a pin. The pencil and pin are tied together with a piece of string.</p>
 
-<div style="float:right;">
+</p><div style="float:right;">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_los/G2.png" width="200" height="150" alt="Law of sines">
-		<div style="caption"><b>G-2</b></div>
+		<img src="./images_circles/A1.png" width="200" height="150" alt="Tracing a circle">
+		<div style="caption"><b>A-1</b></div>
 	</div>
 </div>
 
-<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
-the same result. Thus</p>
+<p>We move the pencil away from the pin until the string is taut, place it on the paper, and start to move, maintaining this same
+distance. Eventually we arrive back where we started.</p>
 
-<p>
-\begin{align}
-\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
-\end{align}
-<p>
+<p>This describes a <a href="https://en.wikipedia.org/wiki/Compass_(drawing_tool)">compass</a>. One full revolution captures
+mechanically the essence of a <a href="https://en.wikipedia.org/wiki/Circle">circle</a>: all points the same distance away from
+a central point. In our example, this distance, called the <b>radius</b>, is given by the length of the string, whereas the
+<b>center</b> corresponds to the pin; the circle is the traced path itself.</p>
 
-<p>If we divide "both" sides by ${1 \over 2}ABC,$ this all comes out to</p>
+<p>In terms of figure <b>A-1</b>, the dashed segment can be thought of as the string and the smaller dot as the pin. The larger
+dot represents the pencil somewhere along its path. (The <b>radius</b> terminology is also used for the segment itself, which
+"radiates" out from the center.)</p>
 
-<p>
-\begin{align}
-\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
-\end{align}
-<p>
+</p><div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/A2.png" width="200" height="150" alt="A chord">
+		<div style="caption"><b>A-2</b></div>
+	</div>
+</div>
 
-<p>This is the <b>Law of Sines</b>, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
-used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
+<p>We may draw a line segment between any two points on a circle, as for instance in <b>A-2</b>. Such a segment is
+known as a <b>chord</b>.</p>
 
-<H3><a href="law-of-tangents"></a>Law of Tangents</H3>
+</p><div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/A3.png" width="200" height="150" alt="An arc">
+		<div style="caption"><b>A-3</b></div>
+	</div>
+</div>
 
-<p>We may calculate any altitude in terms of two different side-angle pairs. In <b>G-2</b>, for example, $A\sin b = B\sin a = H,$
-where $H$ is the common height.</p>
+<p>We might instead concentrate on the portion of the circle itself lying between two points. A "circular segment" of
+this sort, such as the solid curve in <b>A-3</b>, is called an <b>arc</b>. We will always have two arcs, in fact: the
+dashed curve in that same figure is one as well. Often we only need the shorter of the two.</p>
 
-<p>Some simple restructuring gives us $\sin a = AH$ and $\sin b = BH.$</p>
+<p>Figure <b>A-3</b> highlights a couple of segments emerging from the center. The angle between them is called a
+<b>central angle</b>.</p>
 
-<p>We can bring the sum-to-product identities to bear on these:
+<p>When we combine a pair of segments like this with one of its associated arcs, they end up enclosing a region inside
+the circle, or <b>sector</b>. In <b>A-3</b>, using the solid arc etches out a pie slice-shaped sector, while its dashed
+counterpart gives us something resembling a certain pellet-munching icon of gaming.</p>
 
-\begin{align}
-H(A - B) = 2\cos\left(\frac{a + b}{2}\right)\sin\left(\frac{a - b}{2}\right) \\
-H(A + B) = 2\sin\left(\frac{a + b}{2}\right)\cos\left(\frac{a - b}{2}\right)
-\end{align}
+</p><div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/A4.png" width="200" height="150" alt="Diametrically opposite points">
+		<div style="caption"><b>A-4</b></div>
+	</div>
+</div>
 
-Dividing one by the other, the $H$ goes away, and we obtain the <b>Law of Tangents</b>:
+<p>A chord that passes through the center is somewhat notable, since this means its length is twice the radius. Naturally,
+it has a name meaning "double length": <b>diameter</b>. The points on the circle are said to be <b>antipodal</b>: "feet
+opposite", like people on the other side of the earth.</p>
 
-\begin{align}
-\frac{A - B}{A + B} = \frac{\tan\frac{a - b}{2}}{\tan\frac{a + b}{2}}
-\end{align}
+</p><div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/A5.png" width="200" height="150" alt="Off-circle points">
+		<div style="caption"><b>A-5</b></div>
+	</div>
+</div>
 
-<b>(NOTES:</b> Can probably merge these two into one "Laws" section; a bit of tightening and rewording is also in order<b>)</b></p>
+<p>A mathematical circle is more restrictive than the colloquial notion most of us have, which is probably something like
+Corona circles. According to the strict definition, it is only the curve itself, some distance from the center, but not the
+interior points. In <b>A-5</b>, for instance, neither of the gray points is in the circle, even the one inside. (In geometric
+language, the circle plus its interior is a <b>disk</b>.)</p>
 
-<H3><a href="centroid"></a>Centroid</H3>
+<p>The two gray points are "some distance" from the same center, of course, so we can say they lie on other <b>concentric</b>
+circles. The interior point in <b>A-5</b> will have a smaller radius, the exterior a larger one.</p>
 
-<p>If we start at one corner and cut the opposite side at the midpoint, we have two triangles with base ${B \over 2}$ and height $h$,
-which is to say they have equal area, half that of the full triangle. Such lines are called medians.</p>
+<p><b>(NOTES:</b> Add dashed circles to figure<b>)</b></p>
 
-<p><b>(NOTES:</b>Figure<b>)</b></p>
+<p>When our radius is $0,$ "all" points are again that far from the center: however, this is nothing but the center itself!
+This degenerate case is not terribly interesting, though it occasionally arises as a corner case when dealing with lengths.
+Our analysis will by and large assume "nice" circles.</p>
 
-<p>If we do the same with another corner, the same area situation will happen. Furthermore, of course, the medians will intersect
-somewhere. This will produce a number of triangles.</p>
+<H3><a name="cosine-and-sine"></a>Cosine and sine (B)</H3>
 
-<p><b>(NOTES:</b>Refer to figure<b>)</b></p>
+<p>In the last article we considered <a href="./LengthAndSimilarity.html#going-the-distance">lengths</a> of the form $\sqrt{dx^2 + dy^2}.$</p>
 
-<p>With the Law of Sines we can investigate the relationships among their sides, tabulated in what follows. Note that, as we saw in
-the previous article, $\sin(180^\circ - \theta) = \sin\theta.$</p>
-
-<p>First off, we have the triangles produced when the two medians cross. These correspond to the upper-left, upper-right, and lower-left
-triangles in (FIGURE):
-
-\begin{align}
-T_{ul}: \frac{\sin x}{A} & = \frac{\sin b_1}{D} = \frac{\sin c_1}{F} \\
-T_{ur}: \frac{\sin x}{B / 2} & = \frac{\sin (x + c_2)}{D} = \frac{\sin c_2}{G} \\
-T_{ll}: \frac{\sin x}{C / 2} & = \frac{\sin b_2}{E} = \frac{\sin (x + b_2)}{F}
-\end{align}
-
-The median bisecting $B$ gave us a left and right triangle:
-
-\begin{align}
-Left: \frac{\sin c}{F + G} & = \frac{\sin b_1}{B / 2} = \frac{\sin (x + c_2)}{A} \\
-Right: \frac{\sin b_2}{B / 2} & = \frac{\sin a}{F + G} = \frac{\sin (x + c_2)}{C}
-\end{align}
-
-Likewise, from cutting side $C$ we have top and bottom triangles:
-
-\begin{align}
-Top: \frac{\sin c_1}{C / 2} & = \frac{\sin b}{D + E} = \frac{\sin (x + b_2)}{A} \\
-Bottom: \frac{\sin c_2}{C / 2} & = \frac{\sin (x + b_2)}{B} = \frac{\sin a}{D + E}
-\end{align}
-
-Many of these results above are dead ends; some trial and error will flush them out. Among the useful bits, after
-some rearrangement:
+<p>A radius, $r$ for short, is just such a length. Given a center $\mathbf{c} = (c_x, c_y),$ we have $dx = x - c_x$ and $dy = y - c_y,$ where
+$x$ and $y$ take on different values as we travel around the circle: Since lengths are never negative, we can safely square this:
 
 \begin{align}
-\sin(x + b_2) & = \frac{2A\sin c_1}{C} = \frac{2B\sin c_2}{C} \\
-\sin(x + c_2) & = \frac{2A\sin b_1}{B} = \frac{2C\sin b_2}{B}
+(x - c_x)^2 + (y - c_y)^2 = r^2
 \end{align}
 
-We see that $A\sin b_1 = C\sin b_2$ and $A\sin c_1 = B\sin c_2,$ respectively. This next equality, also derived
-from the list above, will let us apply these insights:
+This is one of the common forms for circles. As mentioned above, we are going to be focusing on proper circles, with $r > 0.$ This means we
+can divide by $r^2,$ giving us:
 
 \begin{align}
-\sin x = \frac{A\sin b_1}{D} = \frac{C\sin b_2}{2E} = \frac{A\sin c_1}{F} = \frac{B\sin c_2}{2G}
+\left(dx \over r\right)^2 + \left(dy \over r\right)^2 = 1
 \end{align}
 
-<p>After substituting a couple of numerators, it quickly follows that $D = 2E$ and $F = 2G.$</p>
+This describes a circle with radius $1,$ the so-called <a href="https://en.wikipedia.org/wiki/Unit_circle">unit circle</a>.</p>
 
-<p>Thus, our intersection is ${2 \over 3}$ of the way from either corner to the midpoint of its opposite side.</p>
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/B1.png" width="179" height="128" alt="Circle angles">
+		<div style="caption"><b>B-1</b></div>
+	</div>
+</div>
 
-<p>We can intersect either of the first two medians with the remaining one. Once again this happens ${2 \over 3}$
-along; the three medians have a common meeting point.</p>
+<p>As we also saw in the previous article, scaling is a matter of <a href="./LengthAndSimilarity.html#strikingly-similar">similar triangles</a>.
+Angles remain intact despite changes in our radius. Since $\fracalign{dx}{r}{dy}$ and $\frac{dy}{r}$ always divide out the radius, these values
+are similarly robust. They always describe the width and height, respectively, of a right triangle with one corner on the unit circle and another
+at its center, as in figure <b>B-1</b>.</p>
 
-<p>This is known as the <b>centroid</b>. To find its position, we linearly interpolate from any corner to the opposite midpoint:
+<p>The upshot being, the sides of this right triangle only change when the central angle does. Given an angle called $\theta,$ we may therefore
+express such lengths in terms of it:
 
 \begin{align}
-x = {1 \over 3}x_1 + {2 \over 3}\frac{x_2 + x_3}{2}
+\cos\theta & = \frac{dx}{r} \\
+\sin\theta & = \frac{dy}{r}
 \end{align}
 
-The $y$-coordinate is similar. After simplifying:
+These are the <a href="http://mathworld.wolfram.com/Cosine.html">cosine</a> and <a href="http://mathworld.wolfram.com/Sine.html">sine</a>, two
+<a href="https://en.wikipedia.org/wiki/Trigonometric_functions">trigonometric functions</a> with immense importance in geometry, but also mathematics
+more generally. Many of our upcoming results will be expressed in terms of these functions, but it is worth keeping in mind that they arise from
+simple ratios.</p>
+
+<p>We can plug these right back into the unit circle equation above:
 
 \begin{align}
-\mathbf{c} = \left(\frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3}\right)
+\cos^2\theta + \sin^2\theta = 1
 \end{align}
 
-Using the altitudes from the centroid onto the three sides, we can find the areas of the three triangles it forms:
-$\frac{AD\sin c_1}{2}, \frac{CF\sin b_2}{2}, $ and $\frac{BD\sin c_2}{2}.$</p>
+This expression has a tendency to show up again and again, despite its apparent simplicity. It is the first example of an <a href="https://en.wikipedia.org/wiki/List_of_trigonometric_identities">identity</a>,
+a relationship that is always true and "identifies" two things, allowing us to perform useful substitutions. The discipline of <b>trigonometry</b>,
+the "measurement of triangles", consists in building up a collection of such identities and putting them into practice.</p>
 
-<p>We can reuse one of our earlier substitutions here, telling us the first and third are equal.</p>
+<p><b>(NOTES:</b>Comment about notation, i.e. parentheses and powers?<b>)</b></p>
 
-<p>Another relationship we can pull out of the earlier list is $C\sin b_2 = \frac{2AE\sin c_1}{F}.$ Given this, the
-second area reduces to $AE\sin c_1.$ Since $E = {D \over 2},$ this is equal to the others.</p>
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/B2.png" width="179" height="128" alt="Obvious points">
+		<div style="caption"><b>B-2</b></div>
+	</div>
+</div>
 
-<p>Each sub-triangle thus occupies ${1 \over 3}$ of the total area. A triangle may be interpreted as an object of uniform
-density&mdash;in Corona, for instance, this describes a triangular polygon with a physics body&mdash;so the centroid
-sometimes goes by the name of <b>barycenter</b>, or "center of weight".</p>
+<p>We can identify some values right off. For instance, when $dx = 0, dy = \pm r,$ and likewise when the roles are reversed. This gives us
+the points at 0<sup>&deg;</sup>, 90<sup>&deg;</sup>, 180<sup>&deg;</sup>, and 270<sup>&deg;</sup>, as depicted in <b>B-3</b>. Notice that
+unlike triangles, circles are not limited to 180<sup>&deg;</sup>.</p>
 
-<p><b>(NOTES:</b> This might be a far more ideal place for the section on barycentric coordinates!<b>)</b></p>
+<p>The arcs formed by consecutive pairs of these points are called <b>quadrant</b>, since they divide the circle into four parts. The range
+from 0<sup>&deg;</sup> to 90<sup>&deg;</sup>, which will be our focus for some time, is the <b>first quadrant</b>.</p>
 
-<H3><a name="summary"></a>Summary</H3>
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/B3.png" width="179" height="128" alt="30-60-90 triangle">
+		<div style="caption"><b>B-3</b></div>
+	</div>
+</div>
 
-<p>Revise!</p>
+<p>Earlier we saw that in an equilateral triangle, all sides are equal, as well as angles. The triangle postulate tells us these angles
+must each measure 60<sup>&deg;</sup>.</p>
+
+<p>We can situate such a triangle so that the x-axis bisects one of its angles, as in <b>B-3</b>. In doing so, we also cut the opposite
+side in half.</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/B4.png" width="179" height="128" alt="30-60-90, close up">
+		<div style="caption"><b>B-4</b></div>
+	</div>
+</div>
+
+<p>On the unit circle, the upper half takes the form of <b>B-4</b>. Thus:
+
+\begin{align}
+\sin 30^{\circ} = \frac{1}{2}
+\end{align}
+
+This demonstrates the benefits of working on the unit circle: $r = 1,$ so $\sin\theta = dy$ (and $\cos\theta = dx,$ of course). Not
+only is this convenient, but it gives generality to our results.</p>
+
+<p>From our shiny new identity:
+
+\begin{align}
+\cos 30^{\circ} = \sqrt{1 - \sin^2 30^{\circ}} = \sqrt{1 - \left(\frac{1}{2}\right)^2} = \frac{\sqrt{3}}{2}
+\end{align}
+
+When we come around to 60<sup>&deg;</sup>, the long side will be upright and the short one lying flat:
+
+\begin{align}
+\cos 60^{\circ} & = \frac{1}{2} \\
+\sin 60^{\circ} & = \frac{\sqrt{3}}{2}
+\end{align}
+
+<b>(NOTES:</b>Use a rectangle argument instead, which also conveys symmetry... could do in last section, actually<b>)</b></p><p>
+
+We can also put an isosceles triangle down, with one of its sides along the x-axis and a corner on the unit circle, as in figure
+<b>B-5</b>. Because this already has a right angle, the remaining angles must both measure 45<sup>&deg;</sup>. The sides being equal,
+we have $2dx^2 = 1.$ Thus
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/B5.png" width="179" height="128" alt="45-45-90 triangle">
+		<div style="caption"><b>B-5</b></div>
+	</div>
+</div>
+
+\begin{align}
+\cos 45^{\circ} & = \sqrt{\frac{1}{2}} = \frac{1}{\sqrt{2}} \\
+\sin 45^{\circ} & = \frac{1}{\sqrt{2}}
+\end{align}
+
+Having a square root in the denominator is often frowned upon, so these are typically multiplied by $1 = \frac{\sqrt{2}}{\sqrt{2}},$
+finally giving us
+
+\begin{align}
+\cos 45^{\circ} = \sin 45^{\circ} = \frac{\sqrt{2}}{2}
+\end{align}
+
+<p>Unfortunately, finding values for the remaining angles is a bit messier! Over the course of the next few articles, we will uncover many
+of the insights that make doing so possible, if a bit of a painstaking process. Thankfully, our predecessors have done extensive work here
+and <a href="https://en.wikipedia.org/wiki/Trigonometric_tables">tabulated their results</a>. These same efforts have also given us solid
+algorithms to calculate cosine and sine directly, so that today in Corona we can simply call
+<a href="https://docs.coronalabs.com/api/library/math/cos.html">math.cos</a> or
+<a href="https://docs.coronalabs.com/api/library/math/sin.html">math.sin</a>.</p>
+
+<H3><a name="polar-coordinates"></a>Polar coordinates (C)</H3>
+
+<p>It was mentioned above, in connection with the gray points in <b>A-5</b>, that these were found on other circles sharing the same
+center but differing in their radius.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/C1.png" width="179" height="128" alt="Point and unit circle">
+		<div style="caption"><b>C-1</b></div>
+	</div>
+</div>
+
+<p>In fact, this describes any point with respect to some circle. In figure <b>C-1</b>, we have a point at $(x, y),$ along with a unit circle.
+If this circle is centered at the origin, the point will be on another circle with radius
+
+\begin{align}
+r = \sqrt{x^2 + y^2}
+\end{align}
+
+The central angle in this figure, $\theta,$ measures the arc from the x-axis to the line from the center to $(x, y).$</p>
+
+<p>Since we can pick any distance from the center, the corresponding circle contains all points that far away, and we can visit
+all such points on the circle, it follows that any $(x, y)$ can also be specified as another pair: $(r, \theta)$. These are the
+<b>polar coordinates</b>.</p>
+
+<p>When the center (the <b>pole</b>, in this context) is at the origin, $x = dx$ and $y = dy.$ We can plug these back into our earlier
+formulae and rearrange:
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/C2.png" width="200" height="150" alt="Rectangular coordinates">
+		<div style="caption"><b>C-2</b></div>
+	</div>
+</div>
+
+\begin{align}
+x & = r\cos\theta \\
+y & = r\sin\theta
+\end{align}
+
+This provides a conversion from polar to rectangular coordinates. Later we will see some techniques to recover $\theta,$ allowing
+us to convert from rectangular to polar form as well.</p>
+
+<p>On this last bit, note that all angles snap to $x = y = 0$ when our radius is $0.$ This makes rectangular-to-polar conversion
+ambiguous there: any angle works, but some choices might not play well with typical results.</p>
+
+<p>As an example, say we adopt a policy of always choosing $\theta = 0^{\circ}.$ If we want to travel between concentric circles,
+we should be okay: $(r + dr, \theta)$ to $(r, \theta)$ is nice and smooth. At the center, things get hairy. From $(dr, 0^{\circ})$
+down to $(0, 0^{\circ}),$ all is well, but coming from $(r, 180^{\circ})$ we would spiral in! Interesting at first, but it sticks
+out like a sore thumb.</p>
+
+<p>Situations like these are left mathematically undefined; the right answer, when there is one, depends on external context.</p>
+
+<p>The pole might be at $(p_x, p_y),$ rather than the origin. In that case, following the ideas above:
+
+\begin{align}
+r & = \sqrt{dx^2 + dy^2} \\
+x & = p_x + r\cos\theta \\
+y & = p_y + r\sin\theta
+\end{align}
+
+<H3><a name="tangent-and-secant"></a>Tangent and secant (C)</H3>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/C3.png" width="200" height="150" alt="Cosine ratio to unit circle">
+		<div style="caption"><b>C-3</b></div>
+	</div>
+</div>
+
+<p>Throughout most of the first quadrant, the cosine and sine will give us a right triangle inside the circle, like we saw in <b>C-2</b>.
+The only exceptions are found at 0<sup>&deg;</sup> (cosine $1,$ sine $0$) and 90<sup>&deg;</sup> (cosine $0,$ sine $1$), which collapse
+into line segments.</p>
+
+<p>Figure <b>C-3</b> zooms in on the $dx$ side of such a triangle. The circle's radius is in a $1 : \cos\theta$ ratio with this side.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/C4.png" width="200" height="150" alt="Tangent and secant">
+		<div style="caption"><b>C-4</b></div>
+	</div>
+</div>
+
+<p><b>(NOTES:</b> Should <b>C-4</b> have 1 at the bottom?<b>)</b></p>
+
+<p>Applying the scaling factor $\frac{1}{\cos\theta}$ gives us a similar triangle with $dx = r.$ This is depicted with dashed segments
+in <b>C-4</b>.</p>
+
+<p>On the unit circle, the $dy$ side of this new triangle has length $\sin\theta\left({1 \over \cos\theta}\right).$ This side only
+"touches" the circle, so the function for its length is given the name <b>tangent</b>:
+
+\begin{align}
+\tan\theta = \frac{\sin\theta}{\cos\theta}
+\end{align}
+
+In the same way, the scaled hypotenuse has length $1\left({1 \over \cos\theta}\right).$ Since this side "cuts" the circle, the function
+is called the <b>secant</b>:
+
+\begin{align}
+\sec\theta = \frac{1}{\cos\theta}
+\end{align}
+
+<p>The Pythagorean theorem then gives us another useful identity:
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/C5.png" width="200" height="150" alt="Cosine to sine via the tangent">
+		<div style="caption"><b>C-5</b></div>
+	</div>
+</div>
+
+\begin{align}
+\tan^2\theta + 1 = \sec^2\theta
+\end{align}
+
+<p>Figure <b>C-5</b> emphasizes some important relationships that arise when we have a circle of radius $A,$ rather than
+strictly the unit circle. Given an angle, we can calculate $dy$ or the hypotenuse directly from $dx,$ scaling it it by the
+tangent or secant of the angle, respectively. This will prove quite useful!</p>
+
+<p><b>(NOTES:</b> Redo this for consistency with <b>C-2</b>?<b>)</b></p>
+
+<p>We can also find the so-called <b>cotangent</b> and <b>cosecant</b> functions by applying the above steps to $dy$ and sine.
+For the most part, these have analogous properties. Historically, various other side-angle relationships have also received
+special attention as well, but for one reason or another have since declined in popularity.</p>
+
+<H3><a name="adjacent-opposite-hypotenuse"></a>Adjacent, opposite, hypotenuse (C)</H3>
+
+<p>So far, we have been treating the triangles as rooted at the right-hand side. As we covered in the first article, often we will begin with an idealized triangle
+to make our points and then abstract from there.</p>
+
+<p><b>(NOTES:</b> images: Rotated angle -> flat base; dx-dy-r -> adjacent-opposite-hypotenuse / adj-opp-hyp<b>)</b></p>
+
+<p>To this end, rather than the $dx$ and $dy$ we have used thus far, these sides tend to be designated as adjacent and opposite, respectively. These have the same meanings
+as before, describing their relationship to the angle. This has some interesting outcomes: for instance, the adjacent side might in fact be behind us.</p>
+
+<p>Beyond the motivation, of course, we made little use of the circles. In fact, we can simply pretend one is there, allowing us to generalize these to any
+situation with a right triangle.</p>
 
 									</div><!-- .entry-content -->
 					<div class="clearfix row" style="margin:4px 0;">

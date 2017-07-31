@@ -215,7 +215,7 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		<div class="col-md-12">
 			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
 
-				<h1 class="page-title h1">A 2D geometry primer, part 11: the Law of Sines</h1>
+				<h1 class="page-title h1">A 2D geometry primer, part 7: adding angles</h1>
 				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./SpoofCoronaPage_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
 			</header><!-- .entry-header -->
 		</div>
@@ -228,153 +228,198 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
 <hr>
 
-<p>TODO!</p>
+<H3><a name="angle-addition"></a>Angle addition</H3>
 
-<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
+<p>Continuing on the angle theme, recall how adjacent angles summed together.</p>
 
-<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
+<p>We begin with the triangle for one of these, as normal.</p>
 
-<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
-letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
+<p>One for a second rests on top of the original triangle. This is where our opposite-adjacent abstraction comes to the fore, as it no longer aligns with the x-axis.</p>
 
-<div style="float:right;">
+<div style="float:left;">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_los/G2.png" width="200" height="150" alt="Law of sines">
-		<div style="caption"><b>G-2</b></div>
+		<img src="./images_AddingAngles/A1.png" width="200" height="150" alt="Two angles">
+		<div style="caption"><b>A-1</b></div>
 	</div>
 </div>
 
-<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
-the same result. Thus</p>
+<p>The right angle's corner on the second triangle rests on the hypotenuse of the first triangle, which has length 1 on the unit circle. The distance to this point is
+$ \cos\beta, $ the length of that side.</p>
 
-<p>
-\begin{align}
-\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
-\end{align}
-<p>
+<p>We can create a similar triangle from the first triangle, using this length as the common scale factor. Then by scaling the sides of the first triangle, the position of
+this corner is $ \vcomps{\cos\beta\cos\alpha}{\cos\beta\sin\alpha}. $</p>
 
-<p>If we divide "both" sides by ${1 \over 2}ABC,$ this all comes out to</p>
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_AddingAngles/A2.png" width="200" height="150" alt="Point on triangle">
+		<div style="caption"><b>A-2</b></div>
+	</div>
+</div>
 
-<p>
-\begin{align}
-\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
-\end{align}
-<p>
+<p>Of course, as with our two triangles, we can tease out the triangle for the combined angle, $ \alpha + \beta, $ which will have corner $ \vcomps{\cos(\alpha + \beta)}
+{\sin(\alpha + \beta)}. $</p>
 
-<p>This is the <b>Law of Sines</b>, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
-used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
+</p><div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_AddingAngles/A3.png" width="200" height="150" alt="Discovering some angles">
+		<div style="caption"><b>A-3</b></div>
+	</div>
+</div>
 
-<H3><a href="law-of-tangents"></a>Law of Tangents</H3>
+<p>In doing so, we flush out several smaller triangles. On the bottom, we have one similar to the first triangle. As we saw in the previous article, vertical angles are
+equal, so that carries over to the triangle above. Furthermore, angles sum to 180&deg;, so the angle up top is $\alpha.$</p>
 
-<p>We may calculate any altitude in terms of two different side-angle pairs. In <b>G-2</b>, for example, $A\sin b = B\sin a = H,$
-where $H$ is the common height.</p>
+<p>We can further split the above triangle into two smaller right triangles by cutting it horizontally. Up top, we again fill in the missing angle from the sum to 180&deg;
+(As an aside, note that these both happen to be similar to the first triangle.)</p>
 
-<p>Some simple restructuring gives us $\sin a = AH$ and $\sin b = BH.$</p>
+</p><div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_AddingAngles/A4.png" width="150" height="120" alt="One point to another">
+		<div style="caption"><b>A-4</b></div>
+	</div>
+</div>
 
-<p>We can bring the sum-to-product identities to bear on these:
+<p>This new top triangle has hypotenuse $ \sin\beta. $ Thus, it has horizontal length of $ \sin\alpha\sin\beta $ and vertical length $ \cos\alpha\sin\beta. $</p>
 
-\begin{align}
-H(A - B) = 2\cos\left(\frac{a + b}{2}\right)\sin\left(\frac{a - b}{2}\right) \\
-H(A + B) = 2\sin\left(\frac{a + b}{2}\right)\cos\left(\frac{a - b}{2}\right)
-\end{align}
-
-Dividing one by the other, the $H$ goes away, and we obtain the <b>Law of Tangents</b>:
-
-\begin{align}
-\frac{A - B}{A + B} = \frac{\tan\frac{a - b}{2}}{\tan\frac{a + b}{2}}
-\end{align}
-
-<b>(NOTES:</b> Can probably merge these two into one "Laws" section; a bit of tightening and rewording is also in order<b>)</b></p>
-
-<H3><a href="centroid"></a>Centroid</H3>
-
-<p>If we start at one corner and cut the opposite side at the midpoint, we have two triangles with base ${B \over 2}$ and height $h$,
-which is to say they have equal area, half that of the full triangle. Such lines are called medians.</p>
-
-<p><b>(NOTES:</b>Figure<b>)</b></p>
-
-<p>If we do the same with another corner, the same area situation will happen. Furthermore, of course, the medians will intersect
-somewhere. This will produce a number of triangles.</p>
-
-<p><b>(NOTES:</b>Refer to figure<b>)</b></p>
-
-<p>With the Law of Sines we can investigate the relationships among their sides, tabulated in what follows. Note that, as we saw in
-the previous article, $\sin(180^\circ - \theta) = \sin\theta.$</p>
-
-<p>First off, we have the triangles produced when the two medians cross. These correspond to the upper-left, upper-right, and lower-left
-triangles in (FIGURE):
+<p>The corner coincides with that of the second triangle, whereas the upper one is the position of the new angle. Finally:
 
 \begin{align}
-T_{ul}: \frac{\sin x}{A} & = \frac{\sin b_1}{D} = \frac{\sin c_1}{F} \\
-T_{ur}: \frac{\sin x}{B / 2} & = \frac{\sin (x + c_2)}{D} = \frac{\sin c_2}{G} \\
-T_{ll}: \frac{\sin x}{C / 2} & = \frac{\sin b_2}{E} = \frac{\sin (x + b_2)}{F}
+\cos(\alpha + \beta) & = \cos\beta\cos\alpha - \sin\alpha\sin\beta \\
+\sin(\alpha + \beta) & = \cos\beta\sin\alpha + \cos\alpha\sin\beta
 \end{align}
 
-The median bisecting $B$ gave us a left and right triangle:
+<p>The tangent follows readily enough:
 
 \begin{align}
-Left: \frac{\sin c}{F + G} & = \frac{\sin b_1}{B / 2} = \frac{\sin (x + c_2)}{A} \\
-Right: \frac{\sin b_2}{B / 2} & = \frac{\sin a}{F + G} = \frac{\sin (x + c_2)}{C}
+\tan(\alpha + \beta) = \frac{\cos\beta\sin\alpha + \cos\alpha\sin\beta}{\cos\beta\cos\alpha - \sin\alpha\sin\beta}
 \end{align}
 
-Likewise, from cutting side $C$ we have top and bottom triangles:
+Nothing really stands out about this formula. We can employ the technique from our previous article, however, of
+"multiplying by 1". In particular, $1 = \frac{\cos\alpha\cos\beta}{\cos\alpha\cos\beta}.$</p>
+
+<p>This spreads like wildfire among the terms! The cosines disappear; the sines become tangents:
 
 \begin{align}
-Top: \frac{\sin c_1}{C / 2} & = \frac{\sin b}{D + E} = \frac{\sin (x + b_2)}{A} \\
-Bottom: \frac{\sin c_2}{C / 2} & = \frac{\sin (x + b_2)}{B} = \frac{\sin a}{D + E}
+\tan(\alpha + \beta) = \frac{\tan\alpha + \tan\beta}{1 - \tan\alpha\tan\beta}
 \end{align}
 
-Many of these results above are dead ends; some trial and error will flush them out. Among the useful bits, after
-some rearrangement:
+<H3><a name="other-quadrants"></a>Other quadrants</H3>
+
+<p>This analysis only applies to the first quadrant.</p>
+
+<p>For the rest, we consider that adjacent angles sum together. Since (a + b) + c = a + (b + c) and so on, we can
+express a sum of angles wider than 90 degrees as 90 + c.</p>
+
+<p>In that case, we can look at it as rotated by 90 degrees. Our results agree with the formula!</p>
+
+<p>We can do this again with 180 and 270 degrees. Seemingly we wrap around after 360.</p>
+
+<p>Notice some symmetry!</p>
+
+<H3><a name="double-angles"></a>Double angles</H3>
+
+<p>We can derive some useful results immediately.</p>
 
 \begin{align}
-\sin(x + b_2) & = \frac{2A\sin c_1}{C} = \frac{2B\sin c_2}{C} \\
-\sin(x + c_2) & = \frac{2A\sin b_1}{B} = \frac{2C\sin b_2}{B}
+\sin(\theta + \theta) & = \cos\theta\sin\theta + \cos\theta\sin\theta \\
+\sin 2\theta & = 2\cos\theta\sin\theta
 \end{align}
 
-We see that $A\sin b_1 = C\sin b_2$ and $A\sin c_1 = B\sin c_2,$ respectively. This next equality, also derived
-from the list above, will let us apply these insights:
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_AddingAngles/C1.png" width="200" height="150" alt="Doubled angle">
+		<div style="caption"><b>C-1</b></div>
+	</div>
+</div>
+
+We can see how this looks. Here we have the two triangles stacked as before, forming two halves of an isosceles triangle <b>(TODO:</b> redundant, since
+this was how we closed article 1<b>)</b>. The two opposite sides sum up, so the full triangle has side of $ 2\sin\theta. $</p>
+
+<p>The two corners of this side are on the unit circle, so this is a chord. Usually we will simply have a central angle, rather than double
+angle than found here, so in the general case:
 
 \begin{align}
-\sin x = \frac{A\sin b_1}{D} = \frac{C\sin b_2}{2E} = \frac{A\sin c_1}{F} = \frac{B\sin c_2}{2G}
+\textrm{crd}\,\theta = 2\sin\frac{\theta}{2}
 \end{align}
 
-<p>After substituting a couple of numerators, it quickly follows that $D = 2E$ and $F = 2G.$</p>
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_AddingAngles/C2.png" width="200" height="150" alt="Geometry of double angle identities">
+		<div style="caption"><b>C-2</b></div>
+	</div>
+</div>
 
-<p>Thus, our intersection is ${2 \over 3}$ of the way from either corner to the midpoint of its opposite side.</p>
+We can draw an altitude down through this triangle, which will have height $ \sin 2\theta. $ In doing so, we will have a case of vertical angles that in
+turn will bring the angle $ \theta $ up into the other new triangle.</p>
 
-<p>We can intersect either of the first two medians with the remaining one. Once again this happens ${2 \over 3}$
-along; the three medians have a common meeting point.</p>
-
-<p>This is known as the <b>centroid</b>. To find its position, we linearly interpolate from any corner to the opposite midpoint:
+<p>The altitude is its adjacent side, of course, and the hypotenuse $ 2\sin\theta. $ This confirms our identity; in fact, it would have been another way to
+derive it.</p>
 
 \begin{align}
-x = {1 \over 3}x_1 + {2 \over 3}\frac{x_2 + x_3}{2}
+\cos(\theta + \theta) & = \cos\theta\cos\theta - \sin\theta\sin\theta \\
+\cos 2\theta & = \cos^2\theta - \sin^2\theta
 \end{align}
 
-The $y$-coordinate is similar. After simplifying:
+This is reminiscent of our very first identity. Indeed, we can exploit this to flush out some new ones:
 
 \begin{align}
-\mathbf{c} = \left(\frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3}\right)
+\cos 2\theta + 1 & = \cos^2\theta + (1 - \sin^2\theta) \\
+				 & = 2\cos^2\theta \\
+\cos 2\theta & = 2\cos^2\theta - 1
 \end{align}
 
-Using the altitudes from the centroid onto the three sides, we can find the areas of the three triangles it forms:
-$\frac{AD\sin c_1}{2}, \frac{CF\sin b_2}{2}, $ and $\frac{BD\sin c_2}{2}.$</p>
+as well as
 
-<p>We can reuse one of our earlier substitutions here, telling us the first and third are equal.</p>
+\begin{align}
+\cos 2\theta & = (1 - \sin^2\theta) - \sin^2\theta \\
+			 & = 1 - 2\sin^2\theta
+\end{align}
 
-<p>Another relationship we can pull out of the earlier list is $C\sin b_2 = \frac{2AE\sin c_1}{F}.$ Given this, the
-second area reduces to $AE\sin c_1.$ Since $E = {D \over 2},$ this is equal to the others.</p>
+These in turn lead to the so-called <b>power reduction</b> formulae:
 
-<p>Each sub-triangle thus occupies ${1 \over 3}$ of the total area. A triangle may be interpreted as an object of uniform
-density&mdash;in Corona, for instance, this describes a triangular polygon with a physics body&mdash;so the centroid
-sometimes goes by the name of <b>barycenter</b>, or "center of weight".</p>
+\begin{align}
+\cos^2 \theta & = \frac{1 + \cos 2\theta}{2} \\
+\sin^2 \theta & = \frac{1 - \cos 2\theta}{2} \\
+\tan^2 \theta & = \frac{1 - \cos 2\theta}{1 + \cos 2\theta}
+\end{align}
 
-<p><b>(NOTES:</b> This might be a far more ideal place for the section on barycentric coordinates!<b>)</b></p>
+From the earlier angle addition:
 
-<H3><a name="summary"></a>Summary</H3>
+\begin{align}
+\tan 2\theta & = \tan(\theta + \theta) \\
+			 & = \frac{2\tan\theta}{1 - \tan^2\theta}
+\end{align}
 
-<p>Revise!</p>
+<H3><a name="half-angles"></a>Half angles</H3>
+
+<p>We can go the other way, halving angles rather than doubling them.</p>
+
+<p>Half angles will double into normal angles, so we can employ our previous results. For instance:
+
+\begin{align}
+\cos 2{\theta \overwithdelims ( ) 2} & = 1 - 2\sin^2\frac{\theta}{2} \\
+2\sin^2\frac{\theta}{2} & = 1 - \cos\theta
+\end{align}
+
+This is useful in its own right. The <a href="http://mathworld.wolfram.com/Versine.html">versine</a>, $1 - \cos\theta,$ has
+<a href="http://www.plunk.org/~hatch/rightway.php">known issues</a> when used in floating point calculations, whereas this substitution is
+much more stable. Appropriate identities and the algorithms to drive them are key to robust numerical software.</p>
+
+<p>Proceeding further:
+
+\begin{align}
+\sin\frac{\theta}{2} = \pm\sqrt{\frac{1 - \cos\theta}{2}}
+\end{align}
+
+The choice for $\pm$ will depend upon what quadrant contains the half angle.</p>
+
+<p>Continuing:
+
+\begin{align}
+\cos^2\frac{\theta}{2} & = 1 - \sin^2\frac{\theta}{2} \\
+					   & = 1 - \frac{1 - \cos\theta}{2} \\
+\cos\frac{\theta}{2} & = \pm\sqrt{\frac{1 + \cos\theta}{2}}
+\end{align}
 
 									</div><!-- .entry-content -->
 					<div class="clearfix row" style="margin:4px 0;">

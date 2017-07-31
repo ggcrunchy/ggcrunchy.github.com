@@ -215,7 +215,7 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		<div class="col-md-12">
 			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
 
-				<h1 class="page-title h1">A 2D geometry primer, part 11: the Law of Sines</h1>
+				<h1 class="page-title h1">A 2D geometry primer, part 9: full circle</h1>
 				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./SpoofCoronaPage_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
 			</header><!-- .entry-header -->
 		</div>
@@ -228,153 +228,340 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
 <hr>
 
-<p>TODO!</p>
+<H3><a name="settling-differences"></a>Settling differences (F)</H3>
 
-<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
-
-<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
-
-<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
-letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
-
-<div style="float:right;">
+<div style="float:left;">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_los/G2.png" width="200" height="150" alt="Law of sines">
-		<div style="caption"><b>G-2</b></div>
+		<img src="./images_circles/F1.png" width="200" height="150" alt="Difference of angles">
+		<div style="caption"><b>F-1</b></div>
 	</div>
 </div>
 
-<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
-the same result. Thus</p>
+<p>We would also like to split angles up, which entails differences of angles, $\alpha - \beta.$</p>
 
-<p>
-\begin{align}
-\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
-\end{align}
-<p>
+<p>Since this difference will be an angle itself, we can express it in terms of what we just found, with $ \alpha $ as the complete angle and $ \beta $ as
+the second angle being added.</p>
 
-<p>If we divide "both" sides by ${1 \over 2}ABC,$ this all comes out to</p>
-
-<p>
-\begin{align}
-\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
-\end{align}
-<p>
-
-<p>This is the <b>Law of Sines</b>, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
-used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
-
-<H3><a href="law-of-tangents"></a>Law of Tangents</H3>
-
-<p>We may calculate any altitude in terms of two different side-angle pairs. In <b>G-2</b>, for example, $A\sin b = B\sin a = H,$
-where $H$ is the common height.</p>
-
-<p>Some simple restructuring gives us $\sin a = AH$ and $\sin b = BH.$</p>
-
-<p>We can bring the sum-to-product identities to bear on these:
+<p>Thus we can plug in $ \alpha = (\alpha - \beta) + \beta $ into our previous equations, giving us
 
 \begin{align}
-H(A - B) = 2\cos\left(\frac{a + b}{2}\right)\sin\left(\frac{a - b}{2}\right) \\
-H(A + B) = 2\sin\left(\frac{a + b}{2}\right)\cos\left(\frac{a - b}{2}\right)
+\cos\alpha & = \cos(\alpha - \beta)\cos\beta - \sin(\alpha - \beta)\sin\beta \\
+\sin\alpha & = \sin(\alpha - \beta)\cos\beta + \cos(\alpha - \beta)\sin\beta
 \end{align}
 
-Dividing one by the other, the $H$ goes away, and we obtain the <b>Law of Tangents</b>:
+This undoubtedly looks a bit unwieldy, with both cosine and sine in each equation. As with addition, we want them on their own.</p>
+
+<p>We might try adding the equations together:
 
 \begin{align}
-\frac{A - B}{A + B} = \frac{\tan\frac{a - b}{2}}{\tan\frac{a + b}{2}}
+\cos\alpha + \sin\alpha = \cos(\alpha - \beta)(\cos\beta + \sin\beta) + \sin(\alpha - \beta)(\cos\beta - \sin\beta)
 \end{align}
 
-<b>(NOTES:</b> Can probably merge these two into one "Laws" section; a bit of tightening and rewording is also in order<b>)</b></p>
+While not very useful in itself, notice that when $\cos\beta = \sin\beta$ or $\cos\alpha = -\sin\alpha,$ one term goes away,
+leaving either the cosine or sine. Unfortunately, this only happens at certain angles.</p>
 
-<H3><a href="centroid"></a>Centroid</H3>
+<p>In either grouping, $\cos\beta$ comes from a different equation than $\sin\beta.$ This suggests that we can manipulate
+the equations a bit and still wind up with something like it, so we might try coaxing them into a form that combines more
+conveniently.</p>
 
-<p>If we start at one corner and cut the opposite side at the midpoint, we have two triangles with base ${B \over 2}$ and height $h$,
-which is to say they have equal area, half that of the full triangle. Such lines are called medians.</p>
+<p>The difference, $\cos\beta - \sin\beta,$ is probably the more natural target here. If we were trying to eliminate a
+fragment like $2 - 3$ that arose in similar circumstances, the obvious choice would be scale the equations, so that this
+becomes $2 * 3 - 3 * 2.$</p>
 
-<p><b>(NOTES:</b>Figure<b>)</b></p>
+<p>Carrying this idea over, we want $A\cos\beta - B\sin\beta = 0,$ or $\frac{A}{B} = \frac{\sin\beta}{\cos\beta}.$ The obvious
+choice here is $A = \sin\beta, B = \cos\beta,$ and indeed $\sin\beta\cos\beta - \cos\beta\sin\beta$ is always $0.$</p>
 
-<p>If we do the same with another corner, the same area situation will happen. Furthermore, of course, the medians will intersect
-somewhere. This will produce a number of triangles.</p>
+<p><b>(NOTES:</b> These last two (maybe three) paragraphs would be better off in Preliminaries, I think<b>)</b></p>
 
-<p><b>(NOTES:</b>Refer to figure<b>)</b></p>
-
-<p>With the Law of Sines we can investigate the relationships among their sides, tabulated in what follows. Note that, as we saw in
-the previous article, $\sin(180^\circ - \theta) = \sin\theta.$</p>
-
-<p>First off, we have the triangles produced when the two medians cross. These correspond to the upper-left, upper-right, and lower-left
-triangles in (FIGURE):
+<p>We need to scale the full equations, of course:
 
 \begin{align}
-T_{ul}: \frac{\sin x}{A} & = \frac{\sin b_1}{D} = \frac{\sin c_1}{F} \\
-T_{ur}: \frac{\sin x}{B / 2} & = \frac{\sin (x + c_2)}{D} = \frac{\sin c_2}{G} \\
-T_{ll}: \frac{\sin x}{C / 2} & = \frac{\sin b_2}{E} = \frac{\sin (x + b_2)}{F}
+\cos\alpha\cos\beta & = \cos(\alpha - \beta)\cos^2\beta - \sin(\alpha - \beta)\sin\beta\cos\beta \\
+\sin\alpha\sin\beta & = \sin(\alpha - \beta)\cos\beta\sin\beta + \cos(\alpha - \beta)\sin^2\beta
 \end{align}
 
-The median bisecting $B$ gave us a left and right triangle:
+Summing these instead, we have
 
 \begin{align}
-Left: \frac{\sin c}{F + G} & = \frac{\sin b_1}{B / 2} = \frac{\sin (x + c_2)}{A} \\
-Right: \frac{\sin b_2}{B / 2} & = \frac{\sin a}{F + G} = \frac{\sin (x + c_2)}{C}
+\cos\alpha\cos\beta + \sin\alpha\sin\beta & = \cos(\alpha - \beta)(\cos^2\beta + \sin^2\beta) \\
+										  & = \cos(\alpha - \beta)
 \end{align}
 
-Likewise, from cutting side $C$ we have top and bottom triangles:
+Subtracting one from the other, meanwhile:
 
 \begin{align}
-Top: \frac{\sin c_1}{C / 2} & = \frac{\sin b}{D + E} = \frac{\sin (x + b_2)}{A} \\
-Bottom: \frac{\sin c_2}{C / 2} & = \frac{\sin (x + b_2)}{B} = \frac{\sin a}{D + E}
+\sin(\alpha - \beta) & = \sin\alpha\cos\beta - \sin\beta\cos\alpha
 \end{align}
 
-Many of these results above are dead ends; some trial and error will flush them out. Among the useful bits, after
-some rearrangement:
+<H3><a name="sums-and-products"></a>Sums and products</H3>
+
+<p>Now, our earlier result, $\cos(\alpha + \beta) = \cos\alpha\cos\beta - \sin\alpha\sin\beta,$ closely resembles our new
+result for $\cos(\alpha - \beta)$ in form. This of course has deeper implications, but we can get some useful results by
+adding similar equations together:
 
 \begin{align}
-\sin(x + b_2) & = \frac{2A\sin c_1}{C} = \frac{2B\sin c_2}{C} \\
-\sin(x + c_2) & = \frac{2A\sin b_1}{B} = \frac{2C\sin b_2}{B}
+2\cos\alpha\cos\beta & = \cos(\alpha + \beta) + \cos(\alpha - \beta) \\
+2\sin\alpha\cos\beta &= \sin(\alpha + \beta) + \sin(\alpha - \beta)
 \end{align}
 
-We see that $A\sin b_1 = C\sin b_2$ and $A\sin c_1 = B\sin c_2,$ respectively. This next equality, also derived
-from the list above, will let us apply these insights:
+Likewise, by subtracting:
 
 \begin{align}
-\sin x = \frac{A\sin b_1}{D} = \frac{C\sin b_2}{2E} = \frac{A\sin c_1}{F} = \frac{B\sin c_2}{2G}
+-2\sin\alpha\sin\beta & = \cos(\alpha + \beta) - \cos(\alpha - \beta) \\
+2\cos\alpha\sin\beta &= \sin(\alpha + \beta) - \sin(\alpha - \beta)
 \end{align}
 
-<p>After substituting a couple of numerators, it quickly follows that $D = 2E$ and $F = 2G.$</p>
+These are the <b>product-to-sum</b> identities.</p>
 
-<p>Thus, our intersection is ${2 \over 3}$ of the way from either corner to the midpoint of its opposite side.</p>
+<p>We can wrap the sum and difference up as new angles: $\gamma = \alpha + \beta$ and $\epsilon = \alpha - \beta.$ Then
+$\alpha = \gamma - \beta = \epsilon + \beta = \frac{\gamma + \epsilon}{2}$ and similarly $\beta = \frac{\gamma - \epsilon}{2}.$</p>
 
-<p>We can intersect either of the first two medians with the remaining one. Once again this happens ${2 \over 3}$
-along; the three medians have a common meeting point.</p>
-
-<p>This is known as the <b>centroid</b>. To find its position, we linearly interpolate from any corner to the opposite midpoint:
+<p>Substituting $\gamma$ and $\epsilon$ into the sum-to-product identities, we obtain:
 
 \begin{align}
-x = {1 \over 3}x_1 + {2 \over 3}\frac{x_2 + x_3}{2}
+\cos\gamma + \cos\epsilon & = \hphantom{-}2\cos\left(\frac{\gamma + \epsilon}{2}\right)\cos\left(\frac{\gamma - \epsilon}{2}\right) \\
+\sin\gamma + \sin\epsilon & = \hphantom{-}2\sin\left(\frac{\gamma + \epsilon}{2}\right)\cos\left(\frac{\gamma - \epsilon}{2}\right) \\
+\cos\gamma - \cos\epsilon & = -2\sin\left(\frac{\gamma + \epsilon}{2}\right)\sin\left(\frac{\gamma - \epsilon}{2}\right) \\
+\sin\gamma - \sin\epsilon & = \hphantom{-}2\cos\left(\frac{\gamma + \epsilon}{2}\right)\sin\left(\frac{\gamma - \epsilon}{2}\right)
 \end{align}
 
-The $y$-coordinate is similar. After simplifying:
+As might be expected, these are known as the <b>sum-to-product</b> identities.</p>
 
-\begin{align}
-\mathbf{c} = \left(\frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3}\right)
-\end{align}
+<H3><a name="angles"></a>Angles (H)</H3>
 
-Using the altitudes from the centroid onto the three sides, we can find the areas of the three triangles it forms:
-$\frac{AD\sin c_1}{2}, \frac{CF\sin b_2}{2}, $ and $\frac{BD\sin c_2}{2}.$</p>
+<p><b>(NOTES:</b> Can make a point about using angle subtraction to reorient angles, then do addition, etc. Maybe develop from here?<b>)</b></p>
+<p><b>(NOTES:</b> Needs a bit of repair, and stealing from H, but I think it would be better motivated here<b>)</b></p>
+<p><b>(NOTES:</b> Furthermore, at 90 degrees and 180 degrees, because circles look the same locally wherever we are--since the distances are the
+same all around--we can do local analyses as if going from 0 to 90 degrees, then simply apply the appropriate rotations... this gives us
+the key to take angle addition, and likewise subtraction, past the 90 degree framework in which we derived the equations... I think this
+would provide a more elegant way to unveil the points about angles that follow, though it will still be a lot of work! Likewise once these
+points are spelled out the transformation section should have a lot more to refer back to... and perhaps even the computation section.<b>)</b></p>
 
-<p>We can reuse one of our earlier substitutions here, telling us the first and third are equal.</p>
+<p>We explored angles a bit when we spoke of triangles, much of which carries over to circles.</p>
 
-<p>Another relationship we can pull out of the earlier list is $C\sin b_2 = \frac{2AE\sin c_1}{F}.$ Given this, the
-second area reduces to $AE\sin c_1.$ Since $E = {D \over 2},$ this is equal to the others.</p>
+<p>An angle describes the space between two intersecting sides. Since triangles are closed, we also have the idea of interior angles and sums to 180&deg;.</p>
 
-<p>Each sub-triangle thus occupies ${1 \over 3}$ of the total area. A triangle may be interpreted as an object of uniform
-density&mdash;in Corona, for instance, this describes a triangular polygon with a physics body&mdash;so the centroid
-sometimes goes by the name of <b>barycenter</b>, or "center of weight".</p>
+<p>Moreover, since two of a triangle's points form a line, and the third point is on one side or another, an angle is always less than a straight line.</p>
 
-<p><b>(NOTES:</b> This might be a far more ideal place for the section on barycentric coordinates!<b>)</b></p>
+<p>Circles continue the idea of an opening between sides, though extending it as it continues all around, to the point where the triangle construction falls apart.</p>
+
+<p>Now, on its own this does little for us. A circle is one full revolution, which is not much use as far as angles go.</p>
+
+<p>However, angles let us specify points on the circle boundary. In fact, if we rotate the boundary and allow the circle to grow and shrink, we can cover all space, giving us
+the so-called polar coordinates.</p>
+
+<p>We also now have a useful concept of arc. Starting from the "home" position, the arc goes from there to this position. Generalizing further, with two positions, the arc between
+them is the longer minus the shorter, which simplifies to their common interval.</p>
+
+<p>These are still points on the circle, so they inherit the distance property.</p>
+
+<p>Now, we run into something if we try to find the arc crossing the "home" position again. We are at a position we have already crossed, but clearly have traveled more distance.</p>
+
+<p>The circle exhibits periodicity. While we can traverse the 360&deg;, we will look as though we had only traversed some. We can decompose the full length. Often we will only care
+about the remainder.</p>
+
+<p>Further, similar things happen if we go the other way, with negative arcs. We can interpret these as being subtracted from 360&deg; to fix them up. The periodicity will also occur here.</p>
+
+<p><b>(NOTES:</b> This should be earlier, probably as the second section<b>)</b></p>
+<p><b>(NOTES:</b> Rough!!!!<b>)</b></p>
+<p><b>(IMAGES:</b> varieties of angles; triangle<b>)</b></p>
+
+<H3><a name="transform"></a>Transformation (I)</H3>
+
+<p>Notice how closely the addition and subtraction formulae match. It almost appears consistent with feeding $ \alpha - \beta $ to the addition formula as
+$ \alpha + (-\beta). $</p>
+
+<p>To shore up the gap, it must be so that $ \cos(-\beta) = \cos\beta $ and $ \sin(-\beta) = -\sin\beta.$</p>
+
+<p>In fact, this is the case. Recurring to our earlier analysis about angles and definitions of the cosine and sine. At a given angle, we have two possible values of $y$,
+one on the upper and the other on the lower semicircle, corresponding to the positive and negative angle. On the other hand, $x$ remains the same.</p>
+
+<p>We can account for this by reviewing the original definition of cosine and sine. On the right half, both values have the same $dx,$ but $dy$ differ in sign;
+likewise on the left. So our guess checks out.</p>
+
+<p>This gives us an easy way to flip a value vertically, given an angle.</p>
+
+<p>What about horizontally?</p>
+
+<p>In this case we will be a certain angular distance from the center, $ 90^{\circ} - \beta. $ But we want to flip, which requires going twice that distance,
+for $ 180^{\circ} - 2\beta. $ If we add this to our current angle, we get $ 180^{\circ} - \beta. $</p>
+
+<p>We can plug this into our angle difference equations to confirm the result.</p>
+
+<p>Another way we might have gotten this is to figure that we were $\beta$ from the start, so subtract as much from the end.</p>
+
+<p>This is fairly obvious up top, but this result also holds in the bottom half and with negative angles.</p>
+
+<p>We might also want to flip more generally. We can use either of the previous results to do so. If our axis is at $\theta,$ unrotate by that much to bring it in
+line with the x-axis, do a vertical flip, then rotate back. Alternatively, unrotate by $ \theta - 90^{\circ}, $ perform a horizontal flip, then rotate back.</p>
+
+<p>The first tactic is simple enough. If the axis to flip around makes an angle of $\beta,$ we need to subtract by that to bring all points in the arc into range,
+so $ \alpha - \beta. $ At this point, negating the angle will do the flip, so $ \beta - \alpha. $ We then need to undo the rotation, so we add back $ \beta, $
+giving us a final angle of $ 2\beta - \alpha. $ Note that when the axis is already aligned, with $ \beta = 0, $ we get $ -\alpha, $ as expected.</p>
+
+<p>In the second, $\gamma$ is the difference from the vertical axis. However, we begin as before. We then plug our angle into the horizontal flip formula, for
+$ 180^{\circ} - \alpha + \gamma, $ then finally add $\gamma$ back. Now, recall that $\gamma$ is only the divergence from the vertical axis, so we have to add 90&deg.
+In other words, $ \gamma = \beta - 90^{\circ}. $ Then we have $ 180^{\circ} - \alpha + 2(\beta - 90^{\circ}), $ which reduces to the previous equation.</p>
+
+<p><b>(TODO:</b> Reflections<b>)</b></p>
+<p><b>(TODO:</b> Similarity transformation<b>)</b></p>
+
+<H3><a name="computation"></a>Computation (J)</H3>
+
+<p><b>(NOTES:</b> Is it maybe possible to move the sine wave and arccos / sin / tan stuff in here?<b>)</b></p>
+
+<p>With all of these identities under our belts, along with a few known values, we have what we need to calculate fairly arbitrary cosine and sine results.</p>
+
+<p>First off we can bring angles outside the range back, via the modulus. This simplifies things quite a bit.</p>
+
+<p>Now if our identities hold, we can both start and end at the start angle, under the separate guise of 0&deg; and 360&deg;. Further, we know 90&deg;, 180&deg;,
+and 270&deg;. We also know some of the intermediate angles, though these would quickly follow from some identity magic.</p>
+
+<p>Our idea is to break a number down by halving it, possibly many times, and adding or subtracting such numbers together. This is exactly what our identities
+let us do.</p>
+
+<p>So for example (some contrived but demonstrative value).</p>
+
+<p>As we can see, this already works. Historically, many of these values were tabulated for easy lookup (indeed, this was even a common procedure in stock
+programming, when the trigonometric operations were expensive). This would have been, roughly, the process behind them.</p>
+
+<p>Much has improved, but the ideas at root are the same.</p>
+
+<H3><a name="closer-look"></a>A closer look</H3>
+
+<p><b>(NOTES:</b> NEVER MIND... anyhow, we'll be removing all this<b>)</b></p>
+
+<p>We ought to do a little unpacking of our formulae.</p>
+
+<p>First up, $ \cos^2\theta + \sin^2\theta = 1. $ Owing to the squares, neither of the left-hand terms will be negative. This being so, it must also be the
+case that $ \cos^2\theta\le 1 $ and $ \sin^2\theta\le 1. $ Of course, if either term is exactly one, the other will be zero.</p>
+
+<p>Pressing further, this means ${\mid\cos\theta\mid}\le 1$ and ${\mid\sin\theta\mid}\le 1.$
+
+<p>Since $\cos\theta = \fracalign{dx}{r}{dy}$ and $\sin\theta = \frac{dy}{r},$ the <a href="https://en.wikipedia.org/wiki/Maxima_and_minima">minimum and maximum values</a>
+of cosine and sine occur at $dx = \pm r$ and $dy = \pm r,$ respectively.</p>
+
+<p>Without delving too deeply into their properties, it should be evident that cosine and sine are nice smooth functions, since as we take small steps through $\theta$,
+the corresponding $dx$ and $dy$ values vary only slightly as well.</p>
+
+<p>When $dx = +r,$ we have $\cos\theta = 1.$ As mentioned, this must mean that $\sin\theta = 0$, corresponding to $dy = 0.$ By convention, the angle begins
+counting from here&mdash;that is to say, $\theta = 0^\circ$ at $\vcomps{+r}{0}$&mdash;then proceeds counterclockwise.</p>
+
+<p>When $ dx = 0, $ on the other hand, $ \cos\theta = 0. $ In this case, $ \sin\theta = \pm 1, $ and $\theta$ is either 90&deg; or 270&deg;.</p>
+
+<p>With $ dx = -r, $ we end up with $ \cos\theta = -1. $ Again $dy$ and $ \sin\theta $ are both zero, but here $ \theta = 180^{\circ}. $</p>
+
+<p>Sine lends itself to the same sort of analysis. The results, while differing in a few particulars, will more or less rhyme.</p>
+
+<p>We saw that sine could give the same result for different values of $\theta$. At first this might seem a little mysterious, since cosine only takes on one value as
+we go from right to left. The key is that cosine depends only on $dx$. However, except on the very left or right, there <b>are</b> two points with $dx$ on the unit
+circle: $ \vcomps{dx}{dy} $ and $ \vcomps{dx}{-dy}: $ one on the top half of the circle and other directly below it, along the bottom.</p>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/cosine_symmetry.png" width="100" height="75" alt="Cosine symmetry">
+		<div style="caption">Figure 6</div>
+	</div>
+</div>
+
+<p>Cosine is an example of an <a href="http://www.mathwords.com/e/even_function.htm">even function</a>, in that $ \cos\theta = \cos(-\theta). $ We do not find this same
+symmetry with sine, but rather that $ \sin\theta = -\sin(-\theta). $ The sine is said to be <a href="http://www.mathwords.com/o/odd_function.htm">odd</a>.</p>
+
+<p>The takeaway is that cosine is always positive when the angle is small, only going negative once it spills over into the left side of the circle. Sine, meanwhile, is
+positive so long as the angle remains in the top half of the circle, even when also on the left, and negative once in the bottom half; however, an angle can go directly
+from zero to negative, so small angles provide no guarantees.</p>
+
+<p>This is quite a lot to take in all at once! These are key details when it comes to developing a geometrical intuition, though, so they are well worth learning.</p>
+
+<p><b>(NOTES:</b> Carve up, redistribute?<b>)</b></p>
+
+<H3><a name="a-tangent"></a>Off on a tangent</H3>
+
+<p>Now for a little digression.</p>
+
+<p>Another trigonometric function is the <a href="http://mathworld.wolfram.com/Tangent.html">tangent</a>, an admixture of the two we have worked with up to this point:
+$ \tan\theta = {\sin\theta\over\cos\theta}. $</p>
+
+<p>Now, we know that cosine goes to zero at angles like $ -{\pi\over 2} $ and $ \pi\over 2 $, so not only is the tangent undefined there, but it will take on values <b>much</b>
+larger than one as it draws close. In between, on the other hand, it achieves something of a compromise between cosine and sine.</p>
+
+<p>As with cosine and sine, there is an inverse tangent (see <a href="https://docs.coronalabs.com/api/library/math/atan.html">math.atan</a>). Tangent is no exception when
+it comes to ambiguity, so it too must be constrained. The angles we mentioned as troublesome for our cosine denominator also bound the range of inverse sine; naturally
+enough, inverse tangent's range is $ (-{\pi \over 2}, +{\pi \over 2}) $. Note the parentheses, rather than brackets: it will not actually give back $ -{\pi \over 2 } $ or
+$ \pi \over 2 $, since the tangent breaks down there.</p> 
+
+<p>In practice, the inverse tangent is not often all that useful. The zero denominators are a hassle. The cosine gets shoehorned into sine's territory. Cosine or sine might
+be negative, but after division we have only one number, so the details get lost, together with what they might tell us about the angle: when the tangent we wish to solve is
+negative, we cannot tell whether this came from cosine or sine; when positive, were both cosine and sine themselves positive, or did two negatives cancel out?</p>
+
+<p>The solution, of course, is to do some analysis on $ \cos\theta $ and $ \sin\theta $ beforehand, then use our findings to fix up the results. If $ \cos\theta = 0, $ we
+know that $ \sin\theta = \pm 1. $ Then, depending on the sign, we have either $ \theta = {\pi \over 2} $ or $ \theta = -{\pi \over 2}. $ Similarly, in the other situations,
+we can consult the signs to apply the proper corrections.</p>
+
+<p>This is such a common need that a <a href="https://en.wikipedia.org/wiki/Atan2">two-argument inverse tangent</a> has become a staple of programming languages. Lua is
+no exception, offering us <a href="https://docs.coronalabs.com/api/library/math/atan2.html">math.atan2</a>. These go further and recognize that requiring the inputs to be
+bonafide cosine and sine values is too limiting&mdash;in the real world, for instance, it might be hard to ensure that both perfectly satisfy a common $\theta$. Rather,
+as long as both are not zero, they accept $x$ and $y$ arguments and do the heavy lifting behind the scenes, inferring the common radius and then $\theta$.</p>
+
+<p><b>(NOTES:</b> Carve up, redistribute<b>)</b></p>
+
+<p><b>REWRITE REWRITE REWRITE REWRITE REWRITE REWRITE</b></p>
+<p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>
+
+
+<H3><a name="making-waves"></a>Making waves (O)</H3>
+
+<p>We have been treating cosine and sine as means of locating points on the circle, but it can be interesting to consider them in the context of coordinates.</p>
+
+<p>This is fairly straightforward in terms of $y.$ From 0 to $\pi,$ we have $y$ matching the upper semicircle. From there to $2\pi,$ it matches the lower one. We can plot this
+by stitching the two halves together, as pictured.</p>
+
+<p><b>(NOTES:</b> image<b>)</b></p>
+
+<p>This is slightly awkward. The bottom axis of the graph has a certain split definition to accommodate the turnaround, with $x$ changing in different directions. Plotting $x$
+would proceed similarly, but we must take the right and left semicircles instead, performing a right angle rotation along the way. In that case, it would be in terms of $y.$</p>
+
+<p>Rather than use $x$ and $y$ as the inputs, the angle would be more natural. This streamlines the input, allowing as well for it to extend indefinitely in either direction,
+taking in the periodic nature of the functions.</p>
+
+<p>In this case, our graph switches from $ y = \sqrt{1 - x^2} $ to $ y = \sin\theta, $ which changes the shape slightly, giving us a sine wave.</p>
+
+<p><b>(NOTES:</b> Various properties, use cases<b>)</b></p>
+<p><b>(NOTES:</b> Other functions<b>)</b></p>
+
+<H3><a name="getting-angle-on-things"></a>Getting an angle on things (P)</H3>
+
+<p>It was mentioned above that something like $ \cos\theta = {dx \over r} $ could be rearranged, say to find $dx$. This is all well and good, but what if our goal is to
+recover $\theta$?</p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">inverse trigonometric functions</a> answer this need. In particular, inverse cosine and
+sine&mdash;available in Corona as <a href="https://docs.coronalabs.com/api/library/math/acos.html">math.acos</a> and
+<a href="https://docs.coronalabs.com/api/library/math/asin.html">math.asin</a>, respectively&mdash;when given some value between -1 and 1, will return an angle that would
+have produced that value via the original function. With the example in the previous paragraph, we can extract an angle like so: $ \theta = \cos^{-1}{dx \over r}. $ The
+$ \cos^{-1} $ and $ \sin^{-1} $ style is often used to denote "inverse", though we will sometimes see <b>arccos</b> and <b>arcsin</b> used as well. The latter form follows
+upon the insight above that angles and arc lengths are equivalenton the unit circle: "arccos" translates to "the arc length leading to this value of cosine"; likewise for
+"arcsin".</p>
+
+<p>We noted above that various angles, in fact infinitely many, would produce the same value when fed to cosine and sine. This obviously presents a problem when it comes time
+to invert! To address this, <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions#Principal_values">some canonical range</a>, generally understood to be the
+best all-around fit, is assigned to each function. In the case of inverse cosine, this is $ [0, \pi] $; for inverse sine, it is $ [-{\pi \over 2}, +{\pi \over 2}] $.</p>
+
+<p>Often enough, these ranges will suit us fine. Otherwise, we will need to rely on additional context to fix the result. If we knew the angle was in the lower half of
+the circle, for instance, the inverse cosine would need to be corrected to be its reflection instead. Obviously, the more automatic this was, the better.</p>
+
+<p><b>(NOTES:</b> Identities, another image for that<b>)</b></p>
+<p><b>(NOTES:</b> chord formulas -> angle<b>)</b></p>
+<p><b>(IMAGE:</b> 12<b>)</b></p>
+
+<p><b>REWRITE REWRITE REWRITE REWRITE REWRITE REWRITE</b></p>
+<p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>
 
 <H3><a name="summary"></a>Summary</H3>
 
-<p>Revise!</p>
+<p>Thus far, our investigations have covered triangles and circles. We have examined many of their properties, such as angles, lengths, and areas, and various facts that
+follow from them.</p>
+
+<p>The next article will bring vectors into the fold. We will explore new ground, of course, but also build on our many discoveries thus far.</p>
 
 									</div><!-- .entry-content -->
 					<div class="clearfix row" style="margin:4px 0;">
