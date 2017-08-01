@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial: Creating Android TV Apps | Corona Labs</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://coronalabs.com/xmlrpc.php">
+<link href="./Coroutines_files/css" rel="stylesheet" type="text/css">  
+<script src="./Coroutines_files/cb=gapi.loaded_1" async=""></script><script src="./Coroutines_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Coroutines_files/widgets.js"></script><script type="text/javascript" async="" src="./Coroutines_files/plusone.js" gapi_processed="true"></script><script type="text/javascript" async="" src="./Coroutines_files/inpage_linkid.js" id="undefined"></script><script type="text/javascript" async="" src="./Coroutines_files/dc.js"></script><script src="./Coroutines_files/remote_user_menu"></script>
+<!-- icons & favicons -->
+<!-- For iPhone 4 -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/h/apple-touch-icon.png">
+<!-- For iPad 1-->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/m/apple-touch-icon.png">
+<!-- For iPhone 3G, iPod Touch and Android -->
+<link rel="apple-touch-icon-precomposed" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/l/apple-touch-icon-precomposed.png">
+<!-- For Nokia -->
+<link rel="shortcut icon" href="http://ddz4z2fxb232w.cloudfront.net/images/phone-icons/l/apple-touch-icon.png">
+<!-- For everything else -->
+<link rel="shortcut icon" href="http://ddz4z2fxb232w.cloudfront.net/favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Feed" href="http://coronalabs.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Comments Feed" href="http://coronalabs.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Corona Labs » Tutorial: Creating Android TV Apps Comments Feed" href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/feed/">
+<link rel="stylesheet" id="mediaelement-css" href="./Coroutines_files/mediaelementplayer.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-mediaelement-css" href="./Coroutines_files/wp-mediaelement.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-polls-css" href="./Coroutines_files/polls-css.css" type="text/css" media="all">
+<link rel="stylesheet" id="corona-bootstrap-css" href="./Coroutines_files/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="corona-style-css" href="./Coroutines_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fancybox-fancybox-css" href="./Coroutines_files/jquery.fancybox.css" type="text/css" media="all">
+<link rel="stylesheet" id="views-pagination-style-css" href="./Coroutines_files/wpv-pagination.css" type="text/css" media="all">
+<link rel="stylesheet" id="prettify-css" href="./Coroutines_files/custom.css" type="text/css" media="all">
+<link rel="stylesheet" id="taxonomy-image-plugin-public-css" href="./Coroutines_files/style(1).css" type="text/css" media="screen">
+<script type="text/javascript" src="./Coroutines_files/player.min.js"></script>
+<script type="text/javascript" src="./Coroutines_files/jquery.js"></script>
+<script type="text/javascript" src="./Coroutines_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Coroutines_files/powerpress-mejs.js"></script>
+<script type="text/javascript" src="./Coroutines_files/bootstrap.js"></script>
+<script type="text/javascript" src="./Coroutines_files/bootstrap-wp.js"></script><style>body{display:none;}</style>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://coronalabs.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://coronalabs.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="From the Forum — Issue #54" href="http://coronalabs.com/blog/2015/01/09/from-the-forum-issue-54/">
+<meta name="generator" content="WordPress 4.0.1">
+<link rel="shortlink" href="http://coronalabs.com/?p=60833">
+<script type="text/javascript"><!--
+function powerpress_pinw(pinw){window.open('http://coronalabs.com/?powerpress_pinw='+pinw, 'PowerPressPlayer','toolbar=0,status=0,resizable=1,width=460,height=320');	return false;}
+powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
+//-->
+</script>
+<style type="text/css">
+.wp-polls .pollbar {
+	margin: 1px;
+	font-size: 6px;
+	line-height: 8px;
+	height: 8px;
+	background-image: url('http://coronalabs.com/plugins/wp-polls/images/default/pollbg.gif');
+	border: 1px solid #c8c8c8;
+}
+</style>
+
+<!-- All in One SEO Pack 2.2.3.1 by Michael Torbert of Semper Fi Web Design[137,192] -->
+<link rel="author" href="https://plus.google.com/106405667962965815359/">
+<meta name="description" content="In this week&#39;s tutorial, guest contributor Greg Pugh illustrates the simple process involved in releasing your Corona-made project for Android TV.">
+
+<meta name="keywords" content="android tv,tutorial">
+
+<link rel="canonical" href="./Coroutines_files/Coroutines.html">
+<!-- /all in one seo pack -->
+
+		<style media="print" type="text/css">
+			div.faq_answer {display: block!important;}
+			p.faq_nav {display: none;}
+		</style>
+
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-9574984-6']);
+  _gaq.push(['_setDomainName', 'coronalabs.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script src="./Coroutines_files/secureAnonymousFramework"></script><style type="text/css">* html #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link{height:1% !important;}#li_ui_li_gen_1421432617759_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1421432617759_0 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:link, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:visited, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:hover, #li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1421432617759_0 a#li_ui_li_gen_1421432617759_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -276px !important;background-repeat:no-repeat !important;background-size:initial !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-logo, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-logo{}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{}.IN-shadowed #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{}.IN-shadowed #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .IN-shadowed #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text *{color:#000 !important;}#li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text, #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text *, #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text *{color:#666 !important;}#li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title #li_ui_li_gen_1421432617759_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1421432617759_0 #li_ui_li_gen_1421432617759_0-title{}.success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.hovered #li_ui_li_gen_1421432617759_0-title-text *{color:#000 !important;}.success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text, .success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title-text *, .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1421432617759_0.clicked #li_ui_li_gen_1421432617759_0-title, .IN-shadowed .success #li_ui_li_gen_1421432617759_0.down #li_ui_li_gen_1421432617759_0-title{}#li_ui_li_gen_1421432617782_1-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:18px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1421432617782_1.IN-right {display:block !important;float:left !important;height:18px !important;margin-right:4px !important;padding-right:4px !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:right -100px !important;}#li_ui_li_gen_1421432617782_1-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:0px -60px !important;}#li_ui_li_gen_1421432617782_1-content.IN-right {display:inline !important;font-size:11px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:18px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1421432617782_1-container.IN-empty {display:none !important;}#li_ui_li_gen_1421432617782_1-container.IN-hidden #li_ui_li_gen_1421432617782_1 {display:none !important;}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+
+<body class="single single-post postid-60833 single-format-standard custom-background group-blog" style="display: block;">
+		<nav class="site-navigation">
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<p id="search-icon-link" class="pull-right visible-xs navbar-text">
+				    <a href="http://coronalabs.com/search"><span class="glyphicon glyphicon-search"></span></a>		
+				</p>
+				<!-- Your site title as branding in the menu -->
+				<a class="navbar-brand" href="http://coronalabs.com/" title="Corona Labs" rel="home"><span class="visible-xs">Corona Labs</span></a>
+		  	</div>
+
+			<div id="download-link" class="navbar-right hidden-xs hidden-sm">
+			    <a href="https://developer.coronalabs.com/downloads/coronasdk" class="btn btn-corona btn-sm navbar-btn">Download</a>
+			</div>
+			<div id="user-account-top-bar" class="navbar-right hidden-xs">
+			    <div id="user-account-container">
+			        <div id="top-download-signin"><a href="https://developer.coronalabs.com/user/login" id="" class="btn btn-primary btn-sm navbar-btn" target="_parent">Sign-in</a></div>
+			        <div id="top-user-account" class="hidden"></div>
+			    </div>
+			</div>
+			<div class="search-link pull-right hidden-xs">
+			    <button type="button" id="search-icon" class="btn btn-link navbar-btn"><span class="glyphicon glyphicon-search"></span></button>		
+			</div>
+            <form id="search_form" class="navbar-form navbar-right hidden" role="search" method="get" action="http://coronalabs.com/search/">
+                <a href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#" class="search-close btn btn-sm hidden-xs"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                <div class="input-group input-group-sm">
+		            <input name="q" id="s" type="search" class="search-query top-nav-search form-control" placeholder="Site Search">
+		            <span class="input-group-btn">
+		    			<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+		  			</span>
+                </div>
+            </form>
+			<!-- The WordPress Menu goes here -->
+			<div class="collapse navbar-collapse navbar-responsive-collapse"><ul id="main-menu" class="nav navbar-nav"><li id="menu-item-60549" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-60549 dropdown"><a href="http://coronalabs.com/start-building/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Start Building <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-60351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60351"><a href="http://coronalabs.com/start-building/games/">Games</a></li>
+	<li id="menu-item-60354" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60354"><a href="http://coronalabs.com/start-building/business-apps/">Business Apps</a></li>
+	<li id="menu-item-60355" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60355"><a href="http://coronalabs.com/start-building/education-kid-apps/">Educational Apps</a></li>
+</ul>
+</li>
+<li id="menu-item-59603" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-59603 dropdown"><a href="http://coronalabs.com/products/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Products <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-60356" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60356"><a href="http://coronalabs.com/products/corona-sdk/">Corona SDK</a></li>
+	<li id="menu-item-60361" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60361"><a href="http://coronalabs.com/products/enterprise/">Corona Enterprise</a></li>
+	<li id="menu-item-59626" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59626"><a target="_blank" href="http://coronacards.com/">CoronaCards</a></li>
+	<li id="menu-item-60360" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60360"><a href="http://coronalabs.com/products/support-training/">Support &amp; Training</a></li>
+</ul>
+</li>
+<li id="menu-item-60353" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60353"><a href="http://coronalabs.com/pricing/">Pricing</a></li>
+<li id="menu-item-60358" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-60358 dropdown"><a href="http://coronalabs.com/resources/" data-toggle="dropdown" data-target="#" class="dropdown-toggle">Resources <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-59624" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59624"><a href="http://forums.coronalabs.com/">Forum</a></li>
+	<li id="menu-item-59625" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-59625"><a href="http://docs.coronalabs.com/">Documentation</a></li>
+	<li id="menu-item-59601" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-59601"><a href="http://coronalabs.com/resources/tutorials/">Corona University</a></li>
+	<li id="menu-item-60350" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60350"><a href="http://coronalabs.com/resources/plugins/">Corona Plugin Directory</a></li>
+	<li id="menu-item-60357" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60357"><a href="http://coronalabs.com/resources/">Other Resources</a></li>
+</ul>
+</li>
+<li id="menu-item-59619" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-59619"><a href="http://coronalabs.com/blog/">Blog</a></li>
+</ul></div>		</div><!-- .container -->
+	</div><!-- .navbar -->
+</nav><!-- .site-navigation -->
+
+<header id="masthead" class="site-header" role="banner">
+	<div class="container">
+		<div class="row">
+			<div class="site-header-inner col-sm-12">
+							</div>
+		</div>
+	</div><!-- .container -->
+</header><!-- #masthead -->
+<div class="container hidden-xs">
+  <div class="row">
+    <div class="col-md-12">
+    <div id="fuse-branding"><a href="http://fusepowered.com/" target="_blank"><img src="./Coroutines_files/FusePowered_branding_sm.png" alt="A Fuse Powered Company"></a></div>
+    </div>
+  </div>
+</div><div class="main-content">
+    <div id="content-wrapper" class="container">
+
+				
+					
+	<div class="row">
+		<div class="col-md-12">
+			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
+
+				<h1 class="page-title h1">Tutorial: Using coroutines in Lua</h1>
+				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./Coroutines_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
+			</header><!-- .entry-header -->
+		</div>
+	</div>
+	
+    <div class="row">
+		<div class="main-content-inner col-xs-12 col-sm-8 col-md-8">
+			<article id="post-60833" class="post-60833 post type-post status-publish format-standard has-post-thumbnail hentry category-guest-bloggers category-tutorials-tips-demos tag-android-tv tag-tutorial">	
+				<div class="entry-content">
+					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
+<hr>
+
+<p>Coroutines, <a href="http://www.jucs.org/jucs_10_7/coroutines_in_lua/de_Moura_A_L.html">introduced in Lua 5.0</a>, are one of the language's
+key features. Yet despite having been available in Corona from the beginning, they seem to receive very little attention.</p>
+
+<p>This is unfortunate, as coroutines are quite powerful. This article will touch on just a few of their many uses, in particular those
+which play on Corona's own strengths.</p>
+
+<H3><a name="basics"></a>The basics</H3>
+
+<p>Let's begin with a quick primer on the API. All functions are found in the <b>coroutine</b> table. As of this writing, these have
+not been included in Corona's SDK API reference, but may be found in the <a href="http://www.lua.org/manual/5.1/manual.html#5.2">Lua manual</a>.</p>
+
+<p>Creating a coroutine is simple enough:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+-- This is the "routine" part of the coroutine, the code that gets run...
+local function Body ()
+  print("In the coroutine!")
+end
+
+-- ...and this is the object we need to run it.
+local co = coroutine.create(Body)
+</code></pre>
+
+<p>This gives us a reference, <code>co</code>, to the coroutine.</p>
+
+<p>We can inspect its type:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+print(type(co)) --> prints "thread"
+</code></pre>
+
+<p>What we find is that <code>co</code> is a distinct kind of object, rather than a table or userdata as we might expect. Don't worry
+too much about the term "thread"; in Lua, it and "coroutine" are mostly interchangeable<a name="#from_note1"></a><a href="#note1">[1]</a>.
+Also, these are are <b>not</b> operating system threads, which will preempt running code to switch tasks. Rather, coroutines are collaborative, which
+means is the programmer's decision when to take a break.</p>
+
+<p>We can ask about the coroutine's status:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+print(coroutine.status(co)) --> prints "suspended"
+</code></pre>
+
+<p>As we can see, simply creating the coroutine doesn't run it. You shouldn't find this too surprising. Creating a function, for instance,
+is distinct from calling it. To run the coroutine, we must do this:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+coroutine.resume(co) --> prints "In the coroutine!"
+</code></pre>
+
+<p>The body executes, and the message inside gets printed, as expected.</p>
+
+<p>What is its status now? Let's check:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+print(coroutine.status(co)) --> prints "dead"
+</code></pre>
+
+<p>The body has run its course, so nothing remains for the coroutine to do, and it becomes dead.</p>
+
+<p>Once a coroutine is dead, all we can do with it is ask its status, which will always be <code>"dead"</code>. If we try to resume it
+once more, nothing happens. Or rather, as we'll see shortly, it fails silently.</p>
+
+<p>At this point, coroutines seem like nothing more than a complicated way to call a function once, and only once!</p>
+
+<p>The missing piece of the puzzle is the ability to yield:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+local function Body ()
+  print("First resume")
+
+  coroutine.yield()
+
+  print("Second resume")
+
+  coroutine.yield()
+
+  print("Final resume")
+end
+
+local co = coroutine.create(Body)
+
+coroutine.resume(co) --> prints "First resume"
+
+print("After first yield")
+
+coroutine.resume(co) --> prints "Second resume"
+
+print("After second yield")
+
+coroutine.resume(co) --> prints "Final resume"
+</code></pre>
+
+<p>The first <code>coroutine.resume</code> kicks off the coroutine. The code at the beginning of the body executes, and a message is
+printed. So far, nothing new.</p>
+
+<p>When the <code>coroutine.yield</code> fires, we suddenly hop outside of the coroutine's body and back among the code that created it.
+Instead of getting the message "Second resume", we see "After first yield".</p>
+
+<p>The coroutine is once again in a suspended state, just as it was after being created. It is <b>not</b> dead; there is still code left
+to execute. However, the coroutine won't run again until we explicitly resume it.</p>
+
+<p>When we do so, execution picks up where it left off, immediately after the yield, and we get the expected "Second resume". Another yield
+and a final resume round out the snippet, giving us "After second yield" followed by "Final resume".</p>
+
+<p>Checking the status after each of the yields gives us <code>"suspended"</code>. After the final resume, our coroutine is once again
+<code>"dead"</code>.</p>
+
+<H3><a name="data"></a>Working with data</H3>
+
+<p>It's possible to pass data to and from a coroutine.</p>
+
+<p>We can send values to the coroutine by passing them as arguments to <code>coroutine.resume</code>:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+local function Body (a, b, c)
+  DoSomething()
+
+  local d, e = coroutine.yield()
+
+  DoSomethingElse()
+
+  local f, g, h = coroutine.yield()
+
+  DoOneLastThing()
+end
+
+local co = coroutine.create(Body)
+
+coroutine.resume(co, "one", 2) -- a = "one", b = 2, c = nil
+coroutine.resume(co, 8, {}) -- d = 8, e = the table
+coroutine.resume(co, 42, 9) -- f = 42, g = 9, h = nil
+</code></pre>
+
+<p>As we see, on the very first resume (the one which kicks the coroutine off, after creation), the data wind up in the parameters.
+On each subsequent resume, they instead show up as return values of the most recent <code>coroutine.yield</code>.</p>
+
+<p>Receiving is not too different. We work through <code>coroutine.yield</code> instead:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+local function Body ()
+  DoSomething()
+
+  coroutine.yield(1, "3")
+
+  DoSomethingElse()
+
+  coroutine.yield({ n = 6 }, 7, 4)
+
+  DoOneLastThing()
+
+  return "Data", 1
+end
+
+local co = coroutine.create(Body)
+
+print(coroutine.resume(co)) --> prints true, 1, "3"
+print(coroutine.resume(co)) --> prints true, something about the table, 7, 4
+print(coroutine.resume(co)) --> prints true, "Data", 1
+</code></pre>
+
+<p>Here we see that any arguments passed to <code>coroutine.yield</code> end up as return values of the most recent <code>coroutine.resume</code>,
+as do any values returned from the coroutine body.</p>
+
+<p>Incidentally, <b>Programming in Lua</b> contains an <a href="http://www.lua.org/pil/9.2.html">excellent example</a> of data-passing in action.</p>
+
+<p>Now, there's something peculiar about the yield snippet. In the printed results, what does that <code>true</code> mean?</a>
+
+<p>It indicates that the resume was successful. If an error had occurred along the way, that <code>true</code> would be a <code>false</code> instead,
+the only other return value being an error message. When I mentioned earlier that resuming a dead coroutine fails silently, this is what is
+actually happening. And speaking of dead coroutines, that's what we're stuck with, following an error.</p>
+
+<H3><a name="wrap"></a>Wrapping up</H3>
+
+<p>We'll often only need to create, resume, and yield the coroutine. This is common enough that a convenience function, <code>coroutine.wrap</code>,
+is provided in order to make coroutines more friendly to use:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+local function Body ()
+  print("First resume")
+
+  coroutine.yield()
+
+  print("Second resume")
+
+  coroutine.yield()
+
+  print("Final resume")
+end
+
+local wrapped = coroutine.wrap(Body)
+
+wrapped() --> prints "First resume"
+wrapped() --> prints "Second resume"
+wrapped() --> prints "Final resume"
+</code></pre>
+
+<p>This resembles our earlier examples, except resuming the coroutine seems to behave like a regular function call. In fact, the wrapper <b>is</b>
+just a function; <code>coroutine.resume</code>, along with the coroutine reference itself, are taken care of behind the scenes.</p>
+
+<p>Passing data around works much like before, except unlike <code>coroutine.resume</code>, the wrapper doesn't return a boolean. So what if it
+fails? For instance, in the last example, if we were to call the wrapper once more, now that the coroutine has finished?</p>
+
+<img class="aligncenter size-full" src="images/crash.jpg" width="320" height="242">
+
+<p>"KERBLOOEY!"</p>
+
+Of course, when developing in Corona, this is generally what we'll want. It's an error like any other.
+
+With all this under our belt, we're ready to proceed.
+
+<H3><a name="tagteam"></a>The coroutine-timer tag team</H3>
+
+<p><code>coroutine.wrap</code> offers some interesting possibilities.</p>
+
+<p>In particular, the wrapper being just a function has an interesting corollary. Many interfaces ask for functions, such as Corona's event listeners
+or <b>onComplete</b> handlers in transitions, and these will happily accept our coroutine-in-disguise like any other.</p>
+
+<p>Now, presumably we would favor coroutines over regular functions because we want or need the yield capability. Once we yield, however, the rest of
+the coroutine won't happen, unless the wrapper gets called again (remember, doing this just performs a resume, under the hood). Therefore, we'll
+typically want to use coroutines in logic that we expect to trigger multiple times.<a name="#from_note2"></a><a href="#note2">[2]</a></p>
+
+<p>We happen to have many such mechanisms in Corona. Timers, for one:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+local function Body ()
+  print("First resume")
+
+  coroutine.yield()
+
+  print("Second resume")
+
+  coroutine.yield()
+
+  print("Final resume")
+end
+
+timer.performWithDelay(1000, Body, 3)
+</code></pre>
+
+<p>As you might imagine, this will fire every second or so, printing one of the now-familiar messages each time.</p>
+
+<p>This is all well and good, but notice the iteration count: three iterations. Two for the yields and one more for the final leg. If we overestimate
+this count, say by specifying four iterations in the above, we'll end up trying to resume a dead coroutine. The code above is quite simple, so this
+isn't much of a worry. As our coroutine body grows larger, it becomes increasingly difficult to keep track of the count, especially once the code
+includes loops and function calls. Once we bring <code>if</code> statements into the mix, we're completely out of luck.</p>
+
+<p>We really want something that "just works". Fortunately, <code>"timer"</code> events come packaged with a reference, 
+<a href="http://docs.coronalabs.com/api/event/timer/source.html">source</a>, which can be used to cancel the corresponding timer. Rather than hard-coding
+some number of iterations, we can now let the timer run indefinitely, only canceling it when we've finished our task.</p>
+
+<p>A first attempt might go something like this:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+local function Body (event)
+  DoSomething()
+
+  coroutine.yield()
+
+  DoSomethingElse()
+
+  timer.cancel(event.source)
+end
+
+timer.performWithDelay(50, coroutine.wrap(Body), 0)
+</code></pre>
+
+<p>And this will work... until it doesn't. Unfortunately, coroutines flush out a <a href="http://en.wikipedia.org/wiki/Leaky_abstraction">leaky abstraction</a>:
+Corona is recycling the event tables. Presumably this is to avoid garbage collector spikes, and is a great idea. With normal functions, we would
+never know the difference. But we're being naughty. By yielding, we end up holding on to that event table across multiple frames. Meanwhile, Corona
+has been merrily swapping in other timer references as needed. When we finally get around to canceling "our" timer, we may cancel a different one
+instead, or not have one at all! Calamity ensues.</p>
+
+<p>We can play nice by saving the handle up-front:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+local function Body (event)
+  local source = event.source
+
+  DoSomething()
+
+  coroutine.yield()
+
+  DoSomethingElse()
+
+  timer.cancel(source)
+end
+
+timer.performWithDelay(50, coroutine.wrap(Body), 0)
+</code></pre>
+
+<p>This does work. However, the <code>"timer"</code> event contains a couple other fields, <b>count</b> and <b>time</b>, and similar issues crop up.</p>
+
+<p>We can account for all of this. Our code probably won't care where the event table came from (and as we just saw, it shouldn't), and will be
+none the wiser if we give it a "shadow" table instead.<a name="#from_note3"></a><a href="#note3">[3]</a> Behind the scenes, we update this shadow table
+instead, and our code is happy.</p>
+
+<H3><a name="timerutil"></a>A handy timer utility</H3>
+
+<p>It will quickly grow tiresome figuring these things out each time. Furthermore, most coroutine-based timers are going to share a similar
+structure. We ought to roll this all up for reuse:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+function CoroPerformWithDelay (delay, func, n)
+  local wrapped = coroutine.wrap(function(event)
+    func(event) -- Do the action...
+
+    return "cancel" -- ...then tell the timer to die when we're done
+  end)
+
+  local event2 -- Our own private copy of the event
+
+  return timer.performWithDelay(delay, function(event)
+    event2 = event2 or { source = event.source } -- On first run, save source...
+
+    event2.count = event.count -- ...copy these in every time.
+    event2.time = event.time
+
+    local result = wrapped(event2) -- Update the coroutine; it will pick up the event on the first run
+
+    if result == "cancel" then
+      timer.cancel(event.source) -- After func completes, or on a cancel request, kill the timer
+    end
+  end, n or 0)
+end
+</code></pre>
+
+<p>Now, we've been looking at timers, but the same ideas apply to <code>"enterFrame"</code> handlers, and even to repeating transitions. I tend to favor
+timers because of the customizable delay, and I find them a bit more natural to cancel. If the coroutine is going to run forever anyway, however,
+it's rather arbitrary.</p>
+
+<p>Since we've brought up canceling, note that it's perfectably fine to cancel the timer early. However, it's important to realize that the timer
+and coroutine are two distinct things, so the coroutine itself wouldn't automatically yield. Our helper function lets us do both at once (from
+inside the coroutine, of course) by calling <code>coroutine.yield("cancel")</code>.</p>
+
+<H3><a name="debug"></a>Debugging Via Coroutines</H3>
+
+<p>The <code>print()</code> statement is a hallmark of debugging in any language. Sometimes this comes down to convenience, such as when it would take too much effort
+to configure a debugger, then place and watch breakpoints. Integrating a debugger may even <b>seem</b> to make the problem go away: an attack of the dreaded
+<a href="http://en.wikipedia.org/wiki/Heisenbug">Heisenbug</a>! A common strategy is to sprinkle <code>print</code> statements around suspect points in the code, then 
+compare the output with our expectations. If a message doesn't appear, either the code in question was never visited or the program crashed along the way. As we narrow
+down the scope of the problem, we can remove <code>print</code>s that are no longer necessary.</p>
+
+<p>The trouble in normal code is that most (or all) of these <code>print</code>s will execute, so we wind up with one long batch of messages. Furthermore, we might
+need some sense of <b>when</b> a piece of code was called, and what our program looked like at the time. It's hard to know where the process broke down.</p>
+
+<p>Enter coroutines. If we can roughly isolate the suspect code, we can temporarily embed it in a coroutine. Then, by pairing each of our prints with a yield, we can
+inspect the state of the world at that moment. Consider the following:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+DoSomething()
+
+-- We're curious about the snippet starting here...
+
+local red = display.newRect(100, 100, 30, 70)
+
+red:setFillColor(1, 0, 0)
+
+print("Added red rect")
+
+local blue = display.newCircle(150, 30, 10)
+
+blue:setFillColor(0, 0, 1)
+
+print("Added blue circle")
+
+local green = display.newRect(200, 100, 60, 20)
+
+green:setFillColor(0, 1, 0)
+
+print("Added green rect")
+
+-- ...and ending here
+
+DoSomethingElse()
+</code></pre>
+
+<p>With coroutines:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+DoSomething()
+
+-- Start of temporary debugging code... --
+local function print2 (...)
+  print(...)
+  coroutine.yield()
+end
+
+CoroPerformWithDelay(2000, function() -- Wait 2 seconds after each print statement
+-- ...end of temporary debugging code --
+
+local red = display.newRect(100, 100, 30, 70)
+
+red:setFillColor(1, 0, 0)
+
+print2("Added red rect")
+
+local blue = display.newCircle(150, 30, 10)
+
+blue:setFillColor(0, 0, 1)
+
+print2("Added blue circle")
+
+local green = display.newRect(200, 100, 60, 20)
+
+green:setFillColor(0, 1, 0)
+
+print2("Added green rect")
+
+-- Start of temporary debugging code... --
+end)
+-- ...end of temporary debugging code --
+
+DoSomethingElse()
+</code></pre>
+
+<p>By using coroutines, we get to watch the action unfold. In the example above, we now have a couple seconds to review the state of affairs after each print,
+without significantly changing the shape of the code. If we only need to do some visual inspection, we can even do away with the prints entirely and simply use
+<code>coroutine.yield</code>.</p>
+
+<p>I employed this technique quite recently, in order to test some <a href="http://code.coronalabs.com/code/layout-helpers">layout routines</a>. Since these
+primarily involve display objects, <code>print</code> only got me so far. Many of the operations consist of one object being positioned relative to another,
+so if something went wrong in the middle, the whole layout fell apart. By viewing the steps one at a time, I was able to pinpoint when and where things
+went awry.</p>
+
+<p>It is important to note that this method does slightly alter the program flow, on account of the yields, so we need to include this in our notion of isolation.
+In the previous example, for instance, <code>DoSomethingElse</code> shouldn't depend on anything that happens inside the coroutine.</p>
+
+<H3><a href="touch"></a>The power of touch</H3>
+
+<p>A timer may not always be the best fit when debugging. With too short a delay, the steps may go by too quickly. Too long, and we'll quickly grow weary
+waiting for each step, especially if the problem tends to show up rather late.</p>
+
+<p>Fortunately, time isn't the only way to drive a coroutine. Earlier, we hinted at using wrapped coroutines in event listeners. Well, this includes
+<code>"touch"</code> listeners. With this in mind, we can drop a dummy display object into the scene, and assign it a touch listener which resumes the
+coroutine. Then, instead of waiting on the timer, we can quickly click through any steps we want to ignore, taking our time once we find something suspicious.</p>
+
+<p>The previous example then becomes:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+DoSomething()
+
+-- Start of temporary debugging code... --
+local function print2 (...)
+  print(...)
+  coroutine.yield()
+end
+
+local co = coroutine.create(function() -- Wait 2 seconds after each print statement
+-- ...end of temporary debugging code --
+
+local red = display.newRect(100, 100, 30, 70)
+
+red:setFillColor(1, 0, 0)
+
+print2("Added red rect")
+
+local blue = display.newCircle(150, 30, 10)
+
+blue:setFillColor(0, 0, 1)
+
+print2("Added blue circle")
+
+local green = display.newRect(200, 100, 60, 20)
+
+green:setFillColor(0, 1, 0)
+
+print2("Added green rect")
+
+-- Start of temporary debugging code... --
+end)
+
+local button = display.newCircle(20, 20, 10)
+
+button:setFillColor(.7)
+button:addEventListener("touch", function(event)
+  if event.phase == "began" then
+    local ok, err = coroutine.resume(co)
+
+    if not ok then
+      print(err) -- What went wrong?
+    end
+  end
+
+  return true
+end)
+
+-- ...end of temporary debugging code --
+
+DoSomethingElse()
+</code></pre>
+
+<p>After one click, we see:</p>
+
+<img class="aligncenter size-medium" src="images/debug1.jpg" width="420" height="300">
+
+<p>(The gray circle is our dummy display object.)</p>
+
+<p>Following a second click, we have:</p>
+
+<img class="aligncenter size-medium" src="images/debug2.jpg" width="420" height="300">
+
+<p>Finally:</p>
+
+<img class="aligncenter size-medium" src="images/debug3.jpg" width="420" height="300">
+
+<p>This is actually a situation where <code>coroutine.create</code> and <code>coroutine.resume</code> are more appropriate. For one thing, we don't want
+to crash our program simply because we clicked too many times and ran a dead coroutine. For another, this offers us a basic sandbox, where an error
+can occur without bringing down our whole program (the coroutine will then be dead, of course). We are hunting for errors, after all. If our code
+snippet was properly isolated, this should work just fine.</p>
+
+<p>Once everything's working, we can remove all the "temporary debugging code" and move on.</p>
+
+<H3><a name="gotchas"></a>Gotchas</H3>
+
+<p>There are a few cases where coroutines break, owing mainly to some quirks in the interaction between Lua and C. Thanks to some redesign in the
+codebase, these have been fixed in Lua 5.2+, but Corona is based on 5.1, so for the time being these issues are a fact of life.</p>
+
+<p>Two such problem areas involve <a href="http://www.lua.org/manual/5.1/manual.html#pdf-pcall">protected calls</a> and
+<a href="http://www.lua.org/manual/5.1/manual.html#2.8">metamethods</a>, as Peter "Corsix" Cawley
+<a href="http://www.corsix.org/content/look-lua-52-work3">points out on his blog</a> (see point #2). Note that the article itself mainly concerns 5.2, whereas
+we only care about the 5.1-related misbehavior.</p>
+
+<p>There have been some attempts to deal with protected calls, such as <a href="https://github.com/keplerproject/coxpcall">Coxpcall</a>. Coxpcall was created
+expressly to allow protected calls in <a href="https://github.com/keplerproject/copas">Copas</a>, a library for building TCP/IP servers atop coroutines.</p>
+
+<p><a href="http://www.lua.org/manual/5.1/manual.html#2.4.5">Iterators</a> are the other problem spot. A similar-looking example for them:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+local wrapped = coroutine.wrap(function()
+  for _ in function() -- An (obviously not useful!) iterator body
+    print("Before")
+
+    coroutine.yield()
+
+    print("After")
+  end do
+    print("Loop!")
+  end
+end)
+
+wrapped()
+</code></pre>
+
+<p>This is a rather lame iterator (it doesn't even attempt to iterate!), but it demonstrates the issue. Attempting to yield directly from the so-called
+iterator function results in an error, in Lua 5.1. We see the message "Before", and then our program goes down in flames.</p>
+
+<p>Note that this is <b>not</b> the same as <a href="http://www.lua.org/pil/9.3.html">using coroutines as iterators</a>), which is incredibly useful
+but, alas, an entire topic of its own!</p>
+
+<p>Thankfully these all tend to be rare situations, but it's good to be aware of them.</p>
+
+<H3><a name="saving"></a>Saving</H3>
+
+<p>The final gotcha comes from a design perspective. Being able to yield offers us great flexibility, but the flip side is that we do actually
+need to traverse the coroutine body to arrive at a given point in our code, with all your local variables and program state in order. We can't
+just jump to somewhere in the middle, in general. This presents a problem if your application needs to be able to save and later restore itself
+exactly where it left off. This isn't necessarily insurmountable, but you will need to plan for it from the beginning. It will almost certainly
+be difficult, and probably not worth the hassle.</p>
+
+<p>If your application only allows you to save every now and then (say between levels or at checkpoints, in a game), or has some leeway regarding
+what gets restored, this is a non-issue.</p>
+
+<H3><a name="examples"></a>Examples</H3>
+
+<p>Most of the code in this article has been adapted from the samples repository
+<a href="https://github.com/ggcrunchy/samples/tree/master/coroutines">found here</a>. It can be downloaded from
+<a href="https://github.com/ggcrunchy/samples/archive/master.zip">here</a>.</p>
+
+<p>These samples were made to be shown during a <a href="http://coronalabs.com/blog/coronageek/corona-geek-122/">Corona Geek hangout</a>, so I wrote in a
+style that allowed entire segments of the program to be turned on and off quickly. In particular, code gets blocked in
+<a href="http://www.lua.org/pil/1.3.html">long comments</a>. By doing so, we can start with a commented-out section:</p>
+
+<pre class="prettyprint"><code class="language-lua">
+--[[
+DoSomething() -- commented out, does not run
+--]]
+</code></pre>
+
+We can then enable it all at once, just by adding another hyphen at the beginning of the comment:
+
+<pre class="prettyprint"><code class="language-lua">
+---[[
+DoSomething() -- no longer commented, will run
+--]]
+</code></pre>
+
+<p>To disable it once more, simply remove the hyphen. I did this for each of the examples in <b>main.lua</b>, as well as within the modules themselves.</p>
+
+<p>Also, in order to avoid constant switches between the simulator, IDE, and console, I overrode <code>print</code> in <b>main.lua</b>, such that messages
+show up on the screen (as text objects) rather than the console. To disable this, simply remove or comment out the assignment to <b>print</b>.</p>
+
+<H3><a name="summary"></a>Summing up</H3>
+
+<p>Coroutines are a truly powerful feature of Lua, which when combined with such mechanisms as Corona's timers and event listeners, offer us a novel
+and useful approach to a whole host of difficult problems.</p>
+
+<p>We've only scratched the surface. <a href="http://www.lua.org/pil/9.html">Chapter 9</a> of <b>Programming in Lua</b> introduces several topics only
+touched on here. Explore, and have fun!</p>
+
+<hr>
+
+<p><a name="note1"></a><a href="#from_note1">[1]</a> A coroutine <b>is</b> a thread. The reverse is also true, with one very important exception: the main
+thread. This is the "normal" part of the program, where your code runs when it's not inside a coroutine.</p>
+
+<p><a name="note2"></a><a href="#from_note2">[2]</a> This approach does have its place. We could, for instance, assign the same wrapper to several listeners.
+Then, as these fire off piecemeal, the coroutine is gradually driven forward.</p>
+
+<p>Another use case is to abort complex code. We may be in the middle of some heavy operation, ten function calls deep, when we realize we just can't deal with
+it. It's easy enough to <code>return</code> out of one function, but getting out of nine more is a different story! On the other hand, if all of this is inside
+a coroutine, we can just yield. Suddenly we're back in the <a href="#note1">main thread</a>, and we can just throw the coroutine away.</p>
+
+<p>As the saying goes, "It's better to ask forgiveness than permission." Essentially, if it's too much trouble to figure out up-front whether an operation
+has any hope of working, the best idea might be to just go for it. When we combine this with a set of choices, we get a technique called backtracking,
+which can be summed up in another expression, "If at first you don't succeed, try again."</p>
+
+<p>Of course, we might want to do normal yields in the coroutine. The ability to send data through <code>coroutine.yield</code> comes to our rescue here.
+At the outset, we reserve a couple values, say <b>"success"</b> and <b>"failure"</b>, and resume until we run into one or the other.</p>
+
+<p><a name="note3"></a><a href="#from_note3">[3]</a> Creating shadow tables reintroduces garbage, of course. However, coroutine-based timers will by and large be
+created far less frequently than garden variety timers, and be longer-running besides, so this is unlikely to be a problem in practice.</p>
+
+									</div><!-- .entry-content -->
+					<div class="clearfix row" style="margin:4px 0;">
+						<div class="fade-out clearfix">
+							<!--Facebook Share Button-->
+							<div style="float:left;"><div><div class="fb-like fb_iframe_widget" data-width="90" data-send="true" data-layout="button_count" data-href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/" data-awesm-channel="facebook-like" data-awesm-tool="tCsvyd" data-height="20" data-ref="awesm:c1de8ed723c728ce036bd51b91310e76" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=129391740409903&amp;height=20&amp;href=http%3A%2F%2Fcoronalabs.com%2Fblog%2F2015%2F01%2F13%2Ftutorial-creating-android-tv-apps%2F&amp;layout=button_count&amp;locale=en_US&amp;ref=awesm%3Ac1de8ed723c728ce036bd51b91310e76&amp;sdk=joey&amp;send=true&amp;width=90"><span style="vertical-align: bottom; width: 124px; height: 20px;"><iframe name="f285f3d6b4" width="90px" height="20px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./Coroutines_files/like.html" style="border: none; visibility: visible; width: 124px; height: 20px;" class=""></iframe></span></div></div></div>
+					        <!--Twitter Tweet Button-->
+					        <div style="float:left;margin:0 5px;width:86px;"><div><iframe src="./Coroutines_files/tweet_button.html" width="110" height="20" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" class="twitter-share-button twitter-count-undefined"></iframe></div></div>
+					        <script src="./Coroutines_files/in.js" type="text/javascript">lang: en_US</script>
+					        <span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1421432617759_0"><a id="li_ui_li_gen_1421432617759_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1421432617759_0-logo">in</span><span id="li_ui_li_gen_1421432617759_0-title"><span id="li_ui_li_gen_1421432617759_0-mark"></span><span id="li_ui_li_gen_1421432617759_0-title-text">Share</span></span></a></span></span><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1421432617782_1-container" class="IN-right IN-hidden"><span id="li_ui_li_gen_1421432617782_1" class="IN-right"><span id="li_ui_li_gen_1421432617782_1-inner" class="IN-right"><span id="li_ui_li_gen_1421432617782_1-content" class="IN-right">0</span></span></span></span></span></span><script type="IN/Share+init" data-counter="right"></script>
+					        <!-- Place this tag where you want the +1 button to render. -->
+					        <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1421432617538" name="I0_1421432617538" src="./Coroutines_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+
+					        <!-- Place this tag after the last +1 button tag. -->
+					        <script type="text/javascript">
+					          (function() {
+					            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					            po.src = 'https://apis.google.com/js/plusone.js';
+					            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					          })();
+					        </script> 
+						</div> 
+					</div>
+				<footer class="entry-meta well well-sm small">
+					This entry was posted in <a href="http://coronalabs.com/blog/topics/guest-bloggers/" rel="category tag">Guest Bloggers</a>, <a href="http://coronalabs.com/blog/topics/tutorials-tips-demos/" rel="category tag">Tutorials, Tips and Demos</a> and tagged <a href="http://coronalabs.com/blog/tags/android-tv/" rel="tag">Android TV</a>, <a href="http://coronalabs.com/blog/tags/tutorial/" rel="tag">tutorial</a>. Bookmark the <a href="./Coroutines_files/Coroutines.html" title="Permalink to Tutorial: Creating Android TV Apps" rel="bookmark">permalink</a>.
+					
+				</footer><!-- .entry-meta -->
+
+				
+				
+	<div id="comments" class="comments-area">
+
+	
+	
+	
+									<div id="respond" class="comment-respond well">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#respond" style="display:none;">Cancel Reply</a></small></h3>
+									<form action="http://coronalabs.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="Star Crunch" size="30" aria-required="true"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="steve@xibalbastudios.com" size="30" aria-required="true"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="http://www.xibalbastudios.com" size="30"></p>
+												<p><textarea placeholder="Start typing..." id="comment" class="form-control" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags small">You may use these HTML tags and attributes: &lt;a href="" title="" rel=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; 						</p><p class="form-submit">
+							<input name="submit" type="submit" id="commentsubmit" value="Post Comment" class="btn btn-primary btn-xs">
+							<input type="hidden" name="comment_post_ID" value="60833" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="7485a5e885"></p><p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1421432617297"></form>
+							</div><!-- #respond -->
+			
+</div><!-- #comments -->
+
+				
+			</article><!-- #post-## -->
+		</div>
+		<div class="hidden-xs hidden-sm col-md-1 col-lg-1"></div>
+		<div class="sidebar-content-inner col-sm-4 col-md-3 hidden-xs">
+			<div style="display:none;" class="well well-clear">
+				<img width="125" height="125" src="./Coroutines_files/google-play-store1.png" class="aligncenter wp-post-image" alt="google-play-store">				
+			</div>
+
+			
+
+	<div class="sidebar clearfix well">
+				<div class="sidebar-padder">
+
+						<aside id="widget_tribe_widget_builder_46688-13" class="widget widget_tribe_widget_builder_46688"><div>
+<h4 class="ac">Looking for premium monetization options?</h4>
+<p><a class="btn btn-large btn-info btn-block" id="sidebar-buy-btn" href="http://coronalabs.com/store">BUY PRO</a></p>
+<h5>… or test out <a class="corona-orange" href="https://developer.coronalabs.com/downloads/corona-sdk">Corona SDK Starter for free</a>.</h5>
+</div>
+</aside><aside id="widget_tribe_widget_builder_16089-13" class="widget widget_tribe_widget_builder_16089"><h4 class="sidebar-title">Starting building a…</h4>
+<p>
+</p><ul style="font-size:1.12em;">
+<li><a href="http://coronalabs.com/i-want-to-build/games/">Game</a></li>
+<li><a href="http://coronalabs.com/i-want-to-build/business-apps/">Business app</a></li>
+<li><a href="http://coronalabs.com/i-want-to-build/education-kid-apps/">Educational app</a></li>
+</ul>
+<p>The possibilities are endless!</p>
+</aside><aside id="categories-5" class="widget widget_categories"><h4 class="widget-title lead">Categories</h4><select name="cat" id="cat" class="postform">
+	<option value="-1">Select Category</option>
+	<option class="level-0" value="80">Amazon Kindle</option>
+	<option class="level-0" value="11">Android</option>
+	<option class="level-0" value="1679">Composer</option>
+	<option class="level-0" value="1061">Corona Editor</option>
+	<option class="level-0" value="108">Corona Enterprise</option>
+	<option class="level-0" value="607">Corona Geek</option>
+	<option class="level-0" value="1109">Corona Professional Services</option>
+	<option class="level-0" value="4">Corona SDK</option>
+	<option class="level-0" value="1137">CoronaCards</option>
+	<option class="level-0" value="21">Daily Build</option>
+	<option class="level-0" value="74">eBooks</option>
+	<option class="level-0" value="17">Education</option>
+	<option class="level-0" value="22">Events and Listeners</option>
+	<option class="level-0" value="220">FAQ</option>
+	<option class="level-0" value="16">Flash</option>
+	<option class="level-0" value="389">Friday Night Forum</option>
+	<option class="level-0" value="1119">From the Forum</option>
+	<option class="level-0" value="5">Game Development</option>
+	<option class="level-0" value="620">Google+ Hangouts</option>
+	<option class="level-0" value="6">Guest Bloggers</option>
+	<option class="level-0" value="42">iOS</option>
+	<option class="level-0" value="19">iPad</option>
+	<option class="level-0" value="43">iPhone</option>
+	<option class="level-0" value="20">Lua</option>
+	<option class="level-0" value="3">Mobile App of the Week</option>
+	<option class="level-0" value="7">News &amp; Announcements</option>
+	<option class="level-0" value="10">NOOK</option>
+	<option class="level-0" value="18">Partners</option>
+	<option class="level-0" value="1122">Plugins</option>
+	<option class="level-0" value="31">Showcase</option>
+	<option class="level-0" value="9">Tech</option>
+	<option class="level-0" value="82">Training/Support</option>
+	<option class="level-0" value="12">Tutorials, Tips and Demos</option>
+	<option class="level-0" value="1">Uncategorized</option>
+	<option class="level-0" value="13">Videos</option>
+	<option class="level-0" value="1140">Windows Phone</option>
+</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+	var dropdown = document.getElementById("cat");
+	function onCatChange() {
+		if ( dropdown.options[dropdown.selectedIndex].value > 0 ) {
+			location.href = "http://coronalabs.com/?cat="+dropdown.options[dropdown.selectedIndex].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+/* ]]> */
+</script>
+
+</aside><aside id="widget_tribe_widget_builder_40523-2" class="widget widget_tribe_widget_builder_40523"><h4 class="sidebar-title">Case Study: Panda Math</h4>
+<div class="clearfix ac" style="margin:10px 0 0;"><a href="http://coronalabs.com/case-study/redbyes-creates-mobile-apps-for-early-childhood-education/"><img class="ac" alt="Panda  Math (Redbytes)" src="./Coroutines_files/Panda-Math-Redbytes-148x150.png"></a><p></p>
+<p class="al">Learn how tinytapps built a portfolio of <a href="http://coronalabs.com/case-study/redbyes-creates-mobile-apps-for-early-childhood-education/">early education apps</a> using Corona SDK.</p>
+</div>
+</aside>
+		</div><!-- close .sidebar-padder -->
+	</div>		</div>
+	</div>
+
+
+				
+    </div><!-- close .container -->
+</div><!-- close .main-content -->
+
+
+<footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="container">
+        <div class="row">
+            <div id="inner-footer" class="clearfix full-ui hidden-xs">
+
+                        <nav id="menu-standard-footer-menu" class="clearfix">
+                        	
+                        	<div class="col-xs-12 col-sm-6 col-md-2">
+                            	<a href="http://coronalabs.com/products/corona-sdk/" class="footer-group-header">Products</a>
+                                <ul class="sub-footer-menu">
+                                	<li><a href="http://coronalabs.com/products/corona-sdk/">Corona SDK</a></li>
+                                	<li><a href="http://coronalabs.com/products/enterprise/">Enterprise</a></li>
+                                	<li><a href="http://coronacards.com/">CoronaCards</a></li>
+                                	<li><a href="http://coronalabs.com/products/support-training/">Support &amp; Training</a></li>
+                                </ul>
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/resources/" class="footer-group-header">Resources</a>
+                                <ul class="sub-footer-menu">
+                                    <li><a target="_blank" href="http://forums.coronalabs.com/">Forum</a></li>
+                                	<li><a target="_blank" href="http://docs.coronalabs.com/">Documentation</a></li>
+                                	<li><a href="http://coronalabs.com/resources/tutorials/getting-started-with-corona/">Corona University</a></li>
+                                	<li><a href="http://coronalabs.com/resources/plugins/">Corona Plugin Directory</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/pricing" class="footer-group-header">Get Corona</a>
+                                <ul class="sub-footer-menu">
+                                	<li><a href="https://developer.coronalabs.com/downloads/coronasdk">Starter: Publish Free</a></li>
+                                	<li><a href="http://coronalabs.com/pricing/">Buy Pro</a></li>
+                                    <li><a href="http://coronalabs.com/pricing/">Buy Enterprise</a></li>
+                                    <li><a href="http://coronacards.com/pricing">Buy CoronaCards</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <a href="http://coronalabs.com/about/" class="footer-group-header">About</a>
+                                <ul class="sub-footer-menu">
+                                    <li><a href="http://coronalabs.com/about/jobs/">Jobs</a></li>
+                                	<li><a href="http://coronalabs.com/about/contact/">Contact</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                            	<a href="http://coronalabs.com/blog/2015/01/13/tutorial-creating-android-tv-apps/#" class="footer-group-header">Social</a>
+                                <ul>
+                                    <li>
+                                        <div id="followIcons">
+                                            <a href="https://twitter.com/coronalabs" class="followIcons" target="_blank">
+                                                <img src="./Coroutines_files/twitter_32.png" width="35" height="36">
+                                            </a>
+                                            <a href="https://www.facebook.com/CoronaLabs" class="followIcons" target="_blank">
+                                                <img src="./Coroutines_files/facebook_32.png" width="35" height="36">
+                                            </a>
+                                            <a href="https://www.youtube.com/user/CoronaLabs" class="followIcons" target="_blank">
+                                                <img src="./Coroutines_files/youtube_32.png" width="35" height="36">
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </nav>
+
+            </div> <!-- end #inner-footer -->
+        </div>
+    </div>
+    <div class="container">
+	    <div class="row">
+			<div class="col-md-12 small vspace footer-footer">
+                <hr class="hidden-xs">
+	            Copyright © 2009-2014 Corona Labs. A <a href="http://fusepowered.com/" target="_blank">Fuse Powered</a> Company. All rights reserved.<br>
+	            <a class="footer-secondary-links" href="http://coronalabs.com/privacy-policy/">Privacy Policy</a> • <a class="footer-secondary-links" href="http://coronalabs.com/terms-and-conditions/">Terms and Conditions</a>
+	       	</div>
+		</div>
+    </div>
+</footer><!-- close #colophon -->
+
+<script type="text/javascript" src="./Coroutines_files/form.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var mejsL10n = {"language":"en","strings":{"Close":"Close","Fullscreen":"Fullscreen","Download File":"Download File","Download Video":"Download Video","Play\/Pause":"Play\/Pause","Mute Toggle":"Mute Toggle","None":"None","Turn off Fullscreen":"Turn off Fullscreen","Go Fullscreen":"Go Fullscreen","Unmute":"Unmute","Mute":"Mute","Captions\/Subtitles":"Captions\/Subtitles"}};
+var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/"};
+var mejsL10n = {"language":"en","strings":{"Close":"Close","Fullscreen":"Fullscreen","Download File":"Download File","Download Video":"Download Video","Play\/Pause":"Play\/Pause","Mute Toggle":"Mute Toggle","None":"None","Turn off Fullscreen":"Turn off Fullscreen","Go Fullscreen":"Go Fullscreen","Unmute":"Unmute","Mute":"Mute","Captions\/Subtitles":"Captions\/Subtitles"}};
+var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Coroutines_files/mediaelement-and-player.min.js"></script>
+<script type="text/javascript" src="./Coroutines_files/prettify.js"></script>
+<script type="text/javascript" src="./Coroutines_files/lang-css.js"></script>
+<script type="text/javascript" src="./Coroutines_files/lang-vb.js"></script>
+<script type="text/javascript" src="./Coroutines_files/lang-lua.js"></script>
+<script type="text/javascript" src="./Coroutines_files/load.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var pollsL10n = {"ajax_url":"https:\/\/coronalabs.com\/wp-admin\/admin-ajax.php","text_wait":"Your last request is still being processed. Please wait a while ...","text_valid":"Please choose a valid poll answer.","text_multiple":"Maximum number of choices allowed: ","show_loading":"1","show_fading":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Coroutines_files/polls-js.js"></script>
+<script type="text/javascript" src="./Coroutines_files/skip-link-focus-fix.js"></script>
+<script type="text/javascript" src="./Coroutines_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Coroutines_files/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="./Coroutines_files/wp-fancy-box.js"></script>
+<script type="text/javascript" src="./Coroutines_files/jquery.fancybox-buttons.js"></script>
+<script type="text/javascript" src="./Coroutines_files/jquery.fancybox-media.js"></script>
+<script type="text/javascript" src="./Coroutines_files/jquery.fancybox-thumbs.js"></script>
+<script type="text/javascript" src="./Coroutines_files/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="./Coroutines_files/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpv_pagination_local = {"regional":"en","front_ajaxurl":"http:\/\/coronalabs.com\/wp-admin\/admin-ajax.php","calendar_image":"https:\/\/coronalabs.com\/plugins\/wp-views\/embedded\/res\/img\/calendar.gif","calendar_text":"Select date"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Coroutines_files/wpv-pagination-embedded.js"></script>
+<script defer="" src="./Coroutines_files/custom.js" type="text/javascript"></script>
+<script>  var AWESM = AWESM || {};  AWESM.api_key = 'fa22875a8884108a6244b659bc44e41d7342b0899a56ae9758f6c9965c9a34a0';  (function() {    var js = document.createElement('script'); js.type = 'text/javascript'; js.async = true;    js.src = '//widgets.awe.sm/v3/widgets.js?key=' + AWESM.api_key + '&async=true';    var s = document.getElementsByTagName('script')[0];    s.parentNode.insertBefore(js,s);  })();</script>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Minified using apc
+Database Caching using apc (Request-wide Cookie is rejected)
+
+ Served from: coronalabs.com @ 2015-01-16 10:23:03 by W3 Total Cache --><iframe name="oauth2relay627090594" id="oauth2relay627090594" src="./Coroutines_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><div id="fb-root" class=" fb_reset"><script async="" src="./Coroutines_files/all.js"></script><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Coroutines_files/7r8gQb8MIqE.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Coroutines_files/7r8gQb8MIqE(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fa05c7f24" frameborder="0" allowtransparency="true" scrolling="no" src="./Coroutines_files/ping.html" style="display: none;"></iframe></div></div></div><script src="./Coroutines_files/register"></script><script src="./Coroutines_files/new"></script></body></html>

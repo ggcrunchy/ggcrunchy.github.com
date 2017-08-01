@@ -228,6 +228,63 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
 <hr>
 
+<H3><a name="method-of-exhaustion"></a>The method of exhaustion</H3>
+
+<div style="float:right;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/K2.png" width="200" height="150" alt="Circumference by method of exhaustion, step 1">
+		<div style="caption"><b>K-2</b></div>
+	</div>
+</div>
+
+<p>We know, from the triangle postulate, that all angles in an equilateral triangle measure 60&deg;. We may therefore pack three of
+them together along a line, as depicted in <b>K-2</b>.</p>
+
+<p>Three of the corners coincide. Since all sides in an equilateral triangle have the same length, the remaining corners must be
+equally far from this point. This lets us interpret the two sides flush with the line as a diameter, with the whole arrangement
+being on half a circle.</p>
+
+<p>Chords resemble arcs, so summing their lengths should give us a rough approximation of the semicircle's arc length: three times
+the radius, in this case.</p>
+
+<p>As we saw earlier, an isosceles triangle will divide into congruent right triangles. Equilaterals are a special case of
+isoscelese, so we can do so here: this bisects our central angles, now measuring 30&deg; apiece, and introduces two new corners
+midway along each chord.</p>
+
+<p>If we hoist these corners onto the semicircle, our right triangles become isosceles themselves. Additionally, we can replace
+each of our old chords by two new ones that hew even closer to our arcs. An example can be seen in figure <b>K-3</b>.</p>
+
+<div style="float:left;">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_circles/K3.png" width="200" height="150" alt="Step 2">
+		<div style="caption"><b>K-3</b></div>
+	</div>
+</div>
+
+<p>Once again, we can sum up the chord lengths, six of them now:
+
+\begin{align}
+6\,\rm{crd}\,30^\circ & = 6\left(2\sin \frac{30^\circ}{2}\right) \\
+					  & = 12\sqrt{\frac{1 - \cos 30^{\circ}}{2}} \\
+					  & \approx 12\sqrt{.06699} \\
+					  & \approx 3.10583
+\end{align}
+
+<p>Since we ended up with isosceles triangles, we can repeat the division process, halving our angles and doubling the
+number of chords in doing so. With twelve chords and 15&deg; central angles, our arc is around $3.13935$ long.</p>
+
+<p>The calculation generalizes for the <i>i</i>-th iteration, with $i = 1$ being the equilateral:
+
+\begin{align}
+\mathrm{\text{arc length}} \approx 3\left(2^i\sin \frac{60^\circ}{2^i}\right)
+\end{align}
+
+On each pass, we leave less space between the chords and arcs. This refinement process will in fact
+<a href="https://en.wikipedia.org/wiki/Proof_that_π_is_irrational">go on indefinitely</a>, but the adjustments quickly become
+vanishingly small. After a few steps our value settles into the neighborhood of $3.14159.$</p>
+
+<p>This is $\boldsymbol{\pi},$ perhaps the <a href="https://en.wikipedia.org/wiki/Pi">most famous constant</a> in all of mathematics!</p>
+
 <H3><a name="round-and-round"></a>Round and round we go (K)</H3>
 
 <p>Consider something like thread, wound around a spool.</p>
@@ -289,7 +346,8 @@ end
 print( PI( 15 ) ) -- on my machine, prints 3.1415926534561...
 print( math.pi ) -- ...and 3.1415926535898</code></pre>
 
-<p>This sample is a little circular, as it converts to radians in the process. We can use our earlier half-angle identities, however.</p>
+<p>This sample is a little circular, so to speak, as it converts to radians in the process. We can use our earlier half-angle identities,
+however.</p>
 
 <pre class="prettyprint"><code class="language-lua">local sqrt = math.sqrt
 
@@ -304,7 +362,7 @@ local function Sin ( steps )
 end
 
 function PI2 ( n )
-  local steps = n + 1  
+  local steps = n + 1
   local count = 2^steps
 
   return 3 * count * Sin( steps )
@@ -313,50 +371,6 @@ end
 print( PI2( 13 ) ) -- prints 3.1415926453212</code></pre>
 
 <p>Unfortunately, numerical precision issues begin to accumulate as more steps are taken. But it demonstrates the principle.</p>
-
-<p><b>REWRITE REWRITE REWRITE REWRITE REWRITE REWRITE</b></p>
-
-<div style="float:left;">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_circles/K2.png" width="200" height="150" alt="Circumference by method of exhaustion, step 1">
-		<div style="caption"><b>K-2</b></div>
-	</div>
-</div>
-
-<div style="float:left;">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_circles/K3.png" width="200" height="150" alt="Step 2">
-		<div style="caption"><b>K-3</b></div>
-	</div>
-</div>
-
-<p>On account of the symmetry of the circle we can deal with just half of that, then later double it.</p>
-<p>We can then divvy this up into three arcs, which we can approximate by triangles.</p>
-<p>In particular, each has 60 degrees. Since two of the sides will be radii, we know the other angles are equal, that is these are equilateral triangles.</p>
-<p>Thus the side near the circle boundary also has the radius as length.</p>
-<p>So a decent approximation for the boundary is 3 times the radius.</p>
-<p>We can divide these in half in turn, which give us our earlier 30-60-90 triangles, which better approximate the circle. <b>(TODO:</b> Not correct, fix<b>)</b></p>
-
-<p>We can split one of these equilateral triangles into two 30&deg;-60&deg;-90&deg; triangles. We can then move the shared corner at
-the right angle up onto the circle.</p>
-
-<p>This side will then be the radius in length, so we have two isosceles triangles, each with a 30&deg; central angle.</p>
-
-<p>Each time, we take up more of the space between the chords and arcs, more fully approximating the complete disk.</p>
-
-<p>With six chords:
-
-\begin{align}
-6\,\rm{crd}\,30^\circ & = 6\left(2\sin \frac{30^\circ}{2}\right) \\
-					  & = 12\sqrt{\frac{1 - \cos 30^{\circ}}{2}} \\
-					  & \approx 12\sqrt{.06699} \\
-					  & \approx 3.10583
-\end{align}
-
-<p>A second pass, with twelve chords and 15&deg; central angles, gives us $\approx 3.13935.$ Further iterations narrow this down
-to $\approx 3.14159.$ (In fact, this refinement process <a href="https://en.wikipedia.org/wiki/Proof_that_π_is_irrational">never does end</a>.)</p>
-
-<p><b>END REWRITE END REWRITE END REWRITE END REWRITE</b></p>
 
 <H3><a name="circle-area"></a>Wheels within wheels (L)</H3>
 

@@ -269,16 +269,17 @@ used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate si
 <p>We may calculate any altitude in terms of two different side-angle pairs. In <b>G-2</b>, for example, $A\sin b = B\sin a = H,$
 where $H$ is the common height.</p>
 
-<p>Some simple restructuring gives us $\sin a = AH$ and $\sin b = BH.$</p>
+<p>Some simple restructuring gives us $\sin a = \frac{H}{B}$ and $\sin b = \frac{H}{A}.$</p>
 
 <p>We can bring the sum-to-product identities to bear on these:
 
 \begin{align}
-H(A - B) = 2\cos\left(\frac{a + b}{2}\right)\sin\left(\frac{a - b}{2}\right) \\
-H(A + B) = 2\sin\left(\frac{a + b}{2}\right)\cos\left(\frac{a - b}{2}\right)
+2\cos\left(\frac{a + b}{2}\right)\sin\left(\frac{a - b}{2}\right) & = H(\frac{1}{B} - \frac{1}{A}) \\
+& = \frac{H}{AB}(A - B) \\
+2\sin\left(\frac{a + b}{2}\right)\cos\left(\frac{a - b}{2}\right) & = \frac{H}{AB}(A + B)
 \end{align}
 
-Dividing one by the other, the $H$ goes away, and we obtain the <b>Law of Tangents</b>:
+When we divide one by the other, $\frac{H}{AB}$ goes away. We obtain the <b>Law of Tangents</b>:
 
 \begin{align}
 \frac{A - B}{A + B} = \frac{\tan\frac{a - b}{2}}{\tan\frac{a + b}{2}}
