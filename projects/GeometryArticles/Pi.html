@@ -248,7 +248,7 @@ being on half a circle.</p>
 the radius, in this case.</p>
 
 <p>As we saw earlier, an isosceles triangle will divide into congruent right triangles. Equilaterals are a special case of
-isoscelese, so we can do so here: this bisects our central angles, now measuring 30&deg; apiece, and introduces two new corners
+isosceles, so we can do so here: this bisects our central angles, now measuring 30&deg; apiece, and introduces two new corners
 midway along each chord.</p>
 
 <p>If we hoist these corners onto the semicircle, our right triangles become isosceles themselves. Additionally, we can replace
@@ -273,7 +273,7 @@ each of our old chords by two new ones that hew even closer to our arcs. An exam
 <p>Since we ended up with isosceles triangles, we can repeat the division process, halving our angles and doubling the
 number of chords in doing so. With twelve chords and 15&deg; central angles, our arc is around $3.13935$ long.</p>
 
-<p>The calculation generalizes for the <i>i</i>-th iteration, with $i = 1$ being the equilateral:
+<p>The calculation generalizes for the <i>i</i>-th iteration, with $i = 1$ being the case with equilaterals:
 
 \begin{align}
 \mathrm{\text{arc length}} \approx 3\left(2^i\sin \frac{60^\circ}{2^i}\right)
@@ -281,9 +281,34 @@ number of chords in doing so. With twelve chords and 15&deg; central angles, our
 
 On each pass, we leave less space between the chords and arcs. This refinement process will in fact
 <a href="https://en.wikipedia.org/wiki/Proof_that_π_is_irrational">go on indefinitely</a>, but the adjustments quickly become
-vanishingly small. After a few steps our value settles into the neighborhood of $3.14159.$</p>
+vanishingly small. After just a few steps our values are in the neighborhood of $3.14159.$</p>
 
 <p>This is $\boldsymbol{\pi},$ perhaps the <a href="https://en.wikipedia.org/wiki/Pi">most famous constant</a> in all of mathematics!</p>
+
+<p>In code, the procedure described above might look like</p>
+
+<pre class="prettyprint"><code class="language-lua">local sqrt = math.sqrt
+
+local function Sin ( steps )
+  local cosa = sqrt( 3 ) / 2 -- start with cos(60 degrees)
+
+  for i = 1, steps - 1 do
+    cosa = sqrt( (1 + cosa) / 2 ) -- get cos(angle / 2)
+  end
+
+  return sqrt( 1 - cosa^2 ) -- sin(angle)
+end
+
+function PI ( n )
+  local steps = n + 1
+  local count = 2^steps
+
+  return 3 * count * Sin( steps )
+end
+
+print( PI( 13 ) ) -- prints 3.1415926453212 on my machine
+                  -- N.B. this numerical precision problems will overwhelm this
+                  -- algorithm if we push `n` much further</code></pre>
 
 <H3><a name="round-and-round"></a>Round and round we go (K)</H3>
 
@@ -335,7 +360,7 @@ even remember these values: <a href="https://docs.coronalabs.com/api/library/mat
 <pre class="prettyprint"><code class="language-lua">local rad = math.rad
 local sin = math.sin
 
-function PI ( n )
+function PI2 ( n )
   -- At the outset, we have three 60-degree triangles, or 3 * (2 * sin(30 degrees)). At each
   -- iteration, we halve all the angles and double the triangle count.
   local count = 2^(n + 1)
@@ -343,34 +368,8 @@ function PI ( n )
   return 3 * count * sin( rad( 60 / count ) )
 end
 
-print( PI( 15 ) ) -- on my machine, prints 3.1415926534561...
+print( PI2( 15 ) ) -- prints 3.1415926534561...
 print( math.pi ) -- ...and 3.1415926535898</code></pre>
-
-<p>This sample is a little circular, so to speak, as it converts to radians in the process. We can use our earlier half-angle identities,
-however.</p>
-
-<pre class="prettyprint"><code class="language-lua">local sqrt = math.sqrt
-
-local function Sin ( steps )
-  local cosa = sqrt( 3 ) / 2 -- start with cos(60 degrees)
-
-  for i = 1, steps - 1 do
-    cosa = sqrt( (1 + cosa) / 2 ) -- get cos(angle / 2)
-  end
-
-  return sqrt( 1 - cosa^2 ) -- sin(angle)
-end
-
-function PI2 ( n )
-  local steps = n + 1
-  local count = 2^steps
-
-  return 3 * count * Sin( steps )
-end
-
-print( PI2( 13 ) ) -- prints 3.1415926453212</code></pre>
-
-<p>Unfortunately, numerical precision issues begin to accumulate as more steps are taken. But it demonstrates the principle.</p>
 
 <H3><a name="circle-area"></a>Wheels within wheels (L)</H3>
 
