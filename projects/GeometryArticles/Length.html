@@ -215,7 +215,7 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		<div class="col-md-12">
 			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
 
-				<h1 class="page-title h1">A 2D geometry primer, part 13: the Law of Sines</h1>
+				<h1 class="page-title h1">A 2D geometry primer, part 5: length</h1>
 				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./SpoofCoronaPage_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
 			</header><!-- .entry-header -->
 		</div>
@@ -228,192 +228,176 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
 <hr>
 
-<p>TODO!</p>
+<H3><a name="pythagoras"></a>Enter Pythagoras</H3>
 
-<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
+<p>Squares are a special case of rectangles, where all sides have the same length.</p>
 
-<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
-
-<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
-letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
-
-<div style="float:right;">
+<div style="float:left">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_LawOfSines/G2.png" width="200" height="150" alt="Law of sines">
-		<div style="caption"><b>G-2</b></div>
+		<img src="./images_triangles/J1.png" width="179" height="128" alt="A square with sides x + y">
+		<div class="caption"><b>J-1</b></div>
 	</div>
 </div>
 
-<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
-the same result. Thus</p>
+<p>Borrowing an earlier idea, we can divide each of these sides into two lesser lengths, say $x$ and $y.$ If these alternate
+<a href="https://en.wikipedia.org/wiki/Perimeter">around the square</a>, we have something like figure <b>J-1</b>.</p>
 
-<p>
-\begin{align}
-\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
-\end{align}
-<p>
+<p>From the rectangular formula, the total area of the square is $ (x + y) \times (x + y). $ We can <a href="https://en.wikipedia.org/wiki/FOIL_method">expand</a>
+this to get $ x^2 + 2xy + y^2. $</p>
 
-<p>If we divide "both" sides by ${1 \over 2}ABC,$ this all comes out to</p>
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/J2.png" width="179" height="128" alt="Embedded triangles">
+		<div class="caption"><b>J-2</b></div>
+	</div>
+</div>
 
-<p>
-\begin{align}
-\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
-\end{align}
-<p>
+<p>Notice the small nodes in figure <b>J-1</b>, wherever the sides have been split. If we visit these in sequence, drawing segments from one to the next, we etch
+four right triangles out of the square.</p>
 
-<p>This is the <b>Law of Sines</b>, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
-used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
+<p>By side-angle-side, we know these triangles are congruent, each with area $ {xy \over 2}. $ The area of all four together is $ 4\left({xy \over 2} \right) = 2xy. $</p>
 
-<H3><a href="law-of-tangents"></a>Law of Tangents</H3>
+<p>We can find the area of the middle region&mdash;what would remain, if we removed the triangles&mdash;by subtracting this sum from the total area of the square. The
+$ 2xy $ terms cancel, leaving us with $ x^2 + y^2. $</p>
 
-<p>We may calculate any altitude in terms of two different side-angle pairs. In <b>G-2</b>, for example, $A\sin b = B\sin a = H,$
-where $H$ is the common height.</p>
+<p>One side of each triangle remains unknown. Owing to congruence, however, these sides all have the same length. We can give them a common label, say $z.$</p>
 
-<p>Some simple restructuring gives us $\sin a = \frac{H}{B}$ and $\sin b = \frac{H}{A}.$</p>
+<p>The middle object's angles each lie along a side of the square; when combined with their neighbors, they form straight lines. Thus, if $A$ and $B$ are the
+adjacent measurements, a given angle has measure $ 180^{\circ} - A - B $.</p>
 
-<p>We can bring the sum-to-product identities to bear on these:
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/J3.png" width="179" height="128" alt="An embedded square">
+		<div class="caption"><b>J-3</b></div>
+	</div>
+</div>
 
-\begin{align}
-2\cos\left(\frac{a + b}{2}\right)\sin\left(\frac{a - b}{2}\right) & = H(\frac{1}{B} - \frac{1}{A}) \\
-& = \frac{H}{AB}(A - B) \\
-2\sin\left(\frac{a + b}{2}\right)\cos\left(\frac{a - b}{2}\right) & = \frac{H}{AB}(A + B)
-\end{align}
+<p>As the arcs in <b>J-3</b> indicate, $A$ and $B$ will be the same in all four cases. The interior angles must therefore be equal as well, measuring $ 360^{\circ}
+/ 4 = 90^{\circ}. $</p>
 
-When we divide one by the other, $\frac{H}{AB}$ goes away. We obtain the <b>Law of Tangents</b>:
+<p>The middle region is an equal-sided object with four right angles. This is simply a <a href="https://en.wikipedia.org/wiki/Rhombus">rotated square</a>, with area
+$ z^2 $. A few paragraphs ago, we described this same area using another formula. We can combine the two, giving us $ x^2 + y^2 = z^2. $</p>
 
-\begin{align}
-\frac{A - B}{A + B} = \frac{\tan\frac{a - b}{2}}{\tan\frac{a + b}{2}}
-\end{align}
+<p>This is the celebrated <a href="https://en.wikipedia.org/wiki/Pythagorean_theorem">Pythagorean theorem</a>.</p>
 
-<b>(NOTES:</b> Can probably merge these two into one "Laws" section; a bit of tightening and rewording is also in order<b>)</b></p>
+<H3><a name="too-short"></a>"This base is too short..."</H3>
 
-<H3><a href="centroid"></a>Centroid</H3>
+<p>Now, while the central square was key to arriving at this result, the equation actually describes a relationship among triangle sides.</p>
 
-<p>If we start at one corner and cut the opposite side at the midpoint, we have two triangles with base ${B \over 2}$ and height $h$,
-which is to say they have equal area, half that of the full triangle. Such lines are called medians.</p>
+<p>These happened to be right triangles during our derivation, but <a href="https://en.wikipedia.org/wiki/Pythagorean_theorem#Converse">is this necessary?</a>
+Might the formula extend to triangles in general, as with area and interior angle sums?</p>
 
-<p><b>(NOTES:</b>Figure<b>)</b></p>
+<p>We run into problems right out of the gate. Without a right angle, nothing seems to distinguish any one side. Which one gets to be $z$?</p>
 
-<p>If we do the same with another corner, the same area situation will happen. Furthermore, of course, the medians will intersect
-somewhere. This will produce a number of triangles.</p>
+<p>Setting such practical concerns aside, consider the following candidate, depicted in figure <b>K-1</b>. If its base, $x,$ were somewhat wider, we would indeed have a
+right triangle. As is, it falls short.</p>
 
-<p><b>(NOTES:</b>Refer to figure<b>)</b></p>
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+	<img src="./images_triangles/K1.png" width="151" height="123" alt="x falls short">
+		<div class="caption"><b>K-1</b></div>
+	</div>
+</div>
 
-<p>With the Law of Sines we can investigate the relationships among their sides, tabulated in what follows. Note that, as we saw in
-the previous article, $\sin(180^\circ - \theta) = \sin\theta.$</p>
+<p>We ran across a similar predicament with areas involving obtuse angles. Once again, we can start with the "hypothetical" right triangle that a longer $x$ would
+give us. This has base $ x + R $ and height $h.$ Of course, it <i>does</i> adhere to the Pythagorean equation: $ (x + R)^2 + h^2 = z^2. $</p>
 
-<p>First off, we have the triangles produced when the two medians cross. These correspond to the upper-left, upper-right, and lower-left
-triangles in (FIGURE):
+<p>Also familiar: the added-on part is itself a right triangle. In figure <b>K-1</b>, its legs correspond to the dashed segments. Thus, $ h^2 = y^2 - R^2. $</p>
 
-\begin{align}
-T_{ul}: \frac{\sin x}{A} & = \frac{\sin b_1}{D} = \frac{\sin c_1}{F} \\
-T_{ur}: \frac{\sin x}{B / 2} & = \frac{\sin (x + c_2)}{D} = \frac{\sin c_2}{G} \\
-T_{ll}: \frac{\sin x}{C / 2} & = \frac{\sin b_2}{E} = \frac{\sin (x + b_2)}{F}
-\end{align}
+<p>We can plug this into the previous equation. Following some expansion and cancellation, we have $ z^2 - x^2 - 2xR = y^2. $</p>
 
-The median bisecting $B$ gave us a left and right triangle:
+<p>Now, if our non-right triangle does indeed satisfy Pythagoras's equation, $ x^2 + y^2 $ will be the same as $ z^2, $ so we can substitute one for the other in
+the last result. A short bout of cancellation ensues and leaves us with $ -2xR = 0. $</p>
 
-\begin{align}
-Left: \frac{\sin c}{F + G} & = \frac{\sin b_1}{B / 2} = \frac{\sin (x + c_2)}{A} \\
-Right: \frac{\sin b_2}{B / 2} & = \frac{\sin a}{F + G} = \frac{\sin (x + c_2)}{C}
-\end{align}
+<p>This could mean $ R = 0 $: nothing needs to be added to $x$, so we have a right triangle after all!</p>
 
-Likewise, from cutting side $C$ we have top and bottom triangles:
+<p>Otherwise, $ x = 0. $ This is indeed suspicious.</p>
 
-\begin{align}
-Top: \frac{\sin c_1}{C / 2} & = \frac{\sin b}{D + E} = \frac{\sin (x + b_2)}{A} \\
-Bottom: \frac{\sin c_2}{C / 2} & = \frac{\sin (x + b_2)}{B} = \frac{\sin a}{D + E}
-\end{align}
+<H3><a name="too-long"></a>"...this base is too long..."</H3>
 
-Many of these results above are dead ends; some trial and error will flush them out. Among the useful bits, after
-some rearrangement:
+<p>The base might instead be too wide to be a right triangle, as seen for instance in figure <b>L-1</b>.</p>
 
-\begin{align}
-\sin(x + b_2) & = \frac{2A\sin c_1}{C} = \frac{2B\sin c_2}{C} \\
-\sin(x + c_2) & = \frac{2A\sin b_1}{B} = \frac{2C\sin b_2}{B}
-\end{align}
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/L1.png" width="151" height="95" alt="x too long">
+		<div class="caption"><b>L-1</b></div>
+	</div>
+</div>
 
-We see that $A\sin b_1 = C\sin b_2$ and $A\sin c_1 = B\sin c_2,$ respectively. This next equality, also derived
-from the list above, will let us apply these insights:
+<p>Delving once more into earlier techniques, we can draw an altitude to break this apart into two right triangles, with bases $L$ and $R$ and a common height $h.$
+Applying the Pythagorean theorem to these, we find $ L^2 + h^2 = z^2 $ and $ R^2 + h^2 = y^2. $</p>
 
-\begin{align}
-\sin x = \frac{A\sin b_1}{D} = \frac{C\sin b_2}{2E} = \frac{A\sin c_1}{F} = \frac{B\sin c_2}{2G}
-\end{align}
+<p>Again, assuming the original triangle does satisfy the Pythagorean theorem, we can replace $ z^2 $ in the first equation with $ x^2 + y^2. $ Doing so, then
+combining the two equations on account of the common $ h^2, $ and finishing off with some cancellation, we end up with $ x^2 + R^2 = L^2. $</p>
 
-<p>After substituting a couple of numerators, it quickly follows that $D = 2E$ and $F = 2G.$</p>
+<p>Since $ x = L + R, $ this finally boils down to $ 2R(L + R) = 0. $ Either $ L = -R, $ which can only happen when $ x = 0, $ or $ R = 0. $ These are exactly the
+situations a too-short base gave us, with the same consequences.</p>
 
-<p>Thus, our intersection is ${2 \over 3}$ of the way from either corner to the midpoint of its opposite side.</p>
+<H3><a name="just-right"></a>"...this one is just right."</H3>
 
-<p>We can intersect either of the first two medians with the remaining one. Once again this happens ${2 \over 3}$
-along; the three medians have a common meeting point.</p>
+<p>The same analysis applies to $y,$ with comparable results. In short, either the solution outright demands a right triangle, or one of $x$ or $y$ must be
+zero. What do these latter possibilities mean?</p>
 
-<p>This is known as the <b>centroid</b>. To find its position, we linearly interpolate from any corner to the opposite midpoint:
+<p>When $x$ is zero, the equation reduces to $ y^2 = z^2, $ or $ y = \pm z. $ Similarly, with $y$ we arrive at $ x = \pm z. $ These are simply
+<a href="https://en.wikipedia.org/wiki/Linear_equation#One_variable">lines</a>.</p>
 
-\begin{align}
-x = {1 \over 3}x_1 + {2 \over 3}\frac{x_2 + x_3}{2}
-\end{align}
+<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+	<img src="./images_triangles/M1.png" width="256" height="40" alt="Diminishing triangles">
+	<div class="caption"><b>M-1</b></div>
+</div>
 
-The $y$-coordinate is similar. After simplifying:
+<p>Figure <b>M-1</b> gives us some hint that lines are not a drastic break from the triangular mold. So long as we have a right angle, all is well, even as the
+height dwindles and our triangle becomes little more than a sliver. A line segment can be understood as going just a bit further, so the height (or width of the
+base) is zero.</p>
 
-\begin{align}
-\mathbf{c} = \left(\frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3}\right)
-\end{align}
+<p><b>(NOTES:</b> Perhaps a little numerical note, e.g. when $x$ is 1/1000, $x^2$ is 1/1000000, etc. so graceful transition<b>)</b></p>
 
-Using the altitudes from the centroid onto the three sides, we can find the areas of the three triangles it forms:
-$\frac{AD\sin c_1}{2}, \frac{CF\sin b_2}{2}, $ and $\frac{BD\sin c_2}{2}.$</p>
+<p>So, given $x$, $y$, and $z$ satisfying the Pythagorean theorem, we know these do entail a right triangle, or might as well.</p>
 
-<p>We can reuse one of our earlier substitutions here, telling us the first and third are equal.</p>
+<H4><b>EXERCISES</b></H4>
 
-<p>Another relationship we can pull out of the earlier list is $C\sin b_2 = \frac{2AE\sin c_1}{F}.$ Given this, the
-second area reduces to $AE\sin c_1.$ Since $E = {D \over 2},$ this is equal to the others.</p>
+<p><b>1.</b> What if $x$ and $y$ both go to zero?</p>
+<p><b>2.</b> How long can the hypotenuse be, compared to its legs?</p>
 
-<p>Each sub-triangle thus occupies ${1 \over 3}$ of the total area. A triangle may be interpreted as an object of uniform
-density&mdash;in Corona, for instance, this describes a triangular polygon with a physics body&mdash;so the centroid
-sometimes goes by the name of <b>barycenter</b>, or "center of weight".</p>
+<H3><a name="going-the-distance"></a>Going the distance</H3>
 
-<H3><a name="barycenteric-coordinates"></a>Barycentric coordinates</H3>
+<p>All well and good, but what do we gain from the theorem?</p>
 
-<p>We may divide the smaller areas by the larger one, giving us three values, say $b_1$, $b_2$, and $b_3$, that sum to one. Some interesting facts follow on this. As
-before, points "above" a side have positive sign and those "below" negative. Then there are those on the side itself: here the "sign", or rather the value $b_i$,
-is zero. Consequently, the corresponding triangle vanishes: it has no area.</p>
+<p>Basically, knowing how long two sides of a triangle are, we can find the third as well. The hypotenuse is the most obvious choice: $ z = \sqrt{x^2 + y^2}. $
+If we already know $z,$ we can find one of the leg lengths instead, say $ x = \sqrt{z^2 - y^2}. $ (Negative roots
+<a href="https://en.wikipedia.org/wiki/Metric_(mathematics)">are irrelevant</a>.)<p>
 
-<p>The point might also fall on <i>two</i> sides: at one of the corners. Another triangle vanishes. Two areas went to zero, so we have something like $ b_1 = b_2
-= 0 $ and $ b_3 = 1. $ At each of the corners, one of the values will be one, the others zero.</p>
+<p>Consider the two points depicted in figure <b>N-1</b>.</p>
 
-<p>When only one of the values was zero, with the point somewhere along one of the sides, the two that remain must still sum to one. Because of the situation
-prevailing at the corners, it seems reasonable that the nearer this point comes to a corner, the closer one $b_i$ will be to one, the other to zero. In other words,
-these seem to be a sort of weight, describing relative proximity to each corner. In the interior, all $b_i$ are between zero and one, but the idea still holds.
-Outside the triangle it does as well, though some $b_i$ will not be positive, and "on the side" might mean rather being on its infinite line.</p>
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/N1.png" width="135" height="96" alt="Two points">
+		<div class="caption"><b>N-1</b></div>
+	</div>
+</div>
 
-<p>These are <a href="https://en.wikipedia.org/wiki/Barycentric_coordinate_system">barycentric</a> ("center of weight") coordinates. <b>(TODO:</b> image<b>)</b></p>
+<p>Both can be described by a
+<a href="https://www.khanacademy.org/math/algebra-basics/core-algebra-graphing-lines-slope/core-algebra-graphing-coordinate-plan/v/plot-ordered-pairs">coordinate
+pair</a>: $ \vcomps{p_x}{p_y} $ for $ \mathbf{p} $ and $ \vcomps{q_x}{q_y} $ for $ \mathbf{q}. $ Given some
+<a href="https://en.wikipedia.org/wiki/Origin_(mathematics)">point of reference</a>, the $x$- and $y$-coordinates tell us how far to the right of and above it
+these points are found. For example, $ (1, -3) $ would be one unit to the right and three units below.</p>
 
-<p>These coordinates, where values of one select a corner and reject the others, suggest that a point can be described by a formula such as $ b_1\mathbf{p}
-+ b_2\mathbf{q} + b_3\mathbf{r} $. In doing so, though, we find ourselves adding points, seemingly at odds with our earlier "arithmetic of types" guidelines.</p>
+<p>Rather than travel in a straight line from one point to the other, we can start from $ \mathbf{p} $ and head right, eventually putting us directly beneath
+$ \mathbf{q}. $ From there, going straight up will get us the rest of the way.</p>
 
-<p>We can see that no such violation takes place by rephrasing a couple of the points using vectors: $ \mathbf{q} = \mathbf{p} + \mathbf{v} $ and $ \mathbf{r} =
-\mathbf{p} + \mathbf{w}. $ The formula then becomes $ b_1\mathbf{p} + b_2(\mathbf{p} + \mathbf{v}) + b_3(\mathbf{p} + \mathbf{w}) $. After distributing the
-scale factors, this restructures as $ (b_1 + b_2 + b_3)\mathbf{p} + b_2\mathbf{v} + b_3\mathbf{w} $.</p>
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_triangles/N2.png" width="135" height="96" alt="Two points and their implicit triangle">
+		<div class="caption"><b>N-2</b></div>
+	</div>
+</div>
 
-<p>The parenthesized values sum to one, so the "scaling" leaves the point as is. The remaining terms are scaled vectors, which add to points just fine.
-Barycentric combinations are point-vector sums in disguise. (For that matter, if scaling a point also scales its "type"&mdash;making it equal to the scale
-factor&mdash;then although this intermediate result is some alien object, so long as the "types" all sum to one we will again have a point after adding all our
-pseudo-points together.) <b>(TODO:</b> as footnote?<b>)</b></p>
+<p>To perform these <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">intermediate steps</a>, we need to know "Relative to $ \mathbf{p}, $ how much
+farther to the right and above is $ \mathbf{q} $?". The coordinate differences express exactly this: $ dx = q_x - p_x $ and $ dy = q_y - p_y. $</p>
 
-<p>Barycentric coordinates are useful in that they allow us to operate in relative terms&mdash;near this corner, between these points, somewhere in the
-center&mdash;without needing to know the specifics of the triangle, such as point locations and distance.
-<a href="https://classes.soe.ucsc.edu/cmps160/Fall10/resources/barycentricInterpolation.pdf">Interpolation</a> between such coordinates comes quite naturally,
-as well.</p>
-
-<p>The idea extends to four points, for instance in the assortment of
-"<a href="http://www.colorado.edu/engineering/CAS/courses.d/IFEM.d/IFEM.Ch18.d/IFEM.Ch18.pdf">shape functions</a>" used to decompose meshes into
-<a href="https://en.wikipedia.org/wiki/Finite_element_method">simpler parts</a>. More complex problems are a subject of
-<a href="http://www.inf.usi.ch/hormann/barycentric/">ongoing research</a>.</p>
-
-<p><b>(IMAGE:</b> 20<b>)</b></p>
-
-<H3><a name="summary"></a>Summary</H3>
-
-<p>Revise!</p>
+<p>Taken together, these <a href="https://en.wikipedia.org/wiki/Triangle_inequality">shorter</a> paths are the legs of a right triangle, as seen for instance in
+figure <b>N-2</b>. Its hypotenuse is the segment from $ \mathbf{p} $ to $ \mathbf{q}. $ Finding the length of this side will give us the
+<a href="https://en.wikipedia.org/wiki/Euclidean_distance">straight-line distance</a> between the two points: $ \sqrt{dx^2 + dy^2}. $</p>
 
 									</div><!-- .entry-content -->
 					<div class="clearfix row" style="margin:4px 0;">

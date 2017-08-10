@@ -215,7 +215,7 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		<div class="col-md-12">
 			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
 
-				<h1 class="page-title h1">A 2D geometry primer, part 3: triangle types and area</h1>
+				<h1 class="page-title h1">A 2D geometry primer, part 3: triangle area</h1>
 				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./SpoofCoronaPage_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
 			</header><!-- .entry-header -->
 		</div>
@@ -227,57 +227,6 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 				<div class="entry-content">
 					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
 <hr>
-
-<H3><a name="a-look-in-the-mirror"></a>A look in the mirror</H3>
-
-<div style="float:right">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_triangles/E1.png" width="133" height="151" alt="Isosceles triangles">
-		<div class="caption"><b>E-1</b></div>
-	</div>
-</div>
-
-<p>An <a href="https://en.wikipedia.org/wiki/Isosceles_triangle">isosceles</a> triangle, where two sides have the same length, shares a side-angle-side sequence with one of its
-own mirror images. It will therefore be congruent to this "other" triangle.</p>
-
-<p>On account of common lengths, the triangle and mirror image already coincide. With some separation, they might look something like figure <b>E-1</b>. For the initial overlap to
-have been possible, angles $A$ and $B$ must be equal.</p>
-
-<p>In an <a href="https://en.wikipedia.org/wiki/Equilateral_triangle">equilateral</a> triangle, all sides have the same length.</p>
-
-<div style="float:left">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_triangles/E2.png" width="133" height="151" alt="Equilateral triangle">
-		<div class="caption"><b>E-2</b></div>
-	</div>
-</div>
-
-<p>By restricting ourselves to a couple sides, we can approach this as an isosceles triangle. This will tell us that two angles are equal. Choosing another pair of sides, we can repeat
-the process, giving us another match. Only three angles are possible, so one of them must show up twice.</p>
-
-<p>For instance, say angles $A$ and $B$ are equal in the first case, $B$ and $C$ in the second. Since they have $B$ in common, $A$ and $C$ ought to
-<a href="http://www.mathwords.com/t/transitive_property.htm">match</a> as well. The third pair of sides will confirm this.</p>
-
-<div style="float:left">
-	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_triangles/E3.png" width="133" height="151" alt="Bisected isoscelese">
-		<div class="caption"><b>E-3</b></div>
-	</div>
-</div>
-
-<p><b>TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE</b></p>
-
-<p>In the less specific isosceles case, we can cut the third side in half, as in <b>E-3</b>. In doing so, we get two triangles with a
-side-angle-side relationship.</p>
-
-<p>Because this creates two new angles, these must be equal to one another. Since they came from what was originally a line, they must be
-supplementary, and thus right angles.</p>
-
-<p>The new common side splits the remaining angle, as well. Since these new angles must be equal, each must measure half the original.</p>
-
-<p>We call such sides perpendicular bisectors.</p>
-
-<p><b>TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE</b></p>
 
 <H3><a name="triangles-in-space"></a>Triangles in space!</H3>
 
@@ -369,7 +318,6 @@ tell us. This ought to provide some insight into how the notion of area generali
 
 <p><b>1.</b> Use smaller squares to represent a triangular half rectangle, making sure these almost add up to the proper area. Doing this, can we
 ever get a perfect fit?</p>
-<p><b>2.</b> Demonstrate some examples of the distributive law geometrically.</p>
 
 									</div><!-- .entry-content -->
 					<div class="clearfix row" style="margin:4px 0;">

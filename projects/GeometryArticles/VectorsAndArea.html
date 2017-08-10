@@ -56,10 +56,12 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		Macros: {
 			vcomps: ['( {#1}, {#2} )', 2],
 			vlen: ['\\|\\mathbf{#1}\\|', 1],
+			lenvw: ['\\|\\mathbf{#1}\\|\\|\\mathbf{#2}\\|', 2],
 			dotp: ['#1_x #2_x + #1_y #2_y', 2],
 			dotvw: ['\\mathbf{#1} \\cdot \\mathbf{#2}', 2],
 			softerdotvw: ['#1 \\cdot \\mathbf{#2}', 2],
-			fracalign: ['\\frac{\\vphantom{#3} #1}{#2}', 3]
+			dotvwparen: ['\\mathbf{#1} \\cdot (\\mathbf{#2})', 2],
+			softerdotvwparen: ['#1 \\cdot (\\mathbf{#2})', 2],
 		}
 	  }
   });
@@ -67,13 +69,6 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
-</script>
-
-<script type="text/javascript">
-	function TriURL (anchor)
-	{
-		window.location = "./Triangles.html#" + anchor;
-	}
 </script>
 
 <style type="text/css">
@@ -215,7 +210,7 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		<div class="col-md-12">
 			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
 
-				<h1 class="page-title h1">A 2D geometry primer, part 13: the Law of Sines</h1>
+				<h1 class="page-title h1">A 2D geometry primer, part 16: vectors and area</h1>
 				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./SpoofCoronaPage_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
 			</header><!-- .entry-header -->
 		</div>
@@ -228,192 +223,158 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
 <hr>
 
-<p>TODO!</p>
+<H3><a name="similarity"></a>Similarity (F)</H3>
 
-<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
+<p>Recall some of the properties of cosine, as we saw in <a href="./Circles.html#closer-look">part 2</a>.</p>
 
-<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
+<p>When the angle is small, the cosine's value is close to one. Near right angles, the value approaches zero. With more or less semicircular arcs, the value comes to
+about negative one. Any other angle falls somewhere in between. On account of cosine's symmetry, this holds both for negative and positive angles.</p>
 
-<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
-letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
+<p>For this reason, the cosine, and by extension the dot product, offer a sort of <a href="https://en.wikipedia.org/wiki/Cosine_similarity">similarity measurement</a>
+between vectors. When two unit vectors are nearly aligned, their dot product is close to one. They are approximately the same. On the other hand, vectors perpendicular
+to one another have, in some sense, nothing in common, answering to values near zero. Negative products, finally, correspond to vectors facing in more or less opposite
+directions, completely so for negative one&mdash;they <i>are</i> related, but in a "everything my neighbor does, do the opposite" fashion.</p>
 
-<div style="float:right;">
+<div style="float:left">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_LawOfSines/G2.png" width="200" height="150" alt="Law of sines">
-		<div style="caption"><b>G-2</b></div>
+		<img src="./images_vectors/similarity.png" width="210" height="150" alt="Similarity">
+		<div style="caption">Figure 11</div>
 	</div>
 </div>
 
-<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
-the same result. Thus</p>
+<p><b>(NOTES:</b> Component for non-unit vectors<b>)</b></p>
 
-<p>
-\begin{align}
-\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
-\end{align}
-<p>
+<p>This is a key component of many <a href="https://en.wikipedia.org/wiki/Blinn–Phong_shading_model">lighting models</a>, for instance. Every point on an object's
+surface has a unit vector, the <a href="https://en.wikipedia.org/wiki/Normal_(geometry)">normal</a>, perpendicular to it. In addition, each point looks toward the light
+source (rather, the light arrives from it, but we use the reverse of this direction). At each point we see compare the normal and "look at" direction. The more directly
+light hits, the more alike these are, and consequently the brighter that spot. The object gets steadily darker as the similarity tapers toward zero, negative values
+being rejected outright. For examples in Corona, see the
+<a href="https://docs.coronalabs.com/daily/guide/graphics/effects.html#composite.normalmapwith1dirlight">directional</a> or
+<a href="https://docs.coronalabs.com/daily/guide/graphics/effects.html#composite.normalmapwith1pointlight">point</a> light-based normal map effects. <b>(TODO:</b> image<b>)</b></p>
 
-<p>If we divide "both" sides by ${1 \over 2}ABC,$ this all comes out to</p>
+<p>It was hinted earlier that we are only dealing with a fairly specific sort of vector, namely those belonging to
+<a href="http://www.mathopenref.com/planegeometry.html">plane geometry</a>. Similarity hints at <a href="https://en.wikipedia.org/wiki/Vector_space_model">other uses</a>
+we might explore, as well as how cosine might be applied outside a strictly geometric context. Identifying properties like similarity and teasing out their useful
+implications is also key to generalizing geometric operations, the <a href="http://mathworld.wolfram.com/InnerProduct.html">dot product</a> among them.</p>
 
-<p>
-\begin{align}
-\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
-\end{align}
-<p>
+<p><b>(IMAGE:</b> 12<b>)</b></p>
 
-<p>This is the <b>Law of Sines</b>, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
-used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
+<H3><a name="determinant"></a>The determinant (G)</H3>
 
-<H3><a href="law-of-tangents"></a>Law of Tangents</H3>
+<p>A shortcoming of the dot product, by way of the underlying symmetry, is that we cannot say which side one vector lies on relative to the other. The vector
+$ \mathbf{v} $ and its reflection seen in the last section, for example, are equally similar to $ \mathbf{w} $, despite their obvious differences.</p>
 
-<p>We may calculate any altitude in terms of two different side-angle pairs. In <b>G-2</b>, for example, $A\sin b = B\sin a = H,$
-where $H$ is the common height.</p>
+<p>Similarity does give us a way to approach this, however. Asking "Which side is this vector on?" is much like wondering "How is it similar to a perpendicular
+vector?". We know of two candidates here: the perp operator and the rejection. The rejection is worthless in this situation, since it always points toward the
+vector&mdash;yes, the rejection gets rejected&mdash;but the perp operator gives us exactly what we need, owing to its reliable orientation.</p>
 
-<p>Some simple restructuring gives us $\sin a = \frac{H}{B}$ and $\sin b = \frac{H}{A}.$</p>
+<p>The question thus boils down to "How similar is this vector to the result of the perp operator?". $ \dotvw{v}{w^{\perp}} $ yields one sign on one side of
+ $ \mathbf{w} $, the reverse on the other, or zero should the vectors align. (Which sign is which, of course, is subject to our choice of perp operator.)</p>
 
-<p>We can bring the sum-to-product identities to bear on these:
+<p><b>(NOTES:</b> join<b>)</b></p>
 
-\begin{align}
-2\cos\left(\frac{a + b}{2}\right)\sin\left(\frac{a - b}{2}\right) & = H(\frac{1}{B} - \frac{1}{A}) \\
-& = \frac{H}{AB}(A - B) \\
-2\sin\left(\frac{a + b}{2}\right)\cos\left(\frac{a - b}{2}\right) & = \frac{H}{AB}(A + B)
-\end{align}
+<p>Both the projection and the result of the perp operator are perpendicular to $ \mathbf{w} $. Either they have the same or opposite directions; they are
+perfectly similar or dissimilar, pending normalization. If we call the angle between them $\phi$, we can say $ \cos\phi = \pm 1. $</p>
 
-When we divide one by the other, $\frac{H}{AB}$ goes away. We obtain the <b>Law of Tangents</b>:
+<p>Consider their dot product: $ \dotvwparen{w^{\perp}}{v - proj_w v} $.</p>
 
-\begin{align}
-\frac{A - B}{A + B} = \frac{\tan\frac{a - b}{2}}{\tan\frac{a + b}{2}}
-\end{align}
+<p>As pointed out earlier, dot products distribute over subtraction, so this may be rewritten as $ \dotvw{w^{\perp}}{v} - \dotvw{w^{\perp}}{proj_w v} $. Also
+mentioned was that $ \mathbf{proj_w v} $ has the same direction as $w$&mdash;basically, $v$ gets flattened onto it. As such, it will $ \mathbf{w^{\perp}} $ is
+perpendicular to it as well. This makes their dot product zero, of course, leaving us with $ \dotvw{w^{\perp}}{v} $. Interestingly, this is precisely our
+"above or below?" similarity condition.</p>
 
-<b>(NOTES:</b> Can probably merge these two into one "Laws" section; a bit of tightening and rewording is also in order<b>)</b></p>
+<p>So long as we stay consistent, the choice of perp operator is fairly arbitrary. Selecting one and working out the components, then: $ \softerdotvw{\vcomps{w_y}{-w_x}}{v} $,
+or $ v_x w_y - v_y w_x $.</p>
 
-<H3><a href="centroid"></a>Centroid</H3>
+<p>This is the <a href="http://roaminggamer.com/math2d/#cross">determinant</a>. As noted, this is equal to the earlier similarity, whose sign tells us what side
+$ \mathbf{v} $ lies on with respect to $ \mathbf{w} $.</p>
 
-<p>If we start at one corner and cut the opposite side at the midpoint, we have two triangles with base ${B \over 2}$ and height $h$,
-which is to say they have equal area, half that of the full triangle. Such lines are called medians.</p>
+<p><b>(IMAGE:</b> 13<b>)</b></p>
 
-<p><b>(NOTES:</b>Figure<b>)</b></p>
+<p><b>(NOTES:</b> join<b>)</b></p>
 
-<p>If we do the same with another corner, the same area situation will happen. Furthermore, of course, the medians will intersect
-somewhere. This will produce a number of triangles.</p>
+<p>Now, $ \mathbf{w^{\perp}} $ simply swaps the components $ \mathbf{w} $ and changes one of their signs. All of this comes out in the wash when we take its length,
+meaning $ \vlen{w^{\perp}} = \vlen{w}. $</p>
 
-<p><b>(NOTES:</b>Refer to figure<b>)</b></p>
+<p>From the dot product-cosine connection, we saw that $ \lenvw{v}{w}\cos\theta = \dotvw{v}{w}. $ At this point, we have accounted for everything except one of the
+vector lengths. So what is $ \vlen{v - proj_w v} $?</p>
 
-<p>With the Law of Sines we can investigate the relationships among their sides, tabulated in what follows. Note that, as we saw in
-the previous article, $\sin(180^\circ - \theta) = \sin\theta.$</p>
+<p>Of course, we could just grind it out, although the results will not be terribly enlightening. Instead, review the image of the rejection above, then recall the
+aforementioned dot product-cosine derivation, in particular where the right triangle's height was found. The rejection is exactly the side in question, so it follows
+that it has length $ \vlen{v}{\mid\sin\theta\mid} $. Note the absolute value; sine will go negative if the angle does, whereas lengths are positive. (In a right
+triangle, the non-right angles cannot get very wide, so negative cosines are a non-issue.) <b>(TODO:</b> image?<b>)</b></p>
 
-<p>First off, we have the triangles produced when the two medians cross. These correspond to the upper-left, upper-right, and lower-left
-triangles in (FIGURE):
+<p>Assembling all of this: $ \pm\vlen{w}\vlen{v}{\mid\sin\theta\mid} = v_x w_y - v_y w_x. $</p>
 
-\begin{align}
-T_{ul}: \frac{\sin x}{A} & = \frac{\sin b_1}{D} = \frac{\sin c_1}{F} \\
-T_{ur}: \frac{\sin x}{B / 2} & = \frac{\sin (x + c_2)}{D} = \frac{\sin c_2}{G} \\
-T_{ll}: \frac{\sin x}{C / 2} & = \frac{\sin b_2}{E} = \frac{\sin (x + b_2)}{F}
-\end{align}
+<p>The &pm; out front renders this somewhat unwieldy. Thankfully, $ \pm{\mid\sin\theta\mid} $ simplifies to $ \sin\theta $; sine has the aforementioned ability to
+go negative, so all is well. In the end, we have a sort of companion to the dot product-cosine equation: $ v_x w_y - v_y w_x = \lenvw{v}{w}\sin\theta. $</p>
 
-The median bisecting $B$ gave us a left and right triangle:
+<p><b>(IMAGE:</b> 14<b>)</b></p>
 
-\begin{align}
-Left: \frac{\sin c}{F + G} & = \frac{\sin b_1}{B / 2} = \frac{\sin (x + c_2)}{A} \\
-Right: \frac{\sin b_2}{B / 2} & = \frac{\sin a}{F + G} = \frac{\sin (x + c_2)}{C}
-\end{align}
+<p><b>(NOTES:</b> join<b>)</b></p>
 
-Likewise, from cutting side $C$ we have top and bottom triangles:
+<p>Our analysis thus far has considered vectors overlain on the sides of a right triangle. But several times, we came up with this triangle by decomposing a more
+general triangle. We can work backward from this insight, interpreting the side with sine-based length as an altitude. The other leg was already a projection in
+in the last few sections; with that in mind we can just call the full base $ \mathbf{w} $.</p>
 
-\begin{align}
-Top: \frac{\sin c_1}{C / 2} & = \frac{\sin b}{D + E} = \frac{\sin (x + b_2)}{A} \\
-Bottom: \frac{\sin c_2}{C / 2} & = \frac{\sin (x + b_2)}{B} = \frac{\sin a}{D + E}
-\end{align}
+<p>As we saw in <a href="./Triangles.html#area">part 1</a>, the area of a triangle is $ wh \over 2 $. In our vector-sided context, this becomes $ {\lenvw{w}{v}\sin\theta}
+\over 2 $.</p>
 
-Many of these results above are dead ends; some trial and error will flush them out. Among the useful bits, after
-some rearrangement:
+<p>This is almost exactly the determinant, of course. It tells us that the determinant is equal to twice the area of the triangle described by two vectors, say
+$ \mathbf{v} $ and $ \mathbf{w} $. A doubled area is rather awkward, but we can introduce a second triangle to account for it. If we then rotate this clone and
+affix it to the original, we end up with a <a href="https://en.wikipedia.org/wiki/Parallelogram">parallelogram</a>, an object with two pairs of parallel sides. <b>(TODO:</b> image<b>)</b></p>
 
-\begin{align}
-\sin(x + b_2) & = \frac{2A\sin c_1}{C} = \frac{2B\sin c_2}{C} \\
-\sin(x + c_2) & = \frac{2A\sin b_1}{B} = \frac{2C\sin b_2}{B}
-\end{align}
+<p>Quite often, the determinant is phrased in these terms instead, as the area of such a parallelogram. For instance, in the case of
+<a href="http://mathinsight.org/matrices_linear_transformations">matrices and linear transformations</a>, this more naturally mirrors the underlying coordinate
+systems.</p>
 
-We see that $A\sin b_1 = C\sin b_2$ and $A\sin c_1 = B\sin c_2,$ respectively. This next equality, also derived
-from the list above, will let us apply these insights:
+<p><b>(IMAGES:</b> 15, 16<b>)</b></p>
 
-\begin{align}
-\sin x = \frac{A\sin b_1}{D} = \frac{C\sin b_2}{2E} = \frac{A\sin c_1}{F} = \frac{B\sin c_2}{2G}
-\end{align}
+<H3><a name="point-in-triangle"></a>Point in triangle (H)</H3>
 
-<p>After substituting a couple of numerators, it quickly follows that $D = 2E$ and $F = 2G.$</p>
+<p>Something strange is going on. We want to all that trouble getting the determinant's sign squared away, then it shows up in a formula for area! What does a
+negative area even mean?</p>
 
-<p>Thus, our intersection is ${2 \over 3}$ of the way from either corner to the midpoint of its opposite side.</p>
+<p>First things first, the absolute value of this area carries the usual, intuitive meaning of the space taken up by the triangle or parallelogram. No surprises
+here.</p>
 
-<p>We can intersect either of the first two medians with the remaining one. Once again this happens ${2 \over 3}$
-along; the three medians have a common meeting point.</p>
+<p>The determinant was the same as the "which side?" similarity and also lends its sign to this area. The upshot of this is that the area's sign likewise conveys
+this side information. This is a bit of an odd pairing: area and side. Where might we put it some use?</p>
 
-<p>This is known as the <b>centroid</b>. To find its position, we linearly interpolate from any corner to the opposite midpoint:
+<p>In formulating the determinant above, we used the choice of perp operator that says one vector, say $ \mathbf{v} $, is on the positive side of the other, say
+$ \mathbf{w} $, when oriented counterclockwise to it. This is the so-called <a href="https://en.wikipedia.org/wiki/Right-hand_rule">right-hand rule</a>: starting
+with our fingers aligned to one vector, we rotate them to align with the other, all the while keeping our thumb pointing up; a positive angle proceeds from
+$ \mathbf{w} $ to $ \mathbf{v} $ is described by the right hand, otherwise the left. <b>(TODO:</b> images<b>)</b></p>
 
-\begin{align}
-x = {1 \over 3}x_1 + {2 \over 3}\frac{x_2 + x_3}{2}
-\end{align}
+<p><b>(NOTES:</b> Breaks up the flow? Put the rule part in the perp operator section, maybe.<b>)</b></p>
+<p><b>(NOTES:</b> Arggh, at any rate, this is proving hard to organize...<b>)</b></p>
 
-The $y$-coordinate is similar. After simplifying:
+<p>Now, imagine a triangle, with vectors along its sides, oriented so they traverse a loop around its sides. Furthermore, this triangle contains a point. From each
+side, we can trace another vector toward this point, starting from the tails of these side vectors.</p>
 
-\begin{align}
-\mathbf{c} = \left(\frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3}\right)
-\end{align}
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_vectors/point_in_triangle.png" width="210" height="150" alt="Point in triangle">
+		<div style="caption">Figure 17</div>
+	</div>
+</div>
 
-Using the altitudes from the centroid onto the three sides, we can find the areas of the three triangles it forms:
-$\frac{AD\sin c_1}{2}, \frac{CF\sin b_2}{2}, $ and $\frac{BD\sin c_2}{2}.$</p>
+<p>Each of the tail-to-point vectors are obviously above their respective sides, according to our right-handed convention. This will not be so, however, for a point
+outside the triangle, as seen on the right: on some sides the determinant is positive, on others negative, or zero when the point is <i>on</i> the side. Thus, we can
+establish containment for a point by checking that all three are positive. <b>(TODO:</b> image<b>)</b></p>
 
-<p>We can reuse one of our earlier substitutions here, telling us the first and third are equal.</p>
+<p>Together, a side and its tail-to-point vector describe a triangle, nested inside the larger one. For that matter, the implicit third side coincides with the
+tail-to-point vector of the next side in the sequence, so these constitute the full triangle. It seems only natural that these individual areas should sum to the total
+amount. <b>(TODO:</b> image<b>)</b></p>
 
-<p>Another relationship we can pull out of the earlier list is $C\sin b_2 = \frac{2AE\sin c_1}{F}.$ Given this, the
-second area reduces to $AE\sin c_1.$ Since $E = {D \over 2},$ this is equal to the others.</p>
+<p>These same circumstances prevail when the point lies outside the larger triangle, however, so we find ourselves in a bit of a quandary. As the picture shows, the
+pieces make up a larger object: the sum is not greater than its parts! Must we restrict ourselves to the inside case?</p>
 
-<p>Each sub-triangle thus occupies ${1 \over 3}$ of the total area. A triangle may be interpreted as an object of uniform
-density&mdash;in Corona, for instance, this describes a triangular polygon with a physics body&mdash;so the centroid
-sometimes goes by the name of <b>barycenter</b>, or "center of weight".</p>
+<p>These triangles, being vector-sided, are amenable to the new area formula. These areas can be positive or negative, of course. This accounts for the extra space:
+whenever one of the triangles is "too positive"&mdash;the point is "above" its base, but so much it spills out of the larger triangle&mdash;another one makes up for
+it by having negative area&mdash;here, the point is "below" the base. In the end, the signed areas do indeed sum to the (positive) area of the full triangle.</p>
 
-<H3><a name="barycenteric-coordinates"></a>Barycentric coordinates</H3>
-
-<p>We may divide the smaller areas by the larger one, giving us three values, say $b_1$, $b_2$, and $b_3$, that sum to one. Some interesting facts follow on this. As
-before, points "above" a side have positive sign and those "below" negative. Then there are those on the side itself: here the "sign", or rather the value $b_i$,
-is zero. Consequently, the corresponding triangle vanishes: it has no area.</p>
-
-<p>The point might also fall on <i>two</i> sides: at one of the corners. Another triangle vanishes. Two areas went to zero, so we have something like $ b_1 = b_2
-= 0 $ and $ b_3 = 1. $ At each of the corners, one of the values will be one, the others zero.</p>
-
-<p>When only one of the values was zero, with the point somewhere along one of the sides, the two that remain must still sum to one. Because of the situation
-prevailing at the corners, it seems reasonable that the nearer this point comes to a corner, the closer one $b_i$ will be to one, the other to zero. In other words,
-these seem to be a sort of weight, describing relative proximity to each corner. In the interior, all $b_i$ are between zero and one, but the idea still holds.
-Outside the triangle it does as well, though some $b_i$ will not be positive, and "on the side" might mean rather being on its infinite line.</p>
-
-<p>These are <a href="https://en.wikipedia.org/wiki/Barycentric_coordinate_system">barycentric</a> ("center of weight") coordinates. <b>(TODO:</b> image<b>)</b></p>
-
-<p>These coordinates, where values of one select a corner and reject the others, suggest that a point can be described by a formula such as $ b_1\mathbf{p}
-+ b_2\mathbf{q} + b_3\mathbf{r} $. In doing so, though, we find ourselves adding points, seemingly at odds with our earlier "arithmetic of types" guidelines.</p>
-
-<p>We can see that no such violation takes place by rephrasing a couple of the points using vectors: $ \mathbf{q} = \mathbf{p} + \mathbf{v} $ and $ \mathbf{r} =
-\mathbf{p} + \mathbf{w}. $ The formula then becomes $ b_1\mathbf{p} + b_2(\mathbf{p} + \mathbf{v}) + b_3(\mathbf{p} + \mathbf{w}) $. After distributing the
-scale factors, this restructures as $ (b_1 + b_2 + b_3)\mathbf{p} + b_2\mathbf{v} + b_3\mathbf{w} $.</p>
-
-<p>The parenthesized values sum to one, so the "scaling" leaves the point as is. The remaining terms are scaled vectors, which add to points just fine.
-Barycentric combinations are point-vector sums in disguise. (For that matter, if scaling a point also scales its "type"&mdash;making it equal to the scale
-factor&mdash;then although this intermediate result is some alien object, so long as the "types" all sum to one we will again have a point after adding all our
-pseudo-points together.) <b>(TODO:</b> as footnote?<b>)</b></p>
-
-<p>Barycentric coordinates are useful in that they allow us to operate in relative terms&mdash;near this corner, between these points, somewhere in the
-center&mdash;without needing to know the specifics of the triangle, such as point locations and distance.
-<a href="https://classes.soe.ucsc.edu/cmps160/Fall10/resources/barycentricInterpolation.pdf">Interpolation</a> between such coordinates comes quite naturally,
-as well.</p>
-
-<p>The idea extends to four points, for instance in the assortment of
-"<a href="http://www.colorado.edu/engineering/CAS/courses.d/IFEM.d/IFEM.Ch18.d/IFEM.Ch18.pdf">shape functions</a>" used to decompose meshes into
-<a href="https://en.wikipedia.org/wiki/Finite_element_method">simpler parts</a>. More complex problems are a subject of
-<a href="http://www.inf.usi.ch/hormann/barycentric/">ongoing research</a>.</p>
-
-<p><b>(IMAGE:</b> 20<b>)</b></p>
-
-<H3><a name="summary"></a>Summary</H3>
-
-<p>Revise!</p>
+<p><b>(IMAGES:</b> 18, 19<b>)</b><p>
 
 									</div><!-- .entry-content -->
 					<div class="clearfix row" style="margin:4px 0;">

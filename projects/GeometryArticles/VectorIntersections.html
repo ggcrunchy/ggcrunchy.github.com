@@ -56,10 +56,12 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		Macros: {
 			vcomps: ['( {#1}, {#2} )', 2],
 			vlen: ['\\|\\mathbf{#1}\\|', 1],
+			lenvw: ['\\|\\mathbf{#1}\\|\\|\\mathbf{#2}\\|', 2],
 			dotp: ['#1_x #2_x + #1_y #2_y', 2],
 			dotvw: ['\\mathbf{#1} \\cdot \\mathbf{#2}', 2],
 			softerdotvw: ['#1 \\cdot \\mathbf{#2}', 2],
-			fracalign: ['\\frac{\\vphantom{#3} #1}{#2}', 3]
+			dotvwparen: ['\\mathbf{#1} \\cdot (\\mathbf{#2})', 2],
+			softerdotvwparen: ['#1 \\cdot (\\mathbf{#2})', 2],
 		}
 	  }
   });
@@ -67,13 +69,6 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
-</script>
-
-<script type="text/javascript">
-	function TriURL (anchor)
-	{
-		window.location = "./Triangles.html#" + anchor;
-	}
 </script>
 
 <style type="text/css">
@@ -215,7 +210,7 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 		<div class="col-md-12">
 			<ol class="breadcrumb"><li><a href="http://coronalabs.com/blog/">Blog</a></li> <li><a href="http://coronalabs.com/blog/topics/guest-bloggers/">Guest Bloggers</a> </li> <li class="active">Tutorial: Creating Android TV Apps</li></ol>			<header class="page-header">
 
-				<h1 class="page-title h1">A 2D geometry primer, part 13: the Law of Sines</h1>
+				<h1 class="page-title h1">A 2D geometry primer, part 18: vector intersections</h1>
 				<h6 class="text-muted text-small"><i><span class="posted-on">Posted on <a href="./SpoofCoronaPage_files/Coroutines.html" title="2:03 pm" rel="bookmark"><time class="entry-date published" datetime="2015-01-13T14:03:25+00:00">January 13, 2015</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://coronalabs.com/blog/author/brent/" title="View all posts by Brent Sorrentino">Brent Sorrentino</a></span></span></i></h6>
 			</header><!-- .entry-header -->
 		</div>
@@ -228,192 +223,112 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 					<p><em>Today’s guest tutorial comes to you courtesy of X.</em></p>
 <hr>
 
-<p>TODO!</p>
+<H3><a name="intersection-ray-line"></a>Intersection: ray and line... (M)</H3>
 
-<H3><a href="laws-and-rights"></a>Laws and rights (G)</H3>
+<p>If the point-normal form is satisfied at some $t$, $ \mathbf{x}(t) $ is a point on the line. Ordinarily, as in the previous section, we assume $ \mathbf{x}(t) $
+to be roving over the line itself, and any $t$ will do.</p>
 
-<p>As we have now seen a few times, sine is the key to finding altitudes' heights, in combination with a side as hypotenuse.</p>
+<p>It could just as easily be a point on a second line, say $ \mathbf{x}(t) = \mathbf{q} + t\mathbf{w}. $ We would then be seeing an intersection of two lines.
+Unless the lines coincide, only one value of $t$ suits this situation.</p>
 
-<p>Together with the adjacent side, we can find the area of the triangle, say as $ \frac{AC\sin b}{2}. $ (The use of lowercase Latin
-letters here is conventional and deliberate, with angles opposite sides designated by the uppercase of the same.)</p>
-
-<div style="float:right;">
+<div style="float:left">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_LawOfSines/G2.png" width="200" height="150" alt="Law of sines">
-		<div style="caption"><b>G-2</b></div>
+		<img src="./images_vectors/ray_line_intersect.png" width="210" height="150" alt="Ray-line intersection">
+		<div style="caption">Figure 29</div>
 	</div>
 </div>
 
-<p>Now, of course, the triangle will have the same area regardless, so choosing another pair of sides and included angle will yield
-the same result. Thus</p>
+<p>If we could find this $t$, we would be able to say "when" the lines intersected. How might we do so?</p>
 
-<p>
-\begin{align}
-\frac{BC\sin a}{2} = \frac{AC\sin b}{2} = \frac{AB\sin c}{2}
-\end{align}
-<p>
+<p>It is, of course, already right there in the point function, but everything is in vector form, whereas $t$ is a number. We need a way to extract it.</p>
 
-<p>If we divide "both" sides by ${1 \over 2}ABC,$ this all comes out to</p>
+<p>Thankfully, we have such a tool. The dot product turns vectors into numbers!</p>
 
-<p>
-\begin{align}
-\frac{\sin a}{A} = \frac{\sin b}{B} = \frac{\sin c}{C}
-\end{align}
-<p>
+<p>In a further instance of serendipity, the point-normal form comes equipped with one. Plugging in $ \mathbf{x}(t) $, then, we find $ \dotvwparen{n}{q + \mathit{t}w
+- p} = 0. $ This becomes $\dotvwparen{n}{q - p} = -t(\dotvw{n}{w}), $ and after some rearrangement: $ t = -{\dotvwparen{n}{q - p}\over\dotvw{n}{w}} $.</p>
 
-<p>This is the <b>Law of Sines</b>, which brings similar power to sines as the previous law did to cosines. (Sometimes the inverse form is
-used, with $ \frac{B}{\sin b} $ and so on. Since these are intended to relate sides, either way will serve.)</p>
+<p>Since $ \mathbf{w} $ has a "forward" direction, we are really dealing with a ray, not a line. If $ t \lt 0 $, the intersection is behind $ \mathbf{q} $. We will
+have to decide whether this makes sense on a case-by-case basis.</p>
 
-<H3><a href="law-of-tangents"></a>Law of Tangents</H3>
+<p>If $ \mathbf{w} $ is perpendicular to $ \mathbf{n} $, we have a zero denominator above; $ \mathbf{w} $ is parallel to the line. Again we need to settle on some
+policies. Do we reject these situations outright, or check whether the lines are "close enough"? In any event, the intersection formula is no good to us, here;
+projections, distance checks, and the like become our tools of choice.</p>
 
-<p>We may calculate any altitude in terms of two different side-angle pairs. In <b>G-2</b>, for example, $A\sin b = B\sin a = H,$
-where $H$ is the common height.</p>
+<H3><a name="intersection-ray-ray"></a>...ray and ray... (N)</H3>
 
-<p>Some simple restructuring gives us $\sin a = \frac{H}{B}$ and $\sin b = \frac{H}{A}.$</p>
+<p>Speaking of rays, imagine how two of them, say $ \mathbf{p} + s\mathbf{v} $ and $ \mathbf{q} + t\mathbf{w} $, might intersect. <b>(TODO:</b> image<b>)</b></p>
 
-<p>We can bring the sum-to-product identities to bear on these:
+<p>Since they do so at a point, we can set the two point formulae equal: $ \mathbf{p} + s\mathbf{v} = \mathbf{q} + t\mathbf{w}. $ It then comes down to finding
+$s$ and $t$.</p>
 
-\begin{align}
-2\cos\left(\frac{a + b}{2}\right)\sin\left(\frac{a - b}{2}\right) & = H(\frac{1}{B} - \frac{1}{A}) \\
-& = \frac{H}{AB}(A - B) \\
-2\sin\left(\frac{a + b}{2}\right)\cos\left(\frac{a - b}{2}\right) & = \frac{H}{AB}(A + B)
-\end{align}
+<div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_vectors/rays_intersect.png" width="210" height="150" alt="Ray-ray intersection">
+		<div style="caption">Figure 30</div>
+	</div>
+</div>
 
-When we divide one by the other, $\frac{H}{AB}$ goes away. We obtain the <b>Law of Tangents</b>:
+<p>Once again we may call upon dot products to whittle our vectors down into number form. Naively doing so will only get us so far, however, since we still have
+two variables to solve. It would be best if we could tackle them one at a time.</p>
 
-\begin{align}
-\frac{A - B}{A + B} = \frac{\tan\frac{a - b}{2}}{\tan\frac{a + b}{2}}
-\end{align}
+<p>$s$ and $t$ are scale factors attached to vectors. Since scale factors apply to each component, they carry through in dot products. To get rid of them, then,
+requires dot products of zero.</p>
 
-<b>(NOTES:</b> Can probably merge these two into one "Laws" section; a bit of tightening and rewording is also in order<b>)</b></p>
+<p>To isolate $s$, we need $t$ out of the way. This calls for a vector perpendicular to $ \mathbf{w} $. With some slight rearrangement, after applying the dot
+product we have $ \dotvwparen{w^{\perp}}{q - p} = s(\dotvw{w^{\perp}}{v}) $. With a little more, $ s = {\dotvwparen{w^{\perp}}{q - p}\over\dotvw{w^{\perp}}{v}}.
+$ Similarly, $ t = -{\dotvwparen{v^{\perp}}{q - p}\over\dotvw{v^{\perp}}{w}}. $</p>
 
-<H3><a href="centroid"></a>Centroid</H3>
+<p>Once again we have to set guidelines for $ s \lt 0 $ and $ t \lt 0 $. Zero denominators have the same meaning as before, too.</p>
 
-<p>If we start at one corner and cut the opposite side at the midpoint, we have two triangles with base ${B \over 2}$ and height $h$,
-which is to say they have equal area, half that of the full triangle. Such lines are called medians.</p>
+<p>Sometimes formulae like the above are expressed <a href="https://en.wikipedia.org/wiki/Cramer%27s_rule#Explicit_formulas_for_small_systems">in terms of
+determinants</a>. As we saw earlier, these soon follow when dot products and perp operators mingle.</p>
 
-<p><b>(NOTES:</b>Figure<b>)</b></p>
+<H3><a name="intersection-ray-circle"></a>...ray and circle (O)</H3>
 
-<p>If we do the same with another corner, the same area situation will happen. Furthermore, of course, the medians will intersect
-somewhere. This will produce a number of triangles.</p>
+<p>Circles have gotten pretty short shrift in this discussion on vectors, but we can give them the last word as we round things out.</p>
 
-<p><b>(NOTES:</b>Refer to figure<b>)</b></p>
+<p>Recall from <a href="./Circles.html#circles">part 2</a> that a circle consists of all points a distance $r$ from a center position, say $ \mathbf{C} $. This
+translates quite easily to vector form. For some point $ \mathbf{x} $ on the circle we might have $ \vlen{x(\mathit{\theta}) - C} = r. $
 
-<p>With the Law of Sines we can investigate the relationships among their sides, tabulated in what follows. Note that, as we saw in
-the previous article, $\sin(180^\circ - \theta) = \sin\theta.$</p>
+<p>$ \mathbf{x(\mathit{\theta})} $ is a fitting way to parametrize the circle. Following the lead of the ray-line case, however, it could just as well be a
+point resulting from a ray. Plugging in that same $ \mathbf{x}(t) $: $ \vlen{q + \mathit{t}w - C} = r. $</p>
 
-<p>First off, we have the triangles produced when the two medians cross. These correspond to the upper-left, upper-right, and lower-left
-triangles in (FIGURE):
+<div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_vectors/ray_circle_intersect.png" width="210" height="150" alt="Ray-circle intersection">
+		<div style="caption">Figure 31</div>
+	</div>
+</div>
 
-\begin{align}
-T_{ul}: \frac{\sin x}{A} & = \frac{\sin b_1}{D} = \frac{\sin c_1}{F} \\
-T_{ur}: \frac{\sin x}{B / 2} & = \frac{\sin (x + c_2)}{D} = \frac{\sin c_2}{G} \\
-T_{ll}: \frac{\sin x}{C / 2} & = \frac{\sin b_2}{E} = \frac{\sin (x + b_2)}{F}
-\end{align}
+<p>The vector length involve a square root that would be incredibly difficult to unravel. However, both sides being lengths, we can square them to get
+$ \vlen{q + \mathit{t}w - C}^2 = r^2. $ As mentioned earlier, a squared vector length is a dot product of the vector with itself: $ \mathbf{(q + \mathit{t}w
+- C)} \cdot \mathbf{(q + \mathit{t}w - C)} = r^2. $</p>
 
-The median bisecting $B$ gave us a left and right triangle:
+<p>Since the dot product distributes, we may FOIL this to obtain $ (\dotvw{w}{w})t^2 - 2(\dotvwparen{w}{q - C})t + \mathbf{(q - C)\cdot(q - C)} - r^2 = 0. $</p>
 
-\begin{align}
-Left: \frac{\sin c}{F + G} & = \frac{\sin b_1}{B / 2} = \frac{\sin (x + c_2)}{A} \\
-Right: \frac{\sin b_2}{B / 2} & = \frac{\sin a}{F + G} = \frac{\sin (x + c_2)}{C}
-\end{align}
+<p>This has the form $ at^2 + bt + c = 0, $ making it amenable to solution by the <a href="https://en.wikipedia.org/wiki/Quadratic_formula">quadratic formula</a>
+as $ t = {{-b \pm\sqrt{b^2 - 4ac}} \over 2a} $.</p>
 
-Likewise, from cutting side $C$ we have top and bottom triangles:
+<p>From the presence of $ t^2 $ and the &pm; we can deduce that there are two values of $t$. This makes sense, since the ray can enter a circle on one side and
+come out the other. Once again, $ t \lt 0 $ means an intersection behind $ \mathbf{q} $, which might be true for <i>both</i> points. If each $t$ has different
+sign, on the other hand, the ray only leaves the circle, meaning it must begin on the inside.</p>
 
-\begin{align}
-Top: \frac{\sin c_1}{C / 2} & = \frac{\sin b}{D + E} = \frac{\sin (x + b_2)}{A} \\
-Bottom: \frac{\sin c_2}{C / 2} & = \frac{\sin (x + b_2)}{B} = \frac{\sin a}{D + E}
-\end{align}
+<p>The terms inside the square root are known as the <a href="https://en.wikipedia.org/wiki/Discriminant">discriminant</a>. If this is negative, the formula
+breaks down, giving us no solutions. This is the situation where the ray misses the circle. When it is zero, both answers are the same. This is the case of
+the ray grazing the circle's edge.</p>
 
-Many of these results above are dead ends; some trial and error will flush them out. Among the useful bits, after
-some rearrangement:
+<p>We only run into zero denominators when $ \dotvw{w}{w} = 0. $ We need not worry about a vector being perpendicular to itself. This only happens if $ \mathbf{w} $
+is a zero vector, where our "ray" is really a point. If $ \mathbf{w} $ were a velocity, for instance, this would be an immobile object, who will obviously not
+be the culprit in the event of a collision. (Zero vectors can crop up in the ray-line and ray-ray cases as well, of course.)
 
-\begin{align}
-\sin(x + b_2) & = \frac{2A\sin c_1}{C} = \frac{2B\sin c_2}{C} \\
-\sin(x + c_2) & = \frac{2A\sin b_1}{B} = \frac{2C\sin b_2}{B}
-\end{align}
-
-We see that $A\sin b_1 = C\sin b_2$ and $A\sin c_1 = B\sin c_2,$ respectively. This next equality, also derived
-from the list above, will let us apply these insights:
-
-\begin{align}
-\sin x = \frac{A\sin b_1}{D} = \frac{C\sin b_2}{2E} = \frac{A\sin c_1}{F} = \frac{B\sin c_2}{2G}
-\end{align}
-
-<p>After substituting a couple of numerators, it quickly follows that $D = 2E$ and $F = 2G.$</p>
-
-<p>Thus, our intersection is ${2 \over 3}$ of the way from either corner to the midpoint of its opposite side.</p>
-
-<p>We can intersect either of the first two medians with the remaining one. Once again this happens ${2 \over 3}$
-along; the three medians have a common meeting point.</p>
-
-<p>This is known as the <b>centroid</b>. To find its position, we linearly interpolate from any corner to the opposite midpoint:
-
-\begin{align}
-x = {1 \over 3}x_1 + {2 \over 3}\frac{x_2 + x_3}{2}
-\end{align}
-
-The $y$-coordinate is similar. After simplifying:
-
-\begin{align}
-\mathbf{c} = \left(\frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3}\right)
-\end{align}
-
-Using the altitudes from the centroid onto the three sides, we can find the areas of the three triangles it forms:
-$\frac{AD\sin c_1}{2}, \frac{CF\sin b_2}{2}, $ and $\frac{BD\sin c_2}{2}.$</p>
-
-<p>We can reuse one of our earlier substitutions here, telling us the first and third are equal.</p>
-
-<p>Another relationship we can pull out of the earlier list is $C\sin b_2 = \frac{2AE\sin c_1}{F}.$ Given this, the
-second area reduces to $AE\sin c_1.$ Since $E = {D \over 2},$ this is equal to the others.</p>
-
-<p>Each sub-triangle thus occupies ${1 \over 3}$ of the total area. A triangle may be interpreted as an object of uniform
-density&mdash;in Corona, for instance, this describes a triangular polygon with a physics body&mdash;so the centroid
-sometimes goes by the name of <b>barycenter</b>, or "center of weight".</p>
-
-<H3><a name="barycenteric-coordinates"></a>Barycentric coordinates</H3>
-
-<p>We may divide the smaller areas by the larger one, giving us three values, say $b_1$, $b_2$, and $b_3$, that sum to one. Some interesting facts follow on this. As
-before, points "above" a side have positive sign and those "below" negative. Then there are those on the side itself: here the "sign", or rather the value $b_i$,
-is zero. Consequently, the corresponding triangle vanishes: it has no area.</p>
-
-<p>The point might also fall on <i>two</i> sides: at one of the corners. Another triangle vanishes. Two areas went to zero, so we have something like $ b_1 = b_2
-= 0 $ and $ b_3 = 1. $ At each of the corners, one of the values will be one, the others zero.</p>
-
-<p>When only one of the values was zero, with the point somewhere along one of the sides, the two that remain must still sum to one. Because of the situation
-prevailing at the corners, it seems reasonable that the nearer this point comes to a corner, the closer one $b_i$ will be to one, the other to zero. In other words,
-these seem to be a sort of weight, describing relative proximity to each corner. In the interior, all $b_i$ are between zero and one, but the idea still holds.
-Outside the triangle it does as well, though some $b_i$ will not be positive, and "on the side" might mean rather being on its infinite line.</p>
-
-<p>These are <a href="https://en.wikipedia.org/wiki/Barycentric_coordinate_system">barycentric</a> ("center of weight") coordinates. <b>(TODO:</b> image<b>)</b></p>
-
-<p>These coordinates, where values of one select a corner and reject the others, suggest that a point can be described by a formula such as $ b_1\mathbf{p}
-+ b_2\mathbf{q} + b_3\mathbf{r} $. In doing so, though, we find ourselves adding points, seemingly at odds with our earlier "arithmetic of types" guidelines.</p>
-
-<p>We can see that no such violation takes place by rephrasing a couple of the points using vectors: $ \mathbf{q} = \mathbf{p} + \mathbf{v} $ and $ \mathbf{r} =
-\mathbf{p} + \mathbf{w}. $ The formula then becomes $ b_1\mathbf{p} + b_2(\mathbf{p} + \mathbf{v}) + b_3(\mathbf{p} + \mathbf{w}) $. After distributing the
-scale factors, this restructures as $ (b_1 + b_2 + b_3)\mathbf{p} + b_2\mathbf{v} + b_3\mathbf{w} $.</p>
-
-<p>The parenthesized values sum to one, so the "scaling" leaves the point as is. The remaining terms are scaled vectors, which add to points just fine.
-Barycentric combinations are point-vector sums in disguise. (For that matter, if scaling a point also scales its "type"&mdash;making it equal to the scale
-factor&mdash;then although this intermediate result is some alien object, so long as the "types" all sum to one we will again have a point after adding all our
-pseudo-points together.) <b>(TODO:</b> as footnote?<b>)</b></p>
-
-<p>Barycentric coordinates are useful in that they allow us to operate in relative terms&mdash;near this corner, between these points, somewhere in the
-center&mdash;without needing to know the specifics of the triangle, such as point locations and distance.
-<a href="https://classes.soe.ucsc.edu/cmps160/Fall10/resources/barycentricInterpolation.pdf">Interpolation</a> between such coordinates comes quite naturally,
-as well.</p>
-
-<p>The idea extends to four points, for instance in the assortment of
-"<a href="http://www.colorado.edu/engineering/CAS/courses.d/IFEM.d/IFEM.Ch18.d/IFEM.Ch18.pdf">shape functions</a>" used to decompose meshes into
-<a href="https://en.wikipedia.org/wiki/Finite_element_method">simpler parts</a>. More complex problems are a subject of
-<a href="http://www.inf.usi.ch/hormann/barycentric/">ongoing research</a>.</p>
-
-<p><b>(IMAGE:</b> 20<b>)</b></p>
+<p><b>(NOTES:</b> Ways to simplify equation&mdash;when vector is normalized, the coefficient of 2 in $b$&mdash;, maybe mention David Eberly's stability improvements<b>)</b></p>
 
 <H3><a name="summary"></a>Summary</H3>
 
-<p>Revise!</p>
+<p>We now have quite an array of geometrical tools, comprising not only vectors but also insights into triangles and circles.</p>
+
+<p>All this know-how is likely to wither on the vine unless we apply it. In the capstone article of this series, we will take a look at a
+special effect that puts many of our new-found skills to work.</p>
 
 									</div><!-- .entry-content -->
 					<div class="clearfix row" style="margin:4px 0;">
