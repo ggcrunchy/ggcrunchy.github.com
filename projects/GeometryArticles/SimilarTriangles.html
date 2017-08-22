@@ -307,6 +307,22 @@ angle&mdash;so that the smaller triangle is "part of" the larger one, as seen in
 
 <p><b>TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE TENTATIVE</b></p>
 
+<p>If we scale we have $a^2 + b^2 = s^2z^2,$ whereas the smaller one is $(x - a)^2 + (y - b)^2 = (1 - s)^2 z^2,$ which expands to
+
+\begin{align}
+x^2 + y^2 - 2ax - 2by + a^2 + b^2 & = (1 - 2s + s^2)z^2 \\
+								  & = (1 - 2s)z^2 + s^2 z^2 \\
+								  & = (1 - 2s)(x^2 + y^2) + a^2 + b^2 \\
+-2(ax + by) & = -2s(x^2 + y^2) \\
+ax + by & = s(x^2 + y^2)
+\end{align}
+
+Collecting this a bit, we have $x(a - sx) + y(b - sy) = 0.$ Since $x$ and $y$ can clearly vary, this must mean that $a = sx$ and $b = sy,$ as suggested
+by reversing our way through the Pythagorean theorem. So the legs are scaled the same way.</p>
+
+<p><b>(NOTES:</b> These last two paragraphs give the outline for a more formal establishment of this fact; not sure whether this means swapping the lerp and similarity sections<b>)</b></p>
+<p><b>(NOTES:</b> That said, simply adjoining triangles to motivate the idea, then using the Pythagorean theorem, gets you most of the way there<b>)</b></p>
+
 <H4><b>EXERCISES</b></H4>
 
 <p><b>1.</b> Make an argument for similarity from the midpoint theorem, mentioned in an earlier exercise.</p>
@@ -330,16 +346,18 @@ and are congruent.</p>
 
 <H3><a name="isosceles-converse"></a>Isosceles triangles: the converse</H3>
 
-<p>Armed with our new theorems, we can revisit isosceles triangles.</p>
-
-<div style="float:left">
+<div style="float:right">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
 		<img src="./images_SimilarTriangles/D1.png" width="150" height="100" alt="Start with the midpoint">
 		<div class="caption"><b>D-1</b></div>
 	</div>
 </div>
 
-<p>Previously we saw that two equal sides meant two equal angles opposite them. But can we come from the other direction?</p>
+<p>We saw earlier that, in a triangle where two sides have the same length, these sides were opposite congruent angles. The obvious
+follow-up question is whether we can go the other way. Given two such angles, what can we say about the sides?</p>
+
+<p>When we studied isosceles triangles before, the third side ended up getting cut in half, on account of the perpendicular
+bisector. This is as good a place as any to start, giving us the situation in <b>D-1</b>.</p>
 
 </p><div style="float:left">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
@@ -348,23 +366,29 @@ and are congruent.</p>
 	</div>
 </div>
 
-<p>We have little to work with at first. But we can find the point halfway along the side common to the angles, then drop it onto the other two sides.</p>
+<p>From the midpoint of this third side, we can sketch a couple segments, marked in dashes in <b>D-2</b>, to the other two
+sides. If we aim these right, we etch out a couple right triangles.</p>
 
-<p>The two triangles that result will be similar and also have that side length in common. Thus from either of the theorems these are congruent.</p>
+<p>Since we already have know two angles in each case, the third follows. All these angles match, so we also have similar
+triangles.</p>
 
 </p><div style="float:right">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
-		<img src="./images_SimilarTriangles/D3.png" width="150" height="100" alt="Inner isosceles">
+		<img src="./images_SimilarTriangles/D3.png" width="200" height="133" alt="Inner isosceles">
 		<div class="caption"><b>D-3</b></div>
 	</div>
 </div>
 
-<p>This means we have two sides of the almost-triangle inside equal. We can thus form an isosceles by connecting the feet, which will split into two
-right triangles.</p>
+<p>The sides between the one- and two-arced angles both have the same length: the half-side of the original triangle. Thus
+these right triangles are congruent by either angle-angle-side or angle-side-angle.</p>
 
-<p>Now, either from complementary or corresponding angles, the remaining triangle also has equal angles. If we draw a line that bisects the last vertex's angle
-and lands on the foot-connecting side, by the reflexive property we then have angle-angle-side and these last two triangles must be congruent, which means
-right triangles. This inner shape will show up again.</p>
+<p>We can mark the various sides, as in <b>D-3</b>, to point out the matching side lengths. In particular, we see that if
+we connect the feet of our two right triangles, we have an isosceles triangle. Since we know these break apart into two
+right triangles, this new side must be parallel to the side we cut in half in the original triangle. Thus the congruent
+angles are alternate with the double-arced ones, whereas the bisected parts are complementary to them.</p>
+
+<p>We still have some unexplored bits from the original triangle. The new angles here are complementary to the congruent
+pair in the isosceles, or corresponding with the original's congruent pair, so match single arcs. Finally, we have <b>D-3</b>.</p>
 
 </p><div style="float:left">
 	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
@@ -373,14 +397,46 @@ right triangles. This inner shape will show up again.</p>
 	</div>
 </div>
 
-<p>We have the same pair of equal lengths along each side. So indeed equal angles do give us the expected result.</p>
+</p><div style="float:right">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_SimilarTriangles/D5.png" width="150" height="100" alt="AAS approach">
+		<div class="caption"><b>D-5</b></div>
+	</div>
+</div>
 
-<p><b>(NOTES:</b> http://mathworld.wolfram.com/Kite.html <b>)</b></p>
-<p><b>(NOTES:</b> Holy cow is this rough :D It needs three or four figures to go along with it, of course.<b>)</b></p> 
+<p>We can now proceed in a number of ways.</p>
+
+<p>As figure <b>D-4</b> emphasizes, we have similar triangles, but our two sides will grow by the same amount. So $sa = a + K,$
+or $(s - 1)a = K,$ and likewise $(s - 1)b = K,$ thus $a = b.$</p>
+
+<p>With the approach in <b>D-5</b>, we try cutting the angle in various ways. With $\alpha = \beta$, along with the half-sides of
+the isosceles and reflexively the side being extended, we have a angle-angle-side configuration.</p>
+
+<p><b>(NOTES:</b> Mention something about why line is only partial in figure, i.e. experimenting with triangles; mention using
+side of isosceles?<b>)</b></p>
+<p><b>(NOTES:</b> Ticks and mark not actually needed here... and in fact we don't know enough to make use of them... relevant to
+the kite, though<b>)</b></p>
+
+<p>We get our answer either way: a pair of congruent angles yield congruent opposite sides!</p>
+
+</p><div style="float:left">
+	<div style="margin: 0 auto; text-align: center; overflow: hidden;">
+		<img src="./images_SimilarTriangles/D6.png" width="150" height="100" alt="Kite">
+		<div class="caption"><b>D-6</b></div>
+	</div>
+</div>
+
+<p>As an aside, the isosceles in this last step and the one from <b>D-3</b> coincide in their third sides, forming a so-called
+<a href="http://mathworld.wolfram.com/Kite.html">kite</a>. We will see these occasionally in future articles.</p>
+
+<p>Segments drawn between opposite corners of a kite meet at right angles, as in <b>D-6</b>.</p>
+
+<p><b>(NOTES:</b> Much smoother than it was, but still needs polish<b>)</b></p> 
 
 <H4><b>EXERCISES</b></H4>
 
 <p><b>1.</b> Argue for the converse directly from <b>D-1</b> and angle-side-angle.</p>
+<p><b>2.</b> How else might we reason for the converse from <b>D-4</b>?</p>
 
 <H3><a name="summary"></a>Summary</H3>
 
