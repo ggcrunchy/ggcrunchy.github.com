@@ -261,6 +261,57 @@ powerpress_url = 'http://coronalabs.com/plugins/powerpress/';
 <p><b>(NOTES:</b>Uses stuff from last few sections<b>)</b></p>
 <p><b>(NOTES:</b>Code, along with some robustness improvements<b>)</b></p>
 
+<p>We come to interesting problems with $a x^2 + b x .$</p>
+<p>We can get a hint of how to approach this by putting a $a x \times x$ rectangle next to a $b \times x$ one.</p>
+<p>However, that $x^2$ bit suggests a square root. In that case, we can begin by resizing the first bit to a square
+with $\sqrt{a}{x}$ per side.</p>
+<p>To accommodate this we also want to scale our other rect to have the same height. In doing so, we will adjust
+its width to preserve its size, namely to $\frac{b}{\sqrt{a}}.$</p>
+<p>However, now our overall object is non-square. We can address this by cutting our adjusted second rect in half
+and putting the second piece, rotated, beneath the original square. The respective dimensions are now $\frac{b}{2\sqrt{a}}$
+each.</p>
+<p>This will still leave a gap in the corner. We can "complete the square" by taking this amount, $\frac{b^2}{4a},$ into
+account.</p>
+<p>Altogether we can say $a x^2 + b x + \frac{b^2}{4a} = T,$ where $T$ is the total area of the square.</p>
+<p>With a little massaging, we can see this has been factored out:
+
+\begin{align}
+a x^2 + b x + \frac{b^2}{4a} & = a\left(x^2 + \frac{b x}{a}\right) + a\frac{b^2}{4a^2} \\
+			& = a\left(x^2 + \frac{b x}{a} + \frac{b^2}{4a^2}\right) \\
+			& = a\left(x + \frac{b}{2a}\right)^2
+\end{align}
+
+If we put this back together we then have:
+
+\begin{align}
+a\left(x + \frac{b}{2a}\right)^2 &= T \\
+\left(x + \frac{b}{2a}\right)^2 &= \frac{T}{a}
+\end{align}
+
+This is amenable to our new square root tool:
+
+\begin{align}
+x + \frac{b}{2a} &= \pm \sqrt{\frac{T}{a}} \\
+x &= -\frac{b}{2a} \pm \sqrt{\frac{T}{a}}
+\end{align}
+
+We might want to express this in terms of our known area, say $A:$
+
+\begin{align}
+x &= \frac{-b}{2a} \pm \sqrt{\frac{1}{a}\left(A + \frac{b^2}{4a}\right)} \\
+	&= \frac{-b}{2a} \pm \sqrt{\frac{4aA + b^2}{4a^2}} \\
+	&= \frac{-b \pm \sqrt{4aA + b^2}}{2a}
+\end{align}
+
+Now, although this was tailored toward problems like $a x^2 + b x = A,$ we have something more general and
+can really deal with equations like $a x^2 + b x + c = 0.$ Making the substitution $c = -A,$ we have:
+
+\begin{align}
+x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\end{align}
+
+This is the quadratic equation.</p>
+
 <H3><a name="opening-lines"></a>Opening lines</H3>
 
 <p>Our first order of business is to say a little about lines.</p>
