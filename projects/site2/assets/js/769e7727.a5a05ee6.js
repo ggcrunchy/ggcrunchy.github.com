@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkggcrunchy_docs=self.webpackChunkggcrunchy_docs||[]).push([[3641],{573:e=>{e.exports=JSON.parse('{"permalink":"/projects/site2/blog/tags/hola","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

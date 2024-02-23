@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkggcrunchy_docs=self.webpackChunkggcrunchy_docs||[]).push([[3749],{3089:s=>{s.exports=JSON.parse('{"label":"hello","permalink":"/projects/site2/blog/tags/hello","allTagsPath":"/projects/site2/blog/tags","count":2,"unlisted":false}')}}]);
